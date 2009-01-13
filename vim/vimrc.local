@@ -1,0 +1,12 @@
+set viminfo=
+colorscheme delek
+set cursorline
+set incsearch
+set nowrap
+set number
+set scrolloff=5
+set shiftwidth=4
+set tabstop=4
+set virtualedit=block
+
+let python_highlight_all=1
