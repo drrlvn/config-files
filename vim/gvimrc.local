@@ -1,3 +1,9 @@
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
+
+set guicursor+=a:blinkon0
+
+highlight Normal guibg=black guifg=white
+highlight NonText guibg=black
+highlight CursorLine guibg=grey20

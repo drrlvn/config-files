@@ -12,6 +12,7 @@ set viminfo=
 set virtualedit=block
 
 colorscheme delek
+set background=dark
 
 let python_highlight_all=1
 
