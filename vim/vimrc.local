@@ -13,6 +13,7 @@ set virtualedit=block
 
 colorscheme delek
 set background=dark
+highlight TabLine cterm=none
 
 let python_highlight_all=1
 
