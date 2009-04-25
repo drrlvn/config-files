@@ -11,6 +11,10 @@ set tabstop=4
 set viminfo=
 set virtualedit=block
 
+au FileType python set foldmethod=indent
+au FileType vim set foldmethod=marker
+au FileType {c,cpp} set foldmethod=syntax
+
 colorscheme delek
 set background=dark
 highlight TabLine cterm=none
