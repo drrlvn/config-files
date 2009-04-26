@@ -23,12 +23,12 @@ let python_highlight_all=1
 
 if has("cscope")
 	set cscopetag
-	" add any database in current directory
 	if filereadable("cscope.out")
-	    cs add cscope.out
-	" else add database pointed to by environment
+		" add any database in current directory
+		cs add cscope.out
 	elseif $CSCOPE_DB != ""
-	    cs add $CSCOPE_DB
+		" else add database pointed to by environment
+		cs add $CSCOPE_DB
 	endif
 
 	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
