@@ -5,7 +5,7 @@ set cursorline
 set hidden
 set incsearch
 set list
-set listchars=tab:\|\
+set listchars=tab:\|·
 set nofoldenable
 set nowrap
 set number
