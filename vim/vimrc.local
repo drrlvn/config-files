@@ -1,43 +1,61 @@
-" useful options"{{{
-set complete+=k
-set completeopt+=longest
+runtime macros/matchit.vim
+
+" {{{ useful options
+set complete+=k completeopt+=longest
 set cursorline
-set hidden
 set incsearch
-set list
-set listchars=tab:\|·
+set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
+set list listchars=tab:\|·
 set nofoldenable
+set nohidden
 set nowrap
 set number
 set path+=/usr/include/glib-2.0
 set scrolloff=5
-set shiftwidth=4
+set shiftwidth=4 tabstop=4
 set showmatch
-set tabstop=4
 set viminfo=
 set virtualedit=block
 exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
-"}}}
+" }}}
 
-" mappings"{{{
-map <C-h> gT
-map <C-l> gt
-"}}}
+" {{{ mappings
+noremap <C-h> gT
+noremap <C-j> gt
+noremap <BS> O<Esc>
+noremap <CR> o<Esc>
+noremap Y y$
+nnoremap <silent> <C-l> :noh<CR><C-l>
+nnoremap <F7> :make<CR>
+nnoremap <C-p> :Lodgeit<CR>
+" }}}
 
-" set per filetype options"{{{
-au FileType * exec 'setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim'
+" {{{ set per filetype options
+au FileType * exec 'setl dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
 au FileType python set foldmethod=indent
 au FileType vim set foldmethod=marker
 au FileType {c,cpp} set foldmethod=syntax
-"}}}
+au FileType java compiler javac
+" }}}
 
-" colors"{{{
-colorscheme delek
-set background=dark
-highlight TabLine cterm=none
-"}}}
+" {{{ colors
+"let g:inkpot_black_background = 1
+colorscheme inkpot
+" }}}
 
 let python_highlight_all=1
+
+" {{{ abbreviations
+iab #i #include
+iab #d #define
+iab cl class
+iab pu public
+iab pr private
+iab pro protected
+iab ret return
+iab fori for (int i = 0; i <
+iab imp import
+" }}}
 
 if has("cscope")
 	set cscopetag

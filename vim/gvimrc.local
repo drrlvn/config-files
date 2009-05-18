@@ -3,9 +3,8 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 set guicursor+=a:blinkon0
+set guioptions-=T
 
-" colors"{{{
-highlight Normal guibg=black guifg=white
-highlight NonText guibg=black
-highlight CursorLine guibg=grey20
-"}}}
+" {{{ colors
+"colorscheme midnight2
+" }}}
