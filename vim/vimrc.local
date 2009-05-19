@@ -3,6 +3,7 @@ runtime macros/matchit.vim
 " {{{ useful options
 set complete+=k completeopt+=longest
 set cursorline
+set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:\|·
@@ -17,6 +18,9 @@ set showmatch
 set viminfo=
 set virtualedit=block
 exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
+
+let g:netrw_browse_split=3
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 " }}}
 
 " {{{ mappings
