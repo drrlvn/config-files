@@ -36,8 +36,8 @@ nnoremap <C-p> :Lodgeit<CR>
 " }}}
 
 " {{{ set per filetype options
-au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
 au BufRead *.txt setlocal wrapmargin=2 textwidth=78
+au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
 au FileType python setlocal foldmethod=indent
 au FileType vim setlocal foldmethod=marker
 au FileType {c,cpp} setlocal foldmethod=syntax
