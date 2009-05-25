@@ -28,6 +28,7 @@ noremap <C-h> gT
 noremap <C-j> gt
 noremap <BS> O<Esc>
 noremap <CR> o<Esc>
+noremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <F7> :make<CR>
