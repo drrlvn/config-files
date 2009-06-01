@@ -28,16 +28,20 @@ noremap <C-h> gT
 noremap <C-j> gt
 noremap <BS> O<Esc>
 noremap <CR> o<Esc>
-noremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
-nnoremap <F7> :make<CR>
 nnoremap <C-p> :Lodgeit<CR>
+nnoremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
+nnoremap <F4> :bnext<CR>
+nnoremap <F7> :make<CR>
+nnoremap <F10> :update<CR>
+nnoremap <F11> :quit<CR>
 " }}}
 
 " {{{ set per filetype options
-au BufRead *.txt setlocal wrapmargin=2 textwidth=78
+au BufRead *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
+au FileType mail setlocal spell
 au FileType python setlocal foldmethod=indent
 au FileType vim setlocal foldmethod=marker
 au FileType {c,cpp} setlocal foldmethod=syntax
@@ -61,6 +65,7 @@ iab pro protected
 iab ret return
 iab fori for (int i = 0; i <
 iab imp import
+iab func function 
 " }}}
 
 if has("cscope")
