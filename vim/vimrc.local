@@ -34,8 +34,8 @@ nnoremap <C-p> :Lodgeit<CR>
 nnoremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F4> :bnext<CR>
 nnoremap <F7> :make<CR>
-nnoremap <F10> :quit<CR>
-nnoremap <F11> :update<CR>
+noremap <F10> :quit<CR>
+noremap <F11> :update<CR>
 " }}}
 
 " {{{ set per filetype options
