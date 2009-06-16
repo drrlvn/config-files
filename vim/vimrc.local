@@ -42,6 +42,7 @@ noremap <F11> :update<CR>
 au BufRead *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
 au FileType mail setlocal spell
+au FileType changelog setlocal textwidth=0 spell
 au FileType python setlocal foldmethod=indent
 au FileType vim setlocal foldmethod=marker
 au FileType {c,cpp} setlocal foldmethod=syntax
