@@ -52,6 +52,10 @@ au FileType java compiler javac
 " {{{ colors
 "let g:inkpot_black_background = 1
 colorscheme inkpot
+
+if ! has("gui_running")
+	highlight CursorLine NONE ctermbg=235
+endif
 " }}}
 
 let python_highlight_all=1
