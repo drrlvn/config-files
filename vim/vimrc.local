@@ -33,7 +33,10 @@ nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
 nnoremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F4> :bnext<CR>
-nnoremap <F7> :make<CR>
+nnoremap <F5> :!./%<CR>
+nnoremap <F6> :make<CR>
+nnoremap <F7> [c
+nnoremap <F8> ]c
 noremap <F10> :quit<CR>
 noremap <F11> :update<CR>
 " }}}
