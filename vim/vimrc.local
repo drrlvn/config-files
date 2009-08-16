@@ -31,14 +31,23 @@ noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
-nnoremap <F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
+nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
+nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :!./%<CR>
+nnoremap <S-F5> :!ebuild % unpack<CR>
+nnoremap <M-F5> :!ebuild % prepare<CR>
 nnoremap <F6> :make<CR>
+nnoremap <S-F6> :!ebuild % manifest<CR>
 nnoremap <F7> [c
 nnoremap <F8> ]c
+nnoremap <F9> :Explore<CR>
 noremap <F10> :quit<CR>
+noremap <S-F10> :quitall!<CR>
+noremap <M-F10> :bdelete<CR>
 noremap <F11> :update<CR>
+noremap <S-F11> :exit<CR>
+noremap <M-F11> :wall<CR>
 " }}}
 
 " {{{ set per filetype options
@@ -62,19 +71,6 @@ endif
 " }}}
 
 let python_highlight_all=1
-
-" {{{ abbreviations
-iab #i #include
-iab #d #define
-iab cl class
-iab pu public
-iab pr private
-iab pro protected
-iab ret return
-iab fori for (int i = 0; i <
-iab imp import
-iab func function 
-" }}}
 
 if has("cscope")
 	set cscopetag
