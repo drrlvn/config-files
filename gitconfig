@@ -1,3 +1,6 @@
+[alias]
+	co = checkout
+	dc = diff --cached
 [color]
 	status = auto
 	branch = auto
