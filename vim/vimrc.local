@@ -31,6 +31,7 @@ noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
+vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
 nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
@@ -55,6 +56,7 @@ filetype plugin indent on
 
 au BufRead *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
+au FileType netrw setlocal nohlsearch
 au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 spell
 au FileType changelog setlocal textwidth=0 spell

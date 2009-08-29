@@ -3,7 +3,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 set guicursor+=a:blinkon0
-set guifont=Droid\ Sans\ Mono\ 10
+set guifont=Consolas\ 10
 set guioptions-=T
 
 " {{{ colors
