@@ -17,6 +17,7 @@ set shiftwidth=4 tabstop=4
 set showmatch
 set viminfo=
 set virtualedit=block
+set wildmode=list:longest
 exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
 
 let g:netrw_browse_split=3
