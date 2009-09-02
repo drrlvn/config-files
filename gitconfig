@@ -3,5 +3,6 @@
 	dc = diff --cached
 	st = status
 [color]
-	status = auto
-	branch = auto
+	ui = auto
+	pager = false
+	diff = never
