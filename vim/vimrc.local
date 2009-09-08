@@ -15,7 +15,6 @@ set path+=/usr/include/glib-2.0
 set scrolloff=5
 set shiftwidth=4 tabstop=4
 set showmatch
-set viminfo=
 set virtualedit=block
 set wildmode=list:longest
 exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
