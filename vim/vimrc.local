@@ -23,6 +23,14 @@ let g:netrw_browse_split=3
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 " }}}
 
+" {{{ functions
+func GentooCompare(i1, i2)
+	let s1 = substitute(a:i1, '^[-+~]', '', '')
+	let s2 = substitute(a:i2, '^[-+~]', '', '')
+	return l:s1 == l:s2 ? 0 : l:s1 > l:s2 ? 1 : -1
+endfunc
+" }}}
+
 " {{{ mappings
 noremap <C-Left> gT
 noremap <C-Right> gt
@@ -31,7 +39,7 @@ noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
-vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
+vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"')), "GentooCompare"), ' ')<CR>
 nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
