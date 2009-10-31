@@ -3,6 +3,7 @@ runtime macros/matchit.vim
 " {{{ useful options
 set complete+=k completeopt+=longest
 set cursorline
+set dict+=/usr/share/dict/words
 set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
@@ -15,6 +16,7 @@ set path+=/usr/include/glib-2.0
 set scrolloff=5
 set shiftwidth=4 tabstop=4
 set showmatch
+set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set virtualedit=block
 set wildmode=list:longest
 exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
@@ -63,7 +65,7 @@ noremap <M-F11> :wall<CR>
 filetype plugin indent on
 
 au BufRead *.txt setlocal wrapmargin=2 textwidth=78 spell
-au FileType * exec 'setlocal dict+='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim'
+au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
 au FileType netrw setlocal nohlsearch
 au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 spell
