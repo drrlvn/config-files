@@ -6,3 +6,5 @@
 	ui = auto
 	pager = false
 	diff = never
+[rebase]
+	stat = true
