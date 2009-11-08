@@ -19,8 +19,9 @@ set showmatch
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set virtualedit=block
 set wildmode=list:longest
-exec "set path+=".substitute(getcwd(), ' ', '\\\ ', 'g')."/**"
+exec 'set path+='.substitute(getcwd(), ' ', '\\\ ', 'g').'/**'
 
+let g:snips_author='Dror Levin'
 let g:netrw_browse_split=3
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 " }}}
@@ -41,7 +42,8 @@ noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
-vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"')), "GentooCompare"), ' ')<CR>
+noremap <C-\> :set paste!<CR>
+vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>
 nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
@@ -80,29 +82,29 @@ au FileType java compiler javac
 "let g:inkpot_black_background = 1
 colorscheme inkpot
 
-if ! has("gui_running")
+if ! has('gui_running')
 	highlight CursorLine NONE ctermbg=235
 endif
 " }}}
 
 let python_highlight_all=1
 
-if has("cscope")
+if has('cscope')
 	set cscopetag
-	if filereadable("cscope.out")
+	if filereadable('cscope.out')
 		" add any database in current directory
 		cs add cscope.out
-	elseif $CSCOPE_DB != ""
+	elseif $CSCOPE_DB != ''
 		" else add database pointed to by environment
 		cs add $CSCOPE_DB
 	endif
 
-	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>s :cs find s <C-R>=expand('<cword>')<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand('<cword>')<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand('<cword>')<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand('<cword>')<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand('<cword>')<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand('<cfile>')<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand('<cfile>')<CR>$<CR>
+	nmap <C-\>d :cs find d <C-R>=expand('<cword>')<CR><CR>
 endif
