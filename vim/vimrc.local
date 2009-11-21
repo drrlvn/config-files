@@ -1,7 +1,7 @@
 runtime macros/matchit.vim
 
 " {{{ useful options
-set complete+=k completeopt+=longest
+set complete+=k
 set cursorline
 set dict+=/usr/share/dict/words
 set ignorecase smartcase
@@ -35,6 +35,11 @@ endfunc
 " }}}
 
 " {{{ mappings
+inoremap <M-Left> <C-o>b
+inoremap <M-Right> <C-o>w
+inoremap <M-C-Left> <C-o>B
+inoremap <M-C-Right> <C-o>W
+
 noremap <C-Left> gT
 noremap <C-Right> gt
 noremap <BS> O<Esc>
@@ -43,6 +48,7 @@ noremap Y y$
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nnoremap <C-p> :Lodgeit<CR>
 noremap <C-\> :set paste!<CR>
+
 vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>
 nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F3> :bprevious<CR>
