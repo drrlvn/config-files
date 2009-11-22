@@ -85,10 +85,15 @@ au FileType java compiler javac
 " }}}
 
 " {{{ colors
-"let g:inkpot_black_background = 1
+if has('gui_running')
+	let g:inkpot_black_background = 1
+endif
+
 colorscheme inkpot
 
-if ! has('gui_running')
+if has('gui_running')
+	highlight CursorLine NONE guibg=#404040
+else
 	highlight CursorLine NONE ctermbg=235
 endif
 " }}}
