@@ -1,7 +1,6 @@
 runtime macros/matchit.vim
 
 " {{{ useful options
-set complete+=k
 set cursorline
 set dict+=/usr/share/dict/words
 set ignorecase smartcase
@@ -19,7 +18,7 @@ set showmatch
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set virtualedit=block
 set wildmode=list:longest
-exec 'set path+='.substitute(getcwd(), ' ', '\\\ ', 'g').'/**'
+exec 'set path+='.substitute(expand('%:h'), ' ', '\\\ ', 'g').'/**'
 
 let g:snips_author='Dror Levin'
 let g:netrw_browse_split=3
