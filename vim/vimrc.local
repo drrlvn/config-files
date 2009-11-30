@@ -1,12 +1,14 @@
 runtime macros/matchit.vim
 
 " {{{ useful options
+set autochdir
 set cursorline
 set dict+=/usr/share/dict/words
 set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:\|·
+set mouse=a
 set nofoldenable
 set nohidden
 set nowrap
@@ -14,6 +16,7 @@ set number
 set path+=/usr/include/glib-2.0
 set scrolloff=5
 set shiftwidth=4 tabstop=4
+set showcmd
 set showmatch
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set virtualedit=block
@@ -41,22 +44,24 @@ inoremap <M-C-Right> <C-o>W
 
 noremap <C-Left> gT
 noremap <C-Right> gt
+noremap <C-n> :tabnew<CR>
 noremap <BS> O<Esc>
 noremap <CR> o<Esc>
 noremap Y y$
-nnoremap <silent> <C-l> :noh<CR><C-l>
+nnoremap <silent> - :noh<CR>
+nnoremap + :set paste!<CR>
 nnoremap <C-p> :Lodgeit<CR>
-noremap <C-\> :set paste!<CR>
+nnoremap <Space> za
+noremap N Nzz
+noremap n nzz
 
-vnoremap <F2> d:execute 'normal i' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>
+vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :!./%<CR>
-nnoremap <S-F5> :!ebuild % unpack<CR>
-nnoremap <M-F5> :!ebuild % prepare<CR>
 nnoremap <F6> :make<CR>
-nnoremap <S-F6> :!ebuild % manifest<CR>
+nnoremap <S-F6> :silent !ebuild % manifest<CR>
 nnoremap <F7> [c
 nnoremap <F8> ]c
 nnoremap <F9> :Explore<CR>
