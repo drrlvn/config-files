@@ -1,6 +1,13 @@
 [alias]
+	a = add
+	ai = add -i
+	ci = commit
 	co = checkout
+	d = diff
 	dc = diff --cached
+	l = log --oneline
+	r = rebase
+	ri = rebase -i
 	st = status
 [color]
 	ui = auto
