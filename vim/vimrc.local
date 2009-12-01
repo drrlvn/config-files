@@ -13,7 +13,6 @@ set nofoldenable
 set nohidden
 set nowrap
 set number
-set path+=/usr/include/glib-2.0
 set scrolloff=5
 set shiftwidth=4 tabstop=4
 set showcmd
@@ -51,6 +50,8 @@ noremap Y y$
 nnoremap <silent> - :noh<CR>
 nnoremap + :set paste!<CR>
 nnoremap <C-p> :Lodgeit<CR>
+inoremap <C-y> <C-y><C-o>:pclose<CR>
+inoremap <C-e> <C-e><C-o>:pclose<CR>
 nnoremap <Space> za
 noremap N Nzz
 noremap n nzz
