@@ -57,7 +57,7 @@ noremap N Nzz
 noremap n nzz
 
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
-nnoremap <S-F2> :%s/<C-v><Esc>.\{-}m//g<CR>''
+nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :!./%<CR>
