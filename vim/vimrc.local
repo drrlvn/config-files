@@ -62,7 +62,7 @@ nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :!./%<CR>
 nnoremap <F6> :make<CR>
-nnoremap <S-F6> :silent !ebuild % manifest<CR>
+nnoremap <S-F6> :silent !ebuild % manifest<CR><C-l>
 nnoremap <F7> [c
 nnoremap <F8> ]c
 nnoremap <F9> :Explore<CR>
