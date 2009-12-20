@@ -7,7 +7,7 @@ set dict+=/usr/share/dict/words
 set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
-set list listchars=tab:\|·
+set list listchars=tab:›·
 set mouse=a
 set nofoldenable
 set nohidden
