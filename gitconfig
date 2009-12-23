@@ -1,17 +1,29 @@
 [alias]
-	a = add
+	a  = add
 	ai = add -i
+	b  = branch
 	ci = commit
 	co = checkout
-	d = diff
+	d  = diff
 	dc = diff --cached
-	l = log --oneline
-	r = rebase
+	ds = !git --no-pager diff --stat
+	fp = format-patch
+	l  = log --oneline
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	r  = rebase
 	ri = rebase -i
 	st = status
+
 [color]
 	ui = auto
-	pager = false
-	diff = never
+
+[color "diff"]
+	old = red bold
+	new = blue bold
+	frag = magenta bold
+
+[core]
+	pager = less
+
 [rebase]
 	stat = true
