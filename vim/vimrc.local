@@ -8,7 +8,7 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:›·
-set mouse=a
+set mouse=i
 set nofoldenable
 set nohidden
 set nowrap
@@ -77,7 +77,7 @@ noremap <M-F11> :wall<CR>
 " {{{ set per filetype options
 filetype plugin indent on
 
-au BufRead *.txt setlocal wrapmargin=2 textwidth=78 spell
+au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
 au FileType netrw setlocal nohlsearch
 au FileType mail setlocal spell
@@ -90,6 +90,9 @@ au FileType java compiler javac
 " }}}
 
 " {{{ colors
+au BufRead,BufNewFile * highlight link WhitespaceErrors Error
+au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
+
 if has('gui_running')
 	let g:inkpot_black_background = 1
 endif
