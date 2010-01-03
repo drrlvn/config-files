@@ -1,7 +1,3 @@
 set guicursor+=a:blinkon0
-set guifont=Consolas\ 10
+set guifont=Monaco\ 8
 set guioptions-=T
-
-" {{{ colors
-"colorscheme midnight2
-" }}}
