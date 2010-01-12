@@ -1,18 +1,20 @@
 [alias]
 	a  = add
 	ai = add -i
+	ap = add -p
 	b  = branch
 	ci = commit
 	co = checkout
 	d  = diff
 	dc = diff --cached
 	ds = !git --no-pager diff --stat
+	dw = diff --color-words
 	fp = format-patch
 	l  = log --oneline
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	r  = rebase
 	ri = rebase -i
-	st = status
+	s  = status
 
 [color]
 	ui = auto
