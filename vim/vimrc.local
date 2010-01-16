@@ -2,6 +2,7 @@ runtime macros/matchit.vim
 
 " {{{ useful options
 set autochdir
+set confirm
 set cursorline
 set dict+=/usr/share/dict/words
 set ignorecase smartcase
@@ -13,18 +14,25 @@ set nofoldenable
 set nohidden
 set nowrap
 set number
+set pastetoggle=<Leader>+
 set scrolloff=5
 set shiftwidth=4 tabstop=4
 set showcmd
 set showmatch
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
+set timeoutlen=200
 set virtualedit=block
 set wildmode=list:longest
 exec 'set path+='.substitute(expand('%:h'), ' ', '\\\ ', 'g').'/**'
 
+au BufRead,BufNewFile * let b:args=''
+
 let g:snips_author='Dror Levin'
 let g:netrw_browse_split=3
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+
+let g:EnhCommentifyRespectIndent='Yes'
+let g:EnhCommentifyMultiPartBlocks='Yes'
 " }}}
 
 " {{{ functions
@@ -48,11 +56,11 @@ noremap <BS> O<Esc>
 noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> - :noh<CR>
-nnoremap + :set paste!<CR>
 nnoremap <C-p> :Lodgeit<CR>
 inoremap <C-y> <C-y><C-o>:pclose<CR>
 inoremap <C-e> <C-e><C-o>:pclose<CR>
 nnoremap <Space> za
+nnoremap <silent> <Leader><Space> :set !foldenable<CR>
 noremap N Nzz
 noremap n nzz
 
@@ -60,18 +68,23 @@ vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooC
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
-nnoremap <F5> :!./%<CR>
+nnoremap <F5> :exec '!./% ' . b:args<CR>
 nnoremap <F6> :make<CR>
-nnoremap <S-F6> :silent !ebuild % manifest<CR><C-l>
 nnoremap <F7> [c
 nnoremap <F8> ]c
 nnoremap <F9> :Explore<CR>
-noremap <F10> :quit<CR>
-noremap <S-F10> :quitall!<CR>
-noremap <M-F10> :bdelete<CR>
-noremap <F11> :update<CR>
-noremap <S-F11> :exit<CR>
-noremap <M-F11> :wall<CR>
+noremap <F10> <Esc>:quit<CR>
+noremap <S-F10> <Esc>:quitall!<CR>
+noremap <M-F10> <Esc>:bdelete<CR>
+noremap <F11> <Esc>:update<CR>
+noremap <S-F11> <Esc>:exit<CR>
+noremap <M-F11> <Esc>:wall<CR>
+imap <F10> <F10>
+imap <S-F10> <S-F10>
+imap <M-F10> <M-F10>
+imap <F11> <F11>
+imap <S-F11> <S-F11>
+imap <M-F11> <M-F11>
 " }}}
 
 " {{{ set per filetype options
@@ -82,10 +95,12 @@ au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/
 au FileType netrw setlocal nohlsearch
 au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 spell
+au FileType ebuild nnoremap <F6> :silent !ebuild % manifest<CR><C-l>
 au FileType changelog setlocal textwidth=0 spell
 au FileType python setlocal foldmethod=indent
 au FileType vim setlocal foldmethod=marker
-au FileType {c,cpp} setlocal foldmethod=syntax
+au FileType c,cpp setlocal foldmethod=syntax
+au FileType c,cpp nnoremap <F5> :exec '!./%:r ' . b:args<CR>
 au FileType java compiler javac
 " }}}
 
@@ -94,14 +109,10 @@ au BufRead,BufNewFile * highlight link WhitespaceErrors Error
 au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
 if has('gui_running')
-	let g:inkpot_black_background = 1
-endif
-
-colorscheme inkpot
-
-if has('gui_running')
-	highlight CursorLine NONE guibg=#404040
+	colorscheme wombat
+	highlight StatusLine gui=bold
 else
+	colorscheme inkpot
 	highlight CursorLine NONE ctermbg=235
 endif
 " }}}
