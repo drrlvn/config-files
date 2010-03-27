@@ -9,7 +9,7 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:›·
-set mouse=i
+set mouse=a
 set nofoldenable
 set nohidden
 set nowrap
@@ -49,8 +49,13 @@ inoremap <M-Right> <C-o>w
 inoremap <M-C-Left> <C-o>B
 inoremap <M-C-Right> <C-o>W
 
-noremap <C-Left> gT
-noremap <C-Right> gt
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+noremap <C-Left> :tabprevious<CR>
+noremap <C-Right> :tabnext<CR>
 noremap <C-n> :tabnew<CR>
 noremap <BS> O<Esc>
 noremap <CR> o<Esc>
@@ -92,16 +97,17 @@ filetype plugin indent on
 
 au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
-au FileType netrw setlocal nohlsearch
 au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 spell
-au FileType ebuild nnoremap <F6> :silent !ebuild % manifest<CR><C-l>
+au FileType ebuild nnoremap <F6> :silent !repoman manifest<CR><C-l>
 au FileType changelog setlocal textwidth=0 spell
 au FileType python setlocal foldmethod=indent
 au FileType vim setlocal foldmethod=marker
 au FileType c,cpp setlocal foldmethod=syntax
 au FileType c,cpp nnoremap <F5> :exec '!./%:r ' . b:args<CR>
 au FileType java compiler javac
+au FileType java nnoremap <F5> :exec '!java %:r ' . b:args<CR>
+au FileType java nnoremap <F6> :make %<CR>
 " }}}
 
 " {{{ colors
@@ -109,11 +115,11 @@ au BufRead,BufNewFile * highlight link WhitespaceErrors Error
 au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
 if has('gui_running')
-	colorscheme wombat
+	colorscheme gentooish
 	highlight StatusLine gui=bold
 else
-	colorscheme inkpot
-	highlight CursorLine NONE ctermbg=235
+	colorscheme gentooish
+	highlight CursorLine NONE ctermbg=236
 endif
 " }}}
 
