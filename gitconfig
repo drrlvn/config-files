@@ -14,7 +14,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	r  = rebase
 	ri = rebase -i
-	s  = status
+	st = status
 
 [color]
 	ui = auto
