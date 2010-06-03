@@ -14,6 +14,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	r  = rebase
 	ri = rebase -i
+	sl = shortlog
 	st = status
 
 [color]
@@ -26,6 +27,10 @@
 
 [core]
 	pager = less
+
+[diff]
+	renamelimit = 0
+	renames = copy
 
 [rebase]
 	stat = true
