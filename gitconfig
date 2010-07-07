@@ -12,6 +12,7 @@
 	fp = format-patch
 	l  = log --oneline
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	lp = log -p
 	r  = rebase
 	ri = rebase -i
 	sl = shortlog
