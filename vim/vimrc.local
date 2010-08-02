@@ -1,16 +1,18 @@
+scriptencoding utf-8
+
 runtime macros/matchit.vim
 
 " {{{ useful options
 set confirm
-"set cursorline
 set dict+=/usr/share/dict/words
+set hidden
 set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:»\ ,trail:·
 set mouse=a
+set nocursorline
 set nofoldenable
-set nohidden
 set nowrap
 set number
 set pastetoggle=<Leader>+
@@ -23,17 +25,21 @@ set spelllang=en_us
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set timeoutlen=500
 set virtualedit=block
+set whichwrap+=[,]
 set wildmode=list:longest
 exec 'set path+='.substitute(expand('%:h'), ' ', '\\\ ', 'g').'/**'
 
 au BufRead,BufNewFile * let b:args=''
 
+" snipmate
 let g:snips_author='Dror Levin'
+
+" netrw
 let g:netrw_browse_split=3
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
-let g:EnhCommentifyRespectIndent='Yes'
-let g:EnhCommentifyMultiPartBlocks='Yes'
+" BufExplorer
+let g:bufExplorerSortBy='name'
 
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
@@ -76,6 +82,8 @@ noremap <Leader>es :sp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>ev :vsp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>et :tabe <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 
+nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
 noremap <C-Left> :tabprevious<CR>
 noremap <C-Right> :tabnext<CR>
 noremap <C-n> :tabnew<CR>
@@ -97,8 +105,8 @@ noremap n nzz
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
-nnoremap <Leader>! :exec 'setl nolist \| ConqueTerm bash -l'<CR><Esc>:highlight link WhitespaceErrors NONE<CR>a
-nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR><Esc>:highlight link WhitespaceErrors NONE<CR>a
+nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
+nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
 
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
@@ -106,9 +114,9 @@ nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :exec '!./% ' . b:args<CR>
 nnoremap <F6> :make<CR>
-nnoremap <F7> [c
-nnoremap <F8> ]c
-nnoremap <F9> :Explore<CR>
+nnoremap <F7> :NERDTreeToggle<CR>
+nnoremap <F8> :TlistToggle<CR>
+nnoremap <F9> :BufExplorer<CR>
 noremap <F10> <Esc>:quit<CR>
 noremap <S-F10> <Esc>:quitall!<CR>
 noremap <M-F10> <Esc>:bdelete<CR>
@@ -149,13 +157,13 @@ au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 formatoptions+=a spell
 au FileType ebuild nnoremap <F6> :silent !repoman manifest<CR><C-l>
 au FileType changelog setlocal formatoptions+=a spell
-au FileType python setlocal foldmethod=indent
+au FileType python setlocal foldmethod=indent formatoptions=wcrq2l include=^\\s*\\(from\\\|import\\)
 au FileType vim setlocal foldmethod=marker
-au FileType c,cpp setlocal foldmethod=syntax
+au FileType c,cpp setlocal foldmethod=syntax tags+=~/.vim/tags/glib,~/.vim/tags/dbus
 au FileType c,cpp nnoremap <F5> :exec '!./%:r ' . b:args<CR>
 au FileType c noremap <C-F12> :!ctags -R --sort=foldcase --c-kinds=+pl --fields=+S .<CR>
 au FileType cpp noremap <C-F12> :!ctags -R --sort=foldcase --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
-au FileType cpp set tags+=~/.vim/tags/cpp,~/.vim/tags/qt4
+au FileType cpp set tags+=~/.vim/tags/cpp,~/.vim/tags/boost,~/.vim/tags/qt4,~/.vim/tags/kde
 au FileType java compiler javac
 au FileType java nnoremap <F5> :exec '!java %:r ' . b:args<CR>
 au FileType java nnoremap <F6> :make %<CR>
