@@ -112,7 +112,7 @@ noremap n nzz
 
 " ctags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
+map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
 nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
 nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
