@@ -31,6 +31,7 @@ set showbreak=…
 set showcmd
 set showmatch
 set spelllang=en_us
+set switchbuf=useopen,usetab
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set timeoutlen=500
 set virtualedit=block
