@@ -25,6 +25,7 @@ set nofoldenable
 set nowrap
 set number
 set pastetoggle=<Leader>+
+set path+=.;,./**
 set scrolloff=5
 set shiftwidth=4 tabstop=4
 set showbreak=…
@@ -37,7 +38,6 @@ set timeoutlen=500
 set virtualedit=block
 set whichwrap+=[,]
 set wildmode=list:longest
-exec 'set path+='.substitute(expand('%:h'), ' ', '\\\ ', 'g').'/**'
 
 au BufRead,BufNewFile * let b:args=''
 
