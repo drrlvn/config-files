@@ -4,15 +4,18 @@ scriptencoding utf-8
 " bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
 " cppcomplete - http://www.vim.org/scripts/script.php?script_id=527
 " NERD_tree - http://www.vim.org/scripts/script.php?script_id=1658
+" scratch - http://www.vim.org/scripts/script.php?script_id=664
 " snipMate - http://www.vim.org/scripts/script.php?script_id=2540
 " surround - http://www.vim.org/scripts/script.php?script_id=1697
 " taglist - http://www.vim.org/scripts/script.php?script_id=273
+" YankRing - http://www.vim.org/scripts/script.php?script_id=1234
 
 runtime macros/matchit.vim
 
 " {{{ useful options
 set confirm
 set dict+=/usr/share/dict/words
+set gdefault
 set hidden
 set hlsearch
 set ignorecase smartcase
@@ -36,6 +39,7 @@ set switchbuf=useopen,usetab
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set timeoutlen=500
 set virtualedit=block
+set visualbell
 set whichwrap+=[,]
 set wildmode=list:longest
 
@@ -75,6 +79,15 @@ inoremap <M-Left> <C-o>b
 inoremap <M-Right> <C-o>w
 inoremap <M-C-Left> <C-o>B
 inoremap <M-C-Right> <C-o>W
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
 
 " move when soft wrapping and horizontally
 nnoremap <C-h> zH
@@ -118,6 +131,8 @@ map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
 nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
 
+noremap / /\v
+
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
 nnoremap <F3> :bprevious<CR>
@@ -125,7 +140,7 @@ nnoremap <F4> :bnext<CR>
 nnoremap <F5> :exec '!./% ' . b:args<CR>
 nnoremap <F6> :make<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
-nnoremap <F8> :TlistToggle<CR>
+nnoremap <F8> :call Taglist_Toggle()<CR>
 nnoremap <F9> :BufExplorer<CR>
 noremap <F10> <Esc>:quit<CR>
 noremap <S-F10> <Esc>:quitall!<CR>
@@ -140,6 +155,28 @@ imap <F11> <Esc><F11>
 imap <S-F11> <Esc><S-F11>
 imap <M-F11> <Esc><M-F11>
 
+let b:updatetime_users = 0
+au BufCreate * let b:updatetime_users = 0
+
+func! Taglist_Toggle()
+	TlistToggle
+	if exists('#taglist')
+		au! taglist
+		augroup! taglist
+		let b:updatetime_users -= 1
+		if b:updatetime_users <= 0
+			setl updatetime=4000
+		endif
+	else
+		let b:updatetime_users += 1
+		setl updatetime=500
+		augroup taglist
+			au!
+			au CursorHold * TlistHighlightTag
+		augroup end
+	endif
+endfunc
+
 nnoremap <silent> <Leader>/ :call Auto_Highlight_Toggle()<CR>
 
 func! Auto_Highlight_Toggle()
@@ -147,8 +184,12 @@ func! Auto_Highlight_Toggle()
 		au! auto_highlight
 		augroup! auto_highlight
 		let @/=''
-		setl updatetime=4000
+		let b:updatetime_users -= 1
+		if b:updatetime_users <= 0
+			setl updatetime=4000
+		endif
 	else
+		let b:updatetime_users += 1
 		setl updatetime=500
 		augroup auto_highlight
 			au!
