@@ -115,6 +115,8 @@ noremap <CR> o<Esc>
 noremap Y y$
 nnoremap <silent> - :let @/=''<CR>
 nnoremap <silent> _ :setl spell!<CR>
+vnoremap < <gv
+vnoremap > >gv
 nnoremap <silent> <Leader>- :setl wrap! linebreak! list!<CR>
 nnoremap <C-p> :Lodgeit<CR>
 inoremap <C-y> <C-y><C-o>:pclose<CR>
