@@ -80,15 +80,6 @@ inoremap <M-Right> <C-o>w
 inoremap <M-C-Left> <C-o>B
 inoremap <M-C-Right> <C-o>W
 
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-
 " move when soft wrapping and horizontally
 nnoremap <C-h> zH
 nnoremap <C-j> gj
