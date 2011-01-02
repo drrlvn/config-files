@@ -13,6 +13,7 @@ scriptencoding utf-8
 runtime macros/matchit.vim
 
 " {{{ useful options
+set autoindent
 set confirm
 set dict+=/usr/share/dict/words
 set gdefault
@@ -25,6 +26,7 @@ set list listchars=tab:»\ ,trail:·
 set mouse=a
 set nocursorline
 set nofoldenable
+set nomodeline
 set nowrap
 set number
 set pastetoggle=<Leader>+
@@ -194,6 +196,7 @@ endfunc
 
 " {{{ set per filetype options
 filetype plugin indent on
+syntax on
 
 au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 formatoptions+=a spell
 au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
