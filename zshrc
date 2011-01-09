@@ -29,7 +29,10 @@ setopt hist_find_no_dups
 
 bindkey -e
 
-autoload edit-command-line
+autoload -Uz compinit promptinit edit-command-line zmv
+compinit
+promptinit; prompt gentoo
+
 zle -N edit-command-line
 bindkey '' edit-command-line
 
@@ -54,11 +57,9 @@ bindkey -s '\el' ' |& less^M'
 # Meta-s to insert sudo in the beginning of the line
 bindkey -s '\es' '^Asudo ^M'
 
-#zstyle :compinstall filename '/home/spatz/.zshrc'
+bindkey ' ' magic-space
 
-autoload -Uz compinit promptinit
-compinit
-promptinit; prompt gentoo
+#zstyle :compinstall filename '/home/spatz/.zshrc'
 
 [[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
 
