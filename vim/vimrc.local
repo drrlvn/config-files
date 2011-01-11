@@ -1,16 +1,31 @@
 scriptencoding utf-8
 
+" pathogen - http://www.vim.org/scripts/script.php?script_id=2332
+
+" abolish - http://www.vim.org/scripts/script.php?script_id=1545
 " alternate - http://www.vim.org/scripts/script.php?script_id=31
 " bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
-" cppcomplete - http://www.vim.org/scripts/script.php?script_id=527
+" Command-T - https://wincent.com/products/command-t
+" fugitive - http://www.vim.org/scripts/script.php?script_id=2975
+" LustyJuggler - http://www.vim.org/scripts/script.php?script_id=2050
+" NERD_commenter - http://www.vim.org/scripts/script.php?script_id=1218
 " NERD_tree - http://www.vim.org/scripts/script.php?script_id=1658
-" scratch - http://www.vim.org/scripts/script.php?script_id=664
 " snipMate - http://www.vim.org/scripts/script.php?script_id=2540
 " surround - http://www.vim.org/scripts/script.php?script_id=1697
 " taglist - http://www.vim.org/scripts/script.php?script_id=273
 " YankRing - http://www.vim.org/scripts/script.php?script_id=1234
+" zencoding - http://www.vim.org/scripts/script.php?script_id=2981
+
+" closetag - http://www.vim.org/scripts/script.php?script_id=13
+" conque - http://code.google.com/p/conque/
+" cppcomplete - http://www.vim.org/scripts/script.php?script_id=527
+" omnicppcomplete - http://www.vim.org/scripts/script.php?script_id=1520
+" scratch - http://www.vim.org/scripts/script.php?script_id=664
 
 runtime macros/matchit.vim
+
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
 " {{{ useful options
 set autoindent
@@ -23,7 +38,6 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%n\ %F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:»\ ,trail:·
-set mouse=a
 set nocursorline
 set nofoldenable
 set nomodeline
@@ -43,9 +57,18 @@ set timeoutlen=500
 set virtualedit=block
 set visualbell
 set whichwrap+=[,]
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj
 set wildmode=list:longest
 
+" VIM 7.3 specific options
+if version >= 703
+	set cryptmethod=blowfish
+	set relativenumber
+endif
+
 au BufRead,BufNewFile * let b:args=''
+
+let python_highlight_all=1
 
 " snipmate
 let g:snips_author='Dror Levin'
@@ -74,6 +97,50 @@ func! GentooCompare(i1, i2)
 	let s2 = substitute(a:i2, '^[-+~]', '', '')
 	return l:s1 == l:s2 ? 0 : l:s1 > l:s2 ? 1 : -1
 endfunc
+
+let b:updatetime_users = 0
+au BufCreate * let b:updatetime_users = 0
+func! Taglist_Toggle()
+	TlistToggle
+	if exists('#taglist')
+		au! taglist
+		augroup! taglist
+		let b:updatetime_users -= 1
+		if b:updatetime_users <= 0
+			setl updatetime=4000
+		endif
+	else
+		let b:updatetime_users += 1
+		setl updatetime=500
+		augroup taglist
+			au!
+			au CursorHold * TlistHighlightTag
+		augroup end
+	endif
+endfunc
+
+nnoremap <silent> <Leader>/ :call Auto_Highlight_Toggle()<CR>
+func! Auto_Highlight_Toggle()
+	if exists('#auto_highlight')
+		au! auto_highlight
+		augroup! auto_highlight
+		let @/=''
+		let b:updatetime_users -= 1
+		if b:updatetime_users <= 0
+			setl updatetime=4000
+		endif
+	else
+		let b:updatetime_users += 1
+		setl updatetime=500
+		augroup auto_highlight
+			au!
+			au CursorHold * let @/='\<'.expand('<cword>').'\>'
+		augroup end
+	endif
+endfunc
+
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
 " }}}
 
 " {{{ mappings
@@ -97,6 +164,9 @@ noremap <Leader>ew :e <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>es :sp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>ev :vsp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>et :tabe <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
+
+" map lusty-juggler
+nmap <silent> <Leader>j <Leader>lj
 
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
@@ -123,8 +193,8 @@ noremap n nzz
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
-nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
-nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
+"nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
+"nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
 
 noremap / /\v
 
@@ -149,50 +219,7 @@ imap <M-F10> <Esc><M-F10>
 imap <F11> <Esc><F11>
 imap <S-F11> <Esc><S-F11>
 imap <M-F11> <Esc><M-F11>
-
-let b:updatetime_users = 0
-au BufCreate * let b:updatetime_users = 0
-
-func! Taglist_Toggle()
-	TlistToggle
-	if exists('#taglist')
-		au! taglist
-		augroup! taglist
-		let b:updatetime_users -= 1
-		if b:updatetime_users <= 0
-			setl updatetime=4000
-		endif
-	else
-		let b:updatetime_users += 1
-		setl updatetime=500
-		augroup taglist
-			au!
-			au CursorHold * TlistHighlightTag
-		augroup end
-	endif
-endfunc
-
-nnoremap <silent> <Leader>/ :call Auto_Highlight_Toggle()<CR>
-
-func! Auto_Highlight_Toggle()
-	if exists('#auto_highlight')
-		au! auto_highlight
-		augroup! auto_highlight
-		let @/=''
-		let b:updatetime_users -= 1
-		if b:updatetime_users <= 0
-			setl updatetime=4000
-		endif
-	else
-		let b:updatetime_users += 1
-		setl updatetime=500
-		augroup auto_highlight
-			au!
-			au CursorHold * let @/='\<'.expand('<cword>').'\>'
-		augroup end
-	endif
-endfunc
-" }}}
+"}}}
 
 " {{{ set per filetype options
 filetype plugin indent on
@@ -230,8 +257,6 @@ else
 	"highlight CursorLine NONE ctermbg=236
 endif
 " }}}
-
-let python_highlight_all=1
 
 if has('cscope')
 	set cscopetag
