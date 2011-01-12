@@ -5,6 +5,7 @@ scriptencoding utf-8
 " abolish - http://www.vim.org/scripts/script.php?script_id=1545
 " alternate - http://www.vim.org/scripts/script.php?script_id=31
 " bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
+" bufkill - http://www.vim.org/scripts/script.php?script_id=1147
 " Command-T - https://wincent.com/products/command-t
 " fugitive - http://www.vim.org/scripts/script.php?script_id=2975
 " LustyJuggler - http://www.vim.org/scripts/script.php?script_id=2050
@@ -52,6 +53,7 @@ set showcmd
 set showmatch
 set spelllang=en_us
 set switchbuf=useopen,usetab
+set tags+=/
 set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set timeoutlen=500
 set virtualedit=block
