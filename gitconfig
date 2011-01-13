@@ -16,7 +16,8 @@
 	r  = rebase
 	ri = rebase -i
 	sl = shortlog
-	st = status
+	st = status --untracked-files=no
+	su = status
 
 [color]
 	ui = auto
@@ -35,3 +36,7 @@
 
 [rebase]
 	stat = true
+
+[user]
+	name = Dror Levin
+	email = spatz@psybear.com
