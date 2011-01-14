@@ -8,6 +8,7 @@ scriptencoding utf-8
 " bufkill - http://www.vim.org/scripts/script.php?script_id=1147
 " Command-T - https://wincent.com/products/command-t
 " fugitive - http://www.vim.org/scripts/script.php?script_id=2975
+" indent guides - http://www.vim.org/scripts/script.php?script_id=3361
 " LustyJuggler - http://www.vim.org/scripts/script.php?script_id=2050
 " NERD_commenter - http://www.vim.org/scripts/script.php?script_id=1218
 " NERD_tree - http://www.vim.org/scripts/script.php?script_id=1658
