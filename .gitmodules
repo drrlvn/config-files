@@ -1,0 +1,6 @@
+[submodule "vim/dotvim/bundle/tabular"]
+	path = vim/dotvim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/dotvim/bundle/fugitive"]
+	path = vim/dotvim/bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git

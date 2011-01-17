@@ -26,8 +26,8 @@ scriptencoding utf-8
 
 runtime macros/matchit.vim
 
-call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " {{{ useful options
 set autoindent
@@ -67,6 +67,10 @@ set wildmode=list:longest
 if version >= 703
 	set cryptmethod=blowfish
 	set relativenumber
+
+	" persistent undo
+	set undodir=~/.vim/undodir
+	set undofile
 endif
 
 au BufRead,BufNewFile * let b:args=''
