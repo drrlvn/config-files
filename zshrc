@@ -29,6 +29,7 @@ setopt hist_find_no_dups
 bindkey -e
 
 autoload -Uz compinit promptinit edit-command-line zmv
+zmodload zsh/deltochar
 compinit
 promptinit; prompt gentoo
 
@@ -46,6 +47,8 @@ bindkey '[6~' history-beginning-search-forward
 bindkey '[H' beginning-of-line
 bindkey '[F' end-of-line
 bindkey '[3~' delete-char
+
+bindkey 'z' delete-to-char
 
 # Meta-u to chdir to the parent directory
 bindkey -s '\eu' '^Ucd ..; ls^M'
