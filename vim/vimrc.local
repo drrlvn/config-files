@@ -78,14 +78,14 @@ au BufRead,BufNewFile * let b:args=''
 let python_highlight_all=1
 
 " snipmate
-let g:snips_author='Dror Levin'
+let g:snips_author = 'Dror Levin'
 
 " netrw
-let g:netrw_browse_split=3
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_browse_split = 3
+let g:netrw_list_hide    = '\(^\|\s\s\)\zs\.\S\+'
 
 " BufExplorer
-let g:bufExplorerSortBy='name'
+let g:bufExplorerSortBy = 'name'
 
 " OmniCppComplete
 let OmniCpp_NamespaceSearch     = 1
@@ -99,6 +99,9 @@ let OmniCpp_DefaultNamespaces   = ["std", "_GLIBCXX_STD"]
 
 " gnupg
 let g:GPGPreferSign = 1
+
+" yankring
+let g:yankring_history_dir = '~/.vim'
 " }}}
 
 " {{{ functions
