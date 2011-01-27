@@ -2,4 +2,4 @@
 set guifont=DejaVu\ Sans\ Mono\ 10
 set guioptions-=T
 
-au FocusLost * :wa
+"au FocusLost * :wa
