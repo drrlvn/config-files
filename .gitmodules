@@ -7,3 +7,9 @@
 [submodule "vim/dotvim/bundle/snipmate"]
 	path = vim/dotvim/bundle/snipmate
 	url = git://github.com/msanders/snipmate.vim.git
+[submodule "vim/dotvim/bundle/zencoding"]
+	path = vim/dotvim/bundle/zencoding
+	url = git://github.com/mattn/zencoding-vim.git
+[submodule "vim/dotvim/bundle/surround"]
+	path = vim/dotvim/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
