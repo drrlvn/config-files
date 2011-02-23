@@ -77,6 +77,9 @@ au BufRead,BufNewFile * let b:args=''
 
 let python_highlight_all=1
 
+" gundo
+let g:gundo_right = 1
+
 " snipmate
 let g:snips_author = 'Dror Levin'
 
@@ -216,7 +219,7 @@ nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :exec '!./% ' . b:args<CR>
-nnoremap <F6> :make<CR>
+nnoremap <F6> :GundoToggle<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <F8> :call Taglist_Toggle()<CR>
 nnoremap <F9> :BufExplorer<CR>
