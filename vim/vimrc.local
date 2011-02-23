@@ -157,6 +157,8 @@ endfunc
 
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
+command! Q q
+
 " }}}
 
 " {{{ mappings
@@ -205,14 +207,15 @@ nnoremap <silent> <Leader><Space> :setl foldenable!<CR>
 noremap N Nzz
 noremap n nzz
 
+" remarkably, Nul is acatually C-Space
+imap <Nul> <C-x><C-o>
+
 " ctags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
 "nnoremap <Leader>! :setl nolist<CR>:ConqueTerm bash -l<CR>
 "nnoremap <Leader>@ :setl nolist<CR>:ConqueTerm ipython<CR>
-
-noremap / /\v
 
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
