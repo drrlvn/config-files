@@ -13,3 +13,6 @@
 [submodule "vim/dotvim/bundle/surround"]
 	path = vim/dotvim/bundle/surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/dotvim/bundle/gundo"]
+	path = vim/dotvim/bundle/gundo
+	url = git://github.com/sjl/gundo.vim.git
