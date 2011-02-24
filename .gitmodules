@@ -16,3 +16,6 @@
 [submodule "vim/dotvim/bundle/gundo"]
 	path = vim/dotvim/bundle/gundo
 	url = git://github.com/sjl/gundo.vim.git
+[submodule "vim/dotvim/bundle/command-t"]
+	path = vim/dotvim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
