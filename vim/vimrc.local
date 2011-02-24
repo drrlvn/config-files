@@ -213,6 +213,7 @@ noremap n nzz
 
 " remarkably, Nul is acatually C-Space
 imap <Nul> <C-x><C-o>
+imap <C-Space> <C-x><C-o>
 
 " ctags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
