@@ -69,6 +69,7 @@ alias -g G='| grep'
 
 alias cp='cp -i'
 alias mv='mv -i'
+alias rm='rm -Iv'
 alias ls='pwd; ls --color=auto --group-directories-first -lhX'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
