@@ -3,8 +3,10 @@ setopt correct
 setopt numeric_glob_sort
 setopt rc_expand_param
 setopt complete_in_word
+setopt no_nomatch
 
 # pushd options
+setopt auto_cd
 setopt auto_pushd
 setopt pushd_silent
 setopt pushd_to_home
