@@ -54,6 +54,8 @@ bindkey 'z' delete-to-char
 
 # Meta-u to chdir to the parent directory
 bindkey -s '\eu' '^Ucd ..; ls^M'
+# Meta-h goes home
+bindkey -s '\eh' '^Ucd; dirs -c^M'
 # Meta-p pops the dir stack
 bindkey -s '\ep' '^Upopd; dirs -v^M'
 # Meta-l to pipe the current command through less
