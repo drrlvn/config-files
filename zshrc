@@ -67,7 +67,7 @@ bindkey ' ' magic-space
 
 #zstyle :compinstall filename '/home/spatz/.zshrc'
 
-[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
+eval $(dircolors -b)
 
 alias -g G='| grep'
 
