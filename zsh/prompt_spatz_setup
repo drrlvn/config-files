@@ -1,0 +1,17 @@
+# spatz prompt theme
+
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git hg svn cvs
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%F{green}●'
+zstyle ':vcs_info:*' unstagedstr '%F{red}⚡'
+zstyle ':vcs_info:*' branchformat '%b%%b%f:%B%F{yellow}%r'
+zstyle ':vcs_info:*' formats '%F{magenta}(%F{white}%b%c%u%F{magenta}) '
+
+precmd() {
+	vcs_info
+}
+
+PROMPT='%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}[%(?.%F{cyan}:%).%F{red}:()%F{blue}] %#%b%f%k '
+RPROMPT='%B${vcs_info_msg_0_}%F{blue}(%~)'

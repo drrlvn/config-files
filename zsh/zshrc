@@ -4,6 +4,7 @@ setopt numeric_glob_sort
 setopt rc_expand_param
 setopt complete_in_word
 setopt no_nomatch
+setopt prompt_subst
 
 # pushd options
 setopt auto_cd
@@ -33,7 +34,7 @@ bindkey -e
 autoload -Uz compinit promptinit edit-command-line zmv
 zmodload zsh/deltochar
 compinit
-promptinit; prompt gentoo
+promptinit; prompt spatz
 
 zle -N edit-command-line
 bindkey '' edit-command-line
