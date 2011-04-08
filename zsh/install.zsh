@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 if [[ -e ~/.zshrc ]]; then
 	if [[ $1 = -f ]]; then
 		shift
