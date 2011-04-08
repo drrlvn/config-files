@@ -51,5 +51,5 @@ precmd() {
 	vcs_info
 }
 
-PROMPT='%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}[%(?.%F{cyan}:%).%F{red}:()%F{blue}] ${_prompt_char}%b%f%k '
+PROMPT='%B%(!.%F{red}%m.%F{green}%n@%m) %(?.%F{cyan}:%).%F{red}:()%F{blue} ${_prompt_char}%b%f%k '
 RPROMPT='%B${vcs_info_msg_0_}%F{blue}(%~)'
