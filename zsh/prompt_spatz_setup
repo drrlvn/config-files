@@ -15,7 +15,7 @@ zstyle ':vcs_info:*+set-message:*' hooks set-message
 +vi-set-message() {
 	case ${vcs} in
 		git)
-			_prompt_char='%F{green}±'
+			_prompt_char='%F{red}±'
 
 			# Show +N/-N when your local branch is ahead-of or behind remote HEAD.
 			local ahead behind
