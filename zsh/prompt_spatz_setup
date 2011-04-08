@@ -8,6 +8,7 @@ zstyle ':vcs_info:*' stagedstr '%F{green}●'
 zstyle ':vcs_info:*' unstagedstr '%F{red}⚡'
 zstyle ':vcs_info:*' branchformat '%b%%b%f:%B%F{yellow}%r'
 zstyle ':vcs_info:*' formats '%F{magenta}(%F{white}%b%c%u%F{magenta}) '
+zstyle ':vcs_info:*' actionformats '%F{magenta}(%F{white}%b%c%u%F{magenta}|%F{red}%a%F{magenta}) '
 
 precmd() {
 	vcs_info
