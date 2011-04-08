@@ -40,9 +40,9 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2 statusline=%n\ %F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]\ %{fugitive#statusline()}%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
 set list listchars=tab:»\ ,trail:·
+set modeline
 set nocursorline
 set nofoldenable
-set nomodeline
 set nowrap
 set number
 set pastetoggle=<Leader>+
