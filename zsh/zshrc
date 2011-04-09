@@ -31,7 +31,7 @@ setopt hist_find_no_dups
 
 bindkey -e
 
-autoload -Uz compinit promptinit edit-command-line zmv
+autoload -Uz compinit promptinit edit-command-line zcalc zmv
 zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
@@ -69,6 +69,8 @@ bindkey ' ' magic-space
 #zstyle :compinstall filename '/home/spatz/.zshrc'
 
 eval $(dircolors -b)
+
+READNULLCMD=less
 
 alias -g G='| grep'
 
