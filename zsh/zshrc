@@ -36,6 +36,13 @@ zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
 
+bash-unix-filename-rubout() {
+	local WORDCHARS=${WORDCHARS}/
+	zle backward-kill-word
+}
+zle -N bash-unix-filename-rubout
+bindkey '' bash-unix-filename-rubout
+
 zle -N edit-command-line
 bindkey '' edit-command-line
 
@@ -70,6 +77,7 @@ bindkey ' ' magic-space
 
 eval $(dircolors -b)
 
+WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
 
 alias -g G='| grep'
