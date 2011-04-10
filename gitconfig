@@ -33,8 +33,9 @@
 	pager = less
 
 [diff]
-	renamelimit = 0
-	renames     = copy
+	renamelimit      = 0
+	renames          = copy
+	ignoreSubmodules = dirty
 
 [rebase]
 	stat = true
