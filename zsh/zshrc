@@ -73,7 +73,7 @@ bindkey -s '\es' '^Asudo ^M'
 
 bindkey ' ' magic-space
 
-#zstyle :compinstall filename '/home/spatz/.zshrc'
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 
 eval $(dircolors -b)
 
