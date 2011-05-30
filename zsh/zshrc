@@ -31,7 +31,7 @@ setopt hist_find_no_dups
 
 bindkey -e
 
-autoload -Uz compinit promptinit edit-command-line zcalc zmv
+autoload -Uz compinit promptinit edit-command-line zargs zcalc zmv
 zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
