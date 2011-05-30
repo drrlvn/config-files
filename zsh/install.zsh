@@ -19,4 +19,6 @@ source ${REPO_PATH}/zsh/zshrc
 END
 
 mkdir -p ~/.zsh
-ln -s ${REPO_PATH}/zsh/prompt_spatz_setup ~/.zsh/
+pushd ~/.zsh
+ln -s ${REPO_PATH}/zsh/prompt_spatz_setup .
+popd
