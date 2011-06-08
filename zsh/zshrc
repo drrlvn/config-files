@@ -80,6 +80,8 @@ eval $(dircolors -b)
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
 
+PATH="${HOME}/bin:${PATH}"
+
 alias -g G='| grep'
 
 alias cp='cp -i'
@@ -95,11 +97,4 @@ alias g='git'
 gg() {
 	local dir="$1" ; shift
 	( cd "$dir" && git "$@" )
-}
-
-overlays() {
-	local o
-	for o in "${OVERLAYS[@]}"; do
-		$o-overlay "$@"
-	done
 }
