@@ -9,6 +9,7 @@
 	dc   = diff --cached
 	ds   = !git --no-pager diff --stat
 	dw   = diff --color-words
+	f    = fetch
 	fp   = format-patch
 	l    = log --oneline
 	lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
