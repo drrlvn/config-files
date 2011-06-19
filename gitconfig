@@ -38,6 +38,9 @@
 	renames          = copy
 	ignoreSubmodules = dirty
 
+[push]
+	default = current
+
 [rebase]
 	stat = true
 
