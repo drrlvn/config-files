@@ -1,29 +1,5 @@
 scriptencoding utf-8
 
-" pathogen - http://www.vim.org/scripts/script.php?script_id=2332
-
-" abolish - http://www.vim.org/scripts/script.php?script_id=1545
-" alternate - http://www.vim.org/scripts/script.php?script_id=31
-" bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
-" bufkill - http://www.vim.org/scripts/script.php?script_id=1147
-" Command-T - https://wincent.com/products/command-t
-" fugitive - http://www.vim.org/scripts/script.php?script_id=2975
-" indent guides - http://www.vim.org/scripts/script.php?script_id=3361
-" LustyJuggler - http://www.vim.org/scripts/script.php?script_id=2050
-" NERD_commenter - http://www.vim.org/scripts/script.php?script_id=1218
-" NERD_tree - http://www.vim.org/scripts/script.php?script_id=1658
-" snipMate - http://www.vim.org/scripts/script.php?script_id=2540
-" surround - http://www.vim.org/scripts/script.php?script_id=1697
-" taglist - http://www.vim.org/scripts/script.php?script_id=273
-" YankRing - http://www.vim.org/scripts/script.php?script_id=1234
-" zencoding - http://www.vim.org/scripts/script.php?script_id=2981
-
-" closetag - http://www.vim.org/scripts/script.php?script_id=13
-" conque - http://code.google.com/p/conque/
-" cppcomplete - http://www.vim.org/scripts/script.php?script_id=527
-" omnicppcomplete - http://www.vim.org/scripts/script.php?script_id=1520
-" scratch - http://www.vim.org/scripts/script.php?script_id=664
-
 runtime macros/matchit.vim
 
 call pathogen#runtime_append_all_bundles()
@@ -55,7 +31,6 @@ set showmatch
 set spelllang=en_us
 set switchbuf=useopen,usetab
 set tags+=/
-set thesaurus+=/usr/share/moby-thesaurus/mthesaur.txt
 set timeoutlen=500
 set virtualedit=block
 set visualbell
@@ -119,7 +94,7 @@ func! GentooCompare(i1, i2)
 endfunc
 
 let b:updatetime_users = 0
-au BufCreate * let b:updatetime_users = 0
+au BufRead,BufNewFile * let b:updatetime_users = 0
 func! Taglist_Toggle()
 	TlistToggle
 	if exists('#taglist')
@@ -139,16 +114,17 @@ func! Taglist_Toggle()
 	endif
 endfunc
 
-nnoremap <silent> <Leader>/ :call Auto_Highlight_Toggle()<CR>
+nnoremap <silent> <Leader>/ :if Auto_Highlight_Toggle() \| setl hls \| endif<CR>
 func! Auto_Highlight_Toggle()
+	let @/=''
 	if exists('#auto_highlight')
 		au! auto_highlight
 		augroup! auto_highlight
-		let @/=''
 		let b:updatetime_users -= 1
 		if b:updatetime_users <= 0
 			setl updatetime=4000
 		endif
+		return 0
 	else
 		let b:updatetime_users += 1
 		setl updatetime=500
@@ -156,6 +132,7 @@ func! Auto_Highlight_Toggle()
 			au!
 			au CursorHold * let @/='\<'.expand('<cword>').'\>'
 		augroup end
+		return 1
 	endif
 endfunc
 
@@ -187,8 +164,8 @@ noremap <Leader>es :sp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>ev :vsp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>et :tabe <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 
-" map lusty-juggler
-nmap <silent> <Leader>j <Leader>lj
+nmap <silent> <Leader>a :A<CR>
+nmap <silent> <Leader>v :source $MYVIMRC<CR>
 
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
@@ -224,16 +201,16 @@ map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
-nnoremap <F3> :bprevious<CR>
-nnoremap <F4> :bnext<CR>
-nnoremap <F5> :exec '!./% ' . b:args<CR>
+nnoremap <F3> [c
+nnoremap <F4> ]c
+nnoremap <F5> :Gstatus<CR>
 nnoremap <F6> :GundoToggle<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <F8> :call Taglist_Toggle()<CR>
-nnoremap <F9> :BufExplorer<CR>
+nnoremap <F9> :LustyJuggler<CR>
 noremap <F10> <Esc>:quit<CR>
 noremap <S-F10> <Esc>:quitall!<CR>
-noremap <M-F10> <Esc>:bdelete<CR>
+noremap <M-F10> <Esc>:BD<CR>
 noremap <F11> <Esc>:update<CR>
 noremap <S-F11> <Esc>:exit<CR>
 noremap <M-F11> <Esc>:wall<CR>
