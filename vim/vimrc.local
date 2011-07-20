@@ -7,8 +7,10 @@ call pathogen#helptags()
 
 " {{{ useful options
 set autoindent
+set cinoptions=:0,l1,g0,t0,(0
 set confirm
 set dict+=/usr/share/dict/words
+set expandtab
 set gdefault
 set hidden
 set hlsearch
@@ -201,8 +203,10 @@ map <M-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
 vnoremap <F2> s<Esc>:execute 'normal a' . join(sort(split(getreg('"')), 'GentooCompare'), ' ')<CR>gqq
 nnoremap <silent> <S-F2> :%s/<C-v><Esc>.\{-}m//ge<CR>:%s/<C-v><C-h>.//ge<CR>''
-nnoremap <F3> [c
-nnoremap <F4> ]c
+nnoremap <F3> :cprev<CR>
+nnoremap <F4> :cnext<CR>
+nnoremap <S-F3> [c
+nnoremap <S-F4> ]c
 nnoremap <F5> :Gstatus<CR>
 nnoremap <F6> :GundoToggle<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
