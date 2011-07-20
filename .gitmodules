@@ -52,3 +52,6 @@
 [submodule "vim/dotvim/bundle/yankring"]
 	path = vim/dotvim/bundle/yankring
 	url = git://github.com/vim-scripts/YankRing.vim.git
+[submodule "vim/dotvim/bundle/ack.vim"]
+	path = vim/dotvim/bundle/ack.vim
+	url = git://github.com/mileszs/ack.vim.git
