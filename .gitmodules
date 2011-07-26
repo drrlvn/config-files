@@ -55,3 +55,9 @@
 [submodule "vim/dotvim/bundle/ack.vim"]
 	path = vim/dotvim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
+[submodule "emacs.d/packages/anything-config"]
+	path = emacs.d/packages/anything-config
+	url = git://repo.or.cz/anything-config.git
+[submodule "emacs.d/packages/drag-stuff"]
+	path = emacs.d/packages/drag-stuff
+	url = git://github.com/rejeep/drag-stuff.git
