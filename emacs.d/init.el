@@ -15,6 +15,18 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+; cedet
+(global-ede-mode 1)
+(semantic-mode 1)
+(setq semantic-default-submodes
+      '(global-semantic-idle-scheduler-mode
+         global-semanticdb-minor-mode
+         global-semantic-idle-summary-mode
+         global-semantic-idle-completions-mode
+         global-semantic-highlight-func-mode
+         global-semantic-decoration-mode
+         global-semantic-stickyfunc-mode))
+(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-tooltip)
 ; enable windmove
 (windmove-default-keybindings 'meta)
 ; C-n at EOF inserts newlines
@@ -41,6 +53,7 @@
 (global-linum-mode 1)
 
 ; C/C++
+(add-hook 'c-mode-common-hook (lambda () (semantic-mode 1)))
 (add-hook 'c-mode-common-hook (lambda () (subword-mode 1)))
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
 (add-hook 'c-mode-common-hook (lambda () (add-hook 'local-write-file-hooks

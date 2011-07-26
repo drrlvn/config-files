@@ -1,3 +1,5 @@
 auto-save-list/
+semanticdb/
 ac-comphist.dat
+ede-projects.el
 *.elc
