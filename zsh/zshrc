@@ -70,6 +70,8 @@ bindkey -s '\ep' '^Upopd; dirs -v^M'
 bindkey -s '\el' ' |& less^M'
 # Meta-s to insert sudo in the beginning of the line
 bindkey -s '\es' '^Asudo ^M'
+# Meta-r to delete command
+bindkey -s '\er' '^Ad'
 
 bindkey ' ' magic-space
 
@@ -84,6 +86,7 @@ PATH="${HOME}/bin:${PATH}"
 
 alias -g G='| grep'
 
+alias enw='emacs -nw'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -Iv'
