@@ -86,7 +86,10 @@ PATH="${HOME}/bin:${PATH}"
 
 alias -g G='| grep'
 
-alias enw='emacs -nw'
+alias kill-emacs='emacsclient -e "(kill-emacs)"'
+alias em='emacsclient -a "" -c'
+alias et='emacsclient -a "" -t'
+
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -Iv'
