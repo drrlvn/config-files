@@ -26,17 +26,18 @@
          global-semantic-highlight-func-mode
          global-semantic-decoration-mode
          global-semantic-stickyfunc-mode))
-(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-tooltip)
+(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-ghost)
 ; enable windmove
 (windmove-default-keybindings 'meta)
-; C-n at EOF inserts newlines
+; misc configuration
 (setq x-select-enable-clipboard t)
-(setq next-line-add-newlines t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default show-trailing-whitespace t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq make-backup-files nil)
+(setq backup `((".*" . ,temporary-file-directory)))
+(setq autoload `((".*" ,temporary-file-directory t)))
 (setq max-mini-window-height 1)
 (setq lazy-highlight-initial-delay 0)
 (show-paren-mode 1)
@@ -120,6 +121,12 @@
 
 (global-set-key (kbd "M-i") 'ido-goto-symbol)
 
+(add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
+(autoload 'markdown-mode "markdown-mode.el"
+          "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+      (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
 ; recentf and ido-recentf
 (require 'recentf)
  
@@ -175,6 +182,11 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 
+; ace-jump-mode
+(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
 ; color-theme
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme")
 (require 'color-theme)
@@ -196,5 +208,4 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
 (ac-config-default)
 (setq ac-dwim t)
-(ac-set-trigger-key "TAB")
 (setq ac-auto-show-menu 0)

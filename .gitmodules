@@ -64,3 +64,9 @@
 [submodule "emacs.d/packages/auto-complete"]
 	path = emacs.d/packages/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
+[submodule "emacs.d/packages/ace-jump-mode"]
+	path = emacs.d/packages/ace-jump-mode
+	url = git://github.com/winterTTr/ace-jump-mode.git
+[submodule "emacs.d/packages/markdown-mode"]
+	path = emacs.d/packages/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
