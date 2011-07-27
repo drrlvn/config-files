@@ -14,6 +14,8 @@
 (setq display-time-mode t)
 (setq ring-bell-function 'ignore)
 (setq history-length 500)
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#222")
 ; enable IDO mode
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
