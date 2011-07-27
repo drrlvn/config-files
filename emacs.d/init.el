@@ -2,7 +2,10 @@
 
 ; set font
 (if (window-system)
-  (set-face-attribute 'default nil :font "Consolas 10")
+  (progn
+    (set-face-attribute 'default nil :font "Consolas 10")
+    (custom-set-faces '(minimap-font-face ((default (:height 30)) (nil nil))))
+    )
   )
 
 (setq x-select-enable-clipboard t)
@@ -42,16 +45,17 @@
 (setq lazy-highlight-initial-delay 0)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
-; indent newlines
-(define-key global-map (kbd "RET") 'newline-and-indent)
-; map escape to C-g
-(global-set-key [escape] 'keyboard-quit)
 ; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 ; show line numbers
 (global-linum-mode 1)
+
+; mappings
+(define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key [escape] 'keyboard-quit)
+(global-set-key [(control x) (k)] 'kill-this-buffer)
 
 ; C/C++
 (add-hook 'c-mode-common-hook (lambda () (semantic-mode 1)))
@@ -63,6 +67,9 @@
                                                         (delete-trailing-whitespace))))))
 (setq c-default-style "linux"
       c-basic-offset 4)
+
+; Python
+(add-hook 'python-mode-hook (lambda () (semantic-mode 1)))
 
 ; disable splash screen
 (setq inhibit-startup-message t
@@ -129,17 +136,17 @@
 
 ; recentf and ido-recentf
 (require 'recentf)
- 
+
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
- 
+
 ;; enable recent files mode.
 (recentf-mode t)
- 
+
 ; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)
- 
+
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
@@ -181,11 +188,18 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
+(setq ibuffer-expert t)
 
 ; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+; minimap
+(add-to-list 'load-path "~/.emacs.d/packages/minimap")
+(require 'minimap)
+(setq minimap-update-delay 0.1)
+(setq minimap-width-fraction 0.1)
 
 ; color-theme
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme")
