@@ -8,6 +8,12 @@
     )
   )
 
+; color-theme
+(add-to-list 'load-path "~/.emacs.d/packages/color-theme")
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-dark-laptop)
+
 (setq x-select-enable-clipboard t)
 (setq dabbrev-case-replace nil)
 (setq display-time-24hr-format t)
@@ -202,14 +208,6 @@
 (require 'minimap)
 (setq minimap-update-delay 0.1)
 (setq minimap-width-fraction 0.1)
-
-; color-theme
-(add-to-list 'load-path "~/.emacs.d/packages/color-theme")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-dark-laptop)))
 
 ; YASnippet
 (add-to-list 'load-path "~/.emacs.d/packages/yasnippet")
