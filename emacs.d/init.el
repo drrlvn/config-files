@@ -192,11 +192,20 @@
 (setq-default save-place t)
 
 ; ibuffer
-(require 'ibuf-ext)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
-(add-to-list 'ibuffer-never-show-predicates "^\\*")
 (setq ibuffer-expert t)
+(setq ibuffer-show-empty-filter-groups nil)
+(setq ibuffer-saved-filter-groups
+      '(("default"
+               ("Dired" (mode . dired-mode))
+               ("C/C++" (or
+                          (mode . c-mode)
+                          (mode . c++-mode)))
+               ("Python" (mode . python-mode))
+               ("emacs" (name . "^\\*"))
+               )))
+(add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
 ; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
