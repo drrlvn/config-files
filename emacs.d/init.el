@@ -8,6 +8,12 @@
     )
   )
 
+; disable splash screen
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+; hide toolbar
+(tool-bar-mode 0)
+
 ; color-theme
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme")
 (require 'color-theme)
@@ -15,6 +21,7 @@
 (color-theme-dark-laptop)
 
 (setq x-select-enable-clipboard t)
+(delete-selection-mode 1)
 (setq dabbrev-case-replace nil)
 (setq display-time-24hr-format t)
 (setq display-time-mode t)
@@ -78,12 +85,6 @@
 
 ; Python
 (add-hook 'python-mode-hook (lambda () (semantic-mode 1)))
-
-; disable splash screen
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
-; hide toolbar
-(tool-bar-mode 0)
 
 ; ido style symbol jumping
 (defun ido-goto-symbol (&optional symbol-list)
