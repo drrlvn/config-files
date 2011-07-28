@@ -64,13 +64,20 @@
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 ; show line numbers
 (global-linum-mode 1)
 
 ; mappings
+(defun revert-buffer-no-confirmation ()
+  "Invoke `revert-buffer' without the confirmation."
+  (interactive)
+  (revert-buffer nil t t)
+  (message (concat "Reverted buffer " (buffer-name))))
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key [escape] 'keyboard-quit)
 (global-set-key [(control x) (k)] 'kill-this-buffer)
+(global-set-key '[f5] 'revert-buffer-no-confirmation)
 
 ; C/C++
 (add-hook 'c-mode-common-hook (lambda () (semantic-mode 1)))
@@ -179,6 +186,7 @@
 
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
+(setq anything-command-map-prefix-key "<f4>")
 (require 'anything-config)
 (global-set-key [(control x) (a)] 'anything)
 
