@@ -73,3 +73,6 @@
 [submodule "emacs.d/packages/minimap"]
 	path = emacs.d/packages/minimap
 	url = git://randomsample.de/minimap.git
+[submodule "emacs.d/packages/zencoding"]
+	path = emacs.d/packages/zencoding
+	url = git://github.com/rooney/zencoding.git

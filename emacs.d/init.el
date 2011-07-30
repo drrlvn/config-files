@@ -241,3 +241,8 @@
 (ac-config-default)
 (setq ac-dwim t)
 (setq ac-auto-show-menu 0)
+
+; zencoding
+(add-to-list 'load-path "~/.emacs.d/packages/zencoding")
+(autoload 'zencoding-mode "zencoding-mode")
+(add-hook 'sgml-mode-hook 'zencoding-mode)
