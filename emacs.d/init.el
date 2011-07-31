@@ -60,6 +60,7 @@
 (setq lazy-highlight-initial-delay 0)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
+(setq kill-whole-line t)
 ; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -186,10 +187,23 @@
 
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
-(setq anything-command-map-prefix-key "<f4>")
+(setq anything-command-map-prefix-key "<f6>")
 (require 'anything-config)
 (require 'anything-match-plugin)
-(global-set-key [(control x) (a)] 'anything)
+(defun custom-anything ()
+  (interactive)
+  (anything-other-buffer
+    '(anything-c-source-buffers+
+       anything-c-source-recentf
+       anything-c-source-files-in-current-dir+
+       anything-c-source-occur
+       anything-c-source-imenu
+       anything-c-source-semantic
+       anything-c-source-emacs-commands
+       anything-c-source-man-pages
+       )
+    " *custom-anything*"))
+(global-set-key [(control x) (a)] 'custom-anything)
 
 ; drag-stuff
 (add-to-list 'load-path "~/.emacs.d/packages/drag-stuff")
