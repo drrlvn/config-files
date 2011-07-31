@@ -76,3 +76,6 @@
 [submodule "emacs.d/packages/zencoding"]
 	path = emacs.d/packages/zencoding
 	url = git://github.com/rooney/zencoding.git
+[submodule "emacs.d/packages/full-ack"]
+	path = emacs.d/packages/full-ack
+	url = git://github.com/nschum/full-ack.git

@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/packages/")
+(add-to-list 'load-path "~/.emacs.d/packages")
 
 ; set font
 (if (window-system)
@@ -188,6 +188,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
 (setq anything-command-map-prefix-key "<f4>")
 (require 'anything-config)
+(require 'anything-match-plugin)
 (global-set-key [(control x) (a)] 'anything)
 
 ; drag-stuff
@@ -235,7 +236,7 @@
 (setq yas/indent-line 'fixed)
 
 ; auto-complete
-(add-to-list 'load-path "~/.emacs.d/packages/auto-complete/")
+(add-to-list 'load-path "~/.emacs.d/packages/auto-complete")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
 (ac-config-default)
@@ -246,3 +247,10 @@
 (add-to-list 'load-path "~/.emacs.d/packages/zencoding")
 (autoload 'zencoding-mode "zencoding-mode")
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+; full-ack
+(add-to-list 'load-path "~/.emacs.d/packages/full-ack")
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
