@@ -93,6 +93,10 @@
 
 ; Python
 (add-hook 'python-mode-hook (lambda () (semantic-mode 1)))
+(add-hook 'python-mode-hook (lambda () (add-hook 'local-write-file-hooks
+                                                 '(lambda()
+                                                    (save-excursion
+                                                      (delete-trailing-whitespace))))))
 
 ; ido style symbol jumping
 (defun ido-goto-symbol (&optional symbol-list)
@@ -200,7 +204,6 @@
        anything-c-source-imenu
        anything-c-source-semantic
        anything-c-source-emacs-commands
-       anything-c-source-man-pages
        )
     " *custom-anything*"))
 (global-set-key [(control x) (a)] 'custom-anything)
