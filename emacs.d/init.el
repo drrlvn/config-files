@@ -42,7 +42,6 @@
         global-semantic-idle-summary-mode
         global-semantic-idle-completions-mode
         global-semantic-highlight-func-mode
-        global-semantic-decoration-mode
         global-semantic-stickyfunc-mode))
 (setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-ghost)
 ; enable windmove
@@ -62,6 +61,7 @@
 (setq show-paren-delay 0)
 (setq kill-whole-line t)
 (setq diff-switches "-u")
+(setq column-number-mode t)
 ; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -137,7 +137,7 @@
 
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
-(setq anything-command-map-prefix-key "<f6>")
+(setq anything-command-map-prefix-key "<f8>")
 (require 'anything-config)
 (require 'anything-match-plugin)
 (defun custom-anything ()
