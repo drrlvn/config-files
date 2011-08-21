@@ -98,9 +98,3 @@ alias la='ls -A'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias reload='rehash; source ~/.zshrc'
-
-alias g='git'
-gg() {
-	local dir="$1" ; shift
-	( cd "$dir" && git "$@" )
-}
