@@ -217,3 +217,7 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+
+(add-to-list 'load-path "~/.emacs.d/packages/nyan-mode")
+(require 'nyan-mode)
+(nyan-mode)

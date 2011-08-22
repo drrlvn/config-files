@@ -79,3 +79,6 @@
 [submodule "emacs.d/packages/full-ack"]
 	path = emacs.d/packages/full-ack
 	url = git://github.com/nschum/full-ack.git
+[submodule "emacs.d/packages/nyan-mode"]
+	path = emacs.d/packages/nyan-mode
+	url = git://github.com/TeMPOraL/nyan-mode.git
