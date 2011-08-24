@@ -57,7 +57,9 @@ bindkey '[5~' history-beginning-search-backward
 bindkey '[6~' history-beginning-search-forward
 
 bindkey '[H' beginning-of-line
+bindkey '[1~' beginning-of-line
 bindkey '[F' end-of-line
+bindkey '[4~' end-of-line
 bindkey '[3~' delete-char
 
 bindkey 'z' delete-to-char
