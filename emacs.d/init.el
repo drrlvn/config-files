@@ -17,9 +17,9 @@
 
 ; color-theme
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme")
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-dark-laptop)
+(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
+(require 'color-theme-tomorrow)
+(color-theme-tomorrow-night-bright)
 
 (setq x-select-enable-clipboard t)
 (delete-selection-mode 1)
@@ -42,7 +42,6 @@
         global-semanticdb-minor-mode
         global-semantic-idle-summary-mode
         global-semantic-idle-completions-mode
-        global-semantic-highlight-func-mode
         global-semantic-stickyfunc-mode))
 (setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-ghost)
 ; enable windmove

@@ -82,3 +82,6 @@
 [submodule "emacs.d/packages/nyan-mode"]
 	path = emacs.d/packages/nyan-mode
 	url = git://github.com/TeMPOraL/nyan-mode.git
+[submodule "emacs.d/packages/tomorrow-theme"]
+	path = emacs.d/packages/tomorrow-theme
+	url = git://github.com/ChrisKempson/Tomorrow-Theme.git
