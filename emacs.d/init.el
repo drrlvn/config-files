@@ -5,6 +5,7 @@
     (progn
       (set-face-attribute 'default nil :font "Consolas 10")
       (custom-set-faces '(minimap-font-face ((default (:height 30)) (nil nil))))
+      (blink-cursor-mode 1)
       )
   )
 
@@ -90,6 +91,9 @@
                                 (semantic-mode 1)
                                 (subword-mode 1)
                                 (local-set-key (kbd "C-c o") 'ff-find-other-file)
+                                (font-lock-add-keywords
+                                 nil
+                                 '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
                                 (add-hook 'local-write-file-hooks
                                           (lambda ()
                                             (save-excursion
