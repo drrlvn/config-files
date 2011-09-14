@@ -1,60 +1,51 @@
 [alias]
-	a    = add
-	ai   = add -i
-	ap   = add -p
-	b    = branch
-	ci   = commit
-	co   = checkout
-	d    = diff
-	dc   = diff --cached
-	ds   = !git --no-pager diff --stat
-	dw   = diff --color-words
-	f    = fetch
-	fp   = format-patch
-	l    = log --oneline
-	lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	lol  = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	lp   = log -p
-	ls   = log --stat
-	r    = rebase
-	ri   = rebase -i
-	sl   = shortlog
-	st   = status --untracked-files=no
-	su   = status
+    ai   = add -i
+    ap   = add -p
+    dc   = diff --cached
+    ds   = !git --no-pager diff --stat
+    dw   = diff --color-words
+    l    = log --oneline
+    lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lol  = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lp   = log -p
+    ls   = log --stat
+    ri   = rebase -i
+    st   = status --untracked-files=no
 
 [color]
-	ui = auto
+    ui = auto
 
 [color "diff"]
-	old  = red bold
-	new  = blue bold
-	frag = magenta bold
+    old  = red bold
+    new  = blue bold
+    frag = magenta bold
 
 [core]
-	pager = less
+    pager          = less
+    sparseCheckout = true
 
 [diff]
-	renamelimit      = 0
-	renames          = copy
-	ignoreSubmodules = dirty
+    renamelimit      = 0
+    renames          = copy
+    ignoreSubmodules = dirty
 
 [push]
-	default = current
+    default = current
 
 [rebase]
-	stat = true
+    stat = true
 
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 
 [user]
-	name  = Dror Levin
-	email = spatz@psybear.com
+    name  = Dror Levin
+    email = spatz@psybear.com
 
 [gui]
-	fontui = -family \"Lucida Grande\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family Consolas -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+    fontui = -family \"Lucida Grande\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+    fontdiff = -family Consolas -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 
 [svn]
-	rmdir = true
+    rmdir = true
