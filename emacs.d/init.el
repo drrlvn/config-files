@@ -31,6 +31,7 @@
 (global-hl-line-mode 1)
 (global-linum-mode 1)
 (set-face-background 'hl-line "#222")
+(pc-selection-mode 1)
 ; enable IDO mode
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
@@ -207,7 +208,6 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
 (ac-config-default)
 (setq ac-dwim t)
-(setq ac-auto-show-menu 0)
 
 ; zencoding
 (add-to-list 'load-path "~/.emacs.d/packages/zencoding")
