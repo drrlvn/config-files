@@ -78,6 +78,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
+(global-set-key (kbd "C-DEL") 'subword-kill)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "M-i") 'anything-imenu)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
