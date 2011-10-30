@@ -81,9 +81,10 @@ bindkey -s '\er' '^Ad'
 
 bindkey ' ' magic-space
 
-zstyle ':completion:*' menu select=1 _complete _ignored _approximate
-
 eval $(dircolors -b)
+
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
