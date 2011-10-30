@@ -78,7 +78,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
-(global-set-key (kbd "C-DEL") 'subword-kill)
+(global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "M-i") 'anything-imenu)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
@@ -92,6 +92,7 @@
                                 (semantic-mode 1)
                                 (subword-mode 1)
                                 (local-set-key (kbd "C-c o") 'ff-find-other-file)
+                                (global-set-key (kbd "C-<delete>") 'subword-kill)
                                 (font-lock-add-keywords
                                  nil
                                  '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
@@ -106,6 +107,7 @@
 (add-hook 'python-mode-hook (lambda ()
                               (semantic-mode 1)
                               (subword-mode 1)
+                              (global-set-key (kbd "C-<delete>") 'subword-kill)
                               (add-hook 'local-write-file-hooks
                                         (lambda ()
                                           (save-excursion
