@@ -120,7 +120,7 @@
 ; recentf and ido-recentf
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 250)
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
