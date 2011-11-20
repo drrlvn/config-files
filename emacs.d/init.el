@@ -1,9 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
 
 ; set font
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
 (if (window-system)
     (progn
-      (set-face-attribute 'default nil :font "Consolas 10")
+      (set-face-attribute 'default nil :font "Ubuntu Mono 12")
       (custom-set-faces '(minimap-font-face ((default (:height 30)) (nil nil))))
       (blink-cursor-mode 1)
       )
