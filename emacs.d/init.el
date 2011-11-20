@@ -74,7 +74,7 @@
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
   (revert-buffer nil t t)
-  (message (concat "Reverted buffer " (buffer-name))))
+  (message (concat "Reverted buffer " buffer-file-name)))
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
