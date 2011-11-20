@@ -81,9 +81,6 @@
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-(global-set-key (kbd "M-i") 'anything-imenu)
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-(global-set-key (kbd "C-x f") 'anything-find-files)
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
@@ -128,6 +125,7 @@
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 (require 'tramp)
 
@@ -161,6 +159,8 @@
      )
    " *custom-anything*"))
 (global-set-key [(control x) (a)] 'custom-anything)
+(global-set-key (kbd "M-i") 'anything-imenu)
+(global-set-key (kbd "C-x f") 'anything-find-files)
 
 ; drag-stuff
 (add-to-list 'load-path "~/.emacs.d/packages/drag-stuff")
