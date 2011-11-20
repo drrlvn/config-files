@@ -78,6 +78,9 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
+(global-set-key (kbd "<f6>") 'ack)
+(global-set-key (kbd "<f7>") 'previous-error)
+(global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
@@ -142,7 +145,7 @@
 
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
-(setq anything-command-map-prefix-key "<f8>")
+(setq anything-command-map-prefix-key "<f1>")
 (require 'anything-config)
 (require 'anything-match-plugin)
 (defun custom-anything ()
