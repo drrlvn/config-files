@@ -63,6 +63,7 @@
 (setq kill-whole-line t)
 (setq diff-switches "-u")
 (setq column-number-mode t)
+(set-scroll-bar-mode 'right)
 ; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
