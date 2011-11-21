@@ -102,6 +102,7 @@
                                               (delete-trailing-whitespace))))))
 (setq c-default-style "linux"
       c-basic-offset 4)
+(add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
 ; Python
 (add-hook 'python-mode-hook (lambda ()
@@ -115,7 +116,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+(add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ; recentf and ido-recentf
 (require 'recentf)
@@ -146,8 +148,8 @@
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
 (setq anything-command-map-prefix-key "<f1>")
-(require 'anything-config)
 (require 'anything-match-plugin)
+(require 'anything-config)
 (defun custom-anything ()
   (interactive)
   (anything-other-buffer
