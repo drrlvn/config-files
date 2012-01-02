@@ -82,6 +82,8 @@
 (global-set-key (kbd "<f6>") 'ack)
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
+(global-set-key (kbd "<f9>") 'magit-status)
+(global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
@@ -198,6 +200,10 @@
 (autoload 'ace-jump-mode "ace-jump-mode" nil t)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
+; magit
+(add-to-list 'load-path "~/.emacs.d/packages/magit")
+(require 'magit)
+
 ; minimap
 (add-to-list 'load-path "~/.emacs.d/packages/minimap")
 (autoload 'minimap-create "minimap" nil t)
@@ -222,7 +228,3 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
-
-(add-to-list 'load-path "~/.emacs.d/packages/nyan-mode")
-(require 'nyan-mode)
-(nyan-mode)
