@@ -30,6 +30,7 @@
 (setq ring-bell-function 'ignore)
 (setq history-length 500)
 (global-hl-line-mode 1)
+(global-visual-line-mode 1)
 (global-linum-mode 1)
 (set-face-background 'hl-line "#222")
 (pc-selection-mode 1)
@@ -112,6 +113,9 @@
                               (semantic-mode 1)
                               (subword-mode 1)
                               (global-set-key (kbd "C-<delete>") 'subword-kill)
+                              (font-lock-add-keywords
+                               nil
+                               '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
                               (add-hook 'local-write-file-hooks
                                         (lambda ()
                                           (save-excursion
