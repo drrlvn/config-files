@@ -44,8 +44,8 @@
     email = spatz@psybear.com
 
 [gui]
-    fontui = -family \"Lucida Grande\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-    fontdiff = -family Consolas -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+    fontui = -family Ubuntu -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+    fontdiff = -family \"Ubuntu Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 
 [svn]
     rmdir = true
