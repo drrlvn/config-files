@@ -65,11 +65,14 @@
 (setq diff-switches "-u")
 (setq column-number-mode t)
 (set-scroll-bar-mode 'right)
+; ediff
+(setq ediff-split-window-function 'split-window-horizontally)
 ; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
 
 ; mappings
 (defun revert-buffer-no-confirmation ()
