@@ -253,7 +253,8 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
 if has('gui_running')
-	colorscheme wombat
+	set background=dark
+	colorscheme Tomorrow-Night-Bright
 	highlight StatusLine gui=bold
 else
 	let g:inkpot_black_background=1
