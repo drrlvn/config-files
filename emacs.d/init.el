@@ -116,6 +116,7 @@
                               (semantic-mode 1)
                               (subword-mode 1)
                               (global-set-key (kbd "C-<delete>") 'subword-kill)
+                              (flymake-mode)
                               (font-lock-add-keywords
                                nil
                                '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
@@ -123,7 +124,31 @@
                                         (lambda ()
                                           (save-excursion
                                             (delete-trailing-whitespace))))))
+(require 'flymake)
+(defun flymake-pylint-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "epylint" (list local-file))))
 
+(add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pylint-init))
+
+(global-set-key (kbd "S-<f7>") (lambda ()
+                                 (interactive)
+                                 (flymake-goto-prev-error)
+                                 (message "%s"
+                                          (flymake-ler-text (caar (flymake-find-err-info
+                                                                   flymake-err-info
+                                                                   (flymake-current-line-no)))))))
+(global-set-key (kbd "S-<f8>") (lambda ()
+                                 (interactive)
+                                 (flymake-goto-next-error)
+                                 (message "%s"
+                                          (flymake-ler-text (caar (flymake-find-err-info
+                                                                   flymake-err-info
+                                                                   (flymake-current-line-no)))))))
 (add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
