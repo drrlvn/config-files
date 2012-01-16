@@ -9,7 +9,7 @@ if [[ -e ~/.zshrc ]]; then
 	fi
 fi
 
-REPO_PATH="${1:-~/config-files}"
+REPO_PATH="${1:-${HOME}/config-files}"
 
 echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 
@@ -17,12 +17,12 @@ echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 fpath=(~/.zsh \$fpath)
 source ${REPO_PATH}/zsh/zshrc
 
-if [[ -n $TERMINATOR_UUID ]]; then
+if [[ -n \${TERMINATOR_UUID} ]]; then
     TERM=xterm-256color
 fi
 END
 
 mkdir -p ~/.zsh
 pushd ~/.zsh
-ln -s ${REPO_PATH}/zsh/prompt_spatz_setup .
+ln -sf ${REPO_PATH}/zsh/prompt_spatz_setup .
 popd
