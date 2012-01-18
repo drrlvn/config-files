@@ -252,14 +252,11 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "highlight link WhitespaceErrors Error
 "au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
+set background=dark
+colorscheme Tomorrow-Night-Bright
+
 if has('gui_running')
-	set background=dark
-	colorscheme Tomorrow-Night-Bright
 	highlight StatusLine gui=bold
-else
-	let g:inkpot_black_background=1
-	colorscheme inkpot
-	"highlight CursorLine NONE ctermbg=236
 endif
 " }}}
 
