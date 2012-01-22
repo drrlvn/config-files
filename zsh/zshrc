@@ -32,7 +32,7 @@ setopt inc_append_history
 
 bindkey -e
 
-autoload -Uz compinit promptinit edit-command-line zargs zcalc zmv
+autoload -Uz compinit edit-command-line promptinit url-quote-magic zargs zcalc zmv
 zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
@@ -46,6 +46,8 @@ bindkey '' bash-unix-filename-rubout
 
 zle -N edit-command-line
 bindkey '' edit-command-line
+
+zle -N self-insert url-quote-magic
 
 bindkey ';3D' emacs-backward-word
 bindkey ';5D' emacs-backward-word
@@ -66,6 +68,7 @@ bindkey '[4~' end-of-line
 bindkey '[3~' delete-char
 
 bindkey 'z' delete-to-char
+bindkey ';' copy-prev-shell-word
 
 # Meta-u to chdir to the parent directory
 bindkey -s '\eu' '^Ucd ..; ls^M'
