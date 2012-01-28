@@ -11,7 +11,7 @@
     lp   = log -p
     ls   = log --stat
     ri   = rebase -i
-    st   = status --untracked-files=no
+    st   = status
 
 [color]
     ui = auto
