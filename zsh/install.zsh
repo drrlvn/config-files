@@ -14,7 +14,7 @@ REPO_PATH="${1:-~/config-files}"
 echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 
 > ~/.zshrc <<END
-fpath=(~/.zsh \$fpath)
+fpath=(\$fpath ~/.zsh)
 source ${REPO_PATH}/zsh/zshrc
 
 if [[ -n \${TERMINATOR_UUID} ]]; then
