@@ -162,6 +162,12 @@ vnoremap <C-j> gj
 vnoremap <C-k> gk
 vnoremap <C-l> zL
 
+" easily move through windows
+nnoremap <M-Right> <C-w>l
+nnoremap <M-Left> <C-w>h
+nnoremap <M-Up> <C-w>k
+nnoremap <M-Down> <C-w>j
+
 " edit in working directory
 noremap <Leader>ew :e <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>es :sp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
