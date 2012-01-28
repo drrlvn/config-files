@@ -171,6 +171,7 @@
 (autoload 'iedit-mode "iedit" nil t)
 (define-key global-map (kbd "C-;") 'iedit-mode)
 
+(add-to-list 'load-path "~/.emacs.d/packages/smex")
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -245,9 +246,7 @@
 ; YASnippet
 (add-to-list 'load-path "~/.emacs.d/packages/yasnippet")
 (require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/packages/yasnippet/snippets")
-(setq yas/indent-line 'fixed)
+(yas/global-mode 1)
 
 ; zencoding
 (add-to-list 'load-path "~/.emacs.d/packages/zencoding")

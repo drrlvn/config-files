@@ -85,3 +85,9 @@
 [submodule "vim/dotvim/bundle/supertab"]
 	path = vim/dotvim/bundle/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "emacs.d/packages/smex"]
+	path = emacs.d/packages/smex
+	url = git://github.com/nonsequitur/smex.git
+[submodule "emacs.d/packages/yasnippet"]
+	path = emacs.d/packages/yasnippet
+	url = git://github.com/capitaomorte/yasnippet.git
