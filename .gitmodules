@@ -82,3 +82,6 @@
 [submodule "emacs.d/packages/magit"]
 	path = emacs.d/packages/magit
 	url = git://github.com/magit/magit.git
+[submodule "vim/dotvim/bundle/supertab"]
+	path = vim/dotvim/bundle/supertab
+	url = git://github.com/ervandew/supertab.git
