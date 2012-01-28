@@ -149,6 +149,9 @@ inoremap <M-Right> <C-o>w
 inoremap <M-C-Left> <C-o>B
 inoremap <M-C-Right> <C-o>W
 
+inoremap <C-Del> <C-o>dw
+inoremap <C-BS> <Esc>dbxa
+
 " move when soft wrapping and horizontally
 nnoremap <C-h> zH
 nnoremap <C-j> gj
