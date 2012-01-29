@@ -10,9 +10,10 @@
       )
   )
 
-; disable splash screen
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
+; disable splash screen and other crap
+(setq inhibit-startup-message t)
+(custom-set-variables '(inhibit-startup-echo-area-message (user-login-name)))
+(setq initial-scratch-message nil)
 ; hide toolbar
 (tool-bar-mode 0)
 
@@ -38,6 +39,7 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq ido-ignore-buffers (cons "^\\*" ido-ignore-buffers))
 ; cedet
 (global-ede-mode 1)
 (setq semantic-default-submodes
@@ -90,6 +92,12 @@
 (global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-SPC") 'hippie-expand)
+
+; hippie-expand
+(setq hippie-expand-try-functions-list
+      (delq 'try-complete-lisp-symbol-partially
+            (delq 'try-complete-lisp-symbol hippie-expand-try-functions-list)))
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
@@ -235,7 +243,7 @@
 
 ; magit
 (add-to-list 'load-path "~/.emacs.d/packages/magit")
-(require 'magit)
+(autoload 'magit-status "magit" nil t)
 
 ; minimap
 (add-to-list 'load-path "~/.emacs.d/packages/minimap")
