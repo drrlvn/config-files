@@ -36,6 +36,7 @@
 (global-auto-revert-mode 1)
 (set-face-background 'hl-line "#222")
 (pc-selection-mode 1)
+(cua-mode 1)
 ; enable IDO mode
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
