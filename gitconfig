@@ -5,6 +5,7 @@
     dc    = diff --cached
     ds    = !git --no-pager diff --stat
     dw    = diff --color-words
+    fix   = commit --amend --no-edit
     flush = checkout --force
     l     = log --graph --decorate --pretty=oneline --abbrev-commit
     la    = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -37,8 +38,8 @@
 [rebase]
     stat = true
 
-[branch]
-    autosetuprebase = always
+[pull]
+	rebase = true
 
 [user]
     name  = Dror Levin
