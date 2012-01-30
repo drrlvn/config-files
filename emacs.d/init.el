@@ -98,8 +98,9 @@
 
 ; hippie-expand
 (setq hippie-expand-try-functions-list
-      (delq 'try-complete-lisp-symbol-partially
-            (delq 'try-complete-lisp-symbol hippie-expand-try-functions-list)))
+      (delq 'try-expand-line
+            (delq 'try-complete-lisp-symbol-partially
+                  (delq 'try-complete-lisp-symbol hippie-expand-try-functions-list))))
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
