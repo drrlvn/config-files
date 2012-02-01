@@ -1,19 +1,20 @@
 [alias]
-    ai    = add -i
-    ap    = add -p
-    co    = checkout
-    dc    = diff --cached
-    ds    = !git --no-pager diff --stat
-    dw    = diff --color-words
-    fix   = commit --amend --no-edit
-    flush = checkout --force
-    l     = log --graph --decorate --pretty=oneline --abbrev-commit
-    la    = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    lg    = log --graph --pretty=format:'%C(yellow)%h%C(bold red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    lp    = log --patch
-    ls    = log --stat
-    ri    = rebase -i
-    st    = status
+    ai      = add -i
+    ap      = add -p
+    co      = checkout
+    dc      = diff --cached
+    ds      = !git --no-pager diff --stat
+    dw      = diff --color-words
+    fix     = commit --amend --no-edit
+    flush   = checkout --force
+    l       = log --graph --decorate --pretty=oneline --abbrev-commit
+    la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lg      = log --graph --pretty=format:'%C(yellow)%h%C(bold red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lp      = log --patch
+    ls      = log --stat
+    ri      = rebase -i
+    st      = status
+    unstage = reset --
 
 [color]
     ui = auto
