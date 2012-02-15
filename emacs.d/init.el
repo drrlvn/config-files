@@ -9,10 +9,23 @@
       (blink-cursor-mode 1)
       )
   )
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(magit-diff-add ((t (:inherit diff-added :foreground "blue" :weight bold))))
+ '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold))))
+ '(magit-item-highlight ((t (:inherit highlight :background "gray10")))))
 
 ; disable splash screen and other crap
 (setq inhibit-startup-message t)
-(custom-set-variables '(inhibit-startup-echo-area-message (user-login-name)))
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
 ; hide toolbar
 (tool-bar-mode 0)
