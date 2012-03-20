@@ -34,7 +34,7 @@
     ignoreSubmodules = dirty
 
 [push]
-    default = current
+    default = upstream
 
 [rebase]
     stat = true
