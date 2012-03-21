@@ -97,6 +97,10 @@ eval $(dircolors -b)
 
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-dirs-first 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:descriptions' format "%B- %d -%b"
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
@@ -112,7 +116,7 @@ alias et='emacsclient -a "" -t'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -Iv'
-alias ls='ls --color=auto --group-directories-first -lhX'
+alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
