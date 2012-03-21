@@ -44,7 +44,7 @@
 (setq ring-bell-function 'ignore)
 (setq history-length 500)
 (global-hl-line-mode 1)
-(global-visual-line-mode 1)
+(add-hook 'find-file-hook 'turn-on-visual-line-mode)
 (global-linum-mode 1)
 (global-auto-revert-mode 1)
 (set-face-background 'hl-line "#222")
@@ -60,9 +60,7 @@
 (setq semantic-default-submodes
       '(global-semantic-idle-scheduler-mode
         global-semanticdb-minor-mode
-        global-semantic-idle-completions-mode
         global-semantic-stickyfunc-mode))
-(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-ghost)
 ; enable windmove
 (windmove-default-keybindings 'meta)
 ; misc configuration
@@ -106,13 +104,7 @@
 (global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-(global-set-key (kbd "C-SPC") 'hippie-expand)
-
-; hippie-expand
-(setq hippie-expand-try-functions-list
-      (delq 'try-expand-line
-            (delq 'try-complete-lisp-symbol-partially
-                  (delq 'try-complete-lisp-symbol hippie-expand-try-functions-list))))
+(global-set-key (kbd "C-SPC") 'dabbrev-expand)
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
