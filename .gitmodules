@@ -78,7 +78,7 @@
 	url = git://github.com/nschum/full-ack.git
 [submodule "emacs.d/packages/tomorrow-theme"]
 	path = emacs.d/packages/tomorrow-theme
-	url = git://github.com/ChrisKempson/Tomorrow-Theme.git
+	url = git://github.com/chriskempson/tomorrow-theme.git
 [submodule "emacs.d/packages/magit"]
 	path = emacs.d/packages/magit
 	url = git://github.com/magit/magit.git
