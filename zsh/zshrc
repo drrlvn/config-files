@@ -107,6 +107,8 @@ READNULLCMD=less
 
 PATH="${HOME}/bin:${PATH}"
 
+export GREP_OPTIONS="--color=auto"
+
 alias -g G='| grep'
 
 alias kill-emacs='emacsclient -e "(kill-emacs)"'
@@ -118,6 +120,4 @@ alias mv='mv -i'
 alias rm='rm -Iv'
 alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
 alias reload='rehash; source ~/.zshrc'
