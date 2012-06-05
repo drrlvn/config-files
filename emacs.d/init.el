@@ -55,6 +55,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (setq ido-ignore-buffers (cons "^\\*" ido-ignore-buffers))
+(setq ido-max-prospects 128)
 ; cedet
 (global-ede-mode 1)
 (setq semantic-default-submodes
@@ -71,7 +72,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-(setq max-mini-window-height 1)
+(setq resize-mini-windows t)
 (setq lazy-highlight-initial-delay 0)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
@@ -245,8 +246,8 @@
 
 ; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
-(autoload 'ace-jump-mode "ace-jump-mode" nil t)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
+(define-key global-map (kbd "C-c C-SPC") 'ace-jump-char-mode)
 
 ; magit
 (add-to-list 'load-path "~/.emacs.d/packages/magit")
