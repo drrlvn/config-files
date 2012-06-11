@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 ; set font
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
@@ -10,10 +11,10 @@
       )
   )
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(magit-diff-add ((t (:inherit diff-added :foreground "blue" :weight bold))))
  '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold))))
  '(magit-item-highlight ((t (:inherit highlight :background "gray10")))))
@@ -21,22 +22,17 @@
 ; disable splash screen and other crap
 (setq inhibit-startup-message t)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (tomorrow-night-bright)))
+ '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
  '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
 ; hide toolbar
 (tool-bar-mode 0)
 
-; color-theme
-(add-to-list 'load-path "~/.emacs.d/packages/color-theme")
-(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
-(require 'color-theme-tomorrow)
-(color-theme-tomorrow-night-bright)
-
-(setq x-select-enable-clipboard t)
 (delete-selection-mode 1)
 (setq dabbrev-case-replace nil)
 (setq display-time-24hr-format t)
@@ -48,7 +44,6 @@
 (global-linum-mode 1)
 (global-auto-revert-mode 1)
 (set-face-background 'hl-line "#222")
-(pc-selection-mode 1)
 (cua-mode 1)
 ; enable IDO mode
 (ido-mode 1)
