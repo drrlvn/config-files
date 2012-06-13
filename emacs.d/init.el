@@ -194,7 +194,6 @@
 
 ; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
-(setq anything-command-map-prefix-key "<f1>")
 (require 'anything-match-plugin)
 (require 'anything-config)
 (defun custom-anything ()
@@ -211,6 +210,7 @@
    " *custom-anything*"))
 (global-set-key [(control x) (a)] 'custom-anything)
 (global-set-key (kbd "M-i") 'anything-imenu)
+(global-set-key (kbd "M-s o") 'anything-occur)
 (global-set-key (kbd "C-x f") 'anything-find-files)
 
 ; drag-stuff
