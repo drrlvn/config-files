@@ -3,13 +3,6 @@
 
 ; set font
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
-(if (window-system)
-    (progn
-      (set-face-attribute 'default nil :font "Ubuntu Mono 12")
-      (custom-set-faces '(minimap-font-face ((default (:height 30)) (nil nil))))
-      (blink-cursor-mode 1)
-      )
-  )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -41,6 +34,7 @@
 (setq history-length 500)
 (global-hl-line-mode 1)
 (add-hook 'find-file-hook 'turn-on-visual-line-mode)
+(blink-cursor-mode 1)
 (global-linum-mode 1)
 (global-auto-revert-mode 1)
 (set-face-background 'hl-line "#222")
@@ -60,7 +54,8 @@
 ; enable windmove
 (windmove-default-keybindings 'meta)
 ; misc configuration
-(setq x-select-enable-clipboard t)
+(electric-pair-mode t)
+(electric-layout-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default show-trailing-whitespace t)
@@ -74,7 +69,6 @@
 (setq kill-whole-line t)
 (setq diff-switches "-u")
 (setq column-number-mode t)
-(set-scroll-bar-mode 'right)
 ; ediff
 (setq ediff-split-window-function 'split-window-horizontally)
 ; enable disabled features
@@ -104,6 +98,9 @@
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
+
+; Calculator
+(add-hook 'calculator-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
 ; C/C++
 (add-hook 'c-mode-common-hook (lambda ()
