@@ -8,9 +8,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-diff-add ((t (:inherit diff-added :foreground "blue" :weight bold))))
- '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold))))
- '(magit-item-highlight ((t (:inherit highlight :background "gray10")))))
+ '(magit-diff-add ((t (:inherit diff-added :foreground "royal blue" :weight bold))))
+ '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold)))))
 
 ; disable splash screen and other crap
 (setq inhibit-startup-message t)
@@ -21,6 +20,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
+ '(flyspell-auto-correct-binding [(control 39)])
  '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
 ; hide toolbar
@@ -56,9 +56,9 @@
 ; misc configuration
 (electric-pair-mode t)
 (electric-layout-mode t)
+(electric-indent-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq-default show-trailing-whitespace t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
@@ -78,14 +78,18 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 
+; org-mode
+(setq org-replace-disputed-keys t)
+(setq org-startup-indented t)
+
 ; mappings
 (defun revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " buffer-file-name)))
-(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
 (global-set-key (kbd "<f6>") 'ack)
 (global-set-key (kbd "<f7>") 'previous-error)
@@ -93,45 +97,35 @@
 (global-set-key (kbd "<f9>") 'magit-status)
 (global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
-(global-set-key (kbd "C-SPC") 'dabbrev-expand)
+(global-set-key (kbd "C-!") 'kill-this-buffer)
+(global-set-key (kbd "S-SPC") 'dabbrev-expand)
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
 
-; Calculator
-(add-hook 'calculator-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+; Programming
+(add-hook 'prog-mode-hook (lambda ()
+                            (semantic-mode 1)
+                            (subword-mode 1)
+                            (flyspell-prog-mode)
+                            (setq show-trailing-whitespace t)
+                            (font-lock-add-keywords
+                             nil
+                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
+                            (global-set-key (kbd "C-<delete>") 'subword-kill)
+                            (add-hook 'local-write-file-hooks
+                                      (lambda ()
+                                        (save-excursion
+                                          (delete-trailing-whitespace))))))
 
 ; C/C++
-(add-hook 'c-mode-common-hook (lambda ()
-                                (semantic-mode 1)
-                                (subword-mode 1)
-                                (local-set-key (kbd "C-c o") 'ff-find-other-file)
-                                (global-set-key (kbd "C-<delete>") 'subword-kill)
-                                (font-lock-add-keywords
-                                 nil
-                                 '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
-                                (add-hook 'local-write-file-hooks
-                                          (lambda ()
-                                            (save-excursion
-                                              (delete-trailing-whitespace))))))
+(add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
 (setq c-default-style "linux"
       c-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
 ; Python
-(add-hook 'python-mode-hook (lambda ()
-                              (semantic-mode 1)
-                              (subword-mode 1)
-                              (global-set-key (kbd "C-<delete>") 'subword-kill)
-                              (flymake-mode)
-                              (font-lock-add-keywords
-                               nil
-                               '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
-                              (add-hook 'local-write-file-hooks
-                                        (lambda ()
-                                          (save-excursion
-                                            (delete-trailing-whitespace))))))
+(add-hook 'python-mode-hook (lambda () (flymake-mode)))
 (require 'flymake)
 (defun flymake-pylint-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -177,7 +171,7 @@
 (require 'tramp)
 
 (autoload 'iedit-mode "iedit" nil t)
-(define-key global-map (kbd "C-;") 'iedit-mode)
+(global-set-key (kbd "C-;") 'iedit-mode)
 
 (add-to-list 'load-path "~/.emacs.d/packages/smex")
 (require 'smex)
@@ -232,14 +226,16 @@
                    (mode . c-mode)
                    (mode . c++-mode)))
          ("Python" (mode . python-mode))
-         ("emacs" (name . "^\\*"))
+         ("Org" (mode . org-mode))
+         ("Elisp" (mode . emacs-lisp-mode))
+         ("Misc" (name . "^\\*"))
          )))
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
 ; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
-(define-key global-map (kbd "C-c C-SPC") 'ace-jump-char-mode)
+(global-set-key (kbd "C-#") 'ace-jump-char-mode)
 
 ; magit
 (add-to-list 'load-path "~/.emacs.d/packages/magit")
@@ -267,3 +263,8 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+
+; expand-region
+(add-to-list 'load-path "~/.emacs.d/packages/expand-region")
+(autoload 'er/expand-region "expand-region" nil t)
+(global-set-key (kbd "C-=") 'er/expand-region)

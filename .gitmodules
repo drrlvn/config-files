@@ -91,3 +91,6 @@
 [submodule "emacs.d/packages/yasnippet"]
 	path = emacs.d/packages/yasnippet
 	url = git://github.com/capitaomorte/yasnippet.git
+[submodule "emacs.d/packages/expand-region"]
+	path = emacs.d/packages/expand-region
+	url = git://github.com/magnars/expand-region.el.git
