@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
-; set font
+;; set font
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -11,7 +11,7 @@
  '(magit-diff-add ((t (:inherit diff-added :foreground "royal blue" :weight bold))))
  '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold)))))
 
-; disable splash screen and other crap
+;; disable splash screen and other crap
 (setq inhibit-startup-message t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -23,8 +23,7 @@
  '(flyspell-auto-correct-binding [(control 39)])
  '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
-; hide toolbar
-(tool-bar-mode 0)
+(tool-bar-mode 0)                       ; hide toolbar
 
 (delete-selection-mode 1)
 (setq dabbrev-case-replace nil)
@@ -39,21 +38,23 @@
 (global-auto-revert-mode 1)
 (set-face-background 'hl-line "#222")
 (cua-mode 1)
-; enable IDO mode
+
+;; enable IDO mode
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (setq ido-ignore-buffers (cons "^\\*" ido-ignore-buffers))
 (setq ido-max-prospects 128)
-; cedet
+;; cedet
 (global-ede-mode 1)
 (setq semantic-default-submodes
       '(global-semantic-idle-scheduler-mode
         global-semanticdb-minor-mode
         global-semantic-stickyfunc-mode))
-; enable windmove
-(windmove-default-keybindings 'meta)
-; misc configuration
+
+(windmove-default-keybindings 'meta)    ; enable windmove
+
+;; misc configuration
 (electric-pair-mode t)
 (electric-layout-mode t)
 (electric-indent-mode t)
@@ -69,20 +70,19 @@
 (setq kill-whole-line t)
 (setq diff-switches "-u")
 (setq column-number-mode t)
-; ediff
-(setq ediff-split-window-function 'split-window-horizontally)
-; enable disabled features
+(setq ediff-split-window-function 'split-window-horizontally) ; ediff
+;; enable disabled features
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 
-; org-mode
+;; org-mode
 (setq org-replace-disputed-keys t)
 (setq org-startup-indented t)
 
-; mappings
+;; mappings
 (defun revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
@@ -101,9 +101,9 @@
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
-;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
+;;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
 
-; Programming
+;; Programming
 (add-hook 'prog-mode-hook (lambda ()
                             (semantic-mode 1)
                             (subword-mode 1)
@@ -118,13 +118,13 @@
                                         (save-excursion
                                           (delete-trailing-whitespace))))))
 
-; C/C++
+;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
 (setq c-default-style "linux"
       c-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
-; Python
+;; Python
 (add-hook 'python-mode-hook (lambda () (flymake-mode)))
 (require 'flymake)
 (defun flymake-pylint-init ()
@@ -156,7 +156,7 @@
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; recentf and ido-recentf
+;; recentf and ido-recentf
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-saved-items 250)
@@ -183,7 +183,7 @@
 (setq uniquify-buffer-name-style 'post-forward
       uniquify-separator ":")
 
-; anything
+;; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
 (require 'anything-match-plugin)
 (require 'anything-config)
@@ -204,17 +204,17 @@
 (global-set-key (kbd "M-s o") 'anything-occur)
 (global-set-key (kbd "C-x f") 'anything-find-files)
 
-; drag-stuff
+;; drag-stuff
 (add-to-list 'load-path "~/.emacs.d/packages/drag-stuff")
 (require 'drag-stuff)
 (setq drag-stuff-modifier '(meta shift))
 (drag-stuff-global-mode t)
 
-; saveplace
+;; saveplace
 (require 'saveplace)
 (setq-default save-place t)
 
-; ibuffer
+;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 (setq ibuffer-expert t)
@@ -232,39 +232,39 @@
          )))
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
-; ace-jump-mode
+;; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
 (global-set-key (kbd "C-#") 'ace-jump-char-mode)
 
-; magit
+;; magit
 (add-to-list 'load-path "~/.emacs.d/packages/magit")
 (autoload 'magit-status "magit" nil t)
 
-; minimap
+;; minimap
 (add-to-list 'load-path "~/.emacs.d/packages/minimap")
 (autoload 'minimap-create "minimap" nil t)
 (setq minimap-update-delay 0.1)
 (setq minimap-width-fraction 0.1)
 
-; YASnippet
+;; YASnippet
 (add-to-list 'load-path "~/.emacs.d/packages/yasnippet")
 (require 'yasnippet)
 (yas/global-mode 1)
 
-; zencoding
+;; zencoding
 (add-to-list 'load-path "~/.emacs.d/packages/zencoding")
 (autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
-; full-ack
+;; full-ack
 (add-to-list 'load-path "~/.emacs.d/packages/full-ack")
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
-; expand-region
+;; expand-region
 (add-to-list 'load-path "~/.emacs.d/packages/expand-region")
 (autoload 'er/expand-region "expand-region" nil t)
 (global-set-key (kbd "C-=") 'er/expand-region)
