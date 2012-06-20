@@ -65,8 +65,8 @@
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 (setq resize-mini-windows t)
 (setq lazy-highlight-initial-delay 0)
-(show-paren-mode 1)
 (setq show-paren-delay 0)
+(show-paren-mode 1)
 (setq kill-whole-line t)
 (setq diff-switches "-u")
 (setq column-number-mode t)
@@ -81,6 +81,9 @@
 ;; org-mode
 (setq org-replace-disputed-keys t)
 (setq org-startup-indented t)
+(add-hook 'org-mode-hook (lambda ()
+                           (make-local-variable 'show-paren-mode)
+                           (setq show-paren-mode nil)))
 
 ;; mappings
 (defun revert-buffer-no-confirmation ()
