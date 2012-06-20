@@ -9,7 +9,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-diff-add ((t (:inherit diff-added :foreground "royal blue" :weight bold))))
- '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold)))))
+ '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold))))
+ '(magit-item-highlight ((t nil))))
 
 ;; disable splash screen and other crap
 (setq inhibit-startup-message t)
@@ -83,7 +84,8 @@
 (setq org-startup-indented t)
 (add-hook 'org-mode-hook (lambda ()
                            (make-local-variable 'show-paren-mode)
-                           (setq show-paren-mode nil)))
+                           (setq show-paren-mode nil)
+                           (flyspell-mode)))
 
 ;; mappings
 (defun revert-buffer-no-confirmation ()
