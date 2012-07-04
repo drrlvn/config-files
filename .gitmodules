@@ -73,9 +73,6 @@
 [submodule "emacs.d/packages/zencoding"]
 	path = emacs.d/packages/zencoding
 	url = git://github.com/rooney/zencoding.git
-[submodule "emacs.d/packages/full-ack"]
-	path = emacs.d/packages/full-ack
-	url = git://github.com/nschum/full-ack.git
 [submodule "emacs.d/packages/tomorrow-theme"]
 	path = emacs.d/packages/tomorrow-theme
 	url = git://github.com/chriskempson/tomorrow-theme.git
@@ -94,3 +91,6 @@
 [submodule "emacs.d/packages/expand-region"]
 	path = emacs.d/packages/expand-region
 	url = git://github.com/magnars/expand-region.el.git
+[submodule "emacs.d/packages/ack-and-a-half"]
+	path = emacs.d/packages/ack-and-a-half
+	url = git://github.com/jhelwig/ack-and-a-half.git

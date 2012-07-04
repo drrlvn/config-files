@@ -101,7 +101,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
-(global-set-key (kbd "<f6>") 'ack)
+(global-set-key (kbd "<f6>") 'ack-and-a-half)
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
@@ -268,12 +268,12 @@
 (autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
-;; full-ack
-(add-to-list 'load-path "~/.emacs.d/packages/full-ack")
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
+;; ack-and-a-half
+(add-to-list 'load-path "~/.emacs.d/packages/ack-and-a-half")
+(autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
 
 ;; expand-region
 (add-to-list 'load-path "~/.emacs.d/packages/expand-region")
