@@ -190,6 +190,7 @@
 
 ;; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
+(setq anything-input-idle-delay 0)
 (require 'anything-match-plugin)
 (require 'anything-config)
 (defun custom-anything ()
