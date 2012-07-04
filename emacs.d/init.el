@@ -79,6 +79,11 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 
+;; dired
+(setq dired-isearch-filenames t)
+(add-hook 'dired-mode-hook (lambda ()
+                             (dired-omit-mode 1)))
+
 ;; org-mode
 (setq org-replace-disputed-keys t)
 (setq org-startup-indented t)
