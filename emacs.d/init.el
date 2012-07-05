@@ -8,8 +8,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-diff-add ((t (:inherit diff-added :foreground "royal blue" :weight bold))))
- '(magit-diff-del ((t (:inherit diff-removed :foreground "red3" :weight bold))))
+ '(diff-added ((t (:inherit diff-changed :foreground "royal blue"))))
+ '(diff-changed ((t (:weight bold))))
+ '(diff-refine-change ((t (:background "grey20"))))
+ '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
+ '(magit-diff-add ((t (:inherit diff-added))))
+ '(magit-diff-del ((t (:inherit diff-removed))))
  '(magit-item-highlight ((t nil))))
 
 ;; disable splash screen and other crap
@@ -22,6 +26,7 @@
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
  '(flyspell-auto-correct-binding [(control 39)])
+ '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
 (tool-bar-mode 0)                       ; hide toolbar
@@ -67,6 +72,7 @@
 (setq resize-mini-windows t)
 (setq lazy-highlight-initial-delay 0)
 (setq show-paren-delay 0)
+(setq show-paren-style 'expression)
 (show-paren-mode 1)
 (setq kill-whole-line t)
 (setq diff-switches "-u")
@@ -98,6 +104,12 @@
   (interactive)
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " buffer-file-name)))
+(defun kill-buffer-other-window ()
+  "Kill buffer in other window"
+  (interactive)
+  (other-window 1)
+  (kill-buffer)
+  (other-window -1))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
@@ -108,6 +120,7 @@
 (global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
+(global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
