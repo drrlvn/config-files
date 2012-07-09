@@ -112,8 +112,10 @@ export GREP_OPTIONS="--color=auto"
 alias -g G='| grep'
 
 alias kill-emacs='emacsclient -e "(kill-emacs)"'
-alias em='emacsclient -a "" -c'
+alias em='emacsclient -a "" -n'
 alias et='emacsclient -a "" -t'
+
+alias gg='git grep'
 
 alias cp='cp -i'
 alias mv='mv -i'
