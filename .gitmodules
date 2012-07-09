@@ -94,3 +94,6 @@
 [submodule "emacs.d/packages/ack-and-a-half"]
 	path = emacs.d/packages/ack-and-a-half
 	url = git://github.com/jhelwig/ack-and-a-half.git
+[submodule "emacs.d/packages/iedit"]
+	path = emacs.d/packages/iedit
+	url = git://github.com/victorhge/iedit.git

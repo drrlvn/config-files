@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 ;; set font
@@ -136,10 +135,7 @@
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
                             (global-set-key (kbd "C-<delete>") 'subword-kill)
-                            (add-hook 'local-write-file-hooks
-                                      (lambda ()
-                                        (save-excursion
-                                          (delete-trailing-whitespace))))))
+                            (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
@@ -191,8 +187,7 @@
     (message "Aborting")))
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
-(require 'tramp)
-
+(add-to-list 'load-path "~/.emacs.d/packages/iedit")
 (autoload 'iedit-mode "iedit" nil t)
 (global-set-key (kbd "C-;") 'iedit-mode)
 
