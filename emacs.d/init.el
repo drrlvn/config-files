@@ -25,6 +25,7 @@
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
  '(flyspell-auto-correct-binding [(control 39)])
+ '(frame-background-mode (quote dark))
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message (user-login-name)))
 (setq initial-scratch-message nil)
@@ -96,6 +97,9 @@
                            (make-local-variable 'show-paren-mode)
                            (setq show-paren-mode nil)
                            (flyspell-mode)))
+
+;; rst-mode
+(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
 
 ;; mappings
 (defun revert-buffer-no-confirmation ()
@@ -246,7 +250,9 @@
                    (mode . c++-mode)))
          ("Python" (mode . python-mode))
          ("Elisp" (mode . emacs-lisp-mode))
-         ("Org" (mode . org-mode))
+         ("Docs" (or
+                  (mode . org-mode)
+                  (mode . rst-mode)))
          ("Misc" (name . "^\\*"))
          )))
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
