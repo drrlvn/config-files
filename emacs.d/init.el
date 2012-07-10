@@ -139,7 +139,7 @@
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
-(setq c-default-style "linux"
+(setq c-default-style "bsd"
       c-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
@@ -245,8 +245,8 @@
                    (mode . c-mode)
                    (mode . c++-mode)))
          ("Python" (mode . python-mode))
-         ("Org" (mode . org-mode))
          ("Elisp" (mode . emacs-lisp-mode))
+         ("Org" (mode . org-mode))
          ("Misc" (name . "^\\*"))
          )))
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
