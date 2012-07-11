@@ -11,95 +11,78 @@
  '(diff-changed ((t (:weight bold))))
  '(diff-refine-change ((t (:background "grey20"))))
  '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
+ '(hl-line ((t (:background "#222"))))
  '(magit-diff-add ((t (:inherit diff-added))))
  '(magit-diff-del ((t (:inherit diff-removed))))
  '(magit-item-highlight ((t nil))))
 
-;; disable splash screen and other crap
-(setq inhibit-startup-message t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
+ '(dabbrev-case-replace nil)
+ '(diff-switches "-u")
+ '(display-time-24hr-format t)
+ '(display-time-default-load-average nil)
+ '(display-time-mode t)
+ '(ediff-split-window-function (quote split-window-horizontally))
+ '(electric-indent-mode t)
+ '(electric-layout-mode t)
+ '(electric-pair-mode t)
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
+ '(global-auto-revert-mode t)
+ '(global-ede-mode t)
+ '(global-hl-line-mode t)
+ '(global-linum-mode t)
+ '(global-visual-line-mode t)
+ '(history-length 500)
+ '(ibuffer-expert t)
+ '(ibuffer-show-empty-filter-groups nil)
+ '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
+ '(ido-max-prospects 128)
+ '(ido-mode (quote both) nil (ido))
+ '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
- '(inhibit-startup-echo-area-message (user-login-name)))
-(setq initial-scratch-message nil)
-(tool-bar-mode 0)                       ; hide toolbar
+ '(inhibit-startup-echo-area-message (user-login-name))
+ '(inhibit-startup-screen t)
+ '(initial-scratch-message nil)
+ '(kill-whole-line t)
+ '(lazy-highlight-initial-delay 0)
+ '(recentf-max-saved-items 250)
+ '(recentf-mode t)
+ '(save-place t nil (saveplace))
+ '(semantic-default-submodes (quote (global-semantic-stickyfunc-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
+ '(show-paren-delay 0)
+ '(show-paren-mode t)
+ '(show-paren-style (quote expression))
+ '(tab-width 4)
+ '(tool-bar-mode nil)
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
+ '(uniquify-separator ":"))
 
-(delete-selection-mode 1)
-(setq dabbrev-case-replace nil)
-(setq display-time-24hr-format t)
-(setq display-time-mode t)
-(setq ring-bell-function 'ignore)
-(setq history-length 500)
-(global-hl-line-mode 1)
-(add-hook 'find-file-hook 'turn-on-visual-line-mode)
-(blink-cursor-mode 1)
-(global-linum-mode 1)
-(global-auto-revert-mode 1)
-(set-face-background 'hl-line "#222")
-(cua-mode 1)
-
-;; enable IDO mode
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-ignore-buffers (cons "^\\*" ido-ignore-buffers))
-(setq ido-max-prospects 128)
-;; cedet
-(global-ede-mode 1)
-(setq semantic-default-submodes
-      '(global-semantic-idle-scheduler-mode
-        global-semanticdb-minor-mode
-        global-semantic-stickyfunc-mode))
-
-(windmove-default-keybindings 'meta)    ; enable windmove
+(setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
 
 ;; misc configuration
-(electric-pair-mode t)
-(electric-layout-mode t)
-(electric-indent-mode t)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-(setq resize-mini-windows t)
-(setq lazy-highlight-initial-delay 0)
-(setq show-paren-delay 0)
-(setq show-paren-style 'expression)
-(show-paren-mode 1)
-(setq kill-whole-line t)
-(setq diff-switches "-u")
-(setq column-number-mode t)
-(setq ediff-split-window-function 'split-window-horizontally) ; ediff
+(windmove-default-keybindings 'meta)    ; enable windmove
+(setq backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+      ring-bell-function 'ignore
+      resize-mini-windows t)
 ;; enable disabled features
-(put 'set-goal-column 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
-
-;; dired
-(setq dired-isearch-filenames t)
-(add-hook 'dired-mode-hook (lambda ()
-                             (dired-omit-mode 1)))
-
-;; org-mode
-(setq org-replace-disputed-keys t)
-(setq org-startup-indented t)
-(add-hook 'org-mode-hook (lambda ()
-                           (make-local-variable 'show-paren-mode)
-                           (setq show-paren-mode nil)
-                           (flyspell-mode)))
-
-;; rst-mode
-(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
+(put 'set-goal-column 'disabled nil)    ; C-x C-n
+(put 'upcase-region 'disabled nil)      ; C-x C-u
+(put 'downcase-region 'disabled nil)    ; C-x C-l
+(put 'narrow-to-region 'disabled nil)   ; C-x n n
+(put 'scroll-left 'disabled nil)        ; C-x <
 
 ;; mappings
 (defun revert-buffer-no-confirmation ()
@@ -126,18 +109,38 @@
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 
+;;;;;;;;;;;;;
+;;; modes ;;;
+;;;;;;;;;;;;;
+
+;; dired
+(setq dired-isearch-filenames t)
+(add-hook 'dired-mode-hook (lambda ()
+                             (dired-omit-mode 1)))
+
+;; org-mode
+(setq org-replace-disputed-keys t
+      org-startup-indented t)
+(add-hook 'org-mode-hook (lambda ()
+                           (make-local-variable 'show-paren-mode)
+                           (setq show-paren-mode nil)
+                           (flyspell-mode)))
+
+;; rst-mode
+(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
+
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
 
 ;; Programming
 (add-hook 'prog-mode-hook (lambda ()
-                            (semantic-mode 1)
-                            (subword-mode 1)
+                            (semantic-mode t)
+                            (subword-mode t)
                             (flyspell-prog-mode)
                             (setq show-trailing-whitespace t)
                             (font-lock-add-keywords
                              nil
-                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\):" 1 font-lock-warning-face t)))
+                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))
                             (global-set-key (kbd "C-<delete>") 'subword-kill)
                             (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
 
@@ -157,8 +160,9 @@
                       temp-file
                       (file-name-directory buffer-file-name))))
     (list "epylint" (list local-file))))
-
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pylint-init))
+
+(add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
 
 (global-set-key (kbd "S-<f7>") (lambda ()
                                  (interactive)
@@ -174,15 +178,8 @@
                                           (flymake-ler-text (caar (flymake-find-err-info
                                                                    flymake-err-info
                                                                    (flymake-current-line-no)))))))
-(add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; recentf and ido-recentf
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-saved-items 250)
+;; ido-recentf
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
@@ -195,6 +192,26 @@
 (autoload 'iedit-mode "iedit" nil t)
 (global-set-key (kbd "C-;") 'iedit-mode)
 
+;; ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-saved-filter-groups '(("default"
+                                     ("Dired" (mode . dired-mode))
+                                     ("C/C++" (or
+                                               (mode . c-mode)
+                                               (mode . c++-mode)))
+                                     ("Python" (mode . python-mode))
+                                     ("Elisp" (mode . emacs-lisp-mode))
+                                     ("Docs" (or
+                                              (mode . org-mode)
+                                              (mode . rst-mode)))
+                                     ("Misc" (name . "^\\*"))
+                                     )))
+(add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; external packages ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; smex
 (defun load-smex (original-function)
   (interactive)
@@ -206,11 +223,6 @@
   (funcall original-function))
 (global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
 (global-set-key (kbd "M-X") (lambda () (interactive) (load-smex 'smex-major-mode-commands)))
-
-;; uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward
-      uniquify-separator ":")
 
 ;; anything
 (add-to-list 'load-path "~/.emacs.d/packages/anything-config")
@@ -229,40 +241,16 @@
      anything-c-source-emacs-commands
      )
    " *custom-anything*"))
-(global-set-key [(control x) (a)] 'custom-anything)
+(global-set-key (kbd "C-x a") 'custom-anything)
 (global-set-key (kbd "M-i") 'anything-imenu)
 (global-set-key (kbd "M-s o") 'anything-occur)
 (global-set-key (kbd "C-x f") 'anything-find-files)
 
 ;; drag-stuff
 (add-to-list 'load-path "~/.emacs.d/packages/drag-stuff")
-(require 'drag-stuff)
 (setq drag-stuff-modifier '(meta shift))
+(require 'drag-stuff)
 (drag-stuff-global-mode t)
-
-;; saveplace
-(require 'saveplace)
-(setq-default save-place t)
-
-;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(autoload 'ibuffer "ibuffer" "List buffers." t)
-(setq ibuffer-expert t)
-(setq ibuffer-show-empty-filter-groups nil)
-(setq ibuffer-saved-filter-groups
-      '(("default"
-         ("Dired" (mode . dired-mode))
-         ("C/C++" (or
-                   (mode . c-mode)
-                   (mode . c++-mode)))
-         ("Python" (mode . python-mode))
-         ("Elisp" (mode . emacs-lisp-mode))
-         ("Docs" (or
-                  (mode . org-mode)
-                  (mode . rst-mode)))
-         ("Misc" (name . "^\\*"))
-         )))
-(add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
 ;; ace-jump-mode
 (add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
@@ -276,13 +264,18 @@
 ;; minimap
 (add-to-list 'load-path "~/.emacs.d/packages/minimap")
 (autoload 'minimap-create "minimap" nil t)
-(setq minimap-update-delay 0.1)
-(setq minimap-width-fraction 0.1)
+(setq minimap-update-delay 0.1
+      minimap-width-fraction 0.1)
 
 ;; YASnippet
 (add-to-list 'load-path "~/.emacs.d/packages/yasnippet")
 (require 'yasnippet)
 (yas/global-mode 1)
+
+;; markdown-mode
+(add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; zencoding
 (add-to-list 'load-path "~/.emacs.d/packages/zencoding")
