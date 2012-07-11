@@ -195,12 +195,19 @@
 (autoload 'iedit-mode "iedit" nil t)
 (global-set-key (kbd "C-;") 'iedit-mode)
 
-(add-to-list 'load-path "~/.emacs.d/packages/smex")
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; smex
+(defun load-smex (original-function)
+  (interactive)
+  (add-to-list 'load-path "~/.emacs.d/packages/smex")
+  (require 'smex)
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  (funcall original-function))
+(global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
+(global-set-key (kbd "M-X") (lambda () (interactive) (load-smex 'smex-major-mode-commands)))
 
+;; uniquify
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward
       uniquify-separator ":")
