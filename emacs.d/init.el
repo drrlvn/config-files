@@ -22,11 +22,12 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(column-number-mode t)
+ '(cua-enable-cua-keys nil)
+ '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
  '(dabbrev-case-replace nil)
  '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
- '(delete-selection-mode t)
  '(desktop-save-mode t)
  '(diff-switches "-u")
  '(display-time-24hr-format t)
@@ -62,6 +63,7 @@
  '(recentf-max-saved-items 250)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
+ '(scroll-preserve-screen-position t)
  '(semantic-default-submodes (quote (global-semantic-stickyfunc-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
  '(show-paren-delay 0)
  '(show-paren-mode t)
@@ -69,7 +71,8 @@
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
- '(uniquify-separator ":"))
+ '(uniquify-separator ":")
+ '(winner-mode t nil (winner)))
 
 (setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
 
@@ -109,18 +112,19 @@
       (message "Opening file...")
     (message "Aborting")))
 
-(defun subword-right (&optional n)
-  "Reimplement `right-word' but use `subword-mode' functions."
-  (interactive "^p")
-  (if (eq (current-bidi-paragraph-direction) 'left-to-right)
-      (subword-forward n)
-    (subword-backward n)))
-(defun subword-left (&optional n)
-  "Reimplement `left-word' but use `subword-mode' functions."
-  (interactive "^p")
-  (if (eq (current-bidi-paragraph-direction) 'left-to-right)
-      (subword-backward n)
-    (subword-forward n)))
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single line instead."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list (line-beginning-position) (line-beginning-position 2)))))
+
+(defadvice kill-region (before slick-kill activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list (line-beginning-position) (line-beginning-position 2)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
@@ -170,8 +174,8 @@
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))
                             (local-set-key (kbd "C-<delete>") 'subword-kill)
-                            (local-set-key (kbd "C-<right>") 'subword-right)
-                            (local-set-key (kbd "C-<left>") 'subword-left)
+                            (local-set-key (kbd "C-<right>") 'subword-forward)
+                            (local-set-key (kbd "C-<left>") 'subword-backward)
                             (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
 
 ;; C/C++
