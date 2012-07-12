@@ -1,7 +1,6 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 ;; set font
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -11,7 +10,7 @@
  '(diff-changed ((t (:weight bold))))
  '(diff-refine-change ((t (:background "grey20"))))
  '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
- '(hl-line ((t (:background "#222"))))
+ '(hl-line ((t (:background "gray13"))))
  '(magit-diff-add ((t (:inherit diff-added))))
  '(magit-diff-del ((t (:inherit diff-removed))))
  '(magit-item-highlight ((t nil))))
@@ -23,10 +22,12 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(column-number-mode t)
- '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
  '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
  '(dabbrev-case-replace nil)
+ '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
+ '(delete-selection-mode t)
+ '(desktop-save-mode t)
  '(diff-switches "-u")
  '(display-time-24hr-format t)
  '(display-time-default-load-average nil)
@@ -35,6 +36,7 @@
  '(electric-indent-mode t)
  '(electric-layout-mode t)
  '(electric-pair-mode t)
+ '(fill-column 80)
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
  '(global-auto-revert-mode t)
@@ -44,6 +46,7 @@
  '(global-visual-line-mode t)
  '(history-length 500)
  '(ibuffer-expert t)
+ '(ibuffer-formats (quote ((mark modified read-only " " (name 25 25 :left :elide) " " (size 6 -1 :right) " " (mode 10 10 :left :elide) " " (filename-and-process -1 60 :left :elide)) (mark " " (name 30 -1) " " filename))))
  '(ibuffer-show-empty-filter-groups nil)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
@@ -84,7 +87,9 @@
 (put 'narrow-to-region 'disabled nil)   ; C-x n n
 (put 'scroll-left 'disabled nil)        ; C-x <
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
+;;
 (defun revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
@@ -109,9 +114,9 @@
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 
-;;;;;;;;;;;;;
-;;; modes ;;;
-;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; modes
+;;
 
 ;; dired
 (setq dired-isearch-filenames t)
@@ -124,10 +129,11 @@
 (add-hook 'org-mode-hook (lambda ()
                            (make-local-variable 'show-paren-mode)
                            (setq show-paren-mode nil)
-                           (flyspell-mode)))
+                           (flyspell-mode t)))
 
 ;; rst-mode
-(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'rst-mode-hook (lambda ()
+                           (flyspell-mode t)))
 
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 ;;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
@@ -208,9 +214,9 @@
                                      )))
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; external packages ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; external packages
+;;
 
 ;; smex
 (defun load-smex (original-function)
