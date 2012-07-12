@@ -88,7 +88,7 @@
 (put 'scroll-left 'disabled nil)        ; C-x <
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; mappings
+;; functions
 ;;
 (defun revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
@@ -101,6 +101,14 @@
   (other-window 1)
   (kill-buffer)
   (other-window -1))
+
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
 (defun subword-right (&optional n)
   "Reimplement `right-word' but use `subword-mode' functions."
   (interactive "^p")
@@ -113,6 +121,10 @@
   (if (eq (current-bidi-paragraph-direction) 'left-to-right)
       (subword-backward n)
     (subword-forward n)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mappings
+;;
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
@@ -125,6 +137,7 @@
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
@@ -147,9 +160,6 @@
 (add-hook 'rst-mode-hook (lambda ()
                            (flyspell-mode t)))
 
-(modify-syntax-entry ?_ "w" c-mode-syntax-table)
-;;(modify-syntax-entry ?_ "w" python-mode-syntax-table)
-
 ;; Programming
 (add-hook 'prog-mode-hook (lambda ()
                             (semantic-mode t)
@@ -159,9 +169,9 @@
                             (font-lock-add-keywords
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))
-                            (global-set-key (kbd "C-<delete>") 'subword-kill)
-                            (global-set-key (kbd "C-<right>") 'subword-right)
-                            (global-set-key (kbd "C-<left>") 'subword-left)
+                            (local-set-key (kbd "C-<delete>") 'subword-kill)
+                            (local-set-key (kbd "C-<right>") 'subword-right)
+                            (local-set-key (kbd "C-<left>") 'subword-left)
                             (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
 
 ;; C/C++
@@ -198,15 +208,6 @@
                                           (flymake-ler-text (caar (flymake-find-err-info
                                                                    flymake-err-info
                                                                    (flymake-current-line-no)))))))
-
-;; ido-recentf
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 (add-to-list 'load-path "~/.emacs.d/packages/iedit")
 (autoload 'iedit-mode "iedit" nil t)
