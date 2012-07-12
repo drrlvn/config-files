@@ -96,11 +96,23 @@
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " buffer-file-name)))
 (defun kill-buffer-other-window ()
-  "Kill buffer in other window"
+  "Kill buffer in other window."
   (interactive)
   (other-window 1)
   (kill-buffer)
   (other-window -1))
+(defun subword-right (&optional n)
+  "Reimplement `right-word' but use `subword-mode' functions."
+  (interactive "^p")
+  (if (eq (current-bidi-paragraph-direction) 'left-to-right)
+      (subword-forward n)
+    (subword-backward n)))
+(defun subword-left (&optional n)
+  "Reimplement `left-word' but use `subword-mode' functions."
+  (interactive "^p")
+  (if (eq (current-bidi-paragraph-direction) 'left-to-right)
+      (subword-backward n)
+    (subword-forward n)))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
@@ -148,6 +160,8 @@
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))
                             (global-set-key (kbd "C-<delete>") 'subword-kill)
+                            (global-set-key (kbd "C-<right>") 'subword-right)
+                            (global-set-key (kbd "C-<left>") 'subword-left)
                             (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
 
 ;; C/C++
