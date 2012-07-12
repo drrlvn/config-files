@@ -209,6 +209,11 @@
                                                                    flymake-err-info
                                                                    (flymake-current-line-no)))))))
 
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
+                                            nil t)))
+
 (add-to-list 'load-path "~/.emacs.d/packages/iedit")
 (autoload 'iedit-mode "iedit" nil t)
 (global-set-key (kbd "C-;") 'iedit-mode)
@@ -238,7 +243,8 @@
   (interactive)
   (add-to-list 'load-path "~/.emacs.d/packages/smex")
   (require 'smex)
-  (smex-initialize)
+  (if (fboundp 'smex-initialize)
+      (smex-initialize))
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands)
   (funcall original-function))
