@@ -148,6 +148,22 @@
 ;; modes
 ;;
 
+;; ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-saved-filter-groups '(("default"
+                                     ("Dired" (mode . dired-mode))
+                                     ("C/C++" (or
+                                               (mode . c-mode)
+                                               (mode . c++-mode)))
+                                     ("Python" (mode . python-mode))
+                                     ("Elisp" (mode . emacs-lisp-mode))
+                                     ("Docs" (or
+                                              (mode . org-mode)
+                                              (mode . rst-mode)))
+                                     ("Misc" (name . "^\\*"))
+                                     )))
+(add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+
 ;; dired
 (setq dired-isearch-filenames t)
 (add-hook 'dired-mode-hook (lambda ()
@@ -220,34 +236,27 @@
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))
 
-(add-to-list 'load-path "~/.emacs.d/packages/iedit")
-(autoload 'iedit-mode "iedit" nil t)
-(global-set-key (kbd "C-;") 'iedit-mode)
-
-;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(setq ibuffer-saved-filter-groups '(("default"
-                                     ("Dired" (mode . dired-mode))
-                                     ("C/C++" (or
-                                               (mode . c-mode)
-                                               (mode . c++-mode)))
-                                     ("Python" (mode . python-mode))
-                                     ("Elisp" (mode . emacs-lisp-mode))
-                                     ("Docs" (or
-                                              (mode . org-mode)
-                                              (mode . rst-mode)))
-                                     ("Misc" (name . "^\\*"))
-                                     )))
-(add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external packages
 ;;
 
+;; automatically add all packages to load-path
+(let ((package-root-dir "~/.emacs.d/packages"))
+  (dolist (file (directory-files package-root-dir))
+    (let ((package-dir (concat package-root-dir "/" file)))
+      (when (and (not (equal file "."))
+                 (not (equal file ".."))
+                 (file-directory-p package-dir))
+        (add-to-list 'load-path package-dir)))))
+
+;; iedit
+(autoload 'iedit-mode "iedit" nil t)
+(global-set-key (kbd "C-;") 'iedit-mode)
+
+
 ;; smex
 (defun load-smex (original-function)
   (interactive)
-  (add-to-list 'load-path "~/.emacs.d/packages/smex")
   (require 'smex)
   (if (fboundp 'smex-initialize)
       (smex-initialize))
@@ -258,7 +267,6 @@
 (global-set-key (kbd "M-X") (lambda () (interactive) (load-smex 'smex-major-mode-commands)))
 
 ;; anything
-(add-to-list 'load-path "~/.emacs.d/packages/anything-config")
 (setq anything-input-idle-delay 0)
 (require 'anything-match-plugin)
 (require 'anything-config)
@@ -280,49 +288,40 @@
 (global-set-key (kbd "C-x f") 'anything-find-files)
 
 ;; drag-stuff
-(add-to-list 'load-path "~/.emacs.d/packages/drag-stuff")
 (setq drag-stuff-modifier '(meta shift))
 (require 'drag-stuff)
 (drag-stuff-global-mode t)
 
 ;; ace-jump-mode
-(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
 (global-set-key (kbd "C-#") 'ace-jump-char-mode)
 
 ;; magit
-(add-to-list 'load-path "~/.emacs.d/packages/magit")
 (autoload 'magit-status "magit" nil t)
 
 ;; minimap
-(add-to-list 'load-path "~/.emacs.d/packages/minimap")
 (autoload 'minimap-create "minimap" nil t)
 (setq minimap-update-delay 0.1
       minimap-width-fraction 0.1)
 
 ;; YASnippet
-(add-to-list 'load-path "~/.emacs.d/packages/yasnippet")
 (require 'yasnippet)
 (yas/global-mode 1)
 
 ;; markdown-mode
-(add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; zencoding
-(add-to-list 'load-path "~/.emacs.d/packages/zencoding")
 (autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 ;; ack-and-a-half
-(add-to-list 'load-path "~/.emacs.d/packages/ack-and-a-half")
 (autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
 (autoload 'ack-and-a-half "ack-and-a-half" nil t)
 (autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
 (autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
 
 ;; expand-region
-(add-to-list 'load-path "~/.emacs.d/packages/expand-region")
 (autoload 'er/expand-region "expand-region" nil t)
 (global-set-key (kbd "C-=") 'er/expand-region)
