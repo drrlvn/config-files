@@ -97,3 +97,6 @@
 [submodule "emacs.d/packages/iedit"]
 	path = emacs.d/packages/iedit
 	url = git://github.com/victorhge/iedit.git
+[submodule "emacs.d/packages/rainbow-delimiters"]
+	path = emacs.d/packages/rainbow-delimiters
+	url = git://github.com/jlr/rainbow-delimiters.git

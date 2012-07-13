@@ -13,7 +13,17 @@
  '(hl-line ((t (:background "gray13"))))
  '(magit-diff-add ((t (:inherit diff-added))))
  '(magit-diff-del ((t (:inherit diff-removed))))
- '(magit-item-highlight ((t nil))))
+ '(magit-item-highlight ((t nil)))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#c397d8"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#7aa6da"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#70c0b1"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#b9ca4a"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#e7c547"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "#e78c45"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "#d54e53"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "#969896"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "#eaeaea"))))
+ '(rainbow-delimiters-unmatched-face ((t (:inherit error)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -202,6 +212,7 @@
                             (semantic-mode t)
                             (subword-mode t)
                             (flyspell-prog-mode)
+                            (rainbow-delimiters-mode t)
                             (setq show-trailing-whitespace t)
                             (font-lock-add-keywords
                              nil
@@ -265,20 +276,15 @@
                  (file-directory-p package-dir))
         (add-to-list 'load-path package-dir)))))
 
-;; iedit
-(autoload 'iedit-mode "iedit" nil t)
-(global-set-key (kbd "C-;") 'iedit-mode)
+;; ace-jump-mode
+(autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
+(global-set-key (kbd "C-`") 'ace-jump-char-mode)
 
-
-;; smex
-(defun load-smex (original-function)
-  (interactive)
-  (require 'smex)
-  (if (fboundp 'smex-initialize)
-      (smex-initialize))
-  (global-set-key (kbd "M-x") 'smex)
-  (funcall original-function))
-(global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
+;; ack-and-a-half
+(autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
+(autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
 
 ;; anything
 (setq anything-input-idle-delay 0)
@@ -295,36 +301,43 @@
 (require 'drag-stuff)
 (drag-stuff-global-mode t)
 
-;; ace-jump-mode
-(autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
-(global-set-key (kbd "C-`") 'ace-jump-char-mode)
+;; expand-region
+(autoload 'er/expand-region "expand-region" nil t)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; iedit
+(autoload 'iedit-mode "iedit" nil t)
+(global-set-key (kbd "C-;") 'iedit-mode)
 
 ;; magit
 (autoload 'magit-status "magit" nil t)
+
+;; markdown-mode
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; minimap
 (autoload 'minimap-create "minimap" nil t)
 (setq minimap-update-delay 0.1
       minimap-width-fraction 0.1)
 
+;; rainbow-delimiters
+(autoload 'rainbow-delimiters-mode "rainbow-delimiters" nil t)
+
+;; smex
+(defun load-smex (original-function)
+  (interactive)
+  (require 'smex)
+  (if (fboundp 'smex-initialize)
+      (smex-initialize))
+  (global-set-key (kbd "M-x") 'smex)
+  (funcall original-function))
+(global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
+
 ;; YASnippet
 (require 'yasnippet)
 (yas/global-mode 1)
 
-;; markdown-mode
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
 ;; zencoding
 (autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
-
-;; ack-and-a-half
-(autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
-
-;; expand-region
-(autoload 'er/expand-region "expand-region" nil t)
-(global-set-key (kbd "C-=") 'er/expand-region)
