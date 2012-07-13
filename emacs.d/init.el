@@ -277,31 +277,18 @@
   (if (fboundp 'smex-initialize)
       (smex-initialize))
   (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
   (funcall original-function))
 (global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
-(global-set-key (kbd "M-X") (lambda () (interactive) (load-smex 'smex-major-mode-commands)))
 
 ;; anything
 (setq anything-input-idle-delay 0)
-(require 'anything-match-plugin)
 (require 'anything-config)
-(defun custom-anything ()
-  (interactive)
-  (anything-other-buffer
-   '(anything-c-source-buffers+
-     anything-c-source-recentf
-     anything-c-source-files-in-current-dir+
-     anything-c-source-occur
-     anything-c-source-imenu
-     anything-c-source-semantic
-     anything-c-source-emacs-commands
-     )
-   " *custom-anything*"))
-(global-set-key (kbd "C-x a") 'custom-anything)
+(global-set-key (kbd "C-x a") 'anything-c-apropos)
+(global-set-key (kbd "C-x f") 'anything)
+(global-set-key (kbd "C-x y") 'anything-show-kill-ring)
+(global-set-key (kbd "M-X") 'anything-M-x)
 (global-set-key (kbd "M-i") 'anything-imenu)
 (global-set-key (kbd "M-s o") 'anything-occur)
-(global-set-key (kbd "C-x f") 'anything-find-files)
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
