@@ -154,6 +154,7 @@
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
+(global-set-key (kbd "C-#") 'calculator)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -309,7 +310,7 @@
 
 ;; ace-jump-mode
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
-(global-set-key (kbd "C-#") 'ace-jump-char-mode)
+(global-set-key (kbd "C-`") 'ace-jump-char-mode)
 
 ;; magit
 (autoload 'magit-status "magit" nil t)
