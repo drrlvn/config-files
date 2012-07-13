@@ -112,6 +112,19 @@
       (message "Opening file...")
     (message "Aborting")))
 
+(defun isearch-current-region-or-word ()
+  "Reset current isearch to a search of the region or the word under point."
+  (interactive)
+  (setq isearch-string ""
+        isearch-message "")
+  (isearch-yank-string (if (use-region-p)
+                           (let ((region-beginning (region-beginning))
+                                 (region-end (region-end)))
+                             (deactivate-mark)
+                             (buffer-substring region-beginning region-end))
+                         (setq isearch-word t)
+                         (word-at-point))))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."
@@ -143,13 +156,15 @@
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "S-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(define-key isearch-mode-map (kbd "C-*") 'isearch-current-region-or-word)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
 ;;
 
 ;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-saved-filter-groups '(("default"
                                      ("Dired" (mode . dired-mode))
                                      ("C/C++" (or
