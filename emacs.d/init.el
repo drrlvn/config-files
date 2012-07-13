@@ -34,7 +34,6 @@
  '(display-time-default-load-average nil)
  '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-horizontally))
- '(electric-indent-mode t)
  '(electric-layout-mode t)
  '(electric-pair-mode t)
  '(fill-column 80)
@@ -98,6 +97,7 @@
   (interactive)
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " buffer-file-name)))
+
 (defun kill-buffer-other-window ()
   "Kill buffer in other window."
   (interactive)
@@ -106,25 +106,26 @@
   (other-window -1))
 
 (defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
+  "Use `ido-completing-read' to \\[find-file] a recent file."
   (interactive)
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
 
-(defadvice kill-ring-save (before slick-copy activate compile)
-  "When called interactively with no active region, copy a single line instead."
-  (interactive
-   (if (use-region-p)
-       (list (region-beginning) (region-end))
-     (list (line-beginning-position) (line-beginning-position 2)))))
+(dolist (command '(kill-ring-save kill-region))
+  (eval `(defadvice ,command (before current-line-or-region activate compile)
+           "When called interactively with no active region, use a single line instead."
+           (interactive
+            (if (use-region-p)
+                (list (region-beginning) (region-end))
+              (list (line-beginning-position) (line-beginning-position 2)))))))
 
-(defadvice kill-region (before slick-kill activate compile)
-  "When called interactively with no active region, kill a single line instead."
-  (interactive
-   (if (use-region-p)
-       (list (region-beginning) (region-end))
-     (list (line-beginning-position) (line-beginning-position 2)))))
+(dolist (command '(yank yank-pop))
+  (eval `(defadvice ,command (after indent-region activate compile)
+           "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
+           (if (derived-mode-p 'prog-mode)
+               (let ((mark-even-if-inactive transient-mark-mode))
+                 (indent-region (region-beginning) (region-end) nil))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
@@ -173,6 +174,7 @@
                             (font-lock-add-keywords
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))
+                            (local-set-key (kbd "<return>") 'newline-and-indent)
                             (local-set-key (kbd "C-<delete>") 'subword-kill)
                             (local-set-key (kbd "C-<right>") 'subword-forward)
                             (local-set-key (kbd "C-<left>") 'subword-backward)
