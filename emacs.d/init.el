@@ -10,7 +10,6 @@
  '(diff-changed ((t (:weight bold))))
  '(diff-refine-change ((t (:background "grey20"))))
  '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
- '(hl-line ((t (:background "gray13"))))
  '(magit-diff-add ((t (:inherit diff-added))))
  '(magit-diff-del ((t (:inherit diff-removed))))
  '(magit-item-highlight ((t nil)))
