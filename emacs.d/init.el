@@ -102,12 +102,13 @@
   '(:eval (concat
            (propertize (upcase (symbol-name (coding-system-get buffer-file-coding-system :mime-charset))) 'face 'font-lock-comment-face
                        'help-echo (coding-system-doc-string buffer-file-coding-system))
+           "|"
            (propertize
             (case (coding-system-eol-type buffer-file-coding-system)
-              (0 "|UNIX")
-              (1 "|DOS")
-              (2 "|MAC")
-              (t ""))
+              (0 "UNIX")
+              (1 "DOS")
+              (2 "MAC")
+              (t "NIL"))
             'face 'font-lock-comment-face)))
   "] "
   ;; is this buffer in overwrite-mode?
@@ -125,6 +126,7 @@
   (propertize "%m" 'face 'font-lock-function-name-face 'help-echo buffer-file-coding-system)
   ;; i don't want to see minor-modes; but if you want, uncomment this:
   ;; minor-mode-alist  ;; list of minor modes
+  (propertize "%n" 'face 'font-lock-type-face)
   "} "
   ;; justify right by filling with spaces to right fringe
   (propertize " " 'display '((space :align-to (- right-fringe 15))))
