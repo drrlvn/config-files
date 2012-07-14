@@ -147,12 +147,7 @@
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
       ring-bell-function 'ignore
       resize-mini-windows t)
-;; enable disabled features
-(put 'set-goal-column 'disabled nil)    ; C-x C-n
-(put 'upcase-region 'disabled nil)      ; C-x C-u
-(put 'downcase-region 'disabled nil)    ; C-x C-l
-(put 'narrow-to-region 'disabled nil)   ; C-x n n
-(put 'scroll-left 'disabled nil)        ; C-x <
+(setq disabled-command-function nil)    ; enable all disabled commands
 
 (setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
 
