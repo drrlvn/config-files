@@ -409,6 +409,10 @@
   (funcall original-function))
 (global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
 
+;; undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode t)
+
 ;; YASnippet
 (require 'yasnippet)
 (yas/global-mode 1)

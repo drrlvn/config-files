@@ -100,3 +100,6 @@
 [submodule "emacs.d/packages/rainbow-delimiters"]
 	path = emacs.d/packages/rainbow-delimiters
 	url = git://github.com/jlr/rainbow-delimiters.git
+[submodule "emacs.d/packages/undo-tree"]
+	path = emacs.d/packages/undo-tree
+	url = git://github.com/emacsmirror/undo-tree.git
