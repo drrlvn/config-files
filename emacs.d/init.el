@@ -192,6 +192,14 @@
                          (setq isearch-word t)
                          (word-at-point))))
 
+(defun autoload-and-set-key (package keys-and-functions)
+  "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
+  (dolist (key-and-function keys-and-functions)
+    (let ((key (car key-and-function))
+          (function (cadr key-and-function)))
+      (autoload function package nil t)
+      (global-set-key key function))))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."
@@ -345,13 +353,12 @@
 
 ;; anything
 (setq anything-input-idle-delay 0)
-(require 'anything-config)
-(global-set-key (kbd "C-x a") 'anything-c-apropos)
-(global-set-key (kbd "C-x f") 'anything)
-(global-set-key (kbd "C-x y") 'anything-show-kill-ring)
-(global-set-key (kbd "M-X") 'anything-M-x)
-(global-set-key (kbd "M-i") 'anything-imenu)
-(global-set-key (kbd "M-s o") 'anything-occur)
+(autoload-and-set-key "anything-config" `((,(kbd "C-x a") anything-c-apropos)
+                                          (,(kbd "C-x f") anything)
+                                          (,(kbd "C-x y") anything-show-kill-ring)
+                                          (,(kbd "M-X")   anything-M-x)
+                                          (,(kbd "M-i")   anything-imenu)
+                                          (,(kbd "M-s o") anything-occur)))
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
