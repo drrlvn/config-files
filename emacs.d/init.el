@@ -31,7 +31,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
- '(column-number-mode t)
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
@@ -40,9 +39,6 @@
  '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
  '(desktop-save-mode t)
  '(diff-switches "-u")
- '(display-time-24hr-format t)
- '(display-time-default-load-average nil)
- '(display-time-mode t)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(electric-layout-mode t)
  '(electric-pair-mode t)
@@ -83,9 +79,69 @@
  '(uniquify-separator ":")
  '(winner-mode t nil (winner)))
 
-(setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
+;; mode-line
+(setq-default
+ mode-line-format
+ (list
+  " "
+  ;; the buffer name; the file name as a tool tip
+  '(:eval (propertize (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b") 'face '(font-lock-keyword-face bold)
+                      'help-echo (buffer-file-name)))
+  " "
+  ;; was this buffer modified since the last save?
+  '(:eval (when (buffer-modified-p) (propertize "[*] " 'face 'font-lock-warning-face 'help-echo "Buffer has been modified")))
+  ;; relative position, size of file
+  "["
+  (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+  "/"
+  '(:eval (propertize (concat (int-to-string (count-lines (point-min) (point-max))) "L") 'face 'font-lock-constant-face)) ;; line num
+  "/"
+  (propertize "%I" 'face 'font-lock-constant-face) ;; size
+  "] "
+  ;; encoding and eol-type
+  "["
+  '(:eval (concat
+           (propertize (upcase (symbol-name (coding-system-get buffer-file-coding-system :mime-charset))) 'face 'font-lock-comment-face
+                       'help-echo (coding-system-doc-string buffer-file-coding-system))
+           (propertize
+            (case (coding-system-eol-type buffer-file-coding-system)
+              (0 "|UNIX")
+              (1 "|DOS")
+              (2 "|MAC")
+              (t ""))
+            'face 'font-lock-comment-face)))
+  "] "
+  ;; is this buffer in overwrite-mode?
+  '(:eval (when overwrite-mode
+            (concat "["
+                    (propertize "Ovr" 'face 'font-lock-preprocessor-face 'help-echo "Buffer is in overwrite mode")
+                    "] ")))
+  ;; is this buffer read-only?
+  '(:eval (when buffer-read-only
+            (concat "["
+                    (propertize "RO" 'face 'font-lock-type-face 'help-echo "Buffer is read-only")
+                    "] ")))
+  ;; the current major mode for the buffer.
+  "{"
+  (propertize "%m" 'face 'font-lock-function-name-face 'help-echo buffer-file-coding-system)
+  ;; i don't want to see minor-modes; but if you want, uncomment this:
+  ;; minor-mode-alist  ;; list of minor modes
+  "} "
+  ;; justify right by filling with spaces to right fringe
+  (propertize " " 'display '((space :align-to (- right-fringe 15))))
+  '(:eval (let ((spaces-needed (- 11 (length (format "(%d,%d)" (line-number-at-pos) (current-column))))))
+            (make-string spaces-needed ? )))
+  ;; line and column
+  "(" ;; '%02' to set to 2 chars at least; prevents flickering
+  (propertize "%l" 'face 'font-lock-type-face) "," (propertize "%c" 'face 'font-lock-type-face)
+  ") "
+  ;; add the time, with the date and the emacs uptime in the tooltip
+  '(:eval (propertize (format-time-string "%H:%M") 'face 'bold
+                      'help-echo (concat (format-time-string "%c; ") "Uptime: " (emacs-uptime "%D, %z%2h:%.2m"))))
+  ))
 
 ;; misc configuration
+(prefer-coding-system 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
 (windmove-default-keybindings 'meta)    ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
@@ -98,6 +154,8 @@
 (put 'downcase-region 'disabled nil)    ; C-x C-l
 (put 'narrow-to-region 'disabled nil)   ; C-x n n
 (put 'scroll-left 'disabled nil)        ; C-x <
+
+(setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functions
