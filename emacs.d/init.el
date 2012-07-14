@@ -200,6 +200,16 @@
       (autoload function package nil t)
       (global-set-key key function))))
 
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."
@@ -325,6 +335,7 @@
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (local-set-key (kbd "C-c C-e") 'eval-and-replace)
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))
 
