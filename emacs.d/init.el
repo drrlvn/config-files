@@ -148,6 +148,7 @@
 
 ;; misc configuration
 (prefer-coding-system 'utf-8)
+(modify-coding-system-alist 'file "" 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
 (windmove-default-keybindings 'meta)    ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
