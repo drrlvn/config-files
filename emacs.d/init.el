@@ -30,6 +30,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
+ '(c-basic-offset 4)
+ '(c-default-style "bsd")
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
@@ -38,6 +40,7 @@
  '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
  '(desktop-save-mode t)
  '(diff-switches "-u")
+ '(dired-isearch-filenames t)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(electric-layout-mode t)
  '(electric-pair-mode t)
@@ -64,6 +67,8 @@
  '(initial-scratch-message nil)
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)
+ '(org-replace-disputed-keys t)
+ '(org-startup-indented t)
  '(recentf-max-saved-items 250)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
@@ -151,7 +156,7 @@
       resize-mini-windows t)
 (setq disabled-command-function nil)    ; enable all disabled commands
 
-(setq ido-ignore-buffers (cons "^\\*.*\\*$" ido-ignore-buffers))
+(setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functions
@@ -269,14 +274,11 @@
 (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 
 ;; dired
-(setq dired-isearch-filenames t)
 (add-hook 'dired-mode-hook (lambda ()
                              (require 'dired-x)
                              (dired-omit-mode 1)))
 
 ;; org-mode
-(setq org-replace-disputed-keys t
-      org-startup-indented t)
 (add-hook 'org-mode-hook (lambda ()
                            (make-local-variable 'show-paren-mode)
                            (setq show-paren-mode nil)
@@ -304,8 +306,6 @@
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
-(setq c-default-style "bsd"
-      c-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
 ;; Python
