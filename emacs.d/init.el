@@ -187,7 +187,7 @@
                              (deactivate-mark)
                              (buffer-substring region-beginning region-end))
                          (setq isearch-word t)
-                         (word-at-point))))
+                         (thing-at-point 'word))))
 
 (defun autoload-and-set-key (package keys-and-functions)
   "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
@@ -265,6 +265,7 @@
 ;; dired
 (setq dired-isearch-filenames t)
 (add-hook 'dired-mode-hook (lambda ()
+                             (require 'dired-x)
                              (dired-omit-mode 1)))
 
 ;; org-mode
