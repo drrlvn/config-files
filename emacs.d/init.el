@@ -200,12 +200,12 @@
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
-  (backward-kill-sexp)
-  (condition-case nil
-      (prin1 (eval (read (current-kill 0)))
-             (current-buffer))
-    (error (message "Invalid expression")
-           (insert (current-kill 0)))))
+  (let ((original-point (point)))
+    (eval-last-sexp t)
+    (let ((distance (- (point) original-point)))
+      (backward-char distance)
+      (backward-kill-sexp)
+      (forward-char distance))))
 
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
