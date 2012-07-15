@@ -189,6 +189,12 @@
                          (setq isearch-word t)
                          (thing-at-point 'word))))
 
+(defun flymake-goto-error (goto-error-func)
+  "Call GOTO-ERROR-FUNC and print flymake error info to echo area."
+  (interactive)
+  (funcall goto-error-func)
+  (message "%s" (flymake-ler-text (caar (flymake-find-err-info flymake-err-info (flymake-current-line-no))))))
+
 (defun autoload-and-set-key (package keys-and-functions)
   "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
   (dolist (key-and-function keys-and-functions)
@@ -303,33 +309,23 @@
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
 ;; Python
-(add-hook 'python-mode-hook (lambda () (flymake-mode)))
+(add-hook 'python-mode-hook (lambda ()
+                              (flymake-mode t)
+                              (local-set-key (kbd "S-<f7>") (lambda ()
+                                                            (interactive)
+                                                            (flymake-goto-error 'flymake-goto-prev-error)))
+                              (local-set-key (kbd "S-<f8>") (lambda ()
+                                                            (interactive)
+                                                            (flymake-goto-error 'flymake-goto-next-error)))))
 (require 'flymake)
 (defun flymake-pylint-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "epylint" (list local-file))))
+  (let ((local-file (file-relative-name
+                     (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace)
+                     (file-name-directory buffer-file-name))))
+    `("epylint" (,local-file))))
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pylint-init))
 
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
-
-(global-set-key (kbd "S-<f7>") (lambda ()
-                                 (interactive)
-                                 (flymake-goto-prev-error)
-                                 (message "%s"
-                                          (flymake-ler-text (caar (flymake-find-err-info
-                                                                   flymake-err-info
-                                                                   (flymake-current-line-no)))))))
-(global-set-key (kbd "S-<f8>") (lambda ()
-                                 (interactive)
-                                 (flymake-goto-next-error)
-                                 (message "%s"
-                                          (flymake-ler-text (caar (flymake-find-err-info
-                                                                   flymake-err-info
-                                                                   (flymake-current-line-no)))))))
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook (lambda ()
