@@ -159,6 +159,9 @@
 
 (setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
 
+(if (eq system-type 'windows-nt)
+    (setq tramp-default-method "plinkx"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functions
 ;;
