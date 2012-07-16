@@ -94,6 +94,10 @@
   " "
   ;; was this buffer modified since the last save?
   '(:eval (when (buffer-modified-p) (propertize "[*] " 'face 'font-lock-warning-face 'help-echo "Buffer has been modified")))
+  ;; line and column
+  "(" ;; '%02' to set to 2 chars at least; prevents flickering
+  (propertize "%l" 'face 'font-lock-type-face) "," (propertize "%c" 'face 'font-lock-type-face)
+  ") "
   ;; relative position, size of file
   "["
   (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
@@ -134,13 +138,7 @@
   (propertize "%n" 'face 'font-lock-type-face)
   "} "
   ;; justify right by filling with spaces to right fringe
-  (propertize " " 'display '((space :align-to (- right-fringe 15))))
-  '(:eval (let ((spaces-needed (- 11 (length (format "(%d,%d)" (line-number-at-pos) (current-column))))))
-            (make-string spaces-needed ? )))
-  ;; line and column
-  "(" ;; '%02' to set to 2 chars at least; prevents flickering
-  (propertize "%l" 'face 'font-lock-type-face) "," (propertize "%c" 'face 'font-lock-type-face)
-  ") "
+  (propertize " " 'display '((space :align-to (- right-fringe 5))))
   ;; add the time, with the date and the emacs uptime in the tooltip
   '(:eval (propertize (format-time-string "%H:%M") 'face 'bold
                       'help-echo (concat (format-time-string "%c; ") "Uptime: " (emacs-uptime "%D, %z%2h:%.2m"))))
