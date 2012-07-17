@@ -43,7 +43,6 @@
  '(dired-isearch-filenames t)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(electric-layout-mode t)
- '(electric-pair-mode t)
  '(fill-column 80)
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
@@ -250,7 +249,6 @@
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
-(global-set-key (kbd "S-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
