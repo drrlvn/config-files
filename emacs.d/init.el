@@ -1,3 +1,6 @@
+(eval-when-compile
+  (require 'cl))
+
 ;; mode-line
 (setq-default
  mode-line-format
@@ -79,8 +82,9 @@
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
 
-(if (eq system-type 'windows-nt)
-    (setq tramp-default-method "plinkx"))
+(when (eq system-type 'windows-nt)
+  (setq tramp-default-method "plinkx")
+  (windmove-default-keybindings 'meta))
 
 (load "~/.emacs.d/defuns.el")
 
