@@ -203,13 +203,13 @@
 
 ;; anything
 (setq anything-input-idle-delay 0)
-(my/autoload-and-set-key "anything-config" `((,(kbd "C-x a") anything-c-apropos)
-                                             (,(kbd "C-x f") anything)
-                                             (,(kbd "C-x g") anything-google-suggest)
-                                             (,(kbd "C-x y") anything-show-kill-ring)
-                                             (,(kbd "M-X")   anything-M-x)
-                                             (,(kbd "M-i")   anything-imenu)
-                                             (,(kbd "M-s o") anything-occur)))
+(my/autoload-and-set-key "anything-config" '(("C-x a" anything-c-apropos)
+                                             ("C-x f" anything)
+                                             ("C-x g" anything-google-suggest)
+                                             ("C-x y" anything-show-kill-ring)
+                                             ("M-X"   anything-M-x)
+                                             ("M-i"   anything-imenu)
+                                             ("M-s o" anything-occur)))
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))

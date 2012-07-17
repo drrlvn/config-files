@@ -43,7 +43,7 @@
     (let ((key (car key-and-function))
           (function (cadr key-and-function)))
       (autoload function package nil t)
-      (global-set-key key function))))
+      (global-set-key (read-kbd-macro key) function))))
 
 (defun my/eval-and-replace ()
   "Replace the preceding sexp with its value."
