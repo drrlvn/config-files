@@ -1,86 +1,3 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
-
-;; set font
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(diff-added ((t (:inherit diff-changed :foreground "royal blue"))))
- '(diff-changed ((t (:weight bold))))
- '(diff-refine-change ((t (:background "grey20"))))
- '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
- '(magit-diff-add ((t (:inherit diff-added))))
- '(magit-diff-del ((t (:inherit diff-removed))))
- '(magit-item-highlight ((t nil)))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#c397d8"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "#7aa6da"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#70c0b1"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#b9ca4a"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "#e7c547"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "#e78c45"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "#d54e53"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "#969896"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "#eaeaea"))))
- '(rainbow-delimiters-unmatched-face ((t (:inherit error)))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode t)
- '(c-basic-offset 4)
- '(c-default-style "bsd")
- '(cua-enable-cua-keys nil)
- '(cua-mode t nil (cua-base))
- '(custom-enabled-themes (quote (tomorrow-night-bright)))
- '(custom-safe-themes (quote ("ca2d69f5dd853dbf6fbcf5d0f1759ec357fda19c481915431015417ec9c1fbd8" default)))
- '(dabbrev-case-replace nil)
- '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
- '(desktop-save-mode t)
- '(diff-switches "-u")
- '(dired-isearch-filenames t)
- '(ediff-split-window-function (quote split-window-horizontally))
- '(electric-layout-mode t)
- '(fill-column 80)
- '(flyspell-auto-correct-binding [(control 39)])
- '(frame-background-mode (quote dark))
- '(global-auto-revert-mode t)
- '(global-ede-mode t)
- '(global-hl-line-mode t)
- '(global-linum-mode t)
- '(global-visual-line-mode t)
- '(history-length 500)
- '(ibuffer-expert t)
- '(ibuffer-formats (quote ((mark modified read-only " " (name 25 25 :left :elide) " " (size 6 -1 :right) " " (mode 10 10 :left :elide) " " (filename-and-process -1 60 :left :elide)) (mark " " (name 30 -1) " " filename))))
- '(ibuffer-show-empty-filter-groups nil)
- '(ido-enable-flex-matching t)
- '(ido-everywhere t)
- '(ido-max-prospects 128)
- '(ido-mode (quote both) nil (ido))
- '(indent-tabs-mode nil)
- '(indicate-empty-lines t)
- '(inhibit-startup-echo-area-message (user-login-name))
- '(inhibit-startup-screen t)
- '(initial-scratch-message nil)
- '(kill-whole-line t)
- '(lazy-highlight-initial-delay 0)
- '(org-replace-disputed-keys t)
- '(recentf-max-saved-items 250)
- '(recentf-mode t)
- '(save-place t nil (saveplace))
- '(scroll-preserve-screen-position t)
- '(semantic-default-submodes (quote (global-semantic-stickyfunc-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
- '(show-paren-delay 0)
- '(show-paren-mode t)
- '(show-paren-style (quote expression))
- '(tab-width 4)
- '(tool-bar-mode nil)
- '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
- '(uniquify-separator ":")
- '(winner-mode t nil (winner)))
-
 ;; mode-line
 (setq-default
  mode-line-format
@@ -154,92 +71,17 @@
       resize-mini-windows t)
 (setq disabled-command-function nil)    ; enable all disabled commands
 
-(setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
-
 (if (eq system-type 'windows-nt)
     (setq tramp-default-method "plinkx"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; functions
-;;
-(defun revert-buffer-no-confirmation ()
-  "Invoke `revert-buffer' without the confirmation."
-  (interactive)
-  (revert-buffer nil t t)
-  (message (concat "Reverted buffer " buffer-file-name)))
-
-(defun kill-buffer-other-window ()
-  "Kill buffer in other window."
-  (interactive)
-  (other-window 1)
-  (kill-buffer)
-  (other-window -1))
-
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file."
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
-
-(defun isearch-current-region-or-word ()
-  "Reset current isearch to a search of the region or the word under point."
-  (interactive)
-  (setq isearch-string ""
-        isearch-message "")
-  (isearch-yank-string (if (use-region-p)
-                           (let ((region-beginning (region-beginning))
-                                 (region-end (region-end)))
-                             (deactivate-mark)
-                             (buffer-substring region-beginning region-end))
-                         (setq isearch-word t)
-                         (thing-at-point 'word))))
-
-(defun flymake-goto-error (goto-error-func)
-  "Call GOTO-ERROR-FUNC and print flymake error info to echo area."
-  (interactive)
-  (funcall goto-error-func)
-  (message "%s" (flymake-ler-text (caar (flymake-find-err-info flymake-err-info (flymake-current-line-no))))))
-
-(defun autoload-and-set-key (package keys-and-functions)
-  "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
-  (dolist (key-and-function keys-and-functions)
-    (let ((key (car key-and-function))
-          (function (cadr key-and-function)))
-      (autoload function package nil t)
-      (global-set-key key function))))
-
-(defun eval-and-replace ()
-  "Replace the preceding sexp with its value."
-  (interactive)
-  (let ((original-point (point)))
-    (eval-last-sexp t)
-    (let ((distance (- (point) original-point)))
-      (backward-char distance)
-      (backward-kill-sexp)
-      (forward-char distance))))
-
-(dolist (command '(kill-ring-save kill-region))
-  (eval `(defadvice ,command (before current-line-or-region activate compile)
-           "When called interactively with no active region, use a single line instead."
-           (interactive
-            (if (use-region-p)
-                (list (region-beginning) (region-end))
-              (list (line-beginning-position) (line-beginning-position 2)))))))
-
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate compile)
-           "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
-           (if (derived-mode-p 'prog-mode)
-               (let ((mark-even-if-inactive transient-mark-mode))
-                 (indent-region (region-beginning) (region-end) nil))))))
+(load "~/.emacs.d/defuns.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
 ;;
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f1>") 'man)
-(global-set-key (kbd "<f5>") 'revert-buffer-no-confirmation)
+(global-set-key (kbd "<f5>") 'my/revert-buffer-no-confirmation)
 (global-set-key (kbd "<f6>") 'ack-and-a-half)
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
@@ -247,12 +89,12 @@
 (global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
-(global-set-key (kbd "C-M-!") 'kill-buffer-other-window)
+(global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(define-key isearch-mode-map (kbd "C-*") 'isearch-current-region-or-word)
+(define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
@@ -313,11 +155,11 @@
 (add-hook 'python-mode-hook (lambda ()
                               (flymake-mode t)
                               (local-set-key (kbd "S-<f7>") (lambda ()
-                                                            (interactive)
-                                                            (flymake-goto-error 'flymake-goto-prev-error)))
+                                                              (interactive)
+                                                              (my/flymake-goto-error 'flymake-goto-prev-error)))
                               (local-set-key (kbd "S-<f8>") (lambda ()
-                                                            (interactive)
-                                                            (flymake-goto-error 'flymake-goto-next-error)))))
+                                                              (interactive)
+                                                              (my/flymake-goto-error 'flymake-goto-next-error)))))
 (require 'flymake)
 (defun flymake-pylint-init ()
   (let ((local-file (file-relative-name
@@ -330,7 +172,7 @@
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (local-set-key (kbd "C-c C-e") 'eval-and-replace)
+                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))
 
@@ -359,13 +201,13 @@
 
 ;; anything
 (setq anything-input-idle-delay 0)
-(autoload-and-set-key "anything-config" `((,(kbd "C-x a") anything-c-apropos)
-                                          (,(kbd "C-x f") anything)
-                                          (,(kbd "C-x g") anything-google-suggest)
-                                          (,(kbd "C-x y") anything-show-kill-ring)
-                                          (,(kbd "M-X")   anything-M-x)
-                                          (,(kbd "M-i")   anything-imenu)
-                                          (,(kbd "M-s o") anything-occur)))
+(my/autoload-and-set-key "anything-config" `((,(kbd "C-x a") anything-c-apropos)
+                                             (,(kbd "C-x f") anything)
+                                             (,(kbd "C-x g") anything-google-suggest)
+                                             (,(kbd "C-x y") anything-show-kill-ring)
+                                             (,(kbd "M-X")   anything-M-x)
+                                             (,(kbd "M-i")   anything-imenu)
+                                             (,(kbd "M-s o") anything-occur)))
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
@@ -415,3 +257,11 @@
 ;; zencoding
 (autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom
+;;
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
