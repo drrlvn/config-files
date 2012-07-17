@@ -70,6 +70,15 @@
       resize-mini-windows t)
 (setq disabled-command-function nil)    ; enable all disabled commands
 
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+
 (if (eq system-type 'windows-nt)
     (setq tramp-default-method "plinkx"))
 
@@ -99,6 +108,7 @@
 (global-set-key (kbd "C-c n") 'my/cleanup-buffer)
 (global-set-key (kbd "M-s l") 'sort-lines)
 (global-set-key (kbd "M-s O") 'occur)
+(global-set-key (kbd "M-/") 'hippie-expand)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
