@@ -56,6 +56,7 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(uniquify-separator ":")
  '(winner-mode t nil (winner)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
