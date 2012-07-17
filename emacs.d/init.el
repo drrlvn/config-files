@@ -191,7 +191,9 @@
 
 ;; ace-jump-mode
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
-(global-set-key (kbd "C-`") 'ace-jump-char-mode)
+(autoload 'ace-jump-word-mode "ace-jump-mode" nil t)
+(global-set-key (kbd "C-`") 'ace-jump-word-mode)
+(global-set-key (kbd "C-~") 'ace-jump-char-mode)
 
 ;; ack-and-a-half
 (autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
