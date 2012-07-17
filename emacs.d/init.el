@@ -79,19 +79,26 @@
 ;; mappings
 ;;
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "<f1>") 'man)
 (global-set-key (kbd "<f5>") 'my/revert-buffer-no-confirmation)
 (global-set-key (kbd "<f6>") 'ack-and-a-half)
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
-(global-set-key (kbd "<f11>") 'delete-trailing-whitespace)
+(global-set-key (kbd "<f11>") 'my/cleanup-buffer)
+
 (global-set-key (kbd "C-<delete>") 'kill-word)
+
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
+
 (global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
+(global-set-key (kbd "C-c n") 'my/cleanup-buffer)
+(global-set-key (kbd "M-s l") 'sort-lines)
+(global-set-key (kbd "M-s O") 'occur)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
@@ -144,7 +151,7 @@
                             (local-set-key (kbd "C-<delete>") 'subword-kill)
                             (local-set-key (kbd "C-<right>") 'subword-forward)
                             (local-set-key (kbd "C-<left>") 'subword-backward)
-                            (add-hook 'local-write-file-hooks 'delete-trailing-whitespace)))
+                            (add-hook 'write-contents-functions 'delete-trailing-whitespace)))
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))

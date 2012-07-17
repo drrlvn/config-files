@@ -1,3 +1,9 @@
+(defun my/cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max)))
+
 (defun my/revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
