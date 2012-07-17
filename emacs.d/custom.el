@@ -46,6 +46,7 @@
  '(recentf-max-saved-items 250)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
+ '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
  '(semantic-default-submodes (quote (global-semantic-stickyfunc-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
  '(show-paren-delay 0)
@@ -62,13 +63,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(diff-added ((t (:inherit diff-changed :foreground "royal blue"))) t)
- '(diff-changed ((t (:weight bold))) t)
- '(diff-refine-change ((t (:background "grey20"))) t)
- '(diff-removed ((t (:inherit diff-changed :foreground "red3"))) t)
- '(magit-diff-add ((t (:inherit diff-added))) t)
- '(magit-diff-del ((t (:inherit diff-removed))) t)
- '(magit-item-highlight ((t nil)) t)
+ '(diff-added ((t (:inherit diff-changed :foreground "royal blue"))))
+ '(diff-changed ((t (:weight bold))))
+ '(diff-refine-change ((t (:background "grey20"))))
+ '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
+ '(magit-diff-add ((t (:inherit diff-added))))
+ '(magit-diff-del ((t (:inherit diff-removed))))
+ '(magit-item-highlight ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#c397d8"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#7aa6da"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#70c0b1"))))

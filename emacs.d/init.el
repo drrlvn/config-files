@@ -52,7 +52,7 @@
   (propertize "%n" 'face 'font-lock-type-face)
   "} "
   ;; justify right by filling with spaces to right fringe
-  (propertize " " 'display '((space :align-to (- right 2))))
+  (propertize " " 'display '((space :align-to (- right 4))))
   ;; add the time, with the date and the emacs uptime in the tooltip
   '(:eval (propertize (format-time-string "%H:%M") 'face 'bold
                       'help-echo (concat (format-time-string "%c; ") "Uptime: " (emacs-uptime "%D, %z%2h:%.2m"))))
