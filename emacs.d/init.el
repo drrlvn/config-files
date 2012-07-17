@@ -67,7 +67,6 @@
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)
  '(org-replace-disputed-keys t)
- '(org-startup-indented t)
  '(recentf-max-saved-items 250)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
@@ -147,6 +146,7 @@
 (prefer-coding-system 'utf-8)
 (modify-coding-system-alist 'file "" 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
+(mouse-avoidance-mode 'banish)
 (windmove-default-keybindings 'meta)    ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
@@ -292,6 +292,7 @@
 (add-hook 'prog-mode-hook (lambda ()
                             (semantic-mode t)
                             (subword-mode t)
+                            (drag-stuff-mode t)
                             (flyspell-prog-mode)
                             (rainbow-delimiters-mode t)
                             (setq show-trailing-whitespace t)
@@ -368,8 +369,7 @@
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
-(require 'drag-stuff)
-(drag-stuff-global-mode t)
+(autoload 'drag-stuff-mode "drag-stuff" nil t)
 
 ;; expand-region
 (autoload 'er/expand-region "expand-region" nil t)
