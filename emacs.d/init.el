@@ -64,7 +64,7 @@
 (modify-coding-system-alist 'file "" 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
 (mouse-avoidance-mode 'banish)
-(windmove-default-keybindings 'meta)    ; enable windmove
+(windmove-default-keybindings 'super)   ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
       ring-bell-function 'ignore
@@ -194,6 +194,10 @@
 (autoload 'ace-jump-word-mode "ace-jump-mode" nil t)
 (global-set-key (kbd "C-`") 'ace-jump-word-mode)
 (global-set-key (kbd "C-~") 'ace-jump-char-mode)
+
+(loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-word-mode c))
+(loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-word-mode c))
+(loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-word-mode c))
 
 ;; ack-and-a-half
 (autoload 'ack-and-a-half-same "ack-and-a-half" nil t)

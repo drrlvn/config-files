@@ -69,3 +69,9 @@
            (if (derived-mode-p 'prog-mode)
                (let ((mark-even-if-inactive transient-mark-mode))
                  (indent-region (region-beginning) (region-end) nil))))))
+
+;; for ace-jump-mode
+(defun my/add-super-char-to-ace-jump-word-mode (c)
+  (global-set-key
+   (read-kbd-macro (concat "s-" (string c)))
+   `(lambda () (interactive) (ace-jump-word-mode ,c))))
