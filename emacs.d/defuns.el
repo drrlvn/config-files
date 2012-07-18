@@ -4,6 +4,23 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max)))
 
+(defun my/zap-to-char-exclusive (arg char)
+  "Kill up to but excluding ARGth occurrence of CHAR.
+Case is ignored if `case-fold-search' is non-nil in the current buffer.
+Goes backward if ARG is negative; error if CHAR not found."
+  (interactive "p\ncZap to char: ")
+  (zap-to-char arg char)
+  (insert char)
+  (backward-char))
+
+(defun my/sudo-edit (&optional arg)
+  "Edit current buffer as super user.
+Interactively, with prefix argument, sudo \\[find-file] instead."
+  (interactive "p")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo::" (ido-read-file-name "Find file (sudo): ")))
+    (find-alternate-file (concat "/sudo::" buffer-file-name))))
+
 (defun my/revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)

@@ -112,7 +112,9 @@
 (global-set-key (kbd "C-c n") 'my/cleanup-buffer)
 (global-set-key (kbd "M-s l") 'sort-lines)
 (global-set-key (kbd "M-s O") 'occur)
+(global-set-key (kbd "M-s e") 'my/sudo-edit)
 (global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "M-Z") 'my/zap-to-char-exclusive)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
