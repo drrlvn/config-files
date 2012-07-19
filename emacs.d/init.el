@@ -227,16 +227,6 @@
 (autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
 (autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
 
-;; anything
-(setq anything-input-idle-delay 0)
-(my/autoload-and-set-key "anything-config" '(("C-x a" anything-c-apropos)
-                                             ("C-x f" anything)
-                                             ("C-x g" anything-google-suggest)
-                                             ("C-x y" anything-show-kill-ring)
-                                             ("M-X"   anything-M-x)
-                                             ("M-i"   anything-imenu)
-                                             ("M-s o" anything-occur)))
-
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
 (autoload 'drag-stuff-mode "drag-stuff" nil t)
@@ -244,6 +234,18 @@
 ;; expand-region
 (autoload 'er/expand-region "expand-region" nil t)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; helm
+(setq helm-input-idle-delay 0)
+(require 'helm-config)
+(helm-mode t)
+(global-set-key (kbd "C-x a") 'helm-c-apropos)
+(global-set-key (kbd "C-x f") 'helm-mini)
+(global-set-key (kbd "C-x g") 'helm-google-suggest)
+(global-set-key (kbd "C-x y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-X")   'helm-M-x)
+(global-set-key (kbd "M-i")   'helm-imenu)
+(global-set-key (kbd "M-s o") 'helm-occur)
 
 ;; iedit
 (autoload 'iedit-mode "iedit" nil t)

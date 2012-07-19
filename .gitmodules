@@ -55,9 +55,6 @@
 [submodule "vim/dotvim/bundle/ack.vim"]
 	path = vim/dotvim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
-[submodule "emacs.d/packages/anything-config"]
-	path = emacs.d/packages/anything-config
-	url = git://repo.or.cz/anything-config.git
 [submodule "emacs.d/packages/drag-stuff"]
 	path = emacs.d/packages/drag-stuff
 	url = git://github.com/rejeep/drag-stuff.git
@@ -103,3 +100,6 @@
 [submodule "emacs.d/packages/undo-tree"]
 	path = emacs.d/packages/undo-tree
 	url = git://github.com/emacsmirror/undo-tree.git
+[submodule "emacs.d/packages/helm"]
+	path = emacs.d/packages/helm
+	url = git://github.com/emacs-helm/helm.git
