@@ -214,12 +214,16 @@
 ;; ace-jump-mode
 (autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
 (autoload 'ace-jump-word-mode "ace-jump-mode" nil t)
-(global-set-key (kbd "C-`") 'ace-jump-word-mode)
-(global-set-key (kbd "C-~") 'ace-jump-char-mode)
+(global-set-key (kbd "C-`") 'ace-jump-char-mode)
+(global-set-key (kbd "C-~") 'ace-jump-word-mode)
 
-(loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-word-mode c))
-(loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-word-mode c))
-(loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-word-mode c))
+(loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-mode 'word c))
+(loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-mode 'word c))
+(loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-mode 'word c))
+(loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
+                     ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
+                     ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
+      do (my/add-super-char-to-ace-jump-mode 'char c))
 
 ;; ack-and-a-half
 (autoload 'ack-and-a-half-same "ack-and-a-half" nil t)

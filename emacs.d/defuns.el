@@ -94,7 +94,7 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
                  (indent-region (region-beginning) (region-end) nil))))))
 
 ;; for ace-jump-mode
-(defun my/add-super-char-to-ace-jump-word-mode (c)
+(defun my/add-super-char-to-ace-jump-mode (m c)
   (global-set-key
    (read-kbd-macro (concat "s-" (string c)))
-   `(lambda () (interactive) (ace-jump-word-mode ,c))))
+   `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
