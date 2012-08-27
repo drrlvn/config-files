@@ -237,7 +237,9 @@
 
 ;; expand-region
 (autoload 'er/expand-region "expand-region" nil t)
+(autoload 'er/contract-region "expand-region" nil t)
 (global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C--") 'er/contract-region)
 
 ;; helm
 (setq helm-input-idle-delay 0)
@@ -248,7 +250,7 @@
 (global-set-key (kbd "C-x g") 'helm-google-suggest)
 (global-set-key (kbd "C-x y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-X")   'helm-M-x)
-(global-set-key (kbd "M-i")   'helm-imenu)
+(global-set-key (kbd "M-i")   'helm-semantic-or-imenu)
 (global-set-key (kbd "M-s o") 'helm-occur)
 
 ;; iedit
