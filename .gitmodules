@@ -103,3 +103,6 @@
 [submodule "emacs.d/packages/helm"]
 	path = emacs.d/packages/helm
 	url = git://github.com/emacs-helm/helm.git
+[submodule "zsh/zsh-syntax-highlighting"]
+	path = zsh/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
