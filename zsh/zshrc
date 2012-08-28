@@ -127,6 +127,6 @@ alias reload='rehash; source ~/.zshrc'
 
 # enable zsh-syntax-highlighting
 . "${0:h}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
