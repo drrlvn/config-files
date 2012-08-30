@@ -111,6 +111,7 @@
 
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 (global-set-key (kbd "C-c n") 'my/cleanup-buffer)
+(global-set-key (kbd "C-c d") 'my/diff-current-buffer-with-file)
 (global-set-key (kbd "M-s l") 'sort-lines)
 (global-set-key (kbd "M-s O") 'occur)
 (global-set-key (kbd "M-s e") 'my/sudo-edit)

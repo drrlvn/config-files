@@ -19,6 +19,11 @@ Goes backward if ARG is negative; error if CHAR not found."
   (end-of-line)
   (newline-and-indent))
 
+(defun my/diff-current-buffer-with-file ()
+  "View the differences between current buffer and its associated file."
+  (interactive)
+  (diff-buffer-with-file (current-buffer)))
+
 (defun my/sudo-edit (&optional arg)
   "Edit current buffer as super user.
 Interactively, with prefix argument, sudo \\[find-file] instead."
