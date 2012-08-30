@@ -13,6 +13,12 @@ Goes backward if ARG is negative; error if CHAR not found."
   (insert char)
   (backward-char))
 
+(defun my/newline-and-indent-at-end ()
+  "Go to end of line, then insert newline and indent."
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
 (defun my/sudo-edit (&optional arg)
   "Edit current buffer as super user.
 Interactively, with prefix argument, sudo \\[find-file] instead."

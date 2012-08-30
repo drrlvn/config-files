@@ -99,6 +99,7 @@
 (global-set-key (kbd "<f9>") 'magit-status)
 (global-set-key (kbd "<f11>") 'my/cleanup-buffer)
 
+(global-set-key (kbd "M-<return>") 'my/newline-and-indent-at-end)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 
 (global-set-key (kbd "C-!") 'kill-this-buffer)
