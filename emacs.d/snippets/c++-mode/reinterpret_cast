@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: reinterpret_cast<...>(...)
+# key: rc
+# --
+reinterpret_cast<$1>(`yas/selected-text`$0)

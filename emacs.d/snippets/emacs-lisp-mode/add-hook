@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: add-hook
+# key: add-hook
+# key: ah
+# --
+(add-hook $1-hook $0)

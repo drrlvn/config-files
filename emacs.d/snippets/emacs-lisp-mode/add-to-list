@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: add-to-list
+# key: add-to-list
+# key: atl
+# --
+(add-to-list '$1 $0)
