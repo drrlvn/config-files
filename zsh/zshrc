@@ -38,6 +38,14 @@ zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
 
+expand-or-complete-with-dots() {
+    echo -n "\e[31m...\e[0m"
+    zle expand-or-complete
+    zle redisplay
+}
+zle -N expand-or-complete-with-dots
+bindkey '	' expand-or-complete-with-dots
+
 bash-unix-filename-rubout() {
 	local WORDCHARS=${WORDCHARS}/
 	zle backward-kill-word
