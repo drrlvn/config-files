@@ -116,7 +116,8 @@
 (global-set-key (kbd "M-s O") 'occur)
 (global-set-key (kbd "M-s e") 'my/sudo-edit)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "M-Z") 'my/zap-to-char-exclusive)
+(global-set-key (kbd "M-z") 'my/zap-to-char-exclusive)
+(global-set-key (kbd "M-Z") 'zap-to-char)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
