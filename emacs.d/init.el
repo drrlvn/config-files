@@ -289,9 +289,9 @@
 (global-undo-tree-mode t)
 
 ;; YASnippet
-(setq yas/prompt-functions '(yas/completing-prompt)) ; use normal completion, which is helm in our case
+(setq yas-prompt-functions '(yas-completing-prompt)) ; use normal completion, which is helm in our case
 (require 'yasnippet)
-(yas/global-mode 1)
+(yas-global-mode 1)
 
 ;; zencoding
 (autoload 'zencoding-mode "zencoding-mode" nil t)
