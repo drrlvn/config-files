@@ -104,12 +104,21 @@ bindkey "[1;7D" insert-cycledright
 
 eval $(dircolors -b)
 
+# enable cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-dirs-first 'yes'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:descriptions' format "%B- %d -%b"
+
+# enable fuzzy matching when completing
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
