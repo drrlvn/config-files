@@ -12,44 +12,44 @@ zstyle ':vcs_info:*' formats		'%F{magenta}(%F{white}%b%c%u%m%F{magenta}) '
 zstyle ':vcs_info:*' actionformats	'%F{magenta}(%F{white}%b%c%u%m%F{magenta}|%F{red}%a%F{magenta}) '
 zstyle ':vcs_info:*+set-message:*' hooks set-message
 
+typeset -gA vcs_prompt_chars
+vcs_prompt_chars=(
+    'git' '%F{red}± '
+    'hg'  '%F{black}☿ '
+    'svn' '%F{blue}⚡ '
+    'cvs' '%F{white}c '
+)
+
 +vi-set-message() {
-	case ${vcs} in
-		git)
-			_prompt_char='%F{red}±'
+    _prompt_char=$vcs_prompt_chars[$vcs]
 
-			# Show +N/-N when your local branch is ahead-of or behind remote HEAD.
-			local ahead behind
-			local -a gitstatus
+    case ${vcs} in
+        git)
+            # Show +N/-N when your local branch is ahead-of or behind remote HEAD.
+            local ahead behind
+            local -a gitstatus
 
-			ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-			(( $ahead )) && gitstatus+=( "%F{green}+${ahead}" )
+            ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+            (( $ahead )) && gitstatus+=( "%F{green}+${ahead}" )
 
-			behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-			(( $behind )) && gitstatus+=( "%F{red}-${behind}" )
+            behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+            (( $behind )) && gitstatus+=( "%F{red}-${behind}" )
 
-			if (( ${#gitstatus} )); then
-				hook_com[misc]+="%F{magenta}|%b"${(j:%F{white}/:)gitstatus}"%B"
-			fi
-			;;
+            if (( ${#gitstatus} )); then
+                hook_com[misc]+="%F{magenta}|%b"${(j:%F{white}/:)gitstatus}"%B"
+            fi
+            ;;
 
-		hg)
-			_prompt_char='%F{black}☿'
-			;;
-
-		svn)
-			_prompt_char='%F{blue}⚡'
-			;;
-
-		cvs)
-			_prompt_char='%F{white}c'
-			;;
-	esac
+    esac
 }
 
 precmd() {
-	_prompt_char='%#'
-	vcs_info
+    _prompt_char=''
+    vcs_info
 }
 
-PROMPT='%B%(!.%F{red}%m.%F{green}%n@%m) %(?.%F{cyan}:%).%F{red}:()%F{blue} ${_prompt_char}%b%f%k '
+if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
+    PROMPT_HOST='%F{red}%n@%m%f --'
+fi
+PROMPT="%B${PROMPT_HOST} \${_prompt_char}%(?.%F{cyan}:%).%F{red}:() %F{red}❯%F{yellow}❯%F{green}❯%b%f%k "
 RPROMPT='%B${vcs_info_msg_0_}%F{blue}(%~)'

@@ -39,22 +39,22 @@ compinit
 promptinit; prompt spatz
 
 expand-or-complete-with-dots() {
-    echo -n "\e[31m...\e[0m"
+    print -Pn "%B%F{red}...%f%b"
     zle expand-or-complete
     zle redisplay
 }
 zle -N expand-or-complete-with-dots
-bindkey '	' expand-or-complete-with-dots
+bindkey "\C-I" expand-or-complete-with-dots
 
 bash-unix-filename-rubout() {
 	local WORDCHARS=${WORDCHARS}/
 	zle backward-kill-word
 }
 zle -N bash-unix-filename-rubout
-bindkey '' bash-unix-filename-rubout
+bindkey '\C-w' bash-unix-filename-rubout
 
 zle -N edit-command-line
-bindkey '' edit-command-line
+bindkey '\C-x\C-e' edit-command-line
 
 zle -N self-insert url-quote-magic
 
@@ -76,8 +76,8 @@ bindkey '[F' end-of-line
 bindkey '[4~' end-of-line
 bindkey '[3~' delete-char
 
-bindkey 'z' delete-to-char
-bindkey ';' copy-prev-shell-word
+bindkey '\ez' delete-to-char
+bindkey '\e;' copy-prev-shell-word
 
 # Meta-u to chdir to the parent directory
 bindkey -s '\eu' '^Ucd ..; ls^M'
@@ -97,10 +97,10 @@ bindkey ' ' magic-space
 # bind C-M-{Left,Right} to cycle through dir stack
 insert-cycledleft () { zle push-line; LBUFFER='pushd +1'; zle accept-line }
 zle -N insert-cycledleft
-bindkey "[1;7C" insert-cycledleft
+bindkey '\e[1;7C' insert-cycledleft
 insert-cycledright () { zle push-line; LBUFFER='pushd -0'; zle accept-line }
 zle -N insert-cycledright
-bindkey "[1;7D" insert-cycledright
+bindkey '\e[1;7D' insert-cycledright
 
 eval $(dircolors -b)
 
