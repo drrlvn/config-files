@@ -239,8 +239,7 @@
 (autoload 'drag-stuff-mode "drag-stuff" nil t)
 
 ;; expand-region
-(autoload 'er/expand-region "expand-region" nil t)
-(autoload 'er/contract-region "expand-region" nil t)
+(require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C--") 'er/contract-region)
 

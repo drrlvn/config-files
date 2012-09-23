@@ -43,7 +43,7 @@
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)
  '(org-replace-disputed-keys t)
- '(recentf-max-saved-items 250)
+ '(recentf-max-saved-items 1000)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
