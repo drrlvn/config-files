@@ -49,7 +49,7 @@ precmd() {
 }
 
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
-    PROMPT_HOST='%F{red}%n@%m%f --'
+    PROMPT_HOST='%F{magenta}%n@%m%f --'
 fi
 PROMPT="%B${PROMPT_HOST} \${_prompt_char}%(?.%F{cyan}:%).%F{red}:() %F{red}❯%F{yellow}❯%F{green}❯%b%f%k "
-RPROMPT='%B${vcs_info_msg_0_}%F{blue}(%~)'
+RPROMPT='%B${vcs_info_msg_0_}%F{blue}%~'
