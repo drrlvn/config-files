@@ -112,3 +112,6 @@
 [submodule "zsh/zsh-history-substring-search"]
 	path = zsh/zsh-history-substring-search
 	url = git://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "emacs.d/packages/multiple-cursors"]
+	path = emacs.d/packages/multiple-cursors
+	url = git://github.com/magnars/multiple-cursors.el.git

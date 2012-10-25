@@ -274,6 +274,14 @@
 (setq minimap-update-delay 0.1
       minimap-width-fraction 0.1)
 
+;; multiple-cursors
+(autoload 'mc/mark-next-like-this "multiple-cursors" nil t)
+(autoload 'mc/mark-previous-like-this "multiple-cursors" nil t)
+(autoload 'mc/mark-all-like-this "multiple-cursors" nil t)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 ;; rainbow-delimiters
 (autoload 'rainbow-delimiters-mode "rainbow-delimiters" nil t)
 
