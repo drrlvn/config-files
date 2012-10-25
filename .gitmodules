@@ -109,3 +109,6 @@
 [submodule "zsh/z"]
 	path = zsh/z
 	url = git://github.com/rupa/z.git
+[submodule "zsh/zsh-history-substring-search"]
+	path = zsh/zsh-history-substring-search
+	url = git://github.com/zsh-users/zsh-history-substring-search.git

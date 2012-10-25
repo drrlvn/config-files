@@ -142,6 +142,9 @@ alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
 alias reload='rehash; source ~/.zshrc'
 
+# enable zsh-history-substring-search
+. "${0:h}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
 # enable zsh-syntax-highlighting
 . "${0:h}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
