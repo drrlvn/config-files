@@ -150,3 +150,7 @@ alias reload='rehash; source ~/.zshrc'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
+
+# enable fasd
+PATH="${PATH}:${0:h}/fasd"
+eval "$(fasd --init auto)"
