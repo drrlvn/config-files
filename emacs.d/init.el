@@ -1,13 +1,17 @@
 (eval-when-compile
   (require 'cl))
 
+;; frame title
+(setq frame-title-format
+      '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
+
 ;; mode-line
 (setq-default
  mode-line-format
  (list
+  " "
   ;; the buffer name; the file name as a tool tip
-  '(:eval (propertize (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b") 'face '(font-lock-keyword-face bold)
-                      'help-echo (buffer-file-name)))
+  '(:eval (propertize "%b" 'face '(font-lock-keyword-face bold) 'help-echo (buffer-file-name)))
   " "
   ;; was this buffer modified since the last save?
   '(:eval (when (buffer-modified-p) (propertize "[*] " 'face 'font-lock-warning-face 'help-echo "Buffer has been modified")))
