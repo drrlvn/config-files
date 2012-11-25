@@ -289,6 +289,10 @@
 ;; rainbow-delimiters
 (autoload 'rainbow-delimiters-mode "rainbow-delimiters" nil t)
 
+;; smartparens
+(require 'smartparens)
+(smartparens-global-mode 1)
+
 ;; smex
 (defun load-smex (original-function)
   (interactive)
