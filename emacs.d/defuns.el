@@ -13,11 +13,19 @@ Goes backward if ARG is negative; error if CHAR not found."
   (insert char)
   (backward-char))
 
-(defun my/newline-and-indent-at-end ()
+(defun my/open-line-below ()
   "Go to end of line, then insert newline and indent."
   (interactive)
   (end-of-line)
   (newline-and-indent))
+
+(defun my/open-line-above ()
+  "Go to end of line, then insert newline and indent."
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
 
 (defun my/diff-current-buffer-with-file ()
   "View the differences between current buffer and its associated file."
@@ -103,6 +111,15 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
            (if (derived-mode-p 'prog-mode)
                (let ((mark-even-if-inactive transient-mark-mode))
                  (indent-region (region-beginning) (region-end) nil))))))
+
+(defun my/goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
 
 ;; for ace-jump-mode
 (defun my/add-super-char-to-ace-jump-mode (m c)

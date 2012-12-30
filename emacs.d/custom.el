@@ -5,6 +5,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-revert-verbose nil)
  '(blink-cursor-mode t)
  '(c-basic-offset 4)
  '(c-default-style "bsd")
@@ -23,9 +24,9 @@
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
  '(global-auto-revert-mode t)
+ '(global-auto-revert-non-file-buffers t)
  '(global-ede-mode t)
  '(global-hl-line-mode t)
- '(global-linum-mode t)
  '(global-visual-line-mode t)
  '(history-length 500)
  '(ibuffer-expert t)

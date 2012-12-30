@@ -103,7 +103,8 @@
 (global-set-key (kbd "<f9>") 'magit-status)
 (global-set-key (kbd "<f11>") 'my/cleanup-buffer)
 
-(global-set-key (kbd "M-<return>") 'my/newline-and-indent-at-end)
+(global-set-key (kbd "M-<return>") 'my/open-line-below)
+(global-set-key (kbd "M-S-<return>") 'my/open-line-above)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 
 (global-set-key (kbd "M-n") (lambda () (interactive) (scroll-up   3)))
@@ -127,6 +128,8 @@
 (global-set-key (kbd "M-Z") 'zap-to-char)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
+
+(global-set-key [remap goto-line] 'my/goto-line-with-feedback)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
