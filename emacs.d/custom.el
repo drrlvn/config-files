@@ -53,7 +53,6 @@
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-paren-style (quote expression))
- '(sp-cancel-autoskip-on-backward-movement nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))

@@ -292,10 +292,6 @@
 ;; rainbow-delimiters
 (autoload 'rainbow-delimiters-mode "rainbow-delimiters" nil t)
 
-;; smartparens
-(require 'smartparens)
-(smartparens-global-mode 1)
-
 ;; smex
 (defun load-smex (original-function)
   (interactive)
@@ -309,6 +305,10 @@
 ;; undo-tree
 (require 'undo-tree)
 (global-undo-tree-mode t)
+
+;; wrap-region
+(require 'wrap-region)
+(wrap-region-global-mode t)
 
 ;; YASnippet
 (setq yas-prompt-functions '(yas-completing-prompt)) ; use normal completion, which is helm in our case

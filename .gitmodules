@@ -115,9 +115,6 @@
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = git://github.com/clvv/fasd.git
-[submodule "emacs.d/packages/smartparens"]
-	path = emacs.d/packages/smartparens
-	url = git://github.com/Fuco1/smartparens.git
-[submodule "emacs.d/packages/dash"]
-	path = emacs.d/packages/dash
-	url = git://github.com/magnars/dash.el.git
+[submodule "emacs.d/packages/wrap-region"]
+	path = emacs.d/packages/wrap-region
+	url = git://github.com/rejeep/wrap-region.git
