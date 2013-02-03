@@ -59,19 +59,4 @@
  '(uniquify-separator ":")
  '(winner-mode t nil (winner)))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(diff-added ((t (:inherit diff-changed :foreground "royal blue"))))
- '(diff-changed ((t (:weight bold))))
- '(diff-refine-change ((t (:background "grey20"))))
- '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
- '(hl-line ((t (:background "#2a2a2a"))))
- '(magit-diff-add ((t (:inherit diff-added))))
- '(magit-diff-del ((t (:inherit diff-removed))))
- '(magit-item-highlight ((t nil)))
- '(rainbow-delimiters-unmatched-face ((t (:inherit error)))))
-
 (setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
