@@ -97,6 +97,40 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
       (backward-kill-sexp)
       (forward-char distance))))
 
+(defun my/rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (cond ((not (> (count-windows)1))
+         (message "You can't rotate a single window!"))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (while  (< i numWindows)
+           (let* (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2))
+                  )
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+
+(defun my/toggle-comment-line-or-region ()
+  "Toggle comment on line if no region is active, or comment region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."

@@ -12,7 +12,7 @@
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
- '(custom-safe-themes (quote ("4d66773cc6d32566eaf2c9c7ce11269d9eb26e428a1a4fa10e97bae46ff615da" default)))
+ '(custom-safe-themes (quote ("d1fd8fc0f54f6a1d2905eb0a914bc479486680a028b0964cd87f232309b786c5" default)))
  '(dabbrev-case-replace nil)
  '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
  '(desktop-save-mode t)
