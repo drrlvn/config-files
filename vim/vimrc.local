@@ -2,8 +2,40 @@ scriptencoding utf-8
 
 runtime macros/matchit.vim
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" github
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/tabular'
+Bundle 'mattn/zencoding-vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjbach/lusty'
+Bundle 'sjl/gundo.vim'
+Bundle 'slack/vim-bufexplorer'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+
+" snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+
+" vim-scripts
+Bundle 'YankRing.vim'
+"Bundle 'a'
+Bundle 'bufkill.vim'
+
+" non-github git
+Bundle 'git://git.wincent.com/command-t.git'
 
 " {{{ useful options
 set autoindent

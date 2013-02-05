@@ -1,66 +1,6 @@
-[submodule "vim/dotvim/bundle/tabular"]
-	path = vim/dotvim/bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
-[submodule "vim/dotvim/bundle/fugitive"]
-	path = vim/dotvim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/dotvim/bundle/snipmate"]
-	path = vim/dotvim/bundle/snipmate
-	url = git://github.com/msanders/snipmate.vim.git
-[submodule "vim/dotvim/bundle/zencoding"]
-	path = vim/dotvim/bundle/zencoding
-	url = git://github.com/mattn/zencoding-vim.git
-[submodule "vim/dotvim/bundle/surround"]
-	path = vim/dotvim/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "vim/dotvim/bundle/gundo"]
-	path = vim/dotvim/bundle/gundo
-	url = git://github.com/sjl/gundo.vim.git
-[submodule "vim/dotvim/bundle/command-t"]
-	path = vim/dotvim/bundle/command-t
-	url = git://git.wincent.com/command-t.git
-[submodule "vim/dotvim/bundle/abolish"]
-	path = vim/dotvim/bundle/abolish
-	url = git://github.com/tpope/vim-abolish.git
-[submodule "vim/dotvim/bundle/bufkill"]
-	path = vim/dotvim/bundle/bufkill
-	url = git://github.com/vim-scripts/bufkill.vim.git
-[submodule "vim/dotvim/bundle/gnupg"]
-	path = vim/dotvim/bundle/gnupg
-	url = git://github.com/vim-scripts/gnupg.vim.git
-[submodule "vim/dotvim/bundle/bufexplorer"]
-	path = vim/dotvim/bundle/bufexplorer
-	url = git://github.com/slack/vim-bufexplorer.git
-[submodule "vim/dotvim/bundle/indent-guides"]
-	path = vim/dotvim/bundle/indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "vim/dotvim/bundle/lusty-juggler"]
-	path = vim/dotvim/bundle/lusty-juggler
-	url = git://github.com/sjbach/lusty.git
-[submodule "vim/dotvim/bundle/nerdcommenter"]
-	path = vim/dotvim/bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/dotvim/bundle/nerdtree"]
-	path = vim/dotvim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule "vim/dotvim/bundle/repeat"]
-	path = vim/dotvim/bundle/repeat
-	url = git://github.com/tpope/vim-repeat.git
-[submodule "vim/dotvim/bundle/taglist"]
-	path = vim/dotvim/bundle/taglist
-	url = git://github.com/vim-scripts/taglist.vim.git
-[submodule "vim/dotvim/bundle/yankring"]
-	path = vim/dotvim/bundle/yankring
-	url = git://github.com/vim-scripts/YankRing.vim.git
-[submodule "vim/dotvim/bundle/ack.vim"]
-	path = vim/dotvim/bundle/ack.vim
-	url = git://github.com/mileszs/ack.vim.git
 [submodule "emacs.d/packages/tomorrow-theme"]
 	path = emacs.d/packages/tomorrow-theme
 	url = git://github.com/chriskempson/tomorrow-theme.git
-[submodule "vim/dotvim/bundle/supertab"]
-	path = vim/dotvim/bundle/supertab
-	url = git://github.com/ervandew/supertab.git
 [submodule "zsh/zsh-syntax-highlighting"]
 	path = zsh/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -70,3 +10,6 @@
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = git://github.com/clvv/fasd.git
+[submodule "vim/dotvim/bundle/vundle"]
+	path = vim/dotvim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
