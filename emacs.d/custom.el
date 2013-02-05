@@ -44,6 +44,7 @@
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)
  '(org-replace-disputed-keys t)
+ '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
@@ -60,3 +61,9 @@
  '(winner-mode t nil (winner)))
 
 (setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

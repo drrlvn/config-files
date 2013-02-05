@@ -55,66 +55,18 @@
 [submodule "vim/dotvim/bundle/ack.vim"]
 	path = vim/dotvim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
-[submodule "emacs.d/packages/drag-stuff"]
-	path = emacs.d/packages/drag-stuff
-	url = git://github.com/rejeep/drag-stuff.git
-[submodule "emacs.d/packages/ace-jump-mode"]
-	path = emacs.d/packages/ace-jump-mode
-	url = git://github.com/winterTTr/ace-jump-mode.git
-[submodule "emacs.d/packages/markdown-mode"]
-	path = emacs.d/packages/markdown-mode
-	url = git://jblevins.org/git/markdown-mode.git
-[submodule "emacs.d/packages/minimap"]
-	path = emacs.d/packages/minimap
-	url = git://randomsample.de/minimap.git
-[submodule "emacs.d/packages/zencoding"]
-	path = emacs.d/packages/zencoding
-	url = git://github.com/rooney/zencoding.git
 [submodule "emacs.d/packages/tomorrow-theme"]
 	path = emacs.d/packages/tomorrow-theme
 	url = git://github.com/chriskempson/tomorrow-theme.git
-[submodule "emacs.d/packages/magit"]
-	path = emacs.d/packages/magit
-	url = git://github.com/magit/magit.git
 [submodule "vim/dotvim/bundle/supertab"]
 	path = vim/dotvim/bundle/supertab
 	url = git://github.com/ervandew/supertab.git
-[submodule "emacs.d/packages/smex"]
-	path = emacs.d/packages/smex
-	url = git://github.com/nonsequitur/smex.git
-[submodule "emacs.d/packages/yasnippet"]
-	path = emacs.d/packages/yasnippet
-	url = git://github.com/capitaomorte/yasnippet.git
-[submodule "emacs.d/packages/expand-region"]
-	path = emacs.d/packages/expand-region
-	url = git://github.com/magnars/expand-region.el.git
-[submodule "emacs.d/packages/ack-and-a-half"]
-	path = emacs.d/packages/ack-and-a-half
-	url = git://github.com/jhelwig/ack-and-a-half.git
-[submodule "emacs.d/packages/iedit"]
-	path = emacs.d/packages/iedit
-	url = git://github.com/victorhge/iedit.git
-[submodule "emacs.d/packages/rainbow-delimiters"]
-	path = emacs.d/packages/rainbow-delimiters
-	url = git://github.com/jlr/rainbow-delimiters.git
-[submodule "emacs.d/packages/undo-tree"]
-	path = emacs.d/packages/undo-tree
-	url = git://github.com/emacsmirror/undo-tree.git
-[submodule "emacs.d/packages/helm"]
-	path = emacs.d/packages/helm
-	url = git://github.com/emacs-helm/helm.git
 [submodule "zsh/zsh-syntax-highlighting"]
 	path = zsh/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh/zsh-history-substring-search"]
 	path = zsh/zsh-history-substring-search
 	url = git://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "emacs.d/packages/multiple-cursors"]
-	path = emacs.d/packages/multiple-cursors
-	url = git://github.com/magnars/multiple-cursors.el.git
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = git://github.com/clvv/fasd.git
-[submodule "emacs.d/packages/wrap-region"]
-	path = emacs.d/packages/wrap-region
-	url = git://github.com/rejeep/wrap-region.git

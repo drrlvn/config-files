@@ -92,6 +92,25 @@
 
 (load "~/.emacs.d/defuns.el")
 
+(package-initialize)
+(my/install-packages
+ 'ace-jump-mode
+ 'ack-and-a-half
+ 'drag-stuff
+ 'expand-region
+ 'helm
+ 'iedit
+ 'magit
+ 'markdown-mode
+ 'multiple-cursors
+ 'rainbow-delimiters
+ 'smex
+ 'undo-tree
+ 'wrap-region
+ 'yasnippet
+ 'zencoding-mode
+ )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
 ;;
@@ -227,8 +246,6 @@
         (add-to-list 'load-path package-dir)))))
 
 ;; ace-jump-mode
-(autoload 'ace-jump-char-mode "ace-jump-mode" nil t)
-(autoload 'ace-jump-word-mode "ace-jump-mode" nil t)
 (global-set-key (kbd "C-`") 'ace-jump-char-mode)
 (global-set-key (kbd "C-~") 'ace-jump-word-mode)
 
@@ -240,24 +257,15 @@
                      ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
       do (my/add-super-char-to-ace-jump-mode 'char c))
 
-;; ack-and-a-half
-(autoload 'ack-and-a-half-same "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half-find-file-same "ack-and-a-half" nil t)
-(autoload 'ack-and-a-half-find-file "ack-and-a-half" nil t)
-
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
-(autoload 'drag-stuff-mode "drag-stuff" nil t)
 
 ;; expand-region
-(require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C--") 'er/contract-region)
 
 ;; helm
 (setq helm-input-idle-delay 0)
-(require 'helm-config)
 (helm-mode t)
 (global-set-key (kbd "C-x a") 'helm-c-apropos)
 (global-set-key (kbd "C-x f") 'helm-mini)
@@ -268,11 +276,7 @@
 (global-set-key (kbd "M-s o") 'helm-occur)
 
 ;; iedit
-(autoload 'iedit-mode "iedit" nil t)
 (global-set-key (kbd "C-;") 'iedit-mode)
-
-;; magit
-(autoload 'magit-status "magit" nil t)
 
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
@@ -284,41 +288,24 @@
       minimap-width-fraction 0.1)
 
 ;; multiple-cursors
-(autoload 'mc/mark-next-like-this "multiple-cursors" nil t)
-(autoload 'mc/mark-previous-like-this "multiple-cursors" nil t)
-(autoload 'mc/mark-all-like-this "multiple-cursors" nil t)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; rainbow-delimiters
-(autoload 'rainbow-delimiters-mode "rainbow-delimiters" nil t)
-
 ;; smex
-(defun load-smex (original-function)
-  (interactive)
-  (require 'smex)
-  (if (fboundp 'smex-initialize)
-      (smex-initialize))
-  (global-set-key (kbd "M-x") 'smex)
-  (funcall original-function))
-(global-set-key (kbd "M-x") (lambda () (interactive) (load-smex 'smex)))
+(global-set-key (kbd "M-x") 'smex)
 
 ;; undo-tree
-(require 'undo-tree)
 (global-undo-tree-mode t)
 
 ;; wrap-region
-(require 'wrap-region)
 (wrap-region-global-mode t)
 
 ;; YASnippet
 (setq yas-prompt-functions '(yas-completing-prompt)) ; use normal completion, which is helm in our case
-(require 'yasnippet)
 (yas-global-mode 1)
 
 ;; zencoding
-(autoload 'zencoding-mode "zencoding-mode" nil t)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 
