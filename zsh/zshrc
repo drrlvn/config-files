@@ -86,9 +86,16 @@ bindkey -s '\eh' '^Ucd; dirs -c^M'
 # Meta-p pops the dir stack
 bindkey -s '\ep' '^Upopd; dirs -v^M'
 # Meta-l to pipe the current command through less
-bindkey -s '\el' ' |& less^M'
+bindkey -s '\el' '^E |& less^M'
 # Meta-s to insert sudo in the beginning of the line
-bindkey -s '\es' '^Asudo ^M'
+prepend-sudo() {
+    if [[ "$BUFFER" != su(do|)\ * ]]; then
+        BUFFER="sudo $BUFFER"
+        (( CURSOR += 5 ))
+    fi
+}
+zle -N prepend-sudo
+bindkey '\es' prepend-sudo
 # Meta-r to delete command
 bindkey -s '\er' '^Ad'
 
