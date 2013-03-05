@@ -284,11 +284,6 @@
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; minimap
-(autoload 'minimap-create "minimap" nil t)
-(setq minimap-update-delay 0.1
-      minimap-width-fraction 0.1)
-
 ;; multiple-cursors
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
