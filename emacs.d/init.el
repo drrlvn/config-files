@@ -126,8 +126,10 @@
 (global-set-key (kbd "M-S-<return>") 'my/open-line-above)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 
-(global-set-key (kbd "M-n") (lambda () (interactive) (scroll-up   3)))
-(global-set-key (kbd "M-p") (lambda () (interactive) (scroll-down 3)))
+(global-set-key (kbd "C-n") (lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "C-p") (lambda () (interactive) (scroll-down 1)))
+(global-set-key (kbd "M-n") (lambda () (interactive) (scroll-other-window 1)))
+(global-set-key (kbd "M-p") (lambda () (interactive) (scroll-other-window -1)))
 
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
