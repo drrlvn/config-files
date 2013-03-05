@@ -238,14 +238,7 @@
 ;; external packages
 ;;
 
-;; automatically add all packages to load-path
-(let ((package-root-dir "~/.emacs.d/packages"))
-  (dolist (file (directory-files package-root-dir))
-    (let ((package-dir (concat package-root-dir "/" file)))
-      (when (and (not (equal file "."))
-                 (not (equal file ".."))
-                 (file-directory-p package-dir))
-        (add-to-list 'load-path package-dir)))))
+(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 ;; ace-jump-mode
 (global-set-key (kbd "C-`") 'ace-jump-char-mode)
