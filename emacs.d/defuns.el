@@ -139,6 +139,14 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
+(defun my/smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line."
+  (interactive)
+  (let ((oldpoint (point)))
+    (beginning-of-line-text)
+    (if (= oldpoint (point))
+        (beginning-of-line))))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."

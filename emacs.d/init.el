@@ -76,6 +76,7 @@
       ring-bell-function 'ignore
       resize-mini-windows t)
 (setq disabled-command-function nil)    ; enable all disabled commands
+(setq-default cursor-type 'bar)
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -99,6 +100,7 @@
  'drag-stuff
  'expand-region
  'helm
+ 'highlight-symbol
  'iedit
  'magit
  'markdown-mode
@@ -114,6 +116,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
 ;;
+(global-set-key (kbd "<home>") 'my/smart-beginning-of-line)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'my/revert-buffer-no-confirmation)
 (global-set-key (kbd "<f6>") 'ack-and-a-half)
@@ -134,6 +137,8 @@
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
+(global-set-key (kbd "C-,") 'highlight-symbol-prev)
+(global-set-key (kbd "C-.") 'highlight-symbol-next)
 
 (global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -194,6 +199,7 @@
                             (subword-mode t)
                             (drag-stuff-mode t)
                             (flyspell-prog-mode)
+                            (highlight-symbol-mode t)
                             (rainbow-delimiters-mode t)
                             (setq show-trailing-whitespace t)
                             (font-lock-add-keywords

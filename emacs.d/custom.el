@@ -26,7 +26,9 @@
  '(global-auto-revert-mode t)
  '(global-auto-revert-non-file-buffers t)
  '(global-ede-mode t)
+ '(global-hl-line-mode t)
  '(global-visual-line-mode t)
+ '(highlight-symbol-idle-delay 0)
  '(history-length 500)
  '(ibuffer-expert t)
  '(ibuffer-formats (quote ((mark modified read-only " " (name 25 25 :left :elide) " " (size 6 -1 :right) " " (mode 10 10 :left :elide) " " (filename-and-process -1 60 :left :elide)) (mark " " (name 30 -1) " " filename))))
@@ -36,6 +38,7 @@
  '(ido-max-prospects 128)
  '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
+ '(indicate-buffer-boundaries (quote left))
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message (user-login-name))
  '(inhibit-startup-screen t)
@@ -68,4 +71,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(hl-line ((t nil))))
