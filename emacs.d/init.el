@@ -99,6 +99,7 @@
  'ack-and-a-half
  'drag-stuff
  'expand-region
+ 'git-gutter
  'helm
  'highlight-symbol
  'iedit
@@ -137,8 +138,11 @@
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
+(global-set-key (kbd "C-'") 'highlight-symbol-at-point)
 (global-set-key (kbd "C-,") 'highlight-symbol-prev)
 (global-set-key (kbd "C-.") 'highlight-symbol-next)
+(global-set-key (kbd "C-{") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-}") 'git-gutter:next-hunk)
 
 (global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
