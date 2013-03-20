@@ -1,6 +1,16 @@
 (eval-when-compile
   (require 'cl))
 
+(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom
+;;
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
+(load "~/.emacs.d/defuns.el")
+
 ;; frame title
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
@@ -90,8 +100,6 @@
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
   (windmove-default-keybindings 'meta))
-
-(load "~/.emacs.d/defuns.el")
 
 (package-initialize)
 (my/install-packages
@@ -249,8 +257,6 @@
 ;; external packages
 ;;
 
-(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
-
 ;; ace-jump-mode
 (global-set-key (kbd "C-`") 'ace-jump-char-mode)
 (global-set-key (kbd "C-~") 'ace-jump-word-mode)
@@ -313,11 +319,3 @@
 
 ;; zencoding
 (add-hook 'sgml-mode-hook 'zencoding-mode)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; custom
-;;
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)

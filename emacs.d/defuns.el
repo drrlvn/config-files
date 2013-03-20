@@ -1,10 +1,14 @@
 (defun my/install-packages (&rest packages)
   "Install given packages."
-  (mapc
-   (lambda (package)
-     (unless (package-installed-p package)
-       (package-install package)))
-   packages))
+  (let ((refreshed-contents nil))
+    (mapc
+     (lambda (package)
+       (unless (package-installed-p package)
+         (unless refreshed-contents
+           (setq refreshed-contents t)
+           (package-refresh-contents))
+         (package-install package)))
+     packages)))
 
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
