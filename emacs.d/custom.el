@@ -5,6 +5,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-use-fuzzy t)
+ '(ac-use-menu-map t)
  '(auto-revert-verbose nil)
  '(blink-cursor-mode t)
  '(c-basic-offset 4)
@@ -23,6 +25,8 @@
  '(fill-column 80)
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
+ '(git-gutter:modified-sign "*")
+ '(global-auto-complete-mode t)
  '(global-auto-revert-mode t)
  '(global-auto-revert-non-file-buffers t)
  '(global-ede-mode t)
@@ -49,6 +53,7 @@
  '(mouse-wheel-progressive-speed nil)
  '(org-replace-disputed-keys t)
  '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(projectile-global-mode t)
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)
  '(save-place t nil (saveplace))

@@ -142,6 +142,8 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
 (defun my/smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line."
   (interactive)
+  (if (and this-command-keys-shift-translated (not mark-active))
+    (push-mark nil t t))
   (let ((oldpoint (point)))
     (beginning-of-line-text)
     (if (= oldpoint (point))

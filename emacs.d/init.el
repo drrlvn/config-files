@@ -97,6 +97,7 @@
 (my/install-packages
  'ace-jump-mode
  'ack-and-a-half
+ 'auto-complete
  'drag-stuff
  'expand-region
  'git-gutter
@@ -106,6 +107,7 @@
  'magit
  'markdown-mode
  'multiple-cursors
+ 'projectile
  'rainbow-delimiters
  'smex
  'undo-tree
@@ -118,6 +120,7 @@
 ;; mappings
 ;;
 (global-set-key (kbd "<home>") 'my/smart-beginning-of-line)
+(global-set-key (kbd "<end>") 'end-of-line)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'my/revert-buffer-no-confirmation)
 (global-set-key (kbd "<f6>") 'ack-and-a-half)
@@ -202,8 +205,6 @@
                             (semantic-mode t)
                             (subword-mode t)
                             (drag-stuff-mode t)
-                            (flyspell-prog-mode)
-                            (highlight-symbol-mode t)
                             (rainbow-delimiters-mode t)
                             (setq show-trailing-whitespace t)
                             (font-lock-add-keywords
@@ -262,6 +263,10 @@
                      ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
       do (my/add-super-char-to-ace-jump-mode 'char c))
 
+;; auto-complete
+(require 'auto-complete-config)
+(ac-config-default)
+
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
 
@@ -279,6 +284,7 @@
 (global-set-key (kbd "M-X")   'helm-M-x)
 (global-set-key (kbd "M-i")   'helm-semantic-or-imenu)
 (global-set-key (kbd "M-s o") 'helm-occur)
+(global-set-key (kbd "M-s m") 'helm-multi-occur)
 
 ;; iedit
 (global-set-key (kbd "C-;") 'iedit-mode)
