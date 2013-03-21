@@ -1,9 +1,12 @@
 {
 	"installed_packages":
 	[
+		"BracketHighlighter",
 		"Git",
 		"GitGutter",
 		"Package Control",
+		"SFTP",
+		"SublimeLinter",
 		"Tomorrow Color Schemes"
 	]
 }
