@@ -1,0 +1,9 @@
+{
+	"installed_packages":
+	[
+		"Git",
+		"GitGutter",
+		"Package Control",
+		"Tomorrow Color Schemes"
+	]
+}
