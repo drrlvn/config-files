@@ -104,7 +104,7 @@
 (package-initialize)
 (my/install-packages
  'ace-jump-mode
- 'ack-and-a-half
+ 'ag
  'auto-complete
  'drag-stuff
  'expand-region
@@ -131,7 +131,7 @@
 (global-set-key (kbd "<end>") 'end-of-line)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "<f5>") 'my/revert-buffer-no-confirmation)
-(global-set-key (kbd "<f6>") 'ack-and-a-half)
+(global-set-key (kbd "<f6>") 'ag-project-at-point)
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
