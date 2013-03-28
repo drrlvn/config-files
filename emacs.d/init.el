@@ -108,6 +108,7 @@
  'auto-complete
  'drag-stuff
  'expand-region
+ 'flycheck
  'git-gutter
  'helm
  'highlight-symbol
@@ -152,6 +153,7 @@
 (global-set-key (kbd "C-'") 'highlight-symbol-at-point)
 (global-set-key (kbd "C-,") 'highlight-symbol-prev)
 (global-set-key (kbd "C-.") 'highlight-symbol-next)
+(global-set-key (kbd "M-s o") 'highlight-symbol-occur)
 (global-set-key (kbd "C-{") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-}") 'git-gutter:next-hunk)
 
@@ -163,7 +165,8 @@
 (global-set-key (kbd "C-c d") 'my/diff-current-buffer-with-file)
 (global-set-key (kbd "C-c r") 'my/rotate-windows)
 (global-set-key (kbd "C-c C-;") 'my/toggle-comment-line-or-region)
-(global-set-key (kbd "M-s l") 'sort-lines)
+(global-set-key (kbd "M-s s") 'sort-lines)
+(global-set-key (kbd "M-s M-s") 'sort-lines)
 (global-set-key (kbd "M-s O") 'occur)
 (global-set-key (kbd "M-s e") 'my/sudo-edit)
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -230,20 +233,7 @@
 
 ;; Python
 (add-hook 'python-mode-hook (lambda ()
-                              (flymake-mode t)
-                              (local-set-key (kbd "S-<f7>") (lambda ()
-                                                              (interactive)
-                                                              (my/flymake-goto-error 'flymake-goto-prev-error)))
-                              (local-set-key (kbd "S-<f8>") (lambda ()
-                                                              (interactive)
-                                                              (my/flymake-goto-error 'flymake-goto-next-error)))))
-(require 'flymake)
-(defun flymake-pylint-init ()
-  (let ((local-file (file-relative-name
-                     (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace)
-                     (file-name-directory buffer-file-name))))
-    `("epylint" (,local-file))))
-(add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pylint-init))
+                              (flycheck-mode t)))
 
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
 
@@ -284,12 +274,13 @@
 (setq helm-input-idle-delay 0)
 (helm-mode t)
 (global-set-key (kbd "C-x a") 'helm-c-apropos)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-mini)
 (global-set-key (kbd "C-x g") 'helm-google-suggest)
 (global-set-key (kbd "C-x y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-X")   'helm-M-x)
-(global-set-key (kbd "M-i")   'helm-semantic-or-imenu)
-(global-set-key (kbd "M-s o") 'helm-occur)
+(global-set-key (kbd "M-X") 'helm-M-x)
+(global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
+(global-set-key (kbd "M-s M-o") 'helm-occur)
 (global-set-key (kbd "M-s m") 'helm-multi-occur)
 
 ;; iedit

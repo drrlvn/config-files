@@ -85,12 +85,6 @@ Interactively, with prefix argument, sudo \\[find-file] instead."
                          (setq isearch-word t)
                          (thing-at-point 'word))))
 
-(defun my/flymake-goto-error (goto-error-func)
-  "Call GOTO-ERROR-FUNC and print flymake error info to echo area."
-  (interactive)
-  (funcall goto-error-func)
-  (message "%s" (flymake-ler-text (caar (flymake-find-err-info flymake-err-info (flymake-current-line-no))))))
-
 (defun my/autoload-and-set-key (package keys-and-functions)
   "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
   (dolist (key-and-function keys-and-functions)
