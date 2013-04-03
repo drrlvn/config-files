@@ -121,6 +121,7 @@
  'smex
  'undo-tree
  'wrap-region
+ 'yaml-mode
  'yasnippet
  'zencoding-mode
  )
