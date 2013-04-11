@@ -148,6 +148,7 @@
 (global-set-key (kbd "M-n") (lambda () (interactive) (scroll-other-window 1)))
 (global-set-key (kbd "M-p") (lambda () (interactive) (scroll-other-window -1)))
 
+(global-set-key (kbd "C-z") 'undo-tree-undo)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)
@@ -214,7 +215,6 @@
 
 ;; Programming
 (add-hook 'prog-mode-hook (lambda ()
-                            (semantic-mode t)
                             (subword-mode t)
                             (drag-stuff-mode t)
                             (rainbow-delimiters-mode t)
@@ -294,6 +294,7 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)

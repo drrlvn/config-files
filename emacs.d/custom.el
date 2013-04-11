@@ -63,6 +63,7 @@
  '(scroll-margin 5)
  '(scroll-preserve-screen-position t)
  '(semantic-default-submodes (quote (global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
+ '(semantic-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(tab-width 4)
