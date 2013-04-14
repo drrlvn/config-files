@@ -138,6 +138,7 @@
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
 (global-set-key (kbd "<f11>") 'my/cleanup-buffer)
+(global-set-key (kbd "S-<f11>") 'delete-trailing-whitespace)
 
 (global-set-key (kbd "M-<return>") 'my/open-line-below)
 (global-set-key (kbd "M-S-<return>") 'my/open-line-above)
