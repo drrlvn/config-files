@@ -232,10 +232,6 @@
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
-;; Python
-(add-hook 'python-mode-hook (lambda ()
-                              (flycheck-mode t)))
-
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
 
 ;; Emacs Lisp
