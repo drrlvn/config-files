@@ -116,7 +116,6 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-dirs-first 'yes'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
@@ -126,6 +125,9 @@ zstyle ':completion:*:descriptions' format "%B- %d -%b"
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+# highlight differing character of completions
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==02=01}:${(s.:.)LS_COLORS}")'
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
