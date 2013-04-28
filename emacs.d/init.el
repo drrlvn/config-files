@@ -1,6 +1,8 @@
 (eval-when-compile
   (require 'cl))
 
+(require 'misc)
+
 (add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -144,6 +146,9 @@
 (global-set-key (kbd "M-S-<return>") 'my/open-line-above)
 (global-set-key (kbd "C-<delete>") 'kill-word)
 
+(global-set-key (kbd "C-<tab>") 'next-buffer)
+(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer)
+
 (global-set-key (kbd "C-n") (lambda () (interactive) (scroll-up 1)))
 (global-set-key (kbd "C-p") (lambda () (interactive) (scroll-down 1)))
 (global-set-key (kbd "M-n") (lambda () (interactive) (scroll-other-window 1)))
@@ -172,7 +177,7 @@
 (global-set-key (kbd "M-s M-s") 'sort-lines)
 (global-set-key (kbd "M-s O") 'occur)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "M-z") 'my/zap-to-char-exclusive)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)

@@ -16,15 +16,6 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max)))
 
-(defun my/zap-to-char-exclusive (arg char)
-  "Kill up to but excluding ARGth occurrence of CHAR.
-Case is ignored if `case-fold-search' is non-nil in the current buffer.
-Goes backward if ARG is negative; error if CHAR not found."
-  (interactive "p\ncZap to char: ")
-  (zap-to-char arg char)
-  (insert char)
-  (backward-char))
-
 (defun my/open-line-below ()
   "Go to end of line, then insert newline and indent."
   (interactive)
