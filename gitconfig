@@ -6,7 +6,7 @@
     ds      = !git --no-pager diff --stat
     dw      = diff --color-words
     fix     = commit --amend --no-edit
-    flush   = checkout --force
+    flush   = !git add -A && git commit -m "flush" && git reset --hard HEAD^
     l       = log --graph --decorate --pretty=oneline --abbrev-commit
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg      = log --graph --pretty=format:'%C(yellow)%h%C(bold red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
