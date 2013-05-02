@@ -3,6 +3,7 @@ scriptencoding utf-8
 runtime macros/matchit.vim
 
 set runtimepath+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -22,11 +23,11 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/powerline'
 
 " snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 
 " vim-scripts
@@ -48,7 +49,7 @@ set hidden
 set hlsearch
 set ignorecase smartcase
 set incsearch
-set laststatus=2 statusline=%n\ %F%m%r%h%w\ %y\ [%{&fileformat}\|%{&encoding}]\ %{fugitive#statusline()}%=[ASCII=\%03b,\ Hex=\%02B]\ [%02l,%02c%03V\|%02p%%]\ [%L]
+set laststatus=2
 set list listchars=tab:»\ ,trail:·
 set modeline
 set nocursorline
@@ -295,10 +296,6 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 set background=dark
 colorscheme Tomorrow-Night-Bright
-
-if has('gui_running')
-	highlight StatusLine gui=bold
-endif
 " }}}
 
 if has('cscope')
