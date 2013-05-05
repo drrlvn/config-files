@@ -153,6 +153,8 @@ alias reload='rehash; source ~/.zshrc'
 
 # enable zsh-history-substring-search
 . "${0:h}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+bindkey "[A" history-substring-search-up
+bindkey "[B" history-substring-search-down
 
 # enable zsh-syntax-highlighting
 . "${0:h}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
