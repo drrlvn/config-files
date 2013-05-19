@@ -140,7 +140,8 @@
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
 (global-set-key (kbd "<f11>") 'my/cleanup-buffer)
-(global-set-key (kbd "S-<f11>") 'delete-trailing-whitespace)
+(global-set-key (kbd "S-<f11>") 'whitespace-cleanup)
+(global-set-key (kbd "S-<f12>") (lambda () (interactive) (find-file user-init-file)))
 
 (global-set-key (kbd "M-<return>") 'my/open-line-below)
 (global-set-key (kbd "M-S-<return>") 'my/open-line-above)
@@ -230,7 +231,7 @@
                             (local-set-key (kbd "C-<delete>") 'subword-kill)
                             (local-set-key (kbd "C-<right>") 'subword-forward)
                             (local-set-key (kbd "C-<left>") 'subword-backward)
-                            (add-hook 'write-contents-functions 'delete-trailing-whitespace)))
+                            (add-hook 'before-save-hook 'whitespace-cleanup)))
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
@@ -240,6 +241,7 @@
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (eldoc-mode t)
                                   (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))

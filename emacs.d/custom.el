@@ -21,6 +21,7 @@
  '(diff-switches "-u")
  '(dired-isearch-filenames t)
  '(ediff-split-window-function (quote split-window-horizontally))
+ '(eldoc-idle-delay 0.1)
  '(electric-layout-mode t)
  '(fill-column 80)
  '(flyspell-auto-correct-binding [(control 39)])
