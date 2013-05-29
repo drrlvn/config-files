@@ -224,6 +224,7 @@
                             (subword-mode t)
                             (drag-stuff-mode t)
                             (rainbow-delimiters-mode t)
+                            (setq show-trailing-whitespace t)
                             (font-lock-add-keywords
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))

@@ -35,7 +35,6 @@
  '(global-git-gutter-mode t)
  '(global-hl-line-mode t)
  '(global-visual-line-mode t)
- '(global-whitespace-mode t)
  '(highlight-symbol-idle-delay 0)
  '(history-length 500)
  '(ibuffer-expert t)
@@ -72,7 +71,6 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(uniquify-separator ":")
- '(whitespace-style (quote (face trailing space-before-tab indentation empty space-after-tab tab-mark)))
  '(winner-mode t nil (winner)))
 
 (setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
