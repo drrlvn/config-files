@@ -274,6 +274,9 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C--") 'er/contract-region)
 
+;; git-gutter
+(global-git-gutter-mode t)
+
 ;; helm
 (setq helm-input-idle-delay 0)
 (helm-mode t)
