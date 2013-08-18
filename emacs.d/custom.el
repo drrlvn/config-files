@@ -31,7 +31,6 @@
  '(global-auto-revert-mode t)
  '(global-auto-revert-non-file-buffers t)
  '(global-ede-mode t)
- '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(global-visual-line-mode t)
  '(highlight-symbol-idle-delay 0)

@@ -189,6 +189,8 @@
 ;; modes
 ;;
 
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; ibuffer
 (setq ibuffer-saved-filter-groups '(("default"
                                      ("Dired" (mode . dired-mode))
