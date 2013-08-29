@@ -6,18 +6,16 @@
     ds      = !git --no-pager diff --stat
     dw      = diff --color-words
     fix     = commit --amend --no-edit
-    flush   = !git add -A && git commit -m "flush" && git reset --hard HEAD^
+    flush   = !git add -A :/ && git commit -m "flush" && git reset --hard HEAD^
     l       = log --graph --decorate --pretty=oneline --abbrev-commit
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg      = log --graph --pretty=format:'%C(yellow)%h%C(bold red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     lp      = log --patch
+    lpw     = log --patch --color-words
     ls      = log --stat
     ri      = rebase -i
     st      = status
     unstage = reset --
-
-[color]
-    ui = auto
 
 [color "diff"]
     old  = red bold
@@ -37,10 +35,11 @@
     default = upstream
 
 [rebase]
+    autosquash = true
     stat = true
 
 [pull]
-	rebase = true
+    rebase = true
 
 [user]
     name  = Dror Levin
