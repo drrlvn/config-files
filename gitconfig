@@ -46,7 +46,7 @@
     email = spatz@psybear.com
 
 [gui]
-    fontui = -family Ubuntu -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+    fontui = -family \"Open Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
     fontdiff = -family \"Ubuntu Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 
 [svn]
