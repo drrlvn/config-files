@@ -124,6 +124,7 @@
  'rainbow-delimiters
  'smex
  'undo-tree
+ 'whitespace-cleanup-mode
  'wrap-region
  'yaml-mode
  'yasnippet
@@ -235,9 +236,7 @@
                             (local-set-key (kbd "<return>") 'newline-and-indent)
                             (local-set-key (kbd "C-<delete>") 'subword-kill)
                             (local-set-key (kbd "C-<right>") 'subword-forward)
-                            (local-set-key (kbd "C-<left>") 'subword-backward)
-                            (unless (string-match-p "^makefile-" (symbol-name major-mode))
-                              (add-hook 'before-save-hook 'whitespace-cleanup))))
+                            (local-set-key (kbd "C-<left>") 'subword-backward)))
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda ()
