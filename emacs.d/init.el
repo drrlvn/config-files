@@ -188,6 +188,9 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
 
+(global-set-key (kbd "C-+") 'my/increment-number-at-point)
+(global-set-key (kbd "C-M-+") 'my/decrement-number-at-point)
+
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
 (global-set-key [remap goto-line] 'my/goto-line-with-feedback)

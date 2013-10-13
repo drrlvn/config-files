@@ -130,6 +130,20 @@
     (if (= oldpoint (point))
         (beginning-of-line))))
 
+(defun my/increment-number-at-point (n)
+  (interactive "p")
+  (let* ((bounds (bounds-of-thing-at-point 'word))
+         (start (car bounds))
+         (end (cdr bounds))
+         (str (buffer-substring start end))
+         (new-num (number-to-string (+ n (string-to-number str)))))
+    (delete-region start end)
+    (insert (if (s-starts-with? "0" str) (s-pad-left (length str) "0" new-num) new-num))))
+
+(defun my/decrement-number-at-point (n)
+  (interactive "p")
+  (my/increment-num-at-point (- n)))
+
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
            "When called interactively with no active region, use a single line instead."
