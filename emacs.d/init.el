@@ -116,6 +116,7 @@
  'helm-projectile
  'highlight-symbol
  'iedit
+ 'jedi
  'magit
  'markdown-mode
  'multiple-cursors
@@ -254,6 +255,9 @@
                                   (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))
+
+(add-hook 'python-mode-hook (lambda ()
+                              (jedi:setup)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external packages
