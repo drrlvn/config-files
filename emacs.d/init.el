@@ -113,6 +113,7 @@
  'flycheck
  'git-gutter
  'helm
+ 'helm-projectile
  'highlight-symbol
  'iedit
  'magit
@@ -238,7 +239,11 @@
                               (add-hook 'before-save-hook 'whitespace-cleanup))))
 
 ;; C/C++
-(add-hook 'c-mode-common-hook (lambda () (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+(add-hook 'c-mode-common-hook (lambda ()
+                                (local-set-key (kbd "C-c o") 'ff-find-other-file)
+                                (setq comment-start "/*"
+                                      comment-end "*/")))
+
 (add-to-list 'auto-mode-alist '("\\.x\\'" . c++-mode))
 
 (add-to-list 'auto-mode-alist '("SCons\\(truct\\|cript\\)\\'" . python-mode))
@@ -301,10 +306,14 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; multiple-cursors
+(global-set-key (kbd "C-|") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+
+;; projectile
+(global-set-key (kbd "C-c C-f") 'helm-projectile)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
@@ -317,6 +326,7 @@
 
 ;; YASnippet
 (setq yas-prompt-functions '(yas-completing-prompt)) ; use normal completion, which is helm in our case
+(setq yas-verbosity 1)
 (yas-global-mode 1)
 
 ;; zencoding
