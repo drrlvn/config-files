@@ -169,8 +169,9 @@
 (global-set-key (kbd "C-,") 'highlight-symbol-prev)
 (global-set-key (kbd "C-.") 'highlight-symbol-next)
 (global-set-key (kbd "M-s o") 'highlight-symbol-occur)
-(global-set-key (kbd "C-{") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-}") 'git-gutter:next-hunk)
+(global-set-key (kbd "M-{") 'git-gutter:previous-hunk)
+(global-set-key (kbd "M-}") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-c C-s") 'git-gutter:stage-hunk)
 
 (global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
