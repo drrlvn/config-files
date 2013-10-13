@@ -120,6 +120,7 @@
  'magit
  'markdown-mode
  'multiple-cursors
+ 'paredit
  'projectile
  'rainbow-delimiters
  'smex
@@ -134,6 +135,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mappings
 ;;
+(global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
+(global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "<home>") 'my/smart-beginning-of-line)
 (global-set-key (kbd "<end>") 'end-of-line)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -153,10 +156,10 @@
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer)
 
-(global-set-key (kbd "C-n") (lambda () (interactive) (scroll-up 1)))
-(global-set-key (kbd "C-p") (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd "M-n") (lambda () (interactive) (scroll-other-window 1)))
-(global-set-key (kbd "M-p") (lambda () (interactive) (scroll-other-window -1)))
+(global-set-key (kbd "C-n") (lambda (n) (interactive "p") (scroll-up n)))
+(global-set-key (kbd "C-p") (lambda (n) (interactive "p") (scroll-down n)))
+(global-set-key (kbd "M-n") (lambda (n) (interactive "p") (scroll-other-window n)))
+(global-set-key (kbd "M-p") (lambda (n) (interactive "p") (scroll-other-window (- n))))
 
 (global-set-key (kbd "C-z") 'undo-tree-undo)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
@@ -251,6 +254,7 @@
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (eldoc-mode t)
+                                  (paredit-mode t)
                                   (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)
                                   (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
                                             nil t)))
