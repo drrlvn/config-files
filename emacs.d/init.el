@@ -324,6 +324,7 @@
 (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
 ;; projectile
+(projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
 
 ;; smex

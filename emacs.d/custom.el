@@ -62,7 +62,7 @@
  '(org-replace-disputed-keys t)
  '(org-src-fontify-natively t)
  '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(projectile-global-mode t)
+ '(projectile-ack-function (quote ag-project))
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)
  '(save-place t nil (saveplace))
