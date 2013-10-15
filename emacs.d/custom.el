@@ -34,7 +34,6 @@
  '(global-ede-mode t)
  '(global-hl-line-mode t)
  '(global-visual-line-mode t)
- '(global-whitespace-cleanup-mode t)
  '(highlight-symbol-idle-delay 0)
  '(history-length 500)
  '(ibuffer-expert t)

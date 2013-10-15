@@ -333,6 +333,9 @@
 ;; undo-tree
 (global-undo-tree-mode t)
 
+;; whitespace-cleanup-mode
+(global-whitespace-cleanup-mode t)
+
 ;; wrap-region
 (wrap-region-global-mode t)
 
