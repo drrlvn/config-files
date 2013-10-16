@@ -325,7 +325,7 @@
 
 ;; projectile
 (projectile-global-mode t)
-(global-set-key (kbd "C-c C-f") 'helm-projectile)
+(global-set-key (kbd "C-c f") 'helm-projectile)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
