@@ -142,7 +142,7 @@
 
 (defun my/decrement-number-at-point (n)
   (interactive "p")
-  (my/increment-num-at-point (- n)))
+  (my/increment-number-at-point (- n)))
 
 (dolist (command '(kill-ring-save kill-region))
   (eval `(defadvice ,command (before current-line-or-region activate compile)
