@@ -110,11 +110,14 @@
  'auto-complete
  'drag-stuff
  'expand-region
+ 'flx-ido
  'flycheck
  'git-gutter
+ 'guide-key
  'helm
  'helm-projectile
  'highlight-symbol
+ 'ido-vertical-mode
  'iedit
  'jedi
  'magit
@@ -296,11 +299,13 @@
 ;; git-gutter
 (global-git-gutter-mode t)
 
+;; guide-key
+(guide-key-mode t)
+
 ;; helm
 (setq helm-input-idle-delay 0)
 (helm-mode t)
 (global-set-key (kbd "C-x a") 'helm-c-apropos)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-mini)
 (global-set-key (kbd "C-x g") 'helm-google-suggest)
 (global-set-key (kbd "C-x y") 'helm-show-kill-ring)
@@ -308,6 +313,10 @@
 (global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
 (global-set-key (kbd "M-s M-o") 'helm-occur)
 (global-set-key (kbd "M-s m") 'helm-multi-occur)
+
+;; ido
+(ido-vertical-mode t)
+(flx-ido-mode t)
 
 ;; iedit
 (global-set-key (kbd "C-;") 'iedit-mode)
@@ -322,6 +331,12 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+
+;; paredit
+;; making paredit work with delete-selection-mode
+(put 'paredit-forward-delete 'delete-selection 'supersede)
+(put 'paredit-backward-delete 'delete-selection 'supersede)
+(put 'paredit-newline 'delete-selection t)
 
 ;; projectile
 (projectile-global-mode t)
