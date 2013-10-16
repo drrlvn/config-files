@@ -78,6 +78,8 @@
  '(show-paren-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(uniquify-separator ":")
  '(winner-mode t nil (winner)))
