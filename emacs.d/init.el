@@ -193,6 +193,7 @@
 
 (global-set-key (kbd "C-+") 'my/increment-number-at-point)
 (global-set-key (kbd "C-M-+") 'my/decrement-number-at-point)
+(global-set-key (kbd "C-#") 'copy-from-above-command)
 
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
@@ -329,8 +330,8 @@
 (global-set-key (kbd "C-|") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this-dwim)
 
 ;; paredit
 ;; making paredit work with delete-selection-mode

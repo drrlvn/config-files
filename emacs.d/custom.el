@@ -36,6 +36,7 @@
  '(global-visual-line-mode t)
  '(guide-key/guide-key-sequence (quote ("C-x r" "C-x v" "C-x 8" "C-c p")))
  '(guide-key/popup-window-position (quote bottom))
+ '(guide-key/recursive-key-sequence-flag t)
  '(highlight-symbol-idle-delay 0)
  '(history-length 500)
  '(ibuffer-expert t)
