@@ -113,6 +113,7 @@
  'flx-ido
  'flycheck
  'git-gutter
+ 'git-messenger
  'guide-key
  'helm
  'helm-projectile
@@ -299,6 +300,9 @@
 
 ;; git-gutter
 (global-git-gutter-mode t)
+
+;; git-messenger
+(global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
 
 ;; guide-key
 (guide-key-mode t)
