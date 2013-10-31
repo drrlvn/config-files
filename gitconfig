@@ -25,6 +25,7 @@
 [core]
     pager          = less
     sparseCheckout = true
+    abbrev = 12
 
 [diff]
     renamelimit      = 0
