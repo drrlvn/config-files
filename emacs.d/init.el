@@ -108,11 +108,11 @@
  'ace-jump-mode
  'ag
  'auto-complete
+ 'diff-hl
  'drag-stuff
  'expand-region
  'flx-ido
  'flycheck
- 'git-gutter
  'git-messenger
  'guide-key
  'helm
@@ -126,6 +126,7 @@
  'multiple-cursors
  'paredit
  'projectile
+ 'protobuf-mode
  'rainbow-delimiters
  'smex
  'undo-tree
@@ -173,9 +174,6 @@
 (global-set-key (kbd "C-,") 'highlight-symbol-prev)
 (global-set-key (kbd "C-.") 'highlight-symbol-next)
 (global-set-key (kbd "M-s o") 'highlight-symbol-occur)
-(global-set-key (kbd "M-{") 'git-gutter:previous-hunk)
-(global-set-key (kbd "M-}") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-c C-s") 'git-gutter:stage-hunk)
 
 (global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -291,15 +289,15 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+;; diff-hl
+(global-diff-hl-mode t)
+
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
 
 ;; expand-region
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C--") 'er/contract-region)
-
-;; git-gutter
-(global-git-gutter-mode t)
 
 ;; git-messenger
 (global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
