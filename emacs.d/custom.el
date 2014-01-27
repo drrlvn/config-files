@@ -59,7 +59,6 @@
  '(initial-scratch-message nil)
  '(jedi:complete-on-dot t)
  '(jedi:get-in-function-call-delay 0)
- '(jedi:server-command (quote ("python2" "/home/drorl/.emacs.d/elpa/jedi-20130714.1415/jediepcserver.py")))
  '(jedi:tooltip-method nil)
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)

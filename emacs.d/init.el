@@ -324,6 +324,10 @@
 ;; iedit
 (global-set-key (kbd "C-;") 'iedit-mode)
 
+;; jedi
+(require 'jedi)
+(setq jedi:server-command (list "python2" jedi:server-script))
+
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
