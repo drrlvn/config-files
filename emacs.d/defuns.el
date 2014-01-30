@@ -155,7 +155,7 @@
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate compile)
            "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
-           (if (derived-mode-p 'prog-mode)
+           (if (and (derived-mode-p 'prog-mode) (not (derived-mode-p 'python-mode)))
                (let ((mark-even-if-inactive transient-mark-mode))
                  (indent-region (region-beginning) (region-end) nil))))))
 
