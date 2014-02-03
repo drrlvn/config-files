@@ -1,7 +1,9 @@
 [alias]
     ai      = add -i
     ap      = add -p
+    br      = branch
     co      = checkout
+    ci      = commit
     dc      = diff --cached
     ds      = !git --no-pager diff --stat
     dw      = diff --color-words
@@ -14,7 +16,7 @@
     lpw     = log --patch --color-words
     ls      = log --stat
     ri      = rebase -i
-    st      = status
+    st      = status -sb
     unstage = reset --
 
 [color "diff"]
