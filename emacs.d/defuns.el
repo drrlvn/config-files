@@ -16,6 +16,14 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max)))
 
+(defun my/filter-buffer ()
+  "Run shell command on buffer and replace it with the output."
+  (interactive)
+  (let ((prev-point (point)))
+    (call-process-region (point-min) (point-max) shell-file-name t t nil shell-command-switch
+                         (read-shell-command "Shell command on buffer: "))
+    (goto-char prev-point)))
+
 (defun my/open-line-below ()
   "Go to end of line, then insert newline and indent."
   (interactive)

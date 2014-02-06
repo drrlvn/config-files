@@ -189,6 +189,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
+(global-set-key (kbd "C-%") 'my/filter-buffer)
 
 (global-set-key (kbd "C-+") 'my/increment-number-at-point)
 (global-set-key (kbd "C-M-+") 'my/decrement-number-at-point)
