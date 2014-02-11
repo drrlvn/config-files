@@ -56,6 +56,17 @@
   (kill-buffer)
   (other-window -1))
 
+(defun my/url-edit (url)
+  "Open a new buffer with the contents of the URL provided."
+  (interactive "sURL: ")
+  (url-retrieve url
+                (lambda (status url)
+                  (progn
+                    (rename-buffer url)
+                    (fundamental-mode)
+                    (switch-to-buffer (current-buffer))))
+                (list url)))
+
 (defun my/ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file."
   (interactive)
@@ -181,3 +192,5 @@
   (global-set-key
    (read-kbd-macro (concat "s-" (string c)))
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
+
+(provide 'config-defuns)
