@@ -1,4 +1,7 @@
-(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
+;;; init.el --- emacs config
+;;; Commentary:
+;;; Code:
+
 (add-to-list 'load-path "~/.emacs.d")
 
 (setq custom-file "~/.emacs.d/custom.el")
@@ -9,3 +12,5 @@
 (require 'config-keys)
 (require 'config-hooks)
 (require 'config-packages)
+
+;;; init.el ends here

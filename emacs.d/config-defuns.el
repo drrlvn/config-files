@@ -1,3 +1,7 @@
+;;; config-defuns.el --- custom functions, macros and advices
+;;; Commentary:
+;;; Code:
+
 (defun my/install-packages (&rest packages)
   "Install given packages."
   (let ((refreshed-contents nil))
@@ -194,3 +198,4 @@
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
 
 (provide 'config-defuns)
+;;; config-defuns.el ends here

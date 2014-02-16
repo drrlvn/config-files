@@ -1,3 +1,7 @@
+;;; config-packages.el --- external packages configuration
+;;; Commentary:
+;;; Code:
+
 (eval-when-compile
   (require 'cl))
 
@@ -63,6 +67,7 @@
 
 ;; git-messenger
 (global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
+(setq git-messenger:show-detail t)
 
 ;; guide-key
 (guide-key-mode t)
@@ -136,3 +141,4 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 (provide 'config-packages)
+;;; config-packages.el ends here

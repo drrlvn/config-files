@@ -1,3 +1,7 @@
+;;; config-hooks.el --- major mode hooks
+;;; Commentary:
+;;; Code:
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; ibuffer
@@ -66,3 +70,4 @@
                               (jedi:setup)))
 
 (provide 'config-hooks)
+;;; config-hooks.el ends here

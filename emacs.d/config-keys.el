@@ -1,3 +1,9 @@
+;;; config-keys.el --- key binding configuration
+;;; Commentary:
+;;; Code:
+
+(require 'misc) ; needed for zap-up-to-char
+
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "<home>") 'my/smart-beginning-of-line)
@@ -58,3 +64,4 @@
 (global-set-key [remap goto-line] 'my/goto-line-with-feedback)
 
 (provide 'config-keys)
+;;; config-keys.el ends here

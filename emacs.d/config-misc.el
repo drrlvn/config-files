@@ -1,3 +1,7 @@
+;;; config-misc.el --- misc configuration
+;;; Commentary:
+;;; Code:
+
 ;; frame title
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
@@ -89,3 +93,4 @@
   (windmove-default-keybindings 'meta))
 
 (provide 'config-misc)
+;;; config-misc.el ends here

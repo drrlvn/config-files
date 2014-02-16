@@ -1,3 +1,8 @@
+;;; custom.el --- customize stuff
+;;; Commentary:
+;;; Code:
+
+(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
 
 (custom-set-variables
@@ -95,3 +100,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; custom.el ends here
