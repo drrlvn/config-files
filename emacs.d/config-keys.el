@@ -30,7 +30,7 @@
 (global-set-key (kbd "M-n") (lambda (n) (interactive "p") (scroll-other-window n)))
 (global-set-key (kbd "M-p") (lambda (n) (interactive "p") (scroll-other-window (- n))))
 
-(global-set-key (kbd "C-z") 'undo-tree-undo)
+(global-set-key (kbd "C-z") 'repeat)
 (global-set-key (kbd "C-!") 'kill-this-buffer)
 (global-set-key (kbd "C-M-!") 'my/kill-buffer-other-window)
 (global-set-key (kbd "C-#") 'calculator)

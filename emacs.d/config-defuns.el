@@ -197,5 +197,10 @@
    (read-kbd-macro (concat "s-" (string c)))
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
 
+(defadvice projectile-kill-buffers (around no-y-or-n activate)
+  (flet ((yes-or-no-p (&rest args) t)
+         (y-or-n-p (&rest args) t))
+    ad-do-it))
+
 (provide 'config-defuns)
 ;;; config-defuns.el ends here
