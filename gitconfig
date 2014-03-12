@@ -34,9 +34,6 @@
     renames          = copy
     ignoreSubmodules = dirty
 
-[push]
-    default = upstream
-
 [rebase]
     autosquash = true
     stat = true
