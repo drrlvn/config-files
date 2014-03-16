@@ -19,6 +19,7 @@
  'guide-key
  'helm
  'helm-projectile
+ 'helm-swoop
  'highlight-symbol
  'ido-vertical-mode
  'iedit
@@ -83,6 +84,10 @@
 (global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
 (global-set-key (kbd "M-s M-o") 'helm-occur)
 (global-set-key (kbd "M-s m") 'helm-multi-occur)
+
+;; helm-swoop
+(global-set-key (kbd "C-s") (lambda () (interactive) (helm-swoop :$query "")))
+(global-set-key (kbd "C-S-s") 'helm-swoop)
 
 ;; ido
 (ido-vertical-mode t)
