@@ -75,6 +75,7 @@
  '(org-src-fontify-natively t)
  '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(projectile-ack-function (quote ag-project))
+ '(projectile-switch-project-action (quote helm-projectile))
  '(projectile-use-git-grep t)
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)
