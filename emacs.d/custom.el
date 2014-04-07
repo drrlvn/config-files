@@ -26,6 +26,7 @@
  '(desktop-save-mode t)
  '(diff-switches "-u")
  '(dired-isearch-filenames t)
+ '(doc-view-continuous t)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(eldoc-idle-delay 0.1)
  '(electric-layout-mode t)
