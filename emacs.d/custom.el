@@ -30,6 +30,8 @@
  '(ediff-split-window-function (quote split-window-horizontally))
  '(eldoc-idle-delay 0.1)
  '(electric-layout-mode t)
+ '(emmet-indentation 2)
+ '(emmet-preview-default nil)
  '(fill-column 80)
  '(flycheck-clang-language-standard "c++11")
  '(flyspell-auto-correct-binding [(control 39)])
@@ -58,6 +60,7 @@
  '(ido-max-prospects 128)
  '(ido-mode (quote both) nil (ido))
  '(ido-use-faces nil)
+ '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote left))
  '(indicate-empty-lines t)
@@ -103,6 +106,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(cursor ((t (:background "#eaeaea")))))
 
 ;;; custom.el ends here

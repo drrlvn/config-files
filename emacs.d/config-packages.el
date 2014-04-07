@@ -12,6 +12,7 @@
  'auto-complete
  'diff-hl
  'drag-stuff
+ 'emmet-mode
  'expand-region
  'flx-ido
  'flycheck
@@ -33,11 +34,11 @@
  'rainbow-delimiters
  'smex
  'undo-tree
+ 'web-mode
  'whitespace-cleanup-mode
  'wrap-region
  'yaml-mode
  'yasnippet
- 'zencoding-mode
  )
 
 ;; ace-jump-mode
@@ -61,6 +62,10 @@
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
+
+;; emmet-mode
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
 
 ;; expand-region
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -131,6 +136,10 @@
 ;; undo-tree
 (global-undo-tree-mode t)
 
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
+(add-to-list 'ac-modes 'web-mode)
+
 ;; whitespace-cleanup-mode
 (global-whitespace-cleanup-mode t)
 
@@ -141,9 +150,6 @@
 (setq yas-prompt-functions '(yas-completing-prompt)) ; use normal completion, which is helm in our case
 (setq yas-verbosity 1)
 (yas-global-mode 1)
-
-;; zencoding
-(add-hook 'sgml-mode-hook 'zencoding-mode)
 
 (provide 'config-packages)
 ;;; config-packages.el ends here
