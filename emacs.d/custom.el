@@ -44,7 +44,7 @@
  '(global-ede-mode t)
  '(global-hl-line-mode t)
  '(global-visual-line-mode t)
- '(guide-key/guide-key-sequence (quote ("C-x r" "C-x v" "C-x 8" "C-c p")))
+ '(guide-key/guide-key-sequence (quote ("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-e" "C-c C-t" "C-c C-b")))
  '(guide-key/idle-delay 0.0)
  '(guide-key/popup-window-position (quote bottom))
  '(guide-key/recursive-key-sequence-flag t)
