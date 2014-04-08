@@ -206,5 +206,12 @@
          (y-or-n-p (&rest args) t))
     ad-do-it))
 
+(defadvice split-window-right (after auto-balance-windows activate)
+  (balance-windows))
+(defadvice split-window-below (after auto-balance-windows activate)
+  (balance-windows))
+(defadvice delete-window (after auto-balance-windows activate)
+  (balance-windows))
+
 (provide 'config-defuns)
 ;;; config-defuns.el ends here
