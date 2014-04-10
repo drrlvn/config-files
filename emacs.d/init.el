@@ -10,7 +10,7 @@
 (require 'config-defuns)
 (require 'config-misc)
 (require 'config-keys)
-(require 'config-hooks)
 (require 'config-packages)
+(require 'config-hooks)
 
 ;;; init.el ends here
