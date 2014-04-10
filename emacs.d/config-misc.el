@@ -89,7 +89,9 @@
 
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
-  (windmove-default-keybindings 'meta))
+  (windmove-default-keybindings 'meta)
+  (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
+  (add-to-list 'exec-path "C:/Go/bin"))
 
 (provide 'config-misc)
 ;;; config-misc.el ends here

@@ -17,6 +17,7 @@
  'flx-ido
  'flycheck
  'git-messenger
+ 'go-mode
  'guide-key
  'helm
  'helm-projectile
