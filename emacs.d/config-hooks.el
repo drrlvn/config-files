@@ -11,6 +11,7 @@
                                                (mode . c-mode)
                                                (mode . c++-mode)))
                                      ("Python" (mode . python-mode))
+                                     ("Go" (mode . go-mode))
                                      ("Elisp" (mode . emacs-lisp-mode))
                                      ("Docs" (or
                                               (mode . org-mode)
