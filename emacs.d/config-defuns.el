@@ -167,13 +167,17 @@
   (interactive "p")
   (my/increment-number-at-point (- n)))
 
-(dolist (command '(kill-ring-save kill-region))
-  (eval `(defadvice ,command (before current-line-or-region activate compile)
-           "When called interactively with no active region, use a single line instead."
-           (interactive
-            (if (use-region-p)
-                (list (region-beginning) (region-end))
-              (list (line-beginning-position) (line-beginning-position 2)))))))
+(defun my/kill-line-or-region ()
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (kill-whole-line)))
+
+(defun my/save-line-or-region ()
+  (interactive)
+  (if (region-active-p)
+      (kill-ring-save (region-beginning) (region-end))
+    (kill-ring-save (line-beginning-position) (line-beginning-position 2))))
 
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate compile)
