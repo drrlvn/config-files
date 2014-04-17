@@ -17,8 +17,10 @@
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max)))
+  (if (derived-mode-p 'go-mode)
+      (gofmt)
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max))))
 
 (defun my/filter-buffer ()
   "Run shell command on buffer and replace it with the output."
