@@ -34,6 +34,7 @@
  'protobuf-mode
  'rainbow-delimiters
  'smex
+ 'sublimity
  'undo-tree
  'web-mode
  'whitespace-cleanup-mode
@@ -133,6 +134,12 @@
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
+
+;; sublimity
+(require 'sublimity-scroll)
+(sublimity-mode 1)
+(setq sublimity-scroll-weight 10
+      sublimity-scroll-drift-length 5)
 
 ;; undo-tree
 (global-undo-tree-mode t)
