@@ -93,7 +93,6 @@
 (global-set-key (kbd "M-s m") 'helm-multi-occur)
 
 ;; helm-swoop
-(global-set-key (kbd "C-s") (lambda () (interactive) (helm-swoop :$query "")))
 (global-set-key (kbd "C-S-s") 'helm-swoop)
 
 ;; ido
@@ -130,7 +129,9 @@
 
 ;; projectile
 (projectile-global-mode t)
-(global-set-key (kbd "C-c f") 'helm-projectile)
+(global-set-key (kbd "C-c C-f") 'helm-projectile)
+(eval-after-load "python-mode"
+  '(define-key python-mode-map (kbd "C-c C-f") nil))
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)

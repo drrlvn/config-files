@@ -13,6 +13,11 @@
                                      ("Python" (mode . python-mode))
                                      ("Go" (mode . go-mode))
                                      ("Elisp" (mode . emacs-lisp-mode))
+                                     ("Web" (or
+                                             (mode . sgml-mode)
+                                             (mode . web-mode)
+                                             (mode . css-mode)
+                                             (mode . js-mode)))
                                      ("Docs" (or
                                               (mode . org-mode)
                                               (mode . rst-mode)))
