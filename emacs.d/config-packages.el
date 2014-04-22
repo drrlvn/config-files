@@ -130,8 +130,6 @@
 ;; projectile
 (projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
-(eval-after-load "python-mode"
-  '(define-key python-mode-map (kbd "C-c C-f") nil))
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)

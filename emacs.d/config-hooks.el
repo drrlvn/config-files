@@ -73,6 +73,7 @@
                                             nil t)))
 
 (add-hook 'python-mode-hook (lambda ()
+                              (define-key python-mode-map (kbd "C-c C-f") nil)
                               (jedi:setup)))
 
 (provide 'config-hooks)
