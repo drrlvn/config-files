@@ -105,7 +105,9 @@
   "Replace the preceding sexp with its value."
   (interactive)
   (let ((original-point (point)))
-    (eval-last-sexp t)
+    (let ((eval-expression-print-length nil)
+          (eval-expression-print-level nil))
+      (eval-last-sexp t))
     (let ((distance (- (point) original-point)))
       (backward-char distance)
       (backward-kill-sexp)

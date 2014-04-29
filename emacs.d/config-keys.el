@@ -61,6 +61,8 @@
 (global-set-key (kbd "C-M-+") 'my/decrement-number-at-point)
 (global-set-key (kbd "C-#") 'copy-from-above-command)
 
+(global-set-key (kbd "C-h C-f") 'find-function)
+
 (define-key isearch-mode-map (kbd "C-*") 'my/isearch-current-region-or-word)
 
 (global-set-key [remap goto-line] 'my/goto-line-with-feedback)
