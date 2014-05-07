@@ -33,7 +33,7 @@
  '(emmet-indentation 2)
  '(emmet-preview-default nil)
  '(fill-column 80)
- '(flycheck-clang-language-standard "c++11")
+ '(flycheck-clang-language-standard "c++1y")
  '(flyspell-auto-correct-binding [(control 39)])
  '(frame-background-mode (quote dark))
  '(glasses-separate-parentheses-p nil)
