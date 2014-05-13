@@ -21,7 +21,6 @@
  'guide-key
  'helm
  'helm-projectile
- 'helm-projectile-all
  'helm-swoop
  'highlight-symbol
  'ido-vertical-mode
@@ -131,7 +130,7 @@
 ;; projectile
 (projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
-(global-set-key (kbd "C-c f") 'helm-projectile-all)
+(global-set-key (kbd "C-c f") 'projectile-find-file-in-known-projects)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
