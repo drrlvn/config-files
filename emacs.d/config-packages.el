@@ -30,6 +30,7 @@
  'markdown-mode
  'multiple-cursors
  'paredit
+ 'popwin
  'projectile
  'protobuf-mode
  'rainbow-delimiters
