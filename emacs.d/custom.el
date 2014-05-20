@@ -78,7 +78,6 @@
  '(org-replace-disputed-keys t)
  '(org-src-fontify-natively t)
  '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(popwin-mode t)
  '(projectile-ack-function (quote ag-project))
  '(projectile-switch-project-action (quote helm-projectile))
  '(projectile-use-git-grep t)

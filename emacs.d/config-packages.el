@@ -128,6 +128,9 @@
 (put 'paredit-backward-delete 'delete-selection 'supersede)
 (put 'paredit-newline 'delete-selection t)
 
+;; popwin
+(popwin-mode t)
+
 ;; projectile
 (projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
