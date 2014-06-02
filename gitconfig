@@ -39,7 +39,7 @@
     stat = true
 
 [pull]
-    rebase = true
+    ff = only
 
 [user]
     name  = Dror Levin
