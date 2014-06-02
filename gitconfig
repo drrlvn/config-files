@@ -41,6 +41,9 @@
 [pull]
     ff = only
 
+[push]
+    default = simple
+
 [user]
     name  = Dror Levin
     email = spatz@psybear.com
