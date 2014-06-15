@@ -166,3 +166,6 @@ ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
 # enable fasd
 PATH="${PATH}:${0:h}/fasd"
 eval "$(fasd --init auto)"
+
+# enable command-not-found hook on arch
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
