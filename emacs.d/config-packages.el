@@ -83,6 +83,7 @@
 
 ;; helm
 (setq helm-input-idle-delay 0)
+(setq helm-exit-idle-delay 0)
 (helm-mode t)
 (global-set-key (kbd "C-x a") 'helm-c-apropos)
 (global-set-key (kbd "C-x f") 'helm-mini)
