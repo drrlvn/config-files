@@ -147,6 +147,7 @@ alias mv='mv -i'
 alias rm='rm -Iv'
 alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
+alias tree='tree --dirsfirst'
 alias reload='rehash; source ~/.zshrc'
 
 # enable zsh-history-substring-search
