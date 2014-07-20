@@ -17,6 +17,7 @@
  'flx-ido
  'flycheck
  'git-messenger
+ 'git-timemachine
  'go-mode
  'guide-key
  'helm
@@ -77,6 +78,9 @@
 ;; git-messenger
 (global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
 (setq git-messenger:show-detail t)
+
+;; git-timemachine
+(global-set-key (kbd "C-x v t") 'git-timemachine)
 
 ;; guide-key
 (guide-key-mode t)
