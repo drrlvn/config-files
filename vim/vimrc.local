@@ -3,40 +3,34 @@ scriptencoding utf-8
 runtime macros/matchit.vim
 
 set runtimepath+=~/.vim/bundle/vundle/
-set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " github
-Bundle 'ervandew/supertab'
-Bundle 'godlygeek/tabular'
-Bundle 'mileszs/ack.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'sjbach/lusty'
-Bundle 'sjl/gundo.vim'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'Lokaltog/powerline'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'rking/ag.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'sjbach/lusty'
+Plugin 'sjl/gundo.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
 
 " snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " vim-scripts
-Bundle 'YankRing.vim'
-"Bundle 'a'
-Bundle 'bufkill.vim'
-
-" non-github git
-Bundle 'git://git.wincent.com/command-t.git'
+Plugin 'bufkill.vim'
 
 " {{{ useful options
 set autoindent
@@ -86,6 +80,10 @@ au BufRead,BufNewFile * let b:args=''
 
 let python_highlight_all=1
 
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
 " gundo
 let g:gundo_right = 1
 
@@ -115,9 +113,6 @@ let OmniCpp_DefaultNamespaces   = ["std", "_GLIBCXX_STD"]
 
 " gnupg
 let g:GPGPreferSign = 1
-
-" yankring
-let g:yankring_history_dir = '~/.vim'
 " }}}
 
 " {{{ functions
@@ -207,8 +202,7 @@ noremap <Leader>es :sp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>ev :vsp <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 noremap <Leader>et :tabe <C-r>=substitute(expand("%:p:h"), ' ', '\\\ ', 'g')<CR>/
 
-nmap <silent> <Leader>a :A<CR>
-nmap <silent> <Leader>v :source $MYVIMRC<CR>
+nmap <silent> <Leader>r :source $MYVIMRC<CR>
 
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
@@ -223,7 +217,6 @@ nnoremap <silent> _ :setl spell!<CR>
 vnoremap < <gv
 vnoremap > >gv
 nnoremap <silent> <Leader>- :setl wrap! linebreak! list!<CR>
-nnoremap <C-p> :Lodgeit<CR>
 inoremap <C-y> <C-y><C-o>:pclose<CR>
 inoremap <C-e> <C-e><C-o>:pclose<CR>
 nnoremap <Space> za
@@ -250,12 +243,16 @@ nnoremap <S-F3> [c
 nnoremap <S-F4> ]c
 nnoremap <F5> :Gstatus<CR>
 nnoremap <F6> :GundoToggle<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <F8> :call Taglist_Toggle()<CR>
 nnoremap <F9> :LustyJuggler<CR>
+noremap <Leader>q :quit<CR>
 noremap <F10> <Esc>:quit<CR>
 noremap <S-F10> <Esc>:quitall!<CR>
+noremap <Leader>d :BD<CR>
 noremap <M-F10> <Esc>:BD<CR>
+noremap <Leader>w :update<CR>
 noremap <F11> <Esc>:update<CR>
 noremap <S-F11> <Esc>:exit<CR>
 noremap <M-F11> <Esc>:wall<CR>
