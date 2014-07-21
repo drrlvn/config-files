@@ -23,6 +23,7 @@
         eval-last-sexp
         highlight-symbol-next
         jedi:dot-complete
+        kill-visual-line
         my/save-line-or-region
         my/smart-beginning-of-line
         my/zap-to-char-exclusive
