@@ -1,0 +1,7 @@
+[options]
+font = Ubuntu Mono 12
+mouse_autohide = true
+cursor_shape = ibeam
+browser = chromium
+
+# vim: ft=dosini
