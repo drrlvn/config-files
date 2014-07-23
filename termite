@@ -4,4 +4,25 @@ mouse_autohide = true
 cursor_shape = ibeam
 browser = chromium
 
+[colors]
+foreground = #eaeaea
+foreground_bold = #ffffff
+background = #000000
+color0 = #000000
+color1 = #d54e53
+color2 = #b9ca4a
+color3 = #e78c45
+color4 = #7aa6da
+color5 = #c397d8
+color6 = #70c0b1
+color7 = #eaeaea
+color8 = #666666
+color9 = #ff3334
+color10 = #9ec400
+color11 = #e7c547
+color12 = #7aa6da
+color13 = #b777e0
+color14 = #54ced6
+color15 = #ffffff
+
 # vim: ft=dosini
