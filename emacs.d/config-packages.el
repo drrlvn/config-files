@@ -10,6 +10,7 @@
  'ace-jump-mode
  'ag
  'auto-complete
+ 'company
  'diff-hl
  'drag-stuff
  'emmet-mode
@@ -26,7 +27,6 @@
  'highlight-symbol
  'ido-vertical-mode
  'iedit
- 'jedi
  'magit
  'markdown-mode
  'multiple-cursors
@@ -57,9 +57,8 @@
                      ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
       do (my/add-super-char-to-ace-jump-mode 'char c))
 
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
+;; company-mode
+(global-company-mode t)
 
 ;; diff-hl
 (global-diff-hl-mode t)
@@ -108,10 +107,6 @@
 ;; iedit
 (global-set-key (kbd "C-;") 'iedit-mode)
 
-;; jedi
-(require 'jedi)
-(setq jedi:server-command (list "python2" jedi:server-script))
-
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -155,7 +150,6 @@
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
-(add-to-list 'ac-modes 'web-mode)
 
 ;; whitespace-cleanup-mode
 (global-whitespace-cleanup-mode t)

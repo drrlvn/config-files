@@ -10,13 +10,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-use-fuzzy t)
- '(ac-use-menu-map t)
  '(auto-revert-verbose nil)
  '(blink-cursor-mode t)
  '(c-basic-offset 4)
  '(c-default-style "bsd")
  '(comment-padding nil)
+ '(company-backends (quote (company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev)))
+ '(company-idle-delay 0)
+ '(company-minimum-prefix-length 2)
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
@@ -67,9 +68,6 @@
  '(inhibit-startup-echo-area-message (user-login-name))
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
- '(jedi:complete-on-dot t)
- '(jedi:get-in-function-call-delay 0)
- '(jedi:tooltip-method nil)
  '(kill-whole-line t)
  '(lazy-highlight-initial-delay 0)
  '(mouse-wheel-progressive-speed nil)
