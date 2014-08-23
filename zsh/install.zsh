@@ -16,10 +16,6 @@ echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 > ~/.zshrc <<END
 fpath=(\$fpath ~/.zsh)
 source ${REPO_PATH}/zsh/zshrc
-
-if [[ -n \${TERMINATOR_UUID} ]]; then
-    TERM=xterm-256color
-fi
 END
 
 mkdir -p ~/.zsh
