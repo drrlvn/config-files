@@ -21,6 +21,7 @@
 (global-set-key (kbd "M-<return>") 'my/open-line-below)
 (global-set-key (kbd "M-S-<return>") 'my/open-line-above)
 (global-set-key (kbd "C-<delete>") 'kill-word)
+(global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-w") 'my/kill-line-or-region)
 (global-set-key (kbd "M-w") 'my/save-line-or-region)
 
