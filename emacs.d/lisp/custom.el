@@ -75,7 +75,7 @@
  '(org-export-latex-packages-alist (quote (("" "minted" nil))))
  '(org-replace-disputed-keys t)
  '(org-src-fontify-natively t)
- '(package-archives (quote (("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(package-archives (quote (("melpa" . "http://melpa.org/packages/"))))
  '(projectile-ack-function (quote ag-project))
  '(projectile-switch-project-action (quote helm-projectile))
  '(projectile-use-git-grep t)
