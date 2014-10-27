@@ -206,8 +206,8 @@
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
 
 (defadvice projectile-kill-buffers (around no-y-or-n activate)
-  (flet ((yes-or-no-p (&rest args) t)
-         (y-or-n-p (&rest args) t))
+  (flet ((yes-or-no-p (question) t)
+         (y-or-n-p (question) t))
     ad-do-it))
 
 (defadvice split-window-right (after auto-balance-windows activate)
