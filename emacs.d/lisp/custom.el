@@ -15,13 +15,19 @@
  '(c-basic-offset 4)
  '(c-default-style "bsd")
  '(comment-padding nil)
- '(company-backends (quote (company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev)))
+ '(company-backends
+   (quote
+    (company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake
+                   (company-dabbrev-code company-gtags company-keywords)
+                   company-oddmuse company-files company-dabbrev)))
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 2)
  '(cua-enable-cua-keys nil)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tomorrow-night-bright)))
- '(custom-safe-themes (quote ("5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" default)))
+ '(custom-safe-themes
+   (quote
+    ("5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" default)))
  '(dabbrev-case-replace nil)
  '(default-frame-alist (quote ((font . "Ubuntu Mono 12"))))
  '(desktop-save-mode t)
@@ -45,7 +51,9 @@
  '(global-ede-mode t)
  '(global-hl-line-mode t)
  '(global-visual-line-mode t)
- '(guide-key/guide-key-sequence (quote ("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-e" "C-c C-t" "C-c C-b")))
+ '(guide-key/guide-key-sequence
+   (quote
+    ("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-e" "C-c C-t" "C-c C-b")))
  '(guide-key/idle-delay 0.0)
  '(guide-key/popup-window-position (quote bottom))
  '(guide-key/recursive-key-sequence-flag t)
@@ -54,7 +62,19 @@
  '(highlight-symbol-idle-delay 0)
  '(history-length 500)
  '(ibuffer-expert t)
- '(ibuffer-formats (quote ((mark modified read-only " " (name 25 25 :left :elide) " " (size 6 -1 :right) " " (mode 10 10 :left :elide) " " (filename-and-process -1 60 :left :elide)) (mark " " (name 30 -1) " " filename))))
+ '(ibuffer-formats
+   (quote
+    ((mark modified read-only " "
+           (name 25 25 :left :elide)
+           " "
+           (size 6 -1 :right)
+           " "
+           (mode 10 10 :left :elide)
+           " "
+           (filename-and-process -1 60 :left :elide))
+     (mark " "
+           (name 30 -1)
+           " " filename))))
  '(ibuffer-show-empty-filter-groups nil)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
@@ -86,7 +106,9 @@
  '(scroll-conservatively 10000)
  '(scroll-margin 5)
  '(scroll-preserve-screen-position t)
- '(semantic-default-submodes (quote (global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
+ '(semantic-default-submodes
+   (quote
+    (global-semantic-idle-scheduler-mode global-semanticdb-minor-mode)))
  '(semantic-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
@@ -96,6 +118,7 @@
  '(undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(uniquify-separator ":")
+ '(visual-order-cursor-movement t)
  '(winner-mode t nil (winner)))
 
 (setq ido-ignore-buffers `("^\\*.*\\*$" . ,ido-ignore-buffers))
