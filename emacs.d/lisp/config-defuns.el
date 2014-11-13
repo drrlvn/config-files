@@ -196,7 +196,8 @@
   (unwind-protect
       (progn
         (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
+        (let ((current-prefix-arg (read-number "Goto line: ")))
+          (call-interactively 'goto-line)))
     (linum-mode -1)))
 
 ;; for ace-jump-mode
@@ -205,10 +206,9 @@
    (read-kbd-macro (concat "s-" (string c)))
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
 
-(defadvice projectile-kill-buffers (around no-y-or-n activate)
-  (flet ((yes-or-no-p (question) t)
-         (y-or-n-p (question) t))
-    ad-do-it))
+(defun my/projectile-kill-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (-remove 'buffer-base-buffer (projectile-project-buffers))))
 
 (defadvice split-window-right (after auto-balance-windows activate)
   (balance-windows))

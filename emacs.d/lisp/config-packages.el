@@ -134,6 +134,7 @@
 (projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
 (global-set-key (kbd "C-c f") 'projectile-find-file-in-known-projects)
+(fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
