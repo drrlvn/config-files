@@ -12,6 +12,7 @@
                                                (mode . c++-mode)))
                                      ("Python" (mode . python-mode))
                                      ("Go" (mode . go-mode))
+                                     ("Rust" (mode . rust-mode))
                                      ("Elisp" (mode . emacs-lisp-mode))
                                      ("Web" (or
                                              (mode . sgml-mode)

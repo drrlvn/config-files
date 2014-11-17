@@ -35,6 +35,7 @@
  'projectile
  'protobuf-mode
  'rainbow-delimiters
+ 'rust-mode
  'smex
  'undo-tree
  'web-mode
