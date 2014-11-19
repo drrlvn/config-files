@@ -35,6 +35,7 @@
  'projectile
  'protobuf-mode
  'rainbow-delimiters
+ 'restclient
  'rust-mode
  'smex
  'undo-tree
@@ -136,6 +137,9 @@
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
 (global-set-key (kbd "C-c f") 'projectile-find-file-in-known-projects)
 (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
+
+;; restclient
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
