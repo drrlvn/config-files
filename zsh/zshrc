@@ -99,10 +99,10 @@ bindkey -s '\er' '^Ad'
 bindkey ' ' magic-space
 
 # bind C-M-{Left,Right} to cycle through dir stack
-insert-cycledleft () { zle push-line; LBUFFER='pushd +1'; zle accept-line }
+insert-cycledleft () { zle push-line; LBUFFER=' pushd +1'; zle accept-line }
 zle -N insert-cycledleft
 bindkey '\e[1;7C' insert-cycledleft
-insert-cycledright () { zle push-line; LBUFFER='pushd -0'; zle accept-line }
+insert-cycledright () { zle push-line; LBUFFER=' pushd -0'; zle accept-line }
 zle -N insert-cycledright
 bindkey '\e[1;7D' insert-cycledright
 
