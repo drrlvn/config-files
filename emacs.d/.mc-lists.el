@@ -24,6 +24,7 @@
         highlight-symbol-next
         jedi:dot-complete
         kill-visual-line
+        my/kill-line-or-region
         my/save-line-or-region
         my/smart-beginning-of-line
         my/zap-to-char-exclusive

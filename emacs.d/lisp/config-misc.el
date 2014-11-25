@@ -70,7 +70,6 @@
 (prefer-coding-system 'utf-8)
 (modify-coding-system-alist 'file "" 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
-(mouse-avoidance-mode 'banish)
 (windmove-default-keybindings 'super)   ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
