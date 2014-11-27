@@ -131,7 +131,6 @@ READNULLCMD=less
 
 PATH="${HOME}/bin:${PATH}"
 
-export GREP_OPTIONS="--color=auto"
 export LESS="-R -n -F -X"
 
 alias -g G='| grep'
@@ -142,6 +141,7 @@ alias et='emacsclient -a "" -t'
 
 alias gg='git grep'
 
+alias grep='grep --color=auto'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -Iv'
