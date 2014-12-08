@@ -130,6 +130,9 @@ WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
 
 PATH="${HOME}/bin:${PATH}"
+if hash ruby 2>/dev/null; then
+    PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+fi
 
 export LESS="-R -n -F -X"
 
