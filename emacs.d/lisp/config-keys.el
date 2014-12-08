@@ -42,7 +42,6 @@
 (global-set-key (kbd "C-.") 'highlight-symbol-next)
 (global-set-key (kbd "M-s o") 'highlight-symbol-occur)
 
-(global-set-key (kbd "C-x C-r") 'my/ido-recentf-open)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)

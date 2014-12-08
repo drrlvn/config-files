@@ -96,8 +96,6 @@
  '(org-replace-disputed-keys t)
  '(org-src-fontify-natively t)
  '(package-archives (quote (("melpa" . "http://melpa.org/packages/"))))
- '(projectile-ack-function (quote ag-project))
- '(projectile-switch-project-action (quote helm-projectile))
  '(projectile-use-git-grep t)
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)

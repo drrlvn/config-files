@@ -57,7 +57,7 @@
 
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda ()
-                                (local-set-key (kbd "C-c o") 'ff-find-other-file)
+                                (local-set-key (kbd "C-c o") 'ff-get-other-file)
                                 (setq comment-start "/*"
                                       comment-end "*/")))
 

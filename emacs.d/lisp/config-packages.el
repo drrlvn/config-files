@@ -8,7 +8,6 @@
 (package-initialize)
 (my/install-packages
  'ace-jump-mode
- 'ag
  'auto-complete
  'company
  'diff-hl
@@ -22,6 +21,7 @@
  'go-mode
  'guide-key
  'helm
+ 'helm-ag
  'helm-projectile
  'helm-swoop
  'highlight-symbol
@@ -89,6 +89,8 @@
 (setq helm-input-idle-delay 0)
 (setq helm-exit-idle-delay 0)
 (helm-mode t)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x a") 'helm-c-apropos)
 (global-set-key (kbd "C-x f") 'helm-mini)
 (global-set-key (kbd "C-x g") 'helm-google-suggest)
@@ -97,6 +99,9 @@
 (global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
 (global-set-key (kbd "M-s M-o") 'helm-occur)
 (global-set-key (kbd "M-s m") 'helm-multi-occur)
+
+;; helm-projectile
+(helm-projectile-on)
 
 ;; helm-swoop
 (global-set-key (kbd "C-S-s") 'helm-swoop)
@@ -135,7 +140,6 @@
 ;; projectile
 (projectile-global-mode t)
 (global-set-key (kbd "C-c C-f") 'helm-projectile)
-(global-set-key (kbd "C-c f") 'projectile-find-file-in-known-projects)
 (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
 
 ;; restclient

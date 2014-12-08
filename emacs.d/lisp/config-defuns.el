@@ -73,13 +73,6 @@
                     (switch-to-buffer (current-buffer))))
                 (list url)))
 
-(defun my/ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file."
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
-
 (defun my/isearch-current-region-or-word ()
   "Reset current isearch to a search of the region or the word under point."
   (interactive)
