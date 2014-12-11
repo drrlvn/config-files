@@ -9,6 +9,8 @@
 (my/install-packages
  'ace-jump-mode
  'auto-complete
+ 'cmake-font-lock
+ 'cmake-mode
  'company
  'diff-hl
  'drag-stuff
@@ -86,8 +88,10 @@
 (guide-key-mode t)
 
 ;; helm
+(setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
 (setq helm-exit-idle-delay 0)
+(setq helm-candidate-number-limit 25)
 (helm-mode t)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)

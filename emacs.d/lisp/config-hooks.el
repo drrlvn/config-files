@@ -76,5 +76,9 @@
 (add-hook 'python-mode-hook (lambda ()
                               (define-key python-mode-map (kbd "C-c C-f") nil)))
 
+;; CMake
+(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+(add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
+
 (provide 'config-hooks)
 ;;; config-hooks.el ends here
