@@ -12,9 +12,13 @@
     l       = log --graph --decorate --pretty=oneline --abbrev-commit
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg      = log --graph --date=relative --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+    lb      = !git lg master..
+    lr      = !git lg --since=\"2 weeks ago\"
     lp      = log --patch
     lpw     = log --patch --color-words
     ls      = log --stat
+    pr      = !git co master && git pull && git co @{-1} && git rb master
+    rb      = rebase
     ri      = rebase -i
     st      = status -sb
     unstage = reset --
