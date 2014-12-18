@@ -31,6 +31,7 @@
         org-self-insert-command
         overwrite-mode
         paredit-forward-delete
+        paredit-forward-slurp-sexp
         python-backspace
         python-indent-dedent-line-backspace
         python-indent-electric-colon

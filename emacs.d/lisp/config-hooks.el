@@ -58,6 +58,13 @@
 ;; C/C++
 (add-hook 'c-mode-common-hook (lambda ()
                                 (local-set-key (kbd "C-c o") 'ff-get-other-file)
+                                (local-set-key (kbd "C-c i a") 'my/insert-all-special)
+                                (local-set-key (kbd "C-c i c") 'my/insert-default-ctor)
+                                (local-set-key (kbd "C-c i d") 'my/insert-virtual-dtor)
+                                (local-set-key (kbd "C-c i p") 'my/insert-copy-ctor)
+                                (local-set-key (kbd "C-c i P") 'my/insert-copy-assignment-operator)
+                                (local-set-key (kbd "C-c i m") 'my/insert-move-ctor)
+                                (local-set-key (kbd "C-c i M") 'my/insert-move-assignment-operator)
                                 (setq comment-start "/*"
                                       comment-end "*/")))
 

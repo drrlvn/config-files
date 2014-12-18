@@ -193,6 +193,63 @@
           (call-interactively 'goto-line)))
     (linum-mode -1)))
 
+
+;; C++ auto insert
+
+(defun my/get-current-class ()
+  (save-excursion
+    (search-backward "class")
+    (forward-word 2)
+    (backward-word)
+    (current-word)))
+
+(defun my/insert-default-ctor ()
+  ""
+  (interactive)
+  (insert (my/get-current-class) "() = default;"))
+
+(defun my/insert-virtual-dtor ()
+  ""
+  (interactive)
+  (insert "virtual ~" (my/get-current-class) "() = default;"))
+
+(defun my/insert-copy-ctor ()
+  ""
+  (interactive)
+  (let ((current-class (my/get-current-class)))
+    (insert current-class "(const " current-class " &) = default;")))
+
+(defun my/insert-copy-assignment-operator ()
+  ""
+  (interactive)
+  (let ((current-class (my/get-current-class)))
+    (insert current-class " & operator=(const " current-class " &) = default;")))
+
+(defun my/insert-move-ctor ()
+  ""
+  (interactive)
+  (let ((current-class (my/get-current-class)))
+    (insert current-class "(" current-class " &&) = default;")))
+
+(defun my/insert-move-assignment-operator ()
+  ""
+  (interactive)
+  (let ((current-class (my/get-current-class)))
+    (insert current-class " & operator=(" current-class " &&) = default;")))
+
+(defun my/insert-all-special ()
+  ""
+  (interactive)
+  (my/insert-copy-ctor)
+  (newline-and-indent)
+  (my/insert-copy-assignment-operator)
+  (newline-and-indent)
+  (my/insert-move-ctor)
+  (newline-and-indent)
+  (my/insert-move-assignment-operator)
+  (newline-and-indent)
+  )
+
 ;; for ace-jump-mode
 (defun my/add-super-char-to-ace-jump-mode (m c)
   (global-set-key
