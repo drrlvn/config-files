@@ -13,6 +13,7 @@
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lg      = log --graph --date=relative --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
     lb      = !git lg master..
+    lo      = !git lg origin..
     lr      = !git lg --since=\"2 weeks ago\"
     lp      = log --patch
     lpw     = log --patch --color-words
