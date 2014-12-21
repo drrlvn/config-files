@@ -98,7 +98,11 @@
  '(org-export-latex-packages-alist (quote (("" "minted" nil))))
  '(org-replace-disputed-keys t)
  '(org-src-fontify-natively t)
- '(package-archives (quote (("melpa" . "http://melpa.org/packages/"))))
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/"))))
+ '(package-check-signature nil)
  '(projectile-use-git-grep t)
  '(recentf-max-saved-items 1000)
  '(recentf-mode t)
