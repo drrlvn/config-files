@@ -14,6 +14,7 @@
 (global-set-key (kbd "<f7>") 'previous-error)
 (global-set-key (kbd "<f8>") 'next-error)
 (global-set-key (kbd "<f9>") 'magit-status)
+(global-set-key (kbd "S-<f9>") 'magit-log)
 (global-set-key (kbd "<f11>") 'my/cleanup-buffer)
 (global-set-key (kbd "S-<f11>") 'whitespace-cleanup)
 (global-set-key (kbd "S-<f12>") (lambda () (interactive) (find-file user-init-file)))
