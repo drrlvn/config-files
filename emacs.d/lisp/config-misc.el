@@ -70,7 +70,7 @@
 (prefer-coding-system 'utf-8)
 (modify-coding-system-alist 'file "" 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings 'super)   ; enable windmove
+(windmove-default-keybindings 'meta)    ; enable windmove
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
       ring-bell-function 'ignore
@@ -88,7 +88,6 @@
 
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
-  (windmove-default-keybindings 'meta)
   (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
   (add-to-list 'exec-path "C:/Go/bin"))
 

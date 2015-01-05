@@ -198,7 +198,7 @@
 
 (defun my/get-current-class ()
   (save-excursion
-    (search-backward "class")
+    (search-backward "class" nil t)
     (forward-word 2)
     (backward-word)
     (current-word)))
