@@ -87,5 +87,8 @@
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 
+;; Shell
+(add-to-list 'auto-mode-alist '("\\rc\\'" . sh-mode))
+
 (provide 'config-hooks)
 ;;; config-hooks.el ends here
