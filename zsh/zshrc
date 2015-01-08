@@ -106,7 +106,11 @@ insert-cycledright () { zle push-line; LBUFFER=' pushd +1'; zle accept-line }
 zle -N insert-cycledright
 bindkey '\e[1;7D' insert-cycledright
 
-eval $(dircolors -b)
+if [[ $TERM = "xterm-termite" ]]; then
+    eval $(dircolors -b <(dircolors -p | sed '/^TERM xterm$/a TERM xterm-termite'))
+else
+    eval $(dircolors -b)
+fi
 
 # enable cache
 zstyle ':completion:*' use-cache on
