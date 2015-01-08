@@ -103,13 +103,22 @@ bindkey -s '\er' '^Ad'
 
 bindkey ' ' magic-space
 
+redraw-prompt () {
+    local precmd
+    for precmd in $precmd_functions; do
+        $precmd
+    done
+    zle reset-prompt
+}
+zle -N redraw-prompt
+
 # bind C-M-{Left,Right} to cycle through dir stack
-insert-cycledleft () { pushd -0 ; precmd ; zle reset-prompt }
-zle -N insert-cycledleft
-bindkey '\e[1;7C' insert-cycledleft
-insert-cycledright () { pushd +1 &> /dev/null ; precmd ; zle reset-prompt }
-zle -N insert-cycledright
-bindkey '\e[1;7D' insert-cycledright
+cycle-dir-left () { pushd -0 && zle redraw-prompt }
+zle -N cycle-dir-left
+bindkey '\e[1;7C' cycle-dir-left
+cycle-dir-right () { pushd +1 &> /dev/null && zle redraw-prompt }
+zle -N cycle-dir-right
+bindkey '\e[1;7D' cycle-dir-right
 
 if [[ $TERM = "xterm-termite" ]]; then
     eval $(dircolors -b <(dircolors -p | sed '/^TERM xterm$/a TERM xterm-termite'))

@@ -18,7 +18,9 @@ fpath=(\$fpath ~/.zsh)
 source ${REPO_PATH}/zsh/zshrc
 END
 
+ln -sf "${~REPO_PATH}/zsh/zlogin" ~/.zlogin
+
 mkdir -p ~/.zsh
 pushd ~/.zsh
-ln -sf ${~REPO_PATH}/zsh/prompt_spatz_setup .
+ln -sf "${~REPO_PATH}/zsh/prompt_spatz_setup" .
 popd

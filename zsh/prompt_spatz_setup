@@ -5,12 +5,13 @@ autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git hg svn cvs
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr		'%F{green}●'
-zstyle ':vcs_info:*' unstagedstr	'%F{red}⚡'
+zstyle ':vcs_info:*' stagedstr		'%F{green}✱'
+zstyle ':vcs_info:*' unstagedstr	'%F{red}✱'
 zstyle ':vcs_info:*' branchformat	'%b%%b%f:%B%F{yellow}%r'
 zstyle ':vcs_info:*' formats		'%F{magenta}(%F{white}%b%c%u%m%F{magenta}) '
 zstyle ':vcs_info:*' actionformats	'%F{magenta}(%F{white}%b%c%u%m%F{magenta}|%F{red}%a%F{magenta}) '
 zstyle ':vcs_info:*+set-message:*' hooks set-message
+zstyle ':vcs_info:*+no-vcs:*' hooks no-vcs
 
 typeset -gA vcs_prompt_chars
 vcs_prompt_chars=(
@@ -19,6 +20,10 @@ vcs_prompt_chars=(
     'svn' '%F{blue}⚡ '
     'cvs' '%F{white}c '
 )
+
++vi-no-vcs() {
+    _prompt_char=''
+}
 
 +vi-set-message() {
     _prompt_char=$vcs_prompt_chars[$vcs]
@@ -30,10 +35,10 @@ vcs_prompt_chars=(
             local -a gitstatus
 
             ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-            (( $ahead )) && gitstatus+=( "%F{green}+${ahead}" )
+            (( $ahead )) && gitstatus+=( "%F{green}⬆${ahead}" )
 
             behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-            (( $behind )) && gitstatus+=( "%F{red}-${behind}" )
+            (( $behind )) && gitstatus+=( "%F{red}⬇${behind}" )
 
             if (( ${#gitstatus} )); then
                 hook_com[misc]+="%F{magenta}|%b"${(j:%F{white}/:)gitstatus}"%B"
@@ -43,13 +48,10 @@ vcs_prompt_chars=(
     esac
 }
 
-precmd() {
-    _prompt_char=''
-    vcs_info
-}
-
+add-zsh-hook precmd vcs_info
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f --'
 fi
-PROMPT="%B${PROMPT_HOST} \${_prompt_char}%(?.%F{cyan}:%).%F{red}:() %F{red}❯%F{yellow}❯%F{green}❯%b%f%k "
+PROMPT='%B${PROMPT_HOST} ${_prompt_char}%(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
 RPROMPT='%B${vcs_info_msg_0_}%F{blue}%~'
+SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
