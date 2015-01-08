@@ -59,19 +59,24 @@ bindkey ';3D' emacs-backward-word
 bindkey ';5D' emacs-backward-word
 bindkey '[D' emacs-backward-word
 bindkey '[1;3D' emacs-backward-word
+bindkey '[1;5D' emacs-backward-word
 bindkey ';3C' emacs-forward-word
 bindkey ';5C' emacs-forward-word
 bindkey '[C' emacs-forward-word
 bindkey '[1;3C' emacs-forward-word
+bindkey '[1;5C' emacs-forward-word
 
 bindkey '[5~' history-beginning-search-backward
 bindkey '[6~' history-beginning-search-forward
 
 bindkey '[H' beginning-of-line
+bindkey 'OH' beginning-of-line
 bindkey '[1~' beginning-of-line
 bindkey '[F' end-of-line
+bindkey 'OF' end-of-line
 bindkey '[4~' end-of-line
 bindkey '[3~' delete-char
+bindkey '[3;3~' delete-word
 
 bindkey '\ez' delete-to-char
 bindkey '\e;' copy-prev-shell-word
@@ -139,12 +144,6 @@ if hash ruby 2>/dev/null; then
 fi
 
 export LESS="-R -n -F -X"
-
-alias -g G='| grep'
-
-alias kill-emacs='emacsclient -e "(kill-emacs)"'
-alias em='emacsclient -a "" -n'
-alias et='emacsclient -a "" -t'
 
 alias gg='git grep'
 
