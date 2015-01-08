@@ -104,10 +104,10 @@ bindkey -s '\er' '^Ad'
 bindkey ' ' magic-space
 
 # bind C-M-{Left,Right} to cycle through dir stack
-insert-cycledleft () { pushd -0 ; vcs_info ; zle reset-prompt }
+insert-cycledleft () { pushd -0 ; precmd ; zle reset-prompt }
 zle -N insert-cycledleft
 bindkey '\e[1;7C' insert-cycledleft
-insert-cycledright () { pushd +1 &> /dev/null ; vcs_info ; zle reset-prompt }
+insert-cycledright () { pushd +1 &> /dev/null ; precmd ; zle reset-prompt }
 zle -N insert-cycledright
 bindkey '\e[1;7D' insert-cycledright
 
