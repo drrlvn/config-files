@@ -82,13 +82,17 @@ bindkey '\ez' delete-to-char
 bindkey '\e;' copy-prev-shell-word
 
 # Meta-u to chdir to the parent directory
-bindkey -s '\eu' '^Ucd ..; ls^M'
+goto-parent () { cd .. ; zle redraw-prompt }
+zle -N goto-parent
+bindkey '\eu' goto-parent
 # Meta-h goes home
-bindkey -s '\eh' '^Ucd; dirs -c^M'
+goto-home () { cd ; dirs -c ; zle redraw-prompt }
+zle -N goto-home
+bindkey '\eh' goto-home
 # Meta-p pops the dir stack
-bindkey -s '\ep' '^Upopd; dirs -v^M'
-# Meta-l to pipe the current command through less
-bindkey -s '\el' '^E |& less^M'
+pop-dir () { popd > /dev/null && zle redraw-prompt }
+zle -N pop-dir
+bindkey '\ep' pop-dir
 # Meta-s to insert sudo in the beginning of the line
 prepend-sudo() {
     if [[ "$BUFFER" != su(do|)\ * ]]; then
