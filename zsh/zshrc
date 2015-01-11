@@ -99,7 +99,7 @@ goto-home() { cd ; dirs -c ; zle redraw-prompt }
 zle -N goto-home
 bindkey '\eh' goto-home
 # Meta-p pops the dir stack
-pop-dir() { popd > /dev/null && zle redraw-prompt }
+pop-dir() { popd &> /dev/null && zle redraw-prompt }
 zle -N pop-dir
 bindkey '\ep' pop-dir
 # Meta-s to insert sudo in the beginning of the line

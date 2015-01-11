@@ -34,24 +34,28 @@ vcs_prompt_chars=(
             local ahead behind
             local -a gitstatus
 
-            ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+            ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
             (( $ahead )) && gitstatus+=( "%F{green}⬆${ahead}" )
 
-            behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+            behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
             (( $behind )) && gitstatus+=( "%F{red}⬇${behind}" )
 
-            if (( ${#gitstatus} )); then
-                hook_com[misc]+="%F{magenta}|%b"${(j:%F{white}/:)gitstatus}"%B"
-            fi
+            (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F\{white\}/:)gitstatus}%B"
             ;;
 
     esac
 }
 
+prompt_spatz_pwd() {
+    local pwd="${PWD/#$HOME/~}"
+    _prompt_spatz_pwd="${${(M)pwd:#[/~]}:-${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}}"
+}
+
 add-zsh-hook precmd vcs_info
+add-zsh-hook precmd prompt_spatz_pwd
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f --'
 fi
 PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
-RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}%F{blue}%~'
+RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_prompt_spatz_pwd}'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
