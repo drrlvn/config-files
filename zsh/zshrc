@@ -35,6 +35,15 @@ zmodload zsh/deltochar
 compinit
 promptinit; prompt spatz
 
+redraw-prompt() {
+    local precmd
+    for precmd in $precmd_functions; do
+        $precmd
+    done
+    zle reset-prompt
+}
+zle -N redraw-prompt
+
 expand-or-complete-with-dots() {
     print -Pn "%B%F{red}...%f%b"
     zle expand-or-complete
@@ -82,15 +91,15 @@ bindkey '\ez' delete-to-char
 bindkey '\e;' copy-prev-shell-word
 
 # Meta-u to chdir to the parent directory
-goto-parent () { cd .. ; zle redraw-prompt }
+goto-parent() { cd .. ; zle redraw-prompt }
 zle -N goto-parent
 bindkey '\eu' goto-parent
 # Meta-h goes home
-goto-home () { cd ; dirs -c ; zle redraw-prompt }
+goto-home() { cd ; dirs -c ; zle redraw-prompt }
 zle -N goto-home
 bindkey '\eh' goto-home
 # Meta-p pops the dir stack
-pop-dir () { popd > /dev/null && zle redraw-prompt }
+pop-dir() { popd > /dev/null && zle redraw-prompt }
 zle -N pop-dir
 bindkey '\ep' pop-dir
 # Meta-s to insert sudo in the beginning of the line
@@ -107,20 +116,11 @@ bindkey -s '\er' '^Ad'
 
 bindkey ' ' magic-space
 
-redraw-prompt () {
-    local precmd
-    for precmd in $precmd_functions; do
-        $precmd
-    done
-    zle reset-prompt
-}
-zle -N redraw-prompt
-
 # bind C-M-{Left,Right} to cycle through dir stack
-cycle-dir-left () { pushd -0 && zle redraw-prompt }
+cycle-dir-left() { pushd -0 && zle redraw-prompt }
 zle -N cycle-dir-left
 bindkey '\e[1;7C' cycle-dir-left
-cycle-dir-right () { pushd +1 &> /dev/null && zle redraw-prompt }
+cycle-dir-right() { pushd +1 &> /dev/null && zle redraw-prompt }
 zle -N cycle-dir-right
 bindkey '\e[1;7D' cycle-dir-right
 
