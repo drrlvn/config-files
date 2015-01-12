@@ -1,9 +1,13 @@
+fpath=(~/.zsh "${0:h}/zsh-completions/src" $fpath)
+
+unsetopt flow_control
 setopt extended_glob
 setopt correct
 setopt numeric_glob_sort
 setopt rc_expand_param
 setopt complete_in_word
-setopt no_nomatch
+setopt always_to_end
+unsetopt nomatch
 setopt prompt_subst
 
 # pushd options
@@ -32,7 +36,7 @@ bindkey -e
 
 autoload -Uz compinit edit-command-line promptinit url-quote-magic zargs zcalc zmv
 zmodload zsh/deltochar
-compinit
+compinit -i
 promptinit; prompt spatz
 
 redraw-prompt() {
@@ -52,17 +56,12 @@ expand-or-complete-with-dots() {
 zle -N expand-or-complete-with-dots
 bindkey "\C-I" expand-or-complete-with-dots
 
-bash-unix-filename-rubout() {
-	local WORDCHARS=${WORDCHARS}/
-	zle backward-kill-word
-}
-zle -N bash-unix-filename-rubout
-bindkey '\C-w' bash-unix-filename-rubout
-
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
 zle -N self-insert url-quote-magic
+
+zmodload zsh/terminfo
 
 bindkey ';3D' emacs-backward-word
 bindkey ';5D' emacs-backward-word
@@ -78,13 +77,9 @@ bindkey '[1;5C' emacs-forward-word
 bindkey '[5~' history-beginning-search-backward
 bindkey '[6~' history-beginning-search-forward
 
-bindkey '[H' beginning-of-line
-bindkey 'OH' beginning-of-line
-bindkey '[1~' beginning-of-line
-bindkey '[F' end-of-line
-bindkey 'OF' end-of-line
-bindkey '[4~' end-of-line
-bindkey '[3~' delete-char
+bindkey "$terminfo[khome]" beginning-of-line
+bindkey "$terminfo[kend]" end-of-line
+bindkey "$terminfo[kdch1]" delete-char
 bindkey '[3;3~' delete-word
 
 bindkey '\ez' delete-to-char
@@ -138,7 +133,11 @@ zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 zstyle ':completion:*' list-dirs-first 'yes'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*:descriptions' format "%B- %d -%b"
+zstyle ':completion:*:descriptions' format ' %B%F{yellow}-- %d --%f%b'
+zstyle ':completion:*:corrections' format ' %B%F{green}-- %d (errors: %e) --%f%b'
+zstyle ':completion:*:messages' format ' %B%F{purple} -- %d --%f%b'
+zstyle ':completion:*:warnings' format ' %B%F{red}-- no matches found --%f%b'
+zstyle ':completion:*' verbose yes
 
 # enable fuzzy matching when completing
 zstyle ':completion:*' completer _complete _match _approximate
@@ -147,6 +146,18 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # highlight differing character of completions
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==02=01}:${(s.:.)LS_COLORS}")'
+
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+zstyle ':completion:*:functions' ignored-patterns '(_*)'
+
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*' insert-ids single
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less

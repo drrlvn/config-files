@@ -13,3 +13,6 @@
 [submodule "vim/dotvim/bundle/vundle"]
 	path = vim/dotvim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "zsh/zsh-completions"]
+	path = zsh/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git

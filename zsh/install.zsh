@@ -14,7 +14,6 @@ REPO_PATH="${1:-~/config-files}"
 echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 
 > ~/.zshrc <<END
-fpath=(\$fpath ~/.zsh)
 source ${REPO_PATH}/zsh/zshrc
 END
 
