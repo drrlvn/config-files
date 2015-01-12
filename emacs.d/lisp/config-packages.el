@@ -8,12 +8,15 @@
 (package-initialize)
 (my/install-packages
  'ace-jump-mode
+ 'anzu
  'auto-complete
  'cmake-font-lock
  'cmake-mode
  'company
  'diff-hl
+ 'discover-my-major
  'drag-stuff
+ 'easy-kill
  'emmet-mode
  'expand-region
  'flx-ido
@@ -60,11 +63,17 @@
                      ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
       do (my/add-super-char-to-ace-jump-mode 'char c))
 
+;; anzu
+(global-anzu-mode +1)
+
 ;; company-mode
 (global-company-mode t)
 
 ;; diff-hl
 (global-diff-hl-mode t)
+
+;; discover-my-major
+(global-set-key (kbd "C-h C-m") 'discover-my-major)
 
 ;; drag-stuff
 (setq drag-stuff-modifier '(meta shift))
