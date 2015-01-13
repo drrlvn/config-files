@@ -164,18 +164,6 @@
   (interactive "p")
   (my/increment-number-at-point (- n)))
 
-(defun my/kill-line-or-region ()
-  (interactive)
-  (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
-    (kill-whole-line)))
-
-(defun my/save-line-or-region ()
-  (interactive)
-  (if (region-active-p)
-      (kill-ring-save (region-beginning) (region-end))
-    (kill-ring-save (line-beginning-position) (line-beginning-position 2))))
-
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate compile)
            "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
