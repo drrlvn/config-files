@@ -40,7 +40,7 @@ vcs_prompt_chars=(
             behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
             (( $behind )) && gitstatus+=( "%F{red}⬇${behind}" )
 
-            (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F\{white\}/:)gitstatus}%B"
+            (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
             ;;
 
     esac
