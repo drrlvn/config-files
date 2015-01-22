@@ -46,16 +46,10 @@ vcs_prompt_chars=(
     esac
 }
 
-prompt_spatz_pwd() {
-    local pwd="${PWD/#$HOME/~}"
-    _prompt_spatz_pwd="${${(M)pwd:#[/~]}:-${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}}"
-}
-
 add-zsh-hook precmd vcs_info
-add-zsh-hook precmd prompt_spatz_pwd
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f --'
 fi
 PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
-RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_prompt_spatz_pwd}'
+RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_abbrev_pwd}'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '

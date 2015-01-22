@@ -34,10 +34,17 @@ setopt inc_append_history
 
 bindkey -e
 
-autoload -Uz compinit edit-command-line promptinit url-quote-magic zargs zcalc zmv
+autoload -Uz add-zsh-hook compinit edit-command-line promptinit url-quote-magic zargs zcalc zmv
 zmodload zsh/deltochar
 compinit -i
 promptinit; prompt spatz
+
+set_abbrev_pwd() {
+    local pwd="${PWD/#$HOME/~}"
+    _abbrev_pwd="${${(M)pwd:#[/~]}:-${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}}"
+}
+add-zsh-hook chpwd set_abbrev_pwd
+set_abbrev_pwd
 
 redraw-prompt() {
     local precmd
@@ -133,8 +140,7 @@ set-window-title() {
 }
 
 set_title_to_path() {
-    local abbreviated_path="${PWD/#$HOME/~}"
-    set-window-title "$abbreviated_path"
+    set-window-title "$_abbrev_pwd"
 }
 add-zsh-hook precmd set_title_to_path
 
