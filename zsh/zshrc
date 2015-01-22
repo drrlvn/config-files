@@ -125,6 +125,25 @@ else
     eval $(dircolors -b)
 fi
 
+# update window title
+set-window-title() {
+    local title_formatted
+    zformat -f title_formatted "%s" "s:$argv"
+    printf "\e]2;%s\a" "${(V%)title_formatted}"
+}
+
+set_title_to_path() {
+    local abbreviated_path="${PWD/#$HOME/~}"
+    set-window-title "$abbreviated_path"
+}
+add-zsh-hook precmd set_title_to_path
+
+set_title_to_command() {
+    local cmd="${${2[(wr)^(*=*|sudo|ssh|-*)]}:t}"
+    set-window-title "$cmd"
+}
+add-zsh-hook preexec set_title_to_command
+
 # enable cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
