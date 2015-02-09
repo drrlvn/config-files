@@ -205,6 +205,8 @@ alias la='ls -A'
 alias tree='tree --dirsfirst'
 alias reload='rehash; source ~/.zshrc'
 
+alias tmux="tmux -f ${0:h:h}/tmux.conf"
+
 # enable zsh-history-substring-search
 . "${0:h}/zsh-history-substring-search/zsh-history-substring-search.zsh"
 bindkey "[A" history-substring-search-up
