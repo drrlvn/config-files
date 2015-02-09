@@ -59,3 +59,6 @@
 
 [svn]
     rmdir = true
+
+[tig]
+    line-graphics = utf-8
