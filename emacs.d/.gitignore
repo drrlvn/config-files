@@ -1,7 +1,12 @@
 auto-save-list/
 elpa/
 semanticdb/
+url/
+undodir/
+.python-environments/
 ac-comphist.dat
 ede-projects.el
+projectile-bookmarks.eld
+projectile.cache
 tramp
 *.elc
