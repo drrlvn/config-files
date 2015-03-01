@@ -2,18 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+;;;###autoload
 (defun my/install-packages (&rest packages)
   "Install given packages."
-  (let ((refreshed-contents nil))
-    (mapc
-     (lambda (package)
-       (unless (package-installed-p package)
-         (unless refreshed-contents
-           (setq refreshed-contents t)
-           (package-refresh-contents))
-         (package-install package)))
-     packages)))
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (unless package-archive-contents
+        (package-refresh-contents))
+      (package-install package))))
 
+;;;###autoload
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)
@@ -22,6 +20,7 @@
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max))))
 
+;;;###autoload
 (defun my/filter-buffer ()
   "Run shell command on buffer and replace it with the output."
   (interactive)
@@ -30,12 +29,14 @@
                          (read-shell-command "Shell command on buffer: "))
     (goto-char prev-point)))
 
+;;;###autoload
 (defun my/open-line-below ()
   "Go to end of line, then insert newline and indent."
   (interactive)
   (end-of-line)
   (newline-and-indent))
 
+;;;###autoload
 (defun my/open-line-above ()
   "Go to end of line, then insert newline and indent."
   (interactive)
@@ -44,17 +45,20 @@
   (forward-line -1)
   (indent-for-tab-command))
 
+;;;###autoload
 (defun my/diff-current-buffer-with-file ()
   "View the differences between current buffer and its associated file."
   (interactive)
   (diff-buffer-with-file (current-buffer)))
 
+;;;###autoload
 (defun my/revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " buffer-file-name)))
 
+;;;###autoload
 (defun my/kill-buffer-other-window ()
   "Kill buffer in other window."
   (interactive)
@@ -62,6 +66,7 @@
   (kill-buffer)
   (other-window -1))
 
+;;;###autoload
 (defun my/url-edit (url)
   "Open a new buffer with the contents of the URL provided."
   (interactive "sURL: ")
@@ -73,6 +78,7 @@
                     (switch-to-buffer (current-buffer))))
                 (list url)))
 
+;;;###autoload
 (defun my/isearch-current-region-or-word ()
   "Reset current isearch to a search of the region or the word under point."
   (interactive)
@@ -86,6 +92,7 @@
                          (setq isearch-word t)
                          (thing-at-point 'word))))
 
+;;;###autoload
 (defun my/autoload-and-set-key (package keys-and-functions)
   "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
   (dolist (key-and-function keys-and-functions)
@@ -94,6 +101,7 @@
       (autoload function package nil t)
       (global-set-key (read-kbd-macro key) function))))
 
+;;;###autoload
 (defun my/eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
@@ -106,6 +114,7 @@
       (backward-kill-sexp)
       (forward-char distance))))
 
+;;;###autoload
 (defun my/rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -131,6 +140,7 @@
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
 
+;;;###autoload
 (defun my/toggle-comment-line-or-region ()
   "Toggle comment on line if no region is active, or comment region."
   (interactive)
@@ -140,6 +150,7 @@
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
+;;;###autoload
 (defun my/smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line."
   (interactive)
@@ -150,6 +161,7 @@
     (if (= oldpoint (point))
         (beginning-of-line))))
 
+;;;###autoload
 (defun my/increment-number-at-point (n)
   (interactive "p")
   (let* ((bounds (bounds-of-thing-at-point 'word))
@@ -160,17 +172,12 @@
     (delete-region start end)
     (insert (if (s-starts-with? "0" str) (s-pad-left (length str) "0" new-num) new-num))))
 
+;;;###autoload
 (defun my/decrement-number-at-point (n)
   (interactive "p")
   (my/increment-number-at-point (- n)))
 
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate compile)
-           "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
-           (if (and (derived-mode-p 'prog-mode) (not (derived-mode-p 'python-mode)))
-               (let ((mark-even-if-inactive transient-mark-mode))
-                 (indent-region (region-beginning) (region-end) nil))))))
-
+;;;###autoload
 (defun my/goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
@@ -184,6 +191,7 @@
 
 ;; C++ auto insert
 
+;;;###autoload
 (defun my/get-current-class ()
   (save-excursion
     (search-backward "class" nil t)
@@ -191,40 +199,47 @@
     (backward-word)
     (current-word)))
 
+;;;###autoload
 (defun my/insert-default-ctor ()
   ""
   (interactive)
   (insert (my/get-current-class) "() = default;"))
 
+;;;###autoload
 (defun my/insert-virtual-dtor ()
   ""
   (interactive)
   (insert "virtual ~" (my/get-current-class) "() = default;"))
 
+;;;###autoload
 (defun my/insert-copy-ctor ()
   ""
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class "(const " current-class " &) = default;")))
 
+;;;###autoload
 (defun my/insert-copy-assignment-operator ()
   ""
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class " & operator=(const " current-class " &) = default;")))
 
+;;;###autoload
 (defun my/insert-move-ctor ()
   ""
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class "(" current-class " &&) = default;")))
 
+;;;###autoload
 (defun my/insert-move-assignment-operator ()
   ""
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class " & operator=(" current-class " &&) = default;")))
 
+;;;###autoload
 (defun my/insert-all-special ()
   ""
   (interactive)
@@ -239,21 +254,16 @@
   )
 
 ;; for ace-jump-mode
+;;;###autoload
 (defun my/add-super-char-to-ace-jump-mode (m c)
   (global-set-key
    (read-kbd-macro (concat "s-" (string c)))
    `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
 
+;;;###autoload
 (defun my/projectile-kill-buffers ()
   (interactive)
   (mapc 'kill-buffer (-remove 'buffer-base-buffer (projectile-project-buffers))))
-
-(defadvice split-window-right (after auto-balance-windows activate)
-  (balance-windows))
-(defadvice split-window-below (after auto-balance-windows activate)
-  (balance-windows))
-(defadvice delete-window (after auto-balance-windows activate)
-  (balance-windows))
 
 (provide 'config-defuns)
 ;;; config-defuns.el ends here

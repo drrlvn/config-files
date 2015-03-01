@@ -1,10 +1,16 @@
-;;; config-misc.el --- misc configuration
+;;; config-looks.el --- look configuration
 ;;; Commentary:
 ;;; Code:
 
 ;; frame title
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
+
+(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
+
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
+(load-theme 'tomorrow-night-bright t)
 
 ;; mode-line
 (setq-default
@@ -66,30 +72,5 @@
                       'help-echo (concat (format-time-string "%c; ") "Uptime: " (emacs-uptime "%D, %z%2h:%.2m"))))
   ))
 
-;; misc configuration
-(prefer-coding-system 'utf-8)
-(modify-coding-system-alist 'file "" 'utf-8)
-(fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings 'meta)    ; enable windmove
-(setq backup-directory-alist `((".*" . ,temporary-file-directory))
-      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
-      ring-bell-function 'ignore
-      resize-mini-windows t)
-(setq disabled-command-function nil)    ; enable all disabled commands
-
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
-
-(when (eq system-type 'windows-nt)
-  (setq tramp-default-method "plinkx")
-  (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
-  (add-to-list 'exec-path "C:/Go/bin"))
-
-(provide 'config-misc)
-;;; config-misc.el ends here
+(provide 'config-looks)
+;;; config-looks.el ends here

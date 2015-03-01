@@ -5,6 +5,7 @@ url/
 undodir/
 .python-environments/
 ac-comphist.dat
+custom.el
 ede-projects.el
 projectile-bookmarks.eld
 projectile.cache
