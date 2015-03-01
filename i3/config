@@ -46,10 +46,10 @@ bindsym $mod+grave exec "rofi -font Ubuntu\ Mono\ 12 -bg \#000000 -fg \#ffffff -
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Mod1+Left focus left
+bindsym $mod+Mod1+Down focus down
+bindsym $mod+Mod1+Up focus up
+bindsym $mod+Mod1+Right focus right
 
 # move focused window
 bindsym $mod+Shift+Left move left

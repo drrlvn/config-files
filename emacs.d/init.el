@@ -134,7 +134,7 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(windmove-default-keybindings 'meta)    ; enable windmove
+(windmove-default-keybindings 'super)   ; enable windmove
 
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
