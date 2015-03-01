@@ -4,6 +4,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(require 'cl-macs)
+
 (require 'config-looks)
 
 (setq custom-file "~/.emacs.d/custom.el")
@@ -126,7 +128,10 @@
 (bind-key [remap goto-line] 'my/goto-line-with-feedback)
 
 (prefer-coding-system 'utf-8)
-(modify-coding-system-alist 'file "" 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (windmove-default-keybindings 'meta)    ; enable windmove
@@ -345,17 +350,14 @@
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
 
-(eval-when-compile
-  (require 'cl))
-
 (use-package ace-jump-mode
   :bind (("C-`" . ace-jump-char-mode)
          ("C-~" . ace-jump-word-mode))
   :idle (progn
-          (loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-mode 'word c))
-          (loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-mode 'word c))
-          (loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-mode 'word c))
-          (loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
+          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-mode 'word c))
+          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-mode 'word c))
+          (cl-loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-mode 'word c))
+          (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
                                ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
                                ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
                 do (my/add-super-char-to-ace-jump-mode 'char c))))

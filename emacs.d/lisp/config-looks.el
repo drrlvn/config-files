@@ -41,7 +41,7 @@
                        'help-echo (coding-system-doc-string buffer-file-coding-system))
            "|"
            (propertize
-            (case (coding-system-eol-type buffer-file-coding-system)
+            (cl-case (coding-system-eol-type buffer-file-coding-system)
               (0 "UNIX")
               (1 "DOS")
               (2 "MAC")
