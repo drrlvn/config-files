@@ -19,6 +19,7 @@
         cua-paste
         cua-paste-pop
         delete-indentation
+        electric-newline-and-maybe-indent
         end-of-visual-line
         eval-last-sexp
         highlight-symbol-next
@@ -30,8 +31,11 @@
         my/zap-to-char-exclusive
         org-self-insert-command
         overwrite-mode
+        paredit-backward-kill-word
+        paredit-forward-barf-sexp
         paredit-forward-delete
         paredit-forward-slurp-sexp
+        paredit-splice-sexp-killing-backward
         python-backspace
         python-indent-dedent-line-backspace
         python-indent-electric-colon
