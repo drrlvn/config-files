@@ -41,6 +41,7 @@
         python-indent-electric-colon
         smex
         sp-cua-replace-region
+        subword-right
         yas-expand
         zap-up-to-char
         ))

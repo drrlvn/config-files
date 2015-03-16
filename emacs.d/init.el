@@ -221,12 +221,12 @@
           (cua-mode 1)))
 
 (use-package semantic
-  :idle (progn
+  :init (progn
           (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode global-semanticdb-minor-mode))
           (semantic-mode 1)))
 
 (use-package paren
-  :idle (progn
+  :init (progn
           (setq show-paren-delay 0)
           (show-paren-mode 1)))
 
@@ -242,14 +242,15 @@
   :config (setq doc-view-continuous t))
 
 (use-package flycheck
-  :idle (progn
+  :init (progn
           (setq flycheck-clang-language-standard "c++1y")
           (global-flycheck-mode 1)))
 
 (use-package dired
   :defer t
   :config (progn
-            (setq dired-isearch-filenames t)
+            (setq dired-isearch-filenames t
+                  dired-recursive-deletes 'always)
             (add-hook 'dired-mode-hook (lambda ()
                                          (require 'dired-x)
                                          (dired-omit-mode 1)))))
@@ -353,7 +354,7 @@
 (use-package ace-jump-mode
   :bind (("C-`" . ace-jump-char-mode)
          ("C-~" . ace-jump-word-mode))
-  :idle (progn
+  :init (progn
           (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-mode 'word c))
           (cl-loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-mode 'word c))
           (cl-loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-mode 'word c))
@@ -402,7 +403,7 @@
   :bind ("C-x v t" . git-timemachine))
 
 (use-package guide-key
-  :idle (progn
+  :init (progn
           (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t")
                 guide-key/idle-delay 0.0
                 guide-key/popup-window-position (quote bottom)
