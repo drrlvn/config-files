@@ -11,6 +11,7 @@
     flush   = !git add -A :/ && git commit -m "flush" && git reset --hard HEAD^
     l       = log --graph --decorate --pretty=oneline --abbrev-commit
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lgg     = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
     lg      = log --graph --date=relative --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
     lb      = !git lg master..
     lo      = !git lg origin..
