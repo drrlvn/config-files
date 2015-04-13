@@ -30,7 +30,7 @@ font pango:Ubuntu Mono 8
 floating_modifier $mod
 
 # lock screen
-bindsym $mod+Mod1+l exec i3lock -c 000000
+bindsym $mod+Mod1+l exec "setxkbmap us && i3lock -c 000000 && setxkbmap us,il"
 
 # start a terminal
 bindsym $mod+Return exec termite
