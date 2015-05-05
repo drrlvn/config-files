@@ -76,8 +76,6 @@
 (bind-key "<f6>" 'ag-project-at-point)
 (bind-key "<f7>" 'previous-error)
 (bind-key "<f8>" 'next-error)
-(bind-key "<f9>" 'magit-status)
-(bind-key "S-<f9>" 'magit-log)
 (bind-key "<f11>" 'my/cleanup-buffer)
 (bind-key "S-<f11>" 'whitespace-cleanup)
 (bind-key "S-<f12>" (lambda () (interactive) (find-file user-init-file)))
@@ -484,6 +482,11 @@
 
 (use-package iedit
   :bind ("C-;" . iedit-mode))
+
+(use-package magit
+  :bind (("<f9>" . magit-status)
+         ("S-<f9>" . magit-log))
+  :init (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
