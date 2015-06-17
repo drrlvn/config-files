@@ -44,6 +44,9 @@
     autosquash = true
     stat = true
 
+[fetch]
+    prune = true
+
 [pull]
     ff = only
 
