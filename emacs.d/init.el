@@ -242,7 +242,7 @@
 (use-package flycheck
   :init (progn
           (setq flycheck-clang-language-standard "c++1y")
-          (global-flycheck-mode 1)))
+          (add-to-list 'after-init-hook 'global-flycheck-mode)))
 
 (use-package dired
   :defer t
@@ -299,7 +299,8 @@
              ("C-c i M" . my/insert-move-assignment-operator))
             (add-hook 'c-mode-common-hook (lambda ()
                                             (setq comment-start "/*"
-                                                  comment-end "*/")))))
+                                                  comment-end "*/")
+                                            (c-set-offset 'innamespace 0)))))
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode))
@@ -485,8 +486,8 @@
 
 (use-package magit
   :bind (("<f9>" . magit-status)
-         ("S-<f9>" . magit-log))
-  :init (setq magit-last-seen-setup-instructions "1.4.0"))
+         ("S-<f9>" . magit-log-buffer-file)
+         ("C-c g" . magit-dispatch-popup)))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
