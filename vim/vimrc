@@ -8,6 +8,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " github
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'rking/ag.vim'
