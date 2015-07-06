@@ -6,8 +6,6 @@
 
 (require 'cl-macs)
 
-(require 'config-looks)
-
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
@@ -22,6 +20,7 @@
  'bind-key
  'cmake-font-lock
  'cmake-mode
+ 'color-theme-sanityinc-tomorrow
  'company
  'diff-hl
  'discover-my-major
@@ -63,6 +62,7 @@
  )
 
 (require 'use-package)
+(require 'config-looks)
 
 (use-package misc
   :commands (zap-to-char zap-up-to-char copy-from-above-command))

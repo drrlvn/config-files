@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'use-package)
+
 ;; frame title
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(add-to-list 'load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/tomorrow-theme/GNU Emacs")
-
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
-(load-theme 'tomorrow-night-bright t)
+
+(use-package color-theme-sanityinc-tomorrow
+  :init (color-theme-sanityinc-tomorrow-bright))
 
 ;; mode-line
 (setq-default
