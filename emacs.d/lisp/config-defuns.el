@@ -253,12 +253,12 @@
   (newline-and-indent)
   )
 
-;; for ace-jump-mode
+;; for avy
 ;;;###autoload
-(defun my/add-super-char-to-ace-jump-mode (m c)
+(defun my/add-super-char-to-avy (m c)
   (global-set-key
    (read-kbd-macro (concat "s-" (string c)))
-   `(lambda () (interactive) (,(intern (concat "ace-jump-" (symbol-name m) "-mode")) ,c))))
+   `(lambda () (interactive) (,(intern (concat "avy-goto-" (symbol-name m))) ,c))))
 
 ;;;###autoload
 (defun my/projectile-kill-buffers ()

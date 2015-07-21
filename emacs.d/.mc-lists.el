@@ -22,6 +22,7 @@
         electric-newline-and-maybe-indent
         end-of-visual-line
         eval-last-sexp
+        forward-sexp
         highlight-symbol-next
         jedi:dot-complete
         kill-visual-line
@@ -41,6 +42,7 @@
         python-indent-electric-colon
         smex
         sp-cua-replace-region
+        subword-left
         subword-right
         yas-expand
         zap-up-to-char

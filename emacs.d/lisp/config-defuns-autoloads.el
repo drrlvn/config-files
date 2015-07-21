@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (21746 57667
-;;;;;;  883115 28000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (21934 1463
+;;;;;;  814881 240000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/install-packages "config-defuns" "\
@@ -137,7 +137,7 @@ Show line numbers temporarily, while prompting for the line number input
 
 \(fn)" t nil)
 
-(autoload 'my/add-super-char-to-ace-jump-mode "config-defuns" "\
+(autoload 'my/add-super-char-to-avy "config-defuns" "\
 
 
 \(fn M C)" nil nil)

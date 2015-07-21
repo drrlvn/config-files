@@ -15,7 +15,6 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (my/install-packages
- 'ace-jump-mode
  'anzu
  'bind-key
  'cmake-font-lock
@@ -350,17 +349,17 @@
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
 
-(use-package ace-jump-mode
-  :bind (("C-`" . ace-jump-char-mode)
-         ("C-~" . ace-jump-word-mode))
+(use-package avy
+  :bind (("C-`" . avy-goto-char)
+         ("C-~" . avy-goto-word-or-subword-1))
   :init (progn
-          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-ace-jump-mode 'word c))
-          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-ace-jump-mode 'word c))
-          (cl-loop for c from ?a to ?z do (my/add-super-char-to-ace-jump-mode 'word c))
+          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'word-1 c))
+          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'word-1 c))
+          (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'word-1 c))
           (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
                                ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
                                ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
-                do (my/add-super-char-to-ace-jump-mode 'char c))))
+                   do (my/add-super-char-to-avy 'char c))))
 
 (use-package anzu
   :init (global-anzu-mode 1))
