@@ -218,6 +218,7 @@
           (cua-mode 1)))
 
 (use-package semantic
+  :bind ("M-." . semantic-ia-fast-jump)
   :init (progn
           (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode global-semanticdb-minor-mode))
           (semantic-mode 1)))
@@ -353,9 +354,9 @@
   :bind (("C-`" . avy-goto-char)
          ("C-~" . avy-goto-word-or-subword-1))
   :init (progn
-          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'word-1 c))
-          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'word-1 c))
-          (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'word-1 c))
+          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'subword-1 c))
+          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'subword-1 c))
+          (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'subword-1 c))
           (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
                                ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
                                ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
@@ -402,7 +403,7 @@
 
 (use-package guide-key
   :init (progn
-          (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t")
+          (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ,")
                 guide-key/idle-delay 0.0
                 guide-key/popup-window-position (quote bottom)
                 guide-key/recursive-key-sequence-flag t
@@ -486,7 +487,8 @@
 (use-package magit
   :bind (("<f9>" . magit-status)
          ("S-<f9>" . magit-log-buffer-file)
-         ("C-c g" . magit-dispatch-popup)))
+         ("C-c g" . magit-dispatch-popup))
+  :config (setq magit-push-always-verify nil))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
