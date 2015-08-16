@@ -197,13 +197,14 @@ export LESS="-R -n -F -X"
 alias gg='git grep'
 
 alias grep='grep --color=auto'
-alias cp='cp -i'
-alias mv='mv -i'
+alias cp='cp -iv'
+alias mv='mv -iv'
 alias rm='rm -Iv'
 alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
 alias tree='tree --dirsfirst'
 alias reload='rehash; source ~/.zshrc'
+alias cprogress='rsync -ah --progress'
 
 alias tmux="tmux -f ${0:h:h}/tmux.conf"
 
