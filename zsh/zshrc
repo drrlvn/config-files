@@ -1,4 +1,4 @@
-fpath=(~/.zsh "${0:h}/zsh-completions/src" $fpath)
+fpath=(~/.zsh $fpath)
 
 unsetopt flow_control
 setopt extended_glob
@@ -210,13 +210,17 @@ alias tmux="tmux -f ${0:h:h}/tmux.conf"
 
 alias agf="ag -l -G"
 
-# enable zsh-history-substring-search
-. "${0:h}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+. "${0:h}/zgen/zgen.zsh"
+if ! zgen saved; then
+    zgen load zsh-users/zsh-completions
+    zgen load jimmijj/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
+    zgen save
+fi
+
 bindkey "[A" history-substring-search-up
 bindkey "[B" history-substring-search-down
 
-# enable zsh-syntax-highlighting
-. "${0:h}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'

@@ -35,10 +35,10 @@ vcs_prompt_chars=(
             local -a gitstatus
 
             ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
-            (( $ahead )) && gitstatus+=( "%F{green}⬆${ahead}" )
+            (( $ahead )) && gitstatus+=( "%F{green}⇡${ahead}" )
 
             behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
-            (( $behind )) && gitstatus+=( "%F{red}⬇${behind}" )
+            (( $behind )) && gitstatus+=( "%F{red}⇣${behind}" )
 
             (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
             ;;
