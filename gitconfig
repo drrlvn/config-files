@@ -16,6 +16,7 @@
     lb      = !git lg master..
     lo      = !git lg origin..
     lr      = !git lg --since=\"2 weeks ago\"
+    lgs     = !git lg --stat
     lp      = log --patch
     lpw     = log --patch --color-words
     ls      = log --stat
