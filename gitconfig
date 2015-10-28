@@ -1,7 +1,7 @@
 [alias]
     ai      = add -i
     ap      = add -p
-    br      = branch
+    br      = branch -vv
     co      = checkout
     ci      = commit
     dc      = diff --cached
