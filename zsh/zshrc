@@ -229,5 +229,16 @@ ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
 PATH="${PATH}:${0:h}/fasd"
 eval "$(fasd --init auto)"
 
+save_dirs() {
+    local should_clear=yes
+    dirs -p | tac | while read d; do
+        echo cd ${d/ /\\ }
+        if [[ -n $should_clear ]]; then
+            unset should_clear
+            echo dirs -c
+        fi
+    done
+}
+
 # enable command-not-found hook on arch
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
