@@ -1,5 +1,5 @@
 [options]
-font = Ubuntu Mono 12
+font = Fira Mono 10
 mouse_autohide = true
 cursor_shape = ibeam
 browser = chromium

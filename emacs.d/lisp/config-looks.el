@@ -8,7 +8,7 @@
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 12"))
+(add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
 
 (use-package color-theme-sanityinc-tomorrow
   :init (color-theme-sanityinc-tomorrow-bright))
