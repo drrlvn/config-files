@@ -10,4 +10,5 @@ ede-projects.el
 projectile-bookmarks.eld
 projectile.cache
 tramp
+.emacs.desktop
 *.elc
