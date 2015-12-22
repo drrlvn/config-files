@@ -1,6 +1,7 @@
 fpath=(~/.zsh $fpath)
 
 unsetopt flow_control
+unsetopt beep
 setopt extended_glob
 setopt correct
 setopt numeric_glob_sort
