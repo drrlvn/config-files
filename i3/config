@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 exec --no-startup-id xsetroot -solid "#000000"
-exec --no-startup-id setxkbmap -option '' -option grp:switch,grp:menu_toggle us,il
+exec --no-startup-id setxkbmap -option '' -option grp:switch,grp:rwin_toggle us,il
 
 set $mod Mod4
 
@@ -18,7 +18,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Fira Mono 8
+font pango:Fira Sans 10
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
