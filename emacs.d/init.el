@@ -188,6 +188,11 @@
                (let ((mark-even-if-inactive transient-mark-mode))
                  (indent-region (region-beginning) (region-end) nil))))))
 
+(use-package server
+  :if window-system
+  :init
+  (add-hook 'after-init-hook 'server-start t))
+
 (use-package desktop
   :init (progn
           (setq desktop-restore-eager 5)
