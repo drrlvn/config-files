@@ -16,10 +16,10 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (my/install-packages
  'anzu
+ 'atom-one-dark-theme
  'bind-key
  'cmake-font-lock
  'cmake-mode
- 'color-theme-sanityinc-tomorrow
  'company
  'diff-hl
  'discover-my-major
@@ -488,7 +488,8 @@
   :bind (("<f9>" . magit-status)
          ("S-<f9>" . magit-log-buffer-file)
          ("C-c g" . magit-dispatch-popup))
-  :config (setq magit-push-always-verify nil))
+  :config (setq magit-push-always-verify nil
+                magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
