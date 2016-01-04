@@ -174,19 +174,9 @@
   (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
   (add-to-list 'exec-path "C:/Go/bin"))
 
-(defadvice split-window-right (after auto-balance-windows activate)
-  (balance-windows))
-(defadvice split-window-below (after auto-balance-windows activate)
-  (balance-windows))
-(defadvice delete-window (after auto-balance-windows activate)
-  (balance-windows))
-
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate compile)
-           "If `major-mode' derives from `prog-mode' then `indent-region' after yank."
-           (if (and (derived-mode-p 'prog-mode) (not (derived-mode-p 'python-mode)))
-               (let ((mark-even-if-inactive transient-mark-mode))
-                 (indent-region (region-beginning) (region-end) nil))))))
+(advice-add 'split-window-right :after #'balance-windows)
+(advice-add 'split-window-below :after #'balance-windows)
+(advice-add 'delete-window :after #'balance-windows)
 
 (use-package server
   :if window-system
@@ -438,7 +428,8 @@
 
 (use-package helm-projectile
   :init (helm-projectile-on)
-  :bind ("C-c C-f" . helm-projectile))
+  :bind (("C-c f" . helm-projectile-find-file-in-known-projects)
+         ("C-c C-f" . helm-projectile)))
 
 (use-package helm-swoop
   :bind ("C-S-s" . helm-swoop)
@@ -524,7 +515,8 @@
 
 (use-package projectile
   :init (progn
-          (setq projectile-use-git-grep t)
+          (setq projectile-use-git-grep t
+                projectile-enable-caching t)
           (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
           (projectile-global-mode 1)))
 
