@@ -43,6 +43,7 @@
 
 [rebase]
     autosquash = true
+    autostash = true
     stat = true
 
 [fetch]
