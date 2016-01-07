@@ -181,6 +181,13 @@
 (advice-add 'split-window-below :after #'my/balance-windows)
 (advice-add 'delete-window :after #'my/balance-windows)
 
+(defun my/indent-yanked-region (&rest args)
+  (if (derived-mode-p 'prog-mode)
+      (let ((mark-even-if-inactive transient-mark-mode))
+        (indent-region (region-beginning) (region-end) nil))))
+(advice-add 'yank :after #'my/indent-yanked-region)
+(advice-add 'yank-pop :after #'my/indent-yanked-region)
+
 (use-package server
   :if window-system
   :init
@@ -536,7 +543,10 @@
           (global-undo-tree-mode 1)))
 
 (use-package web-mode
-  :mode "\\.html$")
+  :mode "\\.html$"
+  :init (setq web-mode-code-indent-offset 2
+              web-mode-markup-indent-offset 2
+              web-mode-attr-indent-offset 2))
 
 (use-package whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode 1))
