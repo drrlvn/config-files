@@ -13,8 +13,7 @@
     la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lgg     = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
     lg      = log --graph --date=format:'%a %F %T' --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-    lb      = !git lg master..
-    lo      = !git lg origin..
+    lo      = !git lg @{upstream}..
     lr      = !git lg --since=\"2 weeks ago\"
     lgs     = !git lg --stat
     lp      = log --patch
