@@ -11,4 +11,5 @@ projectile-bookmarks.eld
 projectile.cache
 tramp
 .emacs.desktop
+.emacs.desktop.lock
 *.elc

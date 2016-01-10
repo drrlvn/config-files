@@ -22,24 +22,21 @@
  'cmake-font-lock
  'cmake-mode
  'company
+ 'counsel
  'diff-hl
  'discover-my-major
  'drag-stuff
  'easy-kill
  'emmet-mode
  'expand-region
- 'flx-ido
  'flycheck
  'git-messenger
  'git-timemachine
  'go-mode
  'guide-key
  'helm
- 'helm-ag
  'helm-projectile
- 'helm-swoop
  'highlight-symbol
- 'ido-vertical-mode
  'iedit
  'magit
  'markdown-mode
@@ -51,7 +48,7 @@
  'rainbow-delimiters
  'restclient
  'rust-mode
- 'smex
+ 'swiper
  'undo-tree
  'use-package
  'web-mode
@@ -209,13 +206,20 @@
           (setq recentf-max-saved-items 1000)
           (recentf-mode 1)))
 
-(use-package ido
+(use-package swiper
+  :bind (("C-s" . swiper)
+         ("C-c C-s". ivy-resume))
   :init (progn
-          (setq ido-enable-flex-matching t
-                ido-everywhere t
-                ido-max-prospects 128
-                ido-use-faces nil)
-          (ido-mode 1)))
+          (ivy-mode 1)
+          (setq ivy-use-virtual-buffers t
+                ivy-count-format "(%d/%d) ")))
+
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x y" . counsel-yank-pop)
+         ("C-c a" . counsel-ag)
+         ("M-i" . counsel-imenu)))
 
 (use-package cua-base
   :init (progn
@@ -423,16 +427,12 @@
                 helm-M-x-fuzzy-match t
                 helm-ff-transformer-show-only-basename nil
                 helm-move-to-line-cycle-in-source t
-                helm-yank-symbol-first t)
-          (helm-mode 1))
-  :bind (("C-x b" . helm-buffers-list)
-         ("C-x C-r" . helm-recentf)
+                helm-yank-symbol-first t))
+  :bind (("C-x C-r" . helm-recentf)
          ("C-x a" . helm-apropos)
          ("C-x f" . helm-mini)
          ("C-x g" . helm-google-suggest)
-         ("C-x y" . helm-show-kill-ring)
          ("M-X" . helm-M-x)
-         ("M-i" . helm-semantic-or-imenu)
          ("M-s M-o" . helm-occur)
          ("M-s m" . helm-multi-occur)))
 
@@ -440,10 +440,6 @@
   :init (helm-projectile-on)
   :bind (("C-c f" . helm-projectile-find-file-in-known-projects)
          ("C-c C-f" . helm-projectile)))
-
-(use-package helm-swoop
-  :bind ("C-S-s" . helm-swoop)
-  :config (setq helm-swoop-speed-or-color t))
 
 (use-package highlight-symbol
   :defer t
@@ -481,11 +477,6 @@
                                                  ("Misc" (name . "^\\*"))
                                                  )))
             (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))))
-
-(use-package ido-vertical-mode
-  :init (ido-vertical-mode 1))
-(use-package flx-ido
-  :init (flx-ido-mode 1))
 
 (use-package iedit
   :bind ("C-;" . iedit-mode))
@@ -532,9 +523,6 @@
 
 (use-package restclient
   :mode ("\\.http\\'" . restclient-mode))
-
-(use-package smex
-  :bind ("M-x" . smex))
 
 (use-package undo-tree
   :init (progn
