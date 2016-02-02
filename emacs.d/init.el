@@ -17,6 +17,7 @@
 (my/install-packages
  'anzu
  'atom-one-dark-theme
+ 'auto-compile
  'avy
  'bind-key
  'cmake-font-lock
@@ -43,22 +44,27 @@
  'multiple-cursors
  'paredit
  'popwin
+ 'powerline
  'projectile
  'protobuf-mode
  'rainbow-delimiters
  'restclient
  'rust-mode
+ 'spaceline
  'swiper
  'undo-tree
  'use-package
  'web-mode
  'whitespace-cleanup-mode
+ 'window-numbering
  'wrap-region
  'yaml-mode
  'yasnippet
  )
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)
 (require 'config-looks)
 
 (use-package misc
@@ -94,7 +100,7 @@
 (bind-key "C-z" 'repeat)
 (bind-key "C-!" 'kill-this-buffer)
 (bind-key "C-M-!" 'my/kill-buffer-other-window)
-(bind-key "C-#" 'calculator)
+(bind-key "C-#" 'quick-calc)
 (bind-key "C-'" 'highlight-symbol-at-point)
 (bind-key "C-," 'highlight-symbol-prev)
 (bind-key "C-." 'highlight-symbol-next)
@@ -151,6 +157,8 @@
       scroll-margin 5
       scroll-preserve-screen-position t
       visual-order-cursor-movement t
+      compilation-scroll-output 'first-error
+      compilation-read-command nil
       )
 
 (setq-default fill-column 80
@@ -191,28 +199,24 @@
   (add-hook 'after-init-hook 'server-start t))
 
 (use-package desktop
-  :init (progn
-          (setq desktop-restore-eager 5)
-          (desktop-save-mode 1)))
+  :init (setq desktop-restore-eager 5)
+  :config (desktop-save-mode 1))
 
 (use-package autorevert
-  :init (progn
-          (setq auto-revert-verbose nil
-                global-auto-revert-non-file-buffers t)
-          (global-auto-revert-mode 1)))
+  :init (setq auto-revert-verbose nil
+              global-auto-revert-non-file-buffers t)
+  :config (global-auto-revert-mode 1))
 
 (use-package recentf
-  :init (progn
-          (setq recentf-max-saved-items 1000)
-          (recentf-mode 1)))
+  :init (setq recentf-max-saved-items 1000)
+  :config (recentf-mode 1))
 
 (use-package swiper
   :bind (("C-s" . swiper)
          ("C-c C-s". ivy-resume))
-  :init (progn
-          (ivy-mode 1)
-          (setq ivy-use-virtual-buffers t
-                ivy-count-format "(%d/%d) ")))
+  :init (setq ivy-use-virtual-buffers t
+              ivy-count-format "(%d/%d) ")
+  :config (ivy-mode 1))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -222,20 +226,17 @@
          ("M-i" . counsel-imenu)))
 
 (use-package cua-base
-  :init (progn
-          (setq cua-enable-cua-keys nil)
-          (cua-mode 1)))
+  :init (setq cua-enable-cua-keys nil)
+  :config (cua-mode 1))
 
 (use-package semantic
   :bind ("M-." . semantic-ia-fast-jump)
-  :init (progn
-          (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode global-semanticdb-minor-mode))
-          (semantic-mode 1)))
+  :init (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode global-semanticdb-minor-mode))
+  :config (semantic-mode 1))
 
 (use-package paren
-  :init (progn
-          (setq show-paren-delay 0)
-          (show-paren-mode 1)))
+  :init (setq show-paren-delay 0)
+  :config (show-paren-mode 1))
 
 (use-package saveplace
   :init (setq-default save-place t))
@@ -249,28 +250,28 @@
   :config (setq doc-view-continuous t))
 
 (use-package flycheck
-  :init (progn
-          (setq flycheck-clang-language-standard "c++1y")
-          (add-to-list 'after-init-hook 'global-flycheck-mode)))
+  :init
+  (setq flycheck-clang-language-standard "c++1y")
+  (add-to-list 'after-init-hook 'global-flycheck-mode))
 
 (use-package dired
   :defer t
-  :config (progn
-            (setq dired-isearch-filenames t
-                  dired-recursive-deletes 'always)
-            (add-hook 'dired-mode-hook (lambda ()
-                                         (require 'dired-x)
-                                         (dired-omit-mode 1)))))
+  :config
+  (setq dired-isearch-filenames t
+        dired-recursive-deletes 'always)
+  (add-hook 'dired-mode-hook (lambda ()
+                               (require 'dired-x)
+                               (dired-omit-mode 1))))
 
 (use-package org
   :defer t
-  :config (progn
-            (setq org-replace-disputed-keys t
-                  org-src-fontify-natively t)
-            (add-hook 'org-mode-hook (lambda ()
-                                       (make-local-variable 'show-paren-mode)
-                                       (setq show-paren-mode nil)
-                                       (flyspell-mode 1)))))
+  :config
+  (setq org-replace-disputed-keys t
+        org-src-fontify-natively t)
+  (add-hook 'org-mode-hook (lambda ()
+                             (make-local-variable 'show-paren-mode)
+                             (setq show-paren-mode nil)
+                             (flyspell-mode 1))))
 
 (add-hook 'rst-mode-hook (lambda ()
                            (flyspell-mode 1)))
@@ -295,9 +296,8 @@
   :mode ("\\.x\\'" . c++-mode)
   :init (setq c-basic-offset 4
               c-default-style "bsd")
-  :config (progn
-            (bind-keys
-             :map c-mode-base-map
+  :config
+  (bind-keys :map c-mode-base-map
              ("C-c o" . ff-get-other-file)
              ("C-c i a" . my/insert-all-special)
              ("C-c i c" . my/insert-default-ctor)
@@ -306,20 +306,22 @@
              ("C-c i P" . my/insert-copy-assignment-operator)
              ("C-c i m" . my/insert-move-ctor)
              ("C-c i M" . my/insert-move-assignment-operator))
-            (add-hook 'c-mode-common-hook (lambda ()
-                                            (setq comment-start "/*"
-                                                  comment-end "*/")
-                                            (c-set-offset 'innamespace 0)))))
+  (add-hook 'c-mode-common-hook (lambda ()
+                                  (setq comment-start "/*"
+                                        comment-end "*/")
+                                  (c-set-offset 'innamespace 0))))
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode))
 
+(use-package auto-compile
+  :config
+  (auto-compile-on-save-mode))
+
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (eldoc-mode 1)
                                   (paredit-mode 1)
-                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)
-                                  (add-hook 'after-save-hook (lambda () (byte-compile-file buffer-file-name))
-                                            nil t)))
+                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)))
 
 (add-hook 'python-mode-hook (lambda ()
                               (define-key python-mode-map (kbd "C-c C-f") nil)))
@@ -362,27 +364,26 @@
 (use-package avy
   :bind (("C-`" . avy-goto-char)
          ("C-~" . avy-goto-word-or-subword-1))
-  :init (progn
-          (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'subword-1 c))
-          (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'subword-1 c))
-          (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'subword-1 c))
-          (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
-                               ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
-                               ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
-                   do (my/add-super-char-to-avy 'char c))))
+  :init
+  (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'subword-1 c))
+  (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'subword-1 c))
+  (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'subword-1 c))
+  (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
+                          ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
+                          ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
+           do (my/add-super-char-to-avy 'char c)))
 
 (use-package anzu
-  :init (global-anzu-mode 1))
+  :config (global-anzu-mode 1))
 
 (use-package company
-  :init (progn
-          (setq company-idle-delay 0
-                company-minimum-prefix-length 2
-                company-backends '(company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev))
-          (global-company-mode 1)))
+  :init (setq company-idle-delay 0
+              company-minimum-prefix-length 2
+              company-backends '(company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev))
+  :config (global-company-mode 1))
 
 (use-package diff-hl
-  :init (global-diff-hl-mode 1))
+  :config (global-diff-hl-mode 1))
 
 (use-package discover-my-major
   :bind ("C-h C-m" . discover-my-major))
@@ -393,9 +394,9 @@
 
 (use-package emmet-mode
   :defer t
-  :init (progn
-          (add-hook 'sgml-mode-hook 'emmet-mode)
-          (add-hook 'web-mode-hook 'emmet-mode))
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode)
   :config (setq emmet-indentation 2
                 emmet-preview-default nil))
 
@@ -411,23 +412,20 @@
   :bind ("C-x v t" . git-timemachine))
 
 (use-package guide-key
-  :init (progn
-          (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ,")
-                guide-key/idle-delay 0.0
-                guide-key/popup-window-position (quote bottom)
-                guide-key/recursive-key-sequence-flag t
-                )
-          (guide-key-mode 1)))
+  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ,")
+              guide-key/idle-delay 0.0
+              guide-key/popup-window-position (quote bottom)
+              guide-key/recursive-key-sequence-flag t)
+  :config (guide-key-mode 1))
 
 (use-package helm-mode
-  :init (progn
-          (setq helm-idle-delay 0
-                helm-input-idle-delay 0
-                helm-exit-idle-delay 0
-                helm-M-x-fuzzy-match t
-                helm-ff-transformer-show-only-basename nil
-                helm-move-to-line-cycle-in-source t
-                helm-yank-symbol-first t))
+  :init (setq helm-idle-delay 0
+              helm-input-idle-delay 0
+              helm-exit-idle-delay 0
+              helm-M-x-fuzzy-match t
+              helm-ff-transformer-show-only-basename nil
+              helm-move-to-line-cycle-in-source t
+              helm-yank-symbol-first t)
   :bind (("C-x C-r" . helm-recentf)
          ("C-x a" . helm-apropos)
          ("C-x f" . helm-mini)
@@ -437,7 +435,8 @@
          ("M-s m" . helm-multi-occur)))
 
 (use-package helm-projectile
-  :init (helm-projectile-on)
+  :demand t
+  :config (helm-projectile-on)
   :bind (("C-c f" . helm-projectile-find-file-in-known-projects)
          ("C-c C-f" . helm-projectile)))
 
@@ -447,36 +446,36 @@
 
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
-  :config (progn
-            (setq ibuffer-expert t
-                  ibuffer-show-empty-filter-groups nil
-                  ibuffer-formats '((mark modified read-only " "
-                                          (name 25 25 :left :elide) " "
-                                          (size 6 -1 :right) " "
-                                          (mode 10 10 :left :elide) " "
-                                          (filename-and-process -1 60 :left :elide))
-                                    (mark " " (name 30 -1)
-                                          " " filename))
-                  ibuffer-saved-filter-groups '(("default"
-                                                 ("Dired" (mode . dired-mode))
-                                                 ("C/C++" (or
-                                                           (mode . c-mode)
-                                                           (mode . c++-mode)))
-                                                 ("Python" (mode . python-mode))
-                                                 ("Go" (mode . go-mode))
-                                                 ("Rust" (mode . rust-mode))
-                                                 ("Elisp" (mode . emacs-lisp-mode))
-                                                 ("Web" (or
-                                                         (mode . sgml-mode)
-                                                         (mode . web-mode)
-                                                         (mode . css-mode)
-                                                         (mode . js-mode)))
-                                                 ("Docs" (or
-                                                          (mode . org-mode)
-                                                          (mode . rst-mode)))
-                                                 ("Misc" (name . "^\\*"))
-                                                 )))
-            (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default")))))
+  :config
+  (setq ibuffer-expert t
+        ibuffer-show-empty-filter-groups nil
+        ibuffer-formats '((mark modified read-only " "
+                                (name 25 25 :left :elide) " "
+                                (size 6 -1 :right) " "
+                                (mode 10 10 :left :elide) " "
+                                (filename-and-process -1 60 :left :elide))
+                          (mark " " (name 30 -1)
+                                " " filename))
+        ibuffer-saved-filter-groups '(("default"
+                                       ("Dired" (mode . dired-mode))
+                                       ("C/C++" (or
+                                                 (mode . c-mode)
+                                                 (mode . c++-mode)))
+                                       ("Python" (mode . python-mode))
+                                       ("Go" (mode . go-mode))
+                                       ("Rust" (mode . rust-mode))
+                                       ("Elisp" (mode . emacs-lisp-mode))
+                                       ("Web" (or
+                                               (mode . sgml-mode)
+                                               (mode . web-mode)
+                                               (mode . css-mode)
+                                               (mode . js-mode)))
+                                       ("Docs" (or
+                                                (mode . org-mode)
+                                                (mode . rst-mode)))
+                                       ("Misc" (name . "^\\*"))
+                                       )))
+  (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default"))))
 
 (use-package iedit
   :bind ("C-;" . iedit-mode))
@@ -490,11 +489,11 @@
 
 (use-package markdown-mode
   :mode "\\.md\\'"
-  :config (progn
-            (add-hook 'markdown-mode-hook (lambda ()
-                                            (auto-fill-mode 1)
-                                            (refill-mode 1)))
-            (setq markdown-command "markdown_py")))
+  :config
+  (add-hook 'markdown-mode-hook (lambda ()
+                                  (auto-fill-mode 1)
+                                  (refill-mode 1)))
+  (setq markdown-command "markdown_py"))
 
 (use-package multiple-cursors
   :bind (("C-|" . mc/edit-lines)
@@ -505,47 +504,47 @@
 
 (use-package paredit
   :defer t
-  :config (progn
-            ;; making paredit work with delete-selection-mode
-            (put 'paredit-forward-delete 'delete-selection 'supersede)
-            (put 'paredit-backward-delete 'delete-selection 'supersede)
-            (put 'paredit-newline 'delete-selection t)))
+  :config
+  ;; making paredit work with delete-selection-mode
+  (put 'paredit-forward-delete 'delete-selection 'supersede)
+  (put 'paredit-backward-delete 'delete-selection 'supersede)
+  (put 'paredit-newline 'delete-selection t))
 
 (use-package popwin
   :init (popwin-mode 1))
 
 (use-package projectile
-  :init (progn
-          (setq projectile-use-git-grep t
-                projectile-enable-caching t)
-          (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
-          (projectile-global-mode 1)))
+  :init (setq projectile-use-git-grep t
+              projectile-enable-caching t)
+  :config
+  (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
+  (projectile-global-mode 1))
 
 (use-package restclient
   :mode ("\\.http\\'" . restclient-mode))
 
 (use-package undo-tree
-  :init (progn
-          (setq undo-tree-auto-save-history t
-                undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
-          (global-undo-tree-mode 1)))
+  :init (setq undo-tree-auto-save-history t
+              undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
+  :config (global-undo-tree-mode 1))
 
 (use-package web-mode
   :mode "\\.html$"
   :init (setq web-mode-code-indent-offset 2
               web-mode-markup-indent-offset 2
-              web-mode-attr-indent-offset 2))
+              web-mode-css-indent-offset 2
+              web-mode-style-padding 2
+              web-mode-script-padding 2))
 
 (use-package whitespace-cleanup-mode
-  :init (global-whitespace-cleanup-mode 1))
+  :config (global-whitespace-cleanup-mode 1))
 
 (use-package wrap-region
-  :init (wrap-region-global-mode 1))
+  :config (wrap-region-global-mode 1))
 
 (use-package yasnippet
-  :init (progn
-          (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion, which is helm in our case
-                yas-verbosity 1)
-          (yas-global-mode 1)))
+  :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion, which is helm in our case
+              yas-verbosity 1)
+  :config (yas-global-mode 1))
 
 ;;; init.el ends here
