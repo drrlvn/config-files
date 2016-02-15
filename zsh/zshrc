@@ -193,6 +193,8 @@ if hash ruby 2>/dev/null; then
     PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 fi
 
+export EDITOR="/usr/bin/emacsclient -c"
+export ALTERNATE_EDITOR="/usr/bin/vim"
 export LESS="-R -n -F -X"
 
 alias gg='git grep'
