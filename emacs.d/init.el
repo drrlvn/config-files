@@ -161,7 +161,7 @@
       compilation-read-command nil
       )
 
-(setq-default fill-column 80
+(setq-default fill-column 100
               indent-tabs-mode nil
               tab-width 4)
 
@@ -486,6 +486,10 @@
          ("C-c g" . magit-dispatch-popup))
   :config (setq magit-push-always-verify nil
                 magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+
+(use-package git-commit
+  :init (setq git-commit-summary-max-length 80)
+  :config (global-git-commit-mode t))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
