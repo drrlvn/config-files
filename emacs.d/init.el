@@ -36,7 +36,6 @@
  'go-mode
  'guide-key
  'helm
- 'helm-projectile
  'highlight-symbol
  'iedit
  'magit
@@ -216,7 +215,11 @@
          ("C-c C-s". ivy-resume))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) ")
-  :config (ivy-mode 1))
+  :config
+  (bind-keys :map ivy-mode-map
+             ("C-m" . ivy-alt-done)
+             ("C-j" . ivy-done))
+  (ivy-mode 1))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -434,12 +437,6 @@
          ("M-s M-o" . helm-occur)
          ("M-s m" . helm-multi-occur)))
 
-(use-package helm-projectile
-  :demand t
-  :config (helm-projectile-on)
-  :bind (("C-c f" . helm-projectile-find-file-in-known-projects)
-         ("C-c C-f" . helm-projectile)))
-
 (use-package highlight-symbol
   :defer t
   :config (setq highlight-symbol-idle-delay 0))
@@ -518,11 +515,14 @@
   :init (popwin-mode 1))
 
 (use-package projectile
-  :init (setq projectile-use-git-grep t
+  :init (setq projectile-completion-system 'ivy
+              projectile-use-git-grep t
               projectile-enable-caching t)
   :config
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
-  (projectile-global-mode 1))
+  (projectile-global-mode 1)
+  :bind (("C-c f" . projectile-find-in-known-projects)
+         ("C-c C-f" . projectile-find-file)))
 
 (use-package restclient
   :mode ("\\.http\\'" . restclient-mode))
