@@ -214,9 +214,10 @@
   :bind (("C-s" . swiper)
          ("C-c C-s". ivy-resume))
   :init (setq ivy-use-virtual-buffers t
+              ivy-re-builders-alist '((t . ivy--regex-fuzzy))
               ivy-count-format "(%d/%d) ")
   :config
-  (bind-keys :map ivy-mode-map
+  (bind-keys :map ivy-minibuffer-map
              ("C-m" . ivy-alt-done)
              ("C-j" . ivy-done))
   (ivy-mode 1))
