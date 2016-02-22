@@ -485,6 +485,7 @@
 (use-package magit
   :bind (("<f9>" . magit-status)
          ("S-<f9>" . magit-log-buffer-file)
+         ("C-<f9>" . magit-blame)
          ("C-c g" . magit-dispatch-popup))
   :config (setq magit-push-always-verify nil
                 magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
