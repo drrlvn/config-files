@@ -187,6 +187,7 @@ zstyle ':completion:*:*:kill:*' insert-ids single
 
 WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
+VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PATH="${HOME}/bin:${PATH}"
 if hash ruby 2>/dev/null; then

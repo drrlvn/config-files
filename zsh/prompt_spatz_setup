@@ -15,10 +15,10 @@ zstyle ':vcs_info:*+no-vcs:*' hooks no-vcs
 
 typeset -gA vcs_prompt_chars
 vcs_prompt_chars=(
-    'git' '%F{red}± '
-    'hg'  '%F{black}☿ '
-    'svn' '%F{blue}⚡ '
-    'cvs' '%F{white}c '
+    'git' '%F{red}±'
+    'hg'  '%F{black}☿'
+    'svn' '%F{blue}⚡'
+    'cvs' '%F{white}c'
 )
 
 +vi-no-vcs() {
@@ -35,10 +35,10 @@ vcs_prompt_chars=(
             local -a gitstatus
 
             ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
-            (( $ahead )) && gitstatus+=( "%F{green}⇡${ahead}" )
+            (( $ahead )) && gitstatus+=( "%F{green}↑${ahead}" )
 
             behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
-            (( $behind )) && gitstatus+=( "%F{red}⇣${behind}" )
+            (( $behind )) && gitstatus+=( "%F{red}↓${behind}" )
 
             (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
             ;;
@@ -46,10 +46,25 @@ vcs_prompt_chars=(
     esac
 }
 
+_venv_info() {
+    if [[ -z ${VIRTUAL_ENV} ]]; then
+        _venv_prompt=''
+        return;
+    fi
+    local -a venv_list
+    venv_list=("${(@s:/:)${VIRTUAL_ENV}}")
+    local venv=${venv_list[-1]}
+    if [[ ${venv} == ".env" ]]; then
+        venv=${venv_list[-2]}
+    fi
+    _venv_prompt="%F{yellow}○%F{magenta}(%F{white}${venv}%F{magenta}) "
+}
+
 add-zsh-hook precmd vcs_info
+add-zsh-hook precmd _venv_info
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f'
 fi
 PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
-RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_abbrev_pwd}'
+RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}${_venv_prompt}%F{blue}${_abbrev_pwd}'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
