@@ -210,8 +210,6 @@ alias tree='tree --dirsfirst'
 alias reload='rehash; source ~/.zshrc'
 alias cprogress='rsync -ah --progress'
 
-alias tmux="tmux -f ${0:h:h}/tmux.conf"
-
 alias agf="ag -l -G"
 
 . "${0:h}/zgen/zgen.zsh"

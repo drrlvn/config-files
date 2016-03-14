@@ -7,3 +7,6 @@
 [submodule "zsh/zgen"]
 	path = zsh/zgen
 	url = git@github.com:tarjoilija/zgen.git
+[submodule "tmux/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
