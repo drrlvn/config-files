@@ -23,6 +23,7 @@
  'cmake-font-lock
  'cmake-mode
  'company
+ 'company-statistics
  'counsel
  'diff-hl
  'discover-my-major
@@ -99,6 +100,7 @@
 (bind-key "C-z" 'repeat)
 (bind-key "C-!" 'kill-this-buffer)
 (bind-key "C-M-!" 'my/kill-buffer-other-window)
+(bind-key "C-^" 'bury-buffer)
 (bind-key "C-#" 'quick-calc)
 (bind-key "C-'" 'highlight-symbol-at-point)
 (bind-key "C-," 'highlight-symbol-prev)
@@ -391,6 +393,9 @@
               company-backends '(company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev))
   :config (global-company-mode 1))
 
+(use-package company-statistics
+  :config (company-statistics-mode 1))
+
 (use-package diff-hl
   :config (global-diff-hl-mode 1))
 
@@ -421,7 +426,7 @@
   :bind ("C-x v t" . git-timemachine))
 
 (use-package guide-key
-  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ,")
+  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
               guide-key/idle-delay 0.0
               guide-key/popup-window-position (quote bottom)
               guide-key/recursive-key-sequence-flag t)

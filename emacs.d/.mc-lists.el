@@ -40,6 +40,8 @@
         python-backspace
         python-indent-dedent-line-backspace
         python-indent-electric-colon
+        python-indent-shift-left
+        python-indent-shift-right
         smex
         sp-cua-replace-region
         subword-left
