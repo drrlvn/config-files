@@ -46,6 +46,7 @@
         sp-cua-replace-region
         subword-left
         subword-right
+        yaml-electric-dash-and-dot
         yas-expand
         zap-up-to-char
         ))
