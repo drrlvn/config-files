@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (21934 1463
-;;;;;;  814881 240000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22265 11448
+;;;;;;  91646 328000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/install-packages "config-defuns" "\
@@ -52,8 +52,8 @@ Open a new buffer with the contents of the URL provided.
 
 \(fn URL)" t nil)
 
-(autoload 'my/isearch-current-region-or-word "config-defuns" "\
-Reset current isearch to a search of the region or the word under point.
+(autoload 'my/swiper-region-or-current-word "config-defuns" "\
+Run swiper on region or current word
 
 \(fn)" t nil)
 

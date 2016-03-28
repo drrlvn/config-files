@@ -125,8 +125,6 @@
 
 (bind-key "C-h C-f" 'find-function)
 
-(bind-key (kbd "C-*") 'my/isearch-current-region-or-word isearch-mode-map)
-
 (bind-key [remap goto-line] 'my/goto-line-with-feedback)
 
 (prefer-coding-system 'utf-8)
@@ -175,7 +173,6 @@
 (electric-layout-mode 1)
 (global-ede-mode 1)
 (global-hl-line-mode 1)
-(global-visual-line-mode 1)
 
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
@@ -220,7 +217,7 @@
 
 (use-package swiper
   :bind (("C-s" . swiper)
-         ("C-c C-s". ivy-resume))
+         ("C-S-s" . my/swiper-region-or-current-word))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) ")
   :config
@@ -262,7 +259,7 @@
 
 (use-package flycheck
   :init
-  (setq flycheck-clang-language-standard "c++1y")
+  (setq flycheck-clang-language-standard "c++14")
   (add-to-list 'after-init-hook 'global-flycheck-mode))
 
 (use-package dired
@@ -390,7 +387,7 @@
 (use-package company
   :init (setq company-idle-delay 0
               company-minimum-prefix-length 2
-              company-backends '(company-elisp company-bbdb company-nxml company-css company-eclim company-xcode company-cmake (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-files company-dabbrev))
+              company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
   :config (global-company-mode 1))
 
 (use-package company-statistics

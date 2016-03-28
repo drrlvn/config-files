@@ -79,18 +79,13 @@
                 (list url)))
 
 ;;;###autoload
-(defun my/isearch-current-region-or-word ()
-  "Reset current isearch to a search of the region or the word under point."
+(defun my/swiper-region-or-current-word ()
+  "Run swiper on region or current word"
   (interactive)
-  (setq isearch-string ""
-        isearch-message "")
-  (isearch-yank-string (if (use-region-p)
-                           (let ((region-beginning (region-beginning))
-                                 (region-end (region-end)))
-                             (deactivate-mark)
-                             (buffer-substring region-beginning region-end))
-                         (setq isearch-word t)
-                         (thing-at-point 'word))))
+  (swiper
+   (if (region-active-p)
+       (buffer-substring (region-beginning) (region-end))
+     (current-word))))
 
 ;;;###autoload
 (defun my/autoload-and-set-key (package keys-and-functions)
