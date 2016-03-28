@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22265 11448
-;;;;;;  91646 328000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22265 21309
+;;;;;;  186034 100000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/install-packages "config-defuns" "\
@@ -74,11 +74,6 @@ Rotate your windows
 
 (autoload 'my/toggle-comment-line-or-region "config-defuns" "\
 Toggle comment on line if no region is active, or comment region.
-
-\(fn)" t nil)
-
-(autoload 'my/smart-beginning-of-line "config-defuns" "\
-Move point to first non-whitespace character or beginning-of-line.
 
 \(fn)" t nil)
 

@@ -146,17 +146,6 @@
     (comment-or-uncomment-region beg end)))
 
 ;;;###autoload
-(defun my/smart-beginning-of-line ()
-  "Move point to first non-whitespace character or beginning-of-line."
-  (interactive)
-  (if (and this-command-keys-shift-translated (not mark-active))
-    (push-mark nil t t))
-  (let ((oldpoint (point)))
-    (beginning-of-line-text)
-    (if (= oldpoint (point))
-        (beginning-of-line))))
-
-;;;###autoload
 (defun my/increment-number-at-point (n)
   (interactive "p")
   (let* ((bounds (bounds-of-thing-at-point 'word))

@@ -42,6 +42,7 @@
  'magit
  'markdown-mode
  'multiple-cursors
+ 'mwim
  'paredit
  'popwin
  'powerline
@@ -72,7 +73,7 @@
 
 (bind-key "C-x r q" 'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
-(bind-key "<home>" 'my/smart-beginning-of-line)
+(bind-key "<home>" 'mwim-beginning-of-code-or-line)
 (bind-key "<end>" 'end-of-line)
 (bind-key "<escape>" 'keyboard-escape-quit)
 (bind-key "<f5>" 'my/revert-buffer-no-confirmation)
