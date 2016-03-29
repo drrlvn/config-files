@@ -3,12 +3,12 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22265 21309
-;;;;;;  186034 100000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22266 16681
+;;;;;;  554823 577000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/install-packages "config-defuns" "\
-Install given packages.
+Install packages PACKAGES if needed.
 
 \(fn &rest PACKAGES)" nil nil)
 
@@ -53,7 +53,7 @@ Open a new buffer with the contents of the URL provided.
 \(fn URL)" t nil)
 
 (autoload 'my/swiper-region-or-current-word "config-defuns" "\
-Run swiper on region or current word
+Run swiper on region or current word.
 
 \(fn)" t nil)
 
@@ -68,7 +68,7 @@ Replace the preceding sexp with its value.
 \(fn)" t nil)
 
 (autoload 'my/rotate-windows "config-defuns" "\
-Rotate your windows
+Rotate your windows.
 
 \(fn)" t nil)
 
@@ -78,67 +78,67 @@ Toggle comment on line if no region is active, or comment region.
 \(fn)" t nil)
 
 (autoload 'my/increment-number-at-point "config-defuns" "\
-
+Increment number at point by N.
 
 \(fn N)" t nil)
 
 (autoload 'my/decrement-number-at-point "config-defuns" "\
-
+Decrement number at point by N.
 
 \(fn N)" t nil)
 
 (autoload 'my/goto-line-with-feedback "config-defuns" "\
-Show line numbers temporarily, while prompting for the line number input
+Show line numbers temporarily, while prompting for the line number input.
 
 \(fn)" t nil)
 
 (autoload 'my/get-current-class "config-defuns" "\
-
+Return name of enclosing class.
 
 \(fn)" nil nil)
 
 (autoload 'my/insert-default-ctor "config-defuns" "\
-
+Insert default constructor.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-virtual-dtor "config-defuns" "\
-
+Insert virtual destructor.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-copy-ctor "config-defuns" "\
-
+Insert copy constructor.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-copy-assignment-operator "config-defuns" "\
-
+Insert copy assignment operator.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-move-ctor "config-defuns" "\
-
+Insert move constructor.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-move-assignment-operator "config-defuns" "\
-
+Insert move assignment operator.
 
 \(fn)" t nil)
 
 (autoload 'my/insert-all-special "config-defuns" "\
-
+Insert all special methods.
 
 \(fn)" t nil)
 
 (autoload 'my/add-super-char-to-avy "config-defuns" "\
-
+Add binding for avy-goto M to key C.
 
 \(fn M C)" nil nil)
 
 (autoload 'my/projectile-kill-buffers "config-defuns" "\
-
+Kill all buffers from current project.
 
 \(fn)" t nil)
 

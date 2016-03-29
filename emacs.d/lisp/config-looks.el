@@ -9,7 +9,7 @@
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(add-to-list 'default-frame-alist '(font . "Fira Mono 10"))
+(set-frame-font "Fira Mono 10" nil t)
 
 (load-theme 'atom-one-dark t)
 

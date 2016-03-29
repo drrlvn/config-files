@@ -4,7 +4,7 @@
 
 ;;;###autoload
 (defun my/install-packages (&rest packages)
-  "Install given packages."
+  "Install packages PACKAGES if needed."
   (dolist (package packages)
     (unless (package-installed-p package)
       (unless package-archive-contents
@@ -15,10 +15,8 @@
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)
-  (if (derived-mode-p 'go-mode)
-      (gofmt)
-    (delete-trailing-whitespace)
-    (indent-region (point-min) (point-max))))
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max)))
 
 ;;;###autoload
 (defun my/filter-buffer ()
@@ -80,7 +78,7 @@
 
 ;;;###autoload
 (defun my/swiper-region-or-current-word ()
-  "Run swiper on region or current word"
+  "Run swiper on region or current word."
   (interactive)
   (swiper
    (if (region-active-p)
@@ -111,29 +109,28 @@
 
 ;;;###autoload
 (defun my/rotate-windows ()
-  "Rotate your windows"
+  "Rotate your windows."
   (interactive)
-  (cond ((not (> (count-windows)1))
-         (message "You can't rotate a single window!"))
-        (t
-         (setq i 1)
-         (setq numWindows (count-windows))
-         (while  (< i numWindows)
-           (let* (
-                  (w1 (elt (window-list) i))
-                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+  (if (not (> (count-windows) 1))
+      (message "You can't rotate a single window!")
+    (let ((i 1)
+          (numWindows (count-windows)))
+      (while  (< i numWindows)
+        (let* (
+               (w1 (elt (window-list) i))
+               (w2 (elt (window-list) (+ (% i numWindows) 1)))
 
-                  (b1 (window-buffer w1))
-                  (b2 (window-buffer w2))
+               (b1 (window-buffer w1))
+               (b2 (window-buffer w2))
 
-                  (s1 (window-start w1))
-                  (s2 (window-start w2))
-                  )
-             (set-window-buffer w1  b2)
-             (set-window-buffer w2 b1)
-             (set-window-start w1 s2)
-             (set-window-start w2 s1)
-             (setq i (1+ i)))))))
+               (s1 (window-start w1))
+               (s2 (window-start w2))
+               )
+          (set-window-buffer w1  b2)
+          (set-window-buffer w2 b1)
+          (set-window-start w1 s2)
+          (set-window-start w2 s1)
+          (setq i (1+ i)))))))
 
 ;;;###autoload
 (defun my/toggle-comment-line-or-region ()
@@ -147,6 +144,7 @@
 
 ;;;###autoload
 (defun my/increment-number-at-point (n)
+  "Increment number at point by N."
   (interactive "p")
   (let* ((bounds (bounds-of-thing-at-point 'word))
          (start (car bounds))
@@ -158,12 +156,13 @@
 
 ;;;###autoload
 (defun my/decrement-number-at-point (n)
+  "Decrement number at point by N."
   (interactive "p")
   (my/increment-number-at-point (- n)))
 
 ;;;###autoload
 (defun my/goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
+  "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
   (unwind-protect
       (progn
@@ -177,6 +176,7 @@
 
 ;;;###autoload
 (defun my/get-current-class ()
+  "Return name of enclosing class."
   (save-excursion
     (search-backward "class" nil t)
     (forward-word 2)
@@ -185,47 +185,47 @@
 
 ;;;###autoload
 (defun my/insert-default-ctor ()
-  ""
+  "Insert default constructor."
   (interactive)
   (insert (my/get-current-class) "() = default;"))
 
 ;;;###autoload
 (defun my/insert-virtual-dtor ()
-  ""
+  "Insert virtual destructor."
   (interactive)
   (insert "virtual ~" (my/get-current-class) "() = default;"))
 
 ;;;###autoload
 (defun my/insert-copy-ctor ()
-  ""
+  "Insert copy constructor."
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class "(const " current-class " &) = default;")))
 
 ;;;###autoload
 (defun my/insert-copy-assignment-operator ()
-  ""
+  "Insert copy assignment operator."
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class " & operator=(const " current-class " &) = default;")))
 
 ;;;###autoload
 (defun my/insert-move-ctor ()
-  ""
+  "Insert move constructor."
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class "(" current-class " &&) = default;")))
 
 ;;;###autoload
 (defun my/insert-move-assignment-operator ()
-  ""
+  "Insert move assignment operator."
   (interactive)
   (let ((current-class (my/get-current-class)))
     (insert current-class " & operator=(" current-class " &&) = default;")))
 
 ;;;###autoload
 (defun my/insert-all-special ()
-  ""
+  "Insert all special methods."
   (interactive)
   (my/insert-copy-ctor)
   (newline-and-indent)
@@ -240,12 +240,14 @@
 ;; for avy
 ;;;###autoload
 (defun my/add-super-char-to-avy (m c)
+  "Add binding for avy-goto M to key C."
   (global-set-key
    (read-kbd-macro (concat "s-" (string c)))
    `(lambda () (interactive) (,(intern (concat "avy-goto-" (symbol-name m))) ,c))))
 
 ;;;###autoload
 (defun my/projectile-kill-buffers ()
+  "Kill all buffers from current project."
   (interactive)
   (mapc 'kill-buffer (-remove 'buffer-base-buffer (projectile-project-buffers))))
 
