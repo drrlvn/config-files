@@ -137,6 +137,10 @@
 
 (windmove-default-keybindings 'super)   ; enable windmove
 
+(defun display-startup-echo-area-message ()
+  "Override default function and display nothing."
+  )
+
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
       comment-padding nil
@@ -145,7 +149,6 @@
       history-length 500
       indicate-buffer-boundaries 'left
       indicate-empty-lines t
-      inhibit-startup-echo-area-message (user-login-name)
       inhibit-startup-screen t
       initial-scratch-message nil
       kill-whole-line t
