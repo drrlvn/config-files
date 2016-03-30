@@ -13,4 +13,6 @@ tramp
 .emacs.desktop
 .emacs.desktop.lock
 company-statistics-cache.el
+places
+recentf
 *.elc
