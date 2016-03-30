@@ -196,7 +196,7 @@ fi
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
-export LESS="-R -n -F -X"
+export LESS="-R -n -X"
 
 alias gg='git grep'
 
