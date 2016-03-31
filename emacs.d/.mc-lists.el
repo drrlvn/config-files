@@ -26,6 +26,7 @@
         highlight-symbol-next
         jedi:dot-complete
         kill-visual-line
+        mwim-beginning-of-code-or-line
         my/kill-line-or-region
         my/save-line-or-region
         my/smart-beginning-of-line
