@@ -10,7 +10,7 @@
     fix     = commit --amend --no-edit
     flush   = !git add -A && git commit -m "flush" && git reset --hard HEAD@{1}
     l       = log --graph --decorate --pretty=oneline --abbrev-commit
-    la      = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    la      = !git lg --all
     lgg     = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
     lg      = log --graph --date=format:'%a %F %T' --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
     lo      = !git lg @{upstream}..
