@@ -80,6 +80,7 @@
 (bind-key "<f6>" 'ag-project-at-point)
 (bind-key "<f7>" 'previous-error)
 (bind-key "<f8>" 'next-error)
+(bind-key "M-<f9>" 'vc-revision-other-window)
 (bind-key "<f11>" 'my/cleanup-buffer)
 (bind-key "S-<f11>" 'whitespace-cleanup)
 (bind-key "S-<f12>" (lambda () (interactive) (find-file user-init-file)))
