@@ -1,6 +1,4 @@
 [alias]
-    ai      = add -i
-    ap      = add -p
     br      = branch -vv
     co      = checkout
     ci      = commit
@@ -20,7 +18,6 @@
     lpw     = log --patch --color-words
     ls      = log --stat
     pr      = !git co master && git pull && git co @{-1} && git rb master
-    rb      = rebase
     ri      = rebase -i
     st      = status -sb
     unstage = reset --
@@ -31,7 +28,7 @@
     frag = magenta bold
 
 [core]
-    pager          = less
+    pager          = less -F
     sparseCheckout = true
     abbrev = 12
     untrackedCache = true
