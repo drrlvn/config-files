@@ -1,41 +1,41 @@
 [alias]
-    br      = branch -vv
-    co      = checkout
-    ci      = commit
-    dc      = diff --cached
-    ds      = !git --no-pager diff --stat
-    dw      = diff --color-words
-    fix     = commit --amend --no-edit
-    flush   = !git add -A && git commit -m "flush" && git reset --hard HEAD@{1}
-    l       = log --graph --decorate --pretty=oneline --abbrev-commit
-    la      = !git lg --all
-    lgg     = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
-    lg      = log --graph --date=format:'%a %F %T' --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-    lo      = !git lg @{upstream}..
-    lr      = !git lg --since=\"2 weeks ago\"
-    lgs     = !git lg --stat
-    lp      = log --patch
-    lpw     = log --patch --color-words
-    ls      = log --stat
-    pr      = !git co master && git pull && git co @{-1} && git rb master
-    ri      = rebase -i
-    st      = status -sb
+    br = branch -vv
+    co = checkout
+    ci = commit
+    dc = diff --cached
+    ds = !git --no-pager diff --stat
+    dw = diff --color-words
+    fix = commit --amend --no-edit
+    flush = !git add -A && git commit -m "flush" && git reset --hard HEAD@{1}
+    l = log --graph --decorate --pretty=oneline --abbrev-commit
+    la = !git lg --all
+    lgg = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
+    lg = log --graph --date=format:'%a %F %T' --pretty=format:'%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+    lo = !git lg @{upstream}..
+    lr = !git lg --since=\"2 weeks ago\"
+    lgs = !git lg --stat
+    lp = log --patch
+    lpw = log --patch --color-words
+    ls = log --stat
+    pr = !git co master && git pull && git co @{-1} && git rb master
+    ri = rebase -i
+    st = status -sb
     unstage = reset --
 
 [color "diff"]
-    old  = red bold
-    new  = blue bold
+    old = red bold
+    new = blue bold
     frag = magenta bold
 
 [core]
-    pager          = less -F
+    pager = less -F
     sparseCheckout = true
     abbrev = 12
     untrackedCache = true
 
 [diff]
-    renamelimit      = 0
-    renames          = copy
+    renamelimit = 0
+    renames = copy
     ignoreSubmodules = dirty
 
 [rebase]
