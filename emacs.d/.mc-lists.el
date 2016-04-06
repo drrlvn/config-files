@@ -18,6 +18,7 @@
         cua-delete-region
         cua-paste
         cua-paste-pop
+        cycle-spacing
         delete-indentation
         electric-newline-and-maybe-indent
         end-of-visual-line

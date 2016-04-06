@@ -1,8 +1,9 @@
 auto-save-list/
 elpa/
 semanticdb/
-url/
 undodir/
+url/
+var/
 .python-environments/
 ac-comphist.dat
 custom.el
