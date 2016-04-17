@@ -91,8 +91,8 @@
 (bind-key "M-SPC" 'cycle-spacing)
 (bind-key [remap kill-ring-save] 'easy-kill)
 
-(bind-key "C-<tab>" 'next-buffer)
-(bind-key "C-S-<iso-lefttab>" 'previous-buffer)
+(bind-key "C-<tab>" 'previous-buffer)
+(bind-key "C-S-<iso-lefttab>" 'next-buffer)
 
 (bind-key "C-n" (lambda (n) (interactive "p") (scroll-up n)))
 (bind-key "C-p" (lambda (n) (interactive "p") (scroll-down n)))
@@ -280,7 +280,9 @@
   :defer t
   :config
   (setq org-replace-disputed-keys t
-        org-src-fontify-natively t)
+        org-src-fontify-natively t
+        org-startup-indented t
+        org-html-postamble nil)
   (add-hook 'org-mode-hook (lambda ()
                              (make-local-variable 'show-paren-mode)
                              (setq show-paren-mode nil)
