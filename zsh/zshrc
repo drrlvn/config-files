@@ -212,6 +212,7 @@ alias tree='tree --dirsfirst'
 alias reload='rehash; source ~/.zshrc'
 alias cprogress='rsync -ah --progress'
 
+alias e="emacsclient -n"
 alias agf="ag -l -G"
 
 . "${0:h}/zgen/zgen.zsh"
@@ -219,6 +220,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions
     zgen load jimmijj/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
+    zgen load psprint/zsh-cmd-architect
     zgen save
 fi
 
