@@ -1,7 +1,7 @@
 [alias]
     br = branch -vv
     co = checkout
-    ci = commit
+    ci = commit -v
     dc = diff --cached
     ds = !git --no-pager diff --stat
     dw = diff --color-words
