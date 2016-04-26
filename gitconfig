@@ -34,6 +34,7 @@
     untrackedCache = true
 
 [diff]
+    algorithm = histogram
     renamelimit = 0
     renames = copy
     ignoreSubmodules = dirty
