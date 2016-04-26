@@ -1,12 +1,9 @@
-[submodule "zsh/fasd"]
-	path = zsh/fasd
-	url = git://github.com/clvv/fasd.git
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = git://github.com/gmarik/vundle.git
-[submodule "zsh/zgen"]
-	path = zsh/zgen
-	url = git@github.com:tarjoilija/zgen.git
 [submodule "tmux/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "zsh/zplug"]
+	path = zsh/zplug
+	url = https://github.com/b4b4r07/zplug.git

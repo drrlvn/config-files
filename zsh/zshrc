@@ -192,9 +192,11 @@ READNULLCMD=less
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PATH="${HOME}/bin:${PATH}"
-if hash ruby 2>/dev/null; then
-    PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+ruby_bin_dirs=($HOME/.gem/ruby/*/bin)
+if [[ -n $ruby_bin_dirs ]]; then
+    PATH="$PATH:${(@j/:/)ruby_bin_dirs}"
 fi
+unset ruby_bin_dirs
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
@@ -215,25 +217,35 @@ alias cprogress='rsync -ah --progress'
 alias e="emacsclient -n"
 alias agf="ag -l -G"
 
-. "${0:h}/zgen/zgen.zsh"
-if ! zgen saved; then
-    zgen load zsh-users/zsh-completions
-    zgen load jimmijj/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-history-substring-search
-    zgen load psprint/zsh-cmd-architect
-    zgen save
+fasd_cache="$HOME/.fasd-init-zsh"
+. "${0:h}/zplug/zplug"
+zplug clvv/fasd, \
+      as:command, \
+      do:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
+zplug zsh-users/zsh-completions
+zplug jimmijj/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
+
+if ! zplug check; then
+    zplug install
+fi
+zplug load
+
+if zplug check clvv/fasd; then
+    source "$fasd_cache"
+fi
+unset fasd_cache
+
+if zplug check jimmijj/zsh-syntax-highlighting; then
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
 fi
 
-bindkey "[A" history-substring-search-up
-bindkey "[B" history-substring-search-down
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
-
-# enable fasd
-PATH="${PATH}:${0:h}/fasd"
-eval "$(fasd --init auto)"
+if zplug check zsh-users/zsh-history-substring-search; then
+    bindkey "[A" history-substring-search-up
+    bindkey "[B" history-substring-search-down
+fi
 
 save_dirs() {
     local should_clear=yes
