@@ -394,7 +394,7 @@
 (use-package company
   :init (setq company-idle-delay 0
               company-minimum-prefix-length 2
-              company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
+              company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
   :config (global-company-mode 1))
 
 (use-package company-statistics
