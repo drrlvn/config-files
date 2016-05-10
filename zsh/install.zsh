@@ -17,8 +17,6 @@ echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 source ${REPO_PATH}/zsh/zshrc
 END
 
-ln -sf ${~REPO_PATH}/zsh/zlogin ~/.zlogin
-
 mkdir -p ~/.zsh
 pushd ~/.zsh
 ln -sf ${~REPO_PATH}/zsh/prompt_spatz_setup .
