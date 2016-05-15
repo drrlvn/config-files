@@ -269,7 +269,7 @@ imap <M-F11> <Esc><M-F11>
 filetype plugin indent on
 syntax on
 
-au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 formatoptions+=a spell
+au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
 au FileType mail setlocal spell
 au FileType rst setlocal noexpandtab wrapmargin=2 textwidth=78 formatoptions+=a spell
