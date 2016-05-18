@@ -1,5 +1,5 @@
 [alias]
-    br = branch -vv
+    br = branch -vv --sort=-committerdate
     co = checkout
     ci = commit -v
     dc = diff --cached
