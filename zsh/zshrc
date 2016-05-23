@@ -210,7 +210,7 @@ alias mv='mv -iv'
 alias rm='rm -Iv --one-file-system'
 alias ls='ls --color=auto --group-directories-first -lFhX'
 alias la='ls -A'
-alias tree='tree --dirsfirst'
+alias tree='tree --dirsfirst -Fh'
 alias reload='rehash; source ~/.zshrc'
 alias cprogress='rsync -ah --progress'
 
