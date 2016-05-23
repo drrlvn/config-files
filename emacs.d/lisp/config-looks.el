@@ -11,13 +11,18 @@
 
 (set-frame-font "Fira Mono 10" nil t)
 
-(load-theme 'atom-one-dark t)
+(use-package atom-one-dark-theme
+  :ensure t
+  :config (load-theme 'atom-one-dark t))
 
 (use-package window-numbering
+  :ensure t
   :config (window-numbering-mode 1))
 (use-package powerline
+  :ensure t
   :init (setq powerline-default-separator 'wave))
 (use-package spaceline-config
+  :ensure spaceline
   :init (setq spaceline-window-numbers-unicode t)
   :config
   (spaceline-toggle-minor-modes-off)

@@ -3,15 +3,6 @@
 ;;; Code:
 
 ;;;###autoload
-(defun my/install-packages (&rest packages)
-  "Install packages PACKAGES if needed."
-  (dolist (package packages)
-    (unless (package-installed-p package)
-      (unless package-archive-contents
-        (package-refresh-contents))
-      (package-install package))))
-
-;;;###autoload
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)

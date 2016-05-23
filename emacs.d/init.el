@@ -11,61 +11,18 @@
 
 (require 'config-defuns-autoloads)
 
-(setq package-check-signature nil)
+(setq package-check-signature nil
+      package-enable-at-startup nil)
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(my/install-packages
- 'anzu
- 'atom-one-dark-theme
- 'auto-compile
- 'avy
- 'bind-key
- 'cmake-font-lock
- 'cmake-mode
- 'company
- 'company-statistics
- 'counsel
- 'diff-hl
- 'discover-my-major
- 'drag-stuff
- 'easy-kill
- 'emmet-mode
- 'expand-region
- 'flycheck
- 'git-messenger
- 'git-timemachine
- 'go-mode
- 'guide-key
- 'helm
- 'highlight-symbol
- 'iedit
- 'magit
- 'markdown-mode
- 'multiple-cursors
- 'mwim
- 'paredit
- 'popwin
- 'powerline
- 'projectile
- 'protobuf-mode
- 'rainbow-delimiters
- 'restclient
- 'rust-mode
- 'spaceline
- 'swiper
- 'undo-tree
- 'use-package
- 'web-mode
- 'whitespace-cleanup-mode
- 'window-numbering
- 'wrap-region
- 'yaml-mode
- 'yasnippet
- )
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (eval-when-compile
   (require 'use-package))
-(require 'bind-key)
+(use-package bind-key
+  :ensure t)
 (require 'config-looks)
 
 (use-package misc
@@ -221,6 +178,7 @@
   :config (recentf-mode 1))
 
 (use-package swiper
+  :ensure t
   :bind (("C-s" . swiper)
          ("C-S-s" . my/swiper-region-or-current-word))
   :init (setq ivy-use-virtual-buffers t
@@ -232,6 +190,7 @@
   (ivy-mode 1))
 
 (use-package counsel
+  :ensure t
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-x y" . counsel-yank-pop)
@@ -263,8 +222,9 @@
   :config (setq doc-view-continuous t))
 
 (use-package flycheck
+  :ensure t
   :init
-  (setq flycheck-clang-language-standard "c++14")
+  (setq flycheck-clang-language-standard "c++1z")
   (add-to-list 'after-init-hook 'global-flycheck-mode))
 
 (use-package dired
@@ -329,9 +289,21 @@
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode))
 
+(use-package go-mode
+  :ensure t)
+
+;(use-package protobuf-mode
+;  :ensure t)
+
+(use-package rust-mode
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
 (use-package auto-compile
-  :config
-  (auto-compile-on-save-mode))
+  :ensure t
+  :config (auto-compile-on-save-mode))
 
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (eldoc-mode 1)
@@ -341,7 +313,11 @@
 (add-hook 'python-mode-hook (lambda ()
                               (define-key python-mode-map (kbd "C-c C-f") nil)))
 
+(use-package cmake-font-lock
+  :ensure t)
+
 (use-package cmake-mode
+  :ensure t
   :mode "CMakeLists\\.txt\\'"
   :config (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
 
@@ -377,6 +353,7 @@
                 uniquify-separator ":"))
 
 (use-package avy
+  :ensure t
   :bind (("C-`" . avy-goto-char)
          ("C-~" . avy-goto-word-or-subword-1))
   :init
@@ -389,28 +366,38 @@
            do (my/add-super-char-to-avy 'char c)))
 
 (use-package anzu
+  :ensure t
   :config (global-anzu-mode 1))
 
 (use-package company
+  :ensure t
   :init (setq company-idle-delay 0
               company-minimum-prefix-length 2
               company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
   :config (global-company-mode 1))
 
 (use-package company-statistics
+  :ensure t
   :config (company-statistics-mode 1))
 
 (use-package diff-hl
+  :ensure t
   :config (global-diff-hl-mode 1))
 
 (use-package discover-my-major
+  :ensure t
   :bind ("C-h C-m" . discover-my-major))
 
 (use-package drag-stuff
+  :ensure t
   :defer t
   :config (setq drag-stuff-modifier '(meta shift)))
 
+(use-package easy-kill
+  :ensure t)
+
 (use-package emmet-mode
+  :ensure t
   :defer t
   :init
   (add-hook 'sgml-mode-hook 'emmet-mode)
@@ -419,17 +406,21 @@
                 emmet-preview-default nil))
 
 (use-package expand-region
+  :ensure t
   :bind (("C-=" . er/expand-region)
          ("C--" . er/contract-region)))
 
 (use-package git-messenger
+  :ensure t
   :bind ("C-x v p" . git-messenger:popup-message)
   :config (setq git-messenger:show-detail t))
 
 (use-package git-timemachine
+  :ensure t
   :bind ("C-x v t" . git-timemachine))
 
 (use-package guide-key
+  :ensure t
   :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
               guide-key/idle-delay 0.0
               guide-key/popup-window-position (quote bottom)
@@ -437,6 +428,7 @@
   :config (guide-key-mode 1))
 
 (use-package helm-mode
+  :ensure helm
   :init (setq helm-idle-delay 0
               helm-input-idle-delay 0
               helm-exit-idle-delay 0
@@ -453,6 +445,7 @@
          ("M-s m" . helm-multi-occur)))
 
 (use-package highlight-symbol
+  :ensure t
   :defer t
   :config (setq highlight-symbol-idle-delay 0))
 
@@ -490,9 +483,10 @@
   (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default"))))
 
 (use-package iedit
-  :bind ("C-;" . iedit-mode))
+  :ensure t)
 
 (use-package magit
+  :ensure t
   :bind (("<f9>" . magit-status)
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
@@ -505,6 +499,7 @@
   :config (global-git-commit-mode t))
 
 (use-package markdown-mode
+  :ensure t
   :mode "\\.md\\'"
   :config
   (add-hook 'markdown-mode-hook (lambda ()
@@ -513,13 +508,18 @@
   (setq markdown-command "markdown_py"))
 
 (use-package multiple-cursors
+  :ensure t
   :bind (("C-|" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this-dwim)
          ("C-c C->" . mc/mark-all-like-this-dwim)))
 
+(use-package mwim
+  :ensure t)
+
 (use-package paredit
+  :ensure t
   :defer t
   :config
   ;; making paredit work with delete-selection-mode
@@ -528,9 +528,11 @@
   (put 'paredit-newline 'delete-selection t))
 
 (use-package popwin
+  :ensure t
   :init (popwin-mode 1))
 
 (use-package projectile
+  :ensure t
   :init (setq projectile-completion-system 'ivy
               projectile-use-git-grep t
               projectile-enable-caching t)
@@ -540,15 +542,21 @@
   :bind (("C-c f" . projectile-find-in-known-projects)
          ("C-c C-f" . projectile-find-file)))
 
+(use-package rainbow-delimiters
+  :ensure t)
+
 (use-package restclient
+  :ensure t
   :mode ("\\.http\\'" . restclient-mode))
 
 (use-package undo-tree
+  :ensure t
   :init (setq undo-tree-auto-save-history t
               undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
   :config (global-undo-tree-mode 1))
 
 (use-package web-mode
+  :ensure t
   :mode "\\.html$"
   :init (setq web-mode-code-indent-offset 2
               web-mode-markup-indent-offset 2
@@ -557,12 +565,15 @@
               web-mode-script-padding 2))
 
 (use-package whitespace-cleanup-mode
+  :ensure t
   :config (global-whitespace-cleanup-mode 1))
 
 (use-package wrap-region
+  :ensure t
   :config (wrap-region-global-mode 1))
 
 (use-package yasnippet
+  :ensure t
   :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion, which is helm in our case
               yas-verbosity 1)
   :config (yas-global-mode 1))

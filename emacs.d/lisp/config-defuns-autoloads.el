@@ -7,11 +7,6 @@
 ;;;;;;  554823 577000))
 ;;; Generated autoloads from config-defuns.el
 
-(autoload 'my/install-packages "config-defuns" "\
-Install packages PACKAGES if needed.
-
-\(fn &rest PACKAGES)" nil nil)
-
 (autoload 'my/cleanup-buffer "config-defuns" "\
 Perform a bunch of operations on the whitespace content of a buffer.
 
