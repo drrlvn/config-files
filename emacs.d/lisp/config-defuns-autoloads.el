@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22266 16681
-;;;;;;  554823 577000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22341 30967
+;;;;;;  271975 334000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -134,6 +134,11 @@ Add binding for avy-goto M to key C.
 
 (autoload 'my/projectile-kill-buffers "config-defuns" "\
 Kill all buffers from current project.
+
+\(fn)" t nil)
+
+(autoload 'my/counsel-projectile-ag "config-defuns" "\
+Run `counsel-ag' in the project root.
 
 \(fn)" t nil)
 

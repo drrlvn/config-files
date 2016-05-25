@@ -242,5 +242,11 @@
   (interactive)
   (mapc 'kill-buffer (-remove 'buffer-base-buffer (projectile-project-buffers))))
 
+;;;###autoload
+(defun my/counsel-projectile-ag ()
+  "Run `counsel-ag' in the project root."
+  (interactive)
+  (counsel-ag nil (projectile-project-root)))
+
 (provide 'config-defuns)
 ;;; config-defuns.el ends here

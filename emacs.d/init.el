@@ -148,7 +148,9 @@
 (advice-add 'delete-window :after #'my/balance-windows)
 
 (defun my/indent-yanked-region (&rest args)
-  (if (derived-mode-p 'prog-mode)
+  (if (and
+       (derived-mode-p 'prog-mode)
+       (not (member major-mode '(python-mode ruby-mode makefile-mode))))
       (let ((mark-even-if-inactive transient-mark-mode))
         (indent-region (region-beginning) (region-end) nil))))
 (advice-add 'yank :after #'my/indent-yanked-region)
@@ -195,6 +197,7 @@
          ("C-x C-f" . counsel-find-file)
          ("C-x y" . counsel-yank-pop)
          ("C-c a" . counsel-ag)
+         ("C-c u" . counsel-unicode-char)
          ("M-i" . counsel-imenu)))
 
 (use-package cua-base
@@ -540,7 +543,10 @@
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
   (projectile-global-mode 1)
   :bind (("C-c f" . projectile-find-in-known-projects)
-         ("C-c C-f" . projectile-find-file)))
+         ("C-c C-f" . projectile-find-file)
+         :map projectile-command-map
+         ("s g" . counsel-git-grep)
+         ("s s" . my/counsel-projectile-ag)))
 
 (use-package rainbow-delimiters
   :ensure t)
