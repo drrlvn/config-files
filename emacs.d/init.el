@@ -141,12 +141,6 @@
   (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
   (add-to-list 'exec-path "C:/Go/bin"))
 
-(defun my/balance-windows (&rest args)
-  (balance-windows))
-(advice-add 'split-window-right :after #'my/balance-windows)
-(advice-add 'split-window-below :after #'my/balance-windows)
-(advice-add 'delete-window :after #'my/balance-windows)
-
 (defun my/indent-yanked-region (&rest args)
   (if (and
        (derived-mode-p 'prog-mode)
@@ -178,6 +172,11 @@
 (use-package recentf
   :init (setq recentf-max-saved-items 1000)
   :config (recentf-mode 1))
+
+(use-package golden-ratio
+  :ensure t
+  :init (setq golden-ratio-auto-scale t)
+  :config (golden-ratio-mode 1))
 
 (use-package swiper
   :ensure t
@@ -290,7 +289,8 @@
                                   (c-set-offset 'innamespace 0))))
 
 (use-package python
-  :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode))
+  :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
+  :bind ("C-<f8>" . my/pylint-ignore-errors-at-point))
 
 (use-package go-mode
   :ensure t)
