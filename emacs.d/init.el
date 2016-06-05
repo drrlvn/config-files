@@ -181,7 +181,8 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
-         ("C-S-s" . my/swiper-region-or-current-word))
+         ("C-S-s" . my/swiper-region-or-current-word)
+         ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) ")
   :config
@@ -430,23 +431,6 @@
               guide-key/recursive-key-sequence-flag t)
   :config (guide-key-mode 1))
 
-(use-package helm-mode
-  :ensure helm
-  :init (setq helm-idle-delay 0
-              helm-input-idle-delay 0
-              helm-exit-idle-delay 0
-              helm-M-x-fuzzy-match t
-              helm-ff-transformer-show-only-basename nil
-              helm-move-to-line-cycle-in-source t
-              helm-yank-symbol-first t)
-  :bind (("C-x C-r" . helm-recentf)
-         ("C-x a" . helm-apropos)
-         ("C-x f" . helm-mini)
-         ("C-x g" . helm-google-suggest)
-         ("M-X" . helm-M-x)
-         ("M-s M-o" . helm-occur)
-         ("M-s m" . helm-multi-occur)))
-
 (use-package highlight-symbol
   :ensure t
   :defer t
@@ -580,7 +564,7 @@
 
 (use-package yasnippet
   :ensure t
-  :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion, which is helm in our case
+  :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
               yas-verbosity 1)
   :config (yas-global-mode 1))
 
