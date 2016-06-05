@@ -254,22 +254,6 @@
 (add-hook 'rst-mode-hook (lambda ()
                            (flyspell-mode 1)))
 
-;; Programming
-(bind-keys
- :map prog-mode-map
- ("<return>" . newline-and-indent)
- ("C-<delete>" . subword-kill)
- ("C-<right>" . subword-forward)
- ("C-<left>" . subword-backward))
-(add-hook 'prog-mode-hook (lambda ()
-                            (subword-mode 1)
-                            (drag-stuff-mode 1)
-                            (rainbow-delimiters-mode 1)
-                            (setq show-trailing-whitespace t)
-                            (font-lock-add-keywords
-                             nil
-                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))))
-
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
   :init (setq c-basic-offset 4
@@ -296,9 +280,6 @@
 (use-package go-mode
   :ensure t)
 
-;(use-package protobuf-mode
-;  :ensure t)
-
 (use-package rust-mode
   :ensure t)
 
@@ -308,14 +289,6 @@
 (use-package auto-compile
   :ensure t
   :config (auto-compile-on-save-mode))
-
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (eldoc-mode 1)
-                                  (paredit-mode 1)
-                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)))
-
-(add-hook 'python-mode-hook (lambda ()
-                              (define-key python-mode-map (kbd "C-c C-f") nil)))
 
 (use-package cmake-font-lock
   :ensure t)
@@ -567,5 +540,28 @@
   :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
               yas-verbosity 1)
   :config (yas-global-mode 1))
+
+(bind-keys
+ :map prog-mode-map
+ ("<return>" . newline-and-indent)
+ ("C-<delete>" . subword-kill)
+ ("C-<right>" . subword-forward)
+ ("C-<left>" . subword-backward))
+(add-hook 'prog-mode-hook (lambda ()
+                            (subword-mode 1)
+                            (drag-stuff-mode 1)
+                            (rainbow-delimiters-mode 1)
+                            (setq show-trailing-whitespace t)
+                            (font-lock-add-keywords
+                             nil
+                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))))
+
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (eldoc-mode 1)
+                                  (paredit-mode 1)
+                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)))
+
+(add-hook 'python-mode-hook (lambda ()
+                              (define-key python-mode-map (kbd "C-c C-f") nil)))
 
 ;;; init.el ends here
