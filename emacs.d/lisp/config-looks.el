@@ -23,7 +23,8 @@
   :init (setq powerline-default-separator 'wave))
 (use-package spaceline-config
   :ensure spaceline
-  :init (setq spaceline-window-numbers-unicode t)
+  :init (setq spaceline-workspace-numbers-unicode t
+              spaceline-window-numbers-unicode t)
   :config
   (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-flycheck-error-off)

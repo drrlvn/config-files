@@ -387,6 +387,12 @@
   :bind (("C-=" . er/expand-region)
          ("C--" . er/contract-region)))
 
+(use-package eyebrowse
+  :ensure t
+  :config (setq eyebrowse-wrap-around t
+                eyebrowse-new-workspace t)
+  :init (eyebrowse-mode t))
+
 (use-package git-messenger
   :ensure t
   :bind ("C-x v p" . git-messenger:popup-message)
@@ -398,7 +404,8 @@
 
 (use-package guide-key
   :ensure t
-  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c" "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
+  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c"
+                                             "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
               guide-key/idle-delay 0.0
               guide-key/popup-window-position (quote bottom)
               guide-key/recursive-key-sequence-flag t)
