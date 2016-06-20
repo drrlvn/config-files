@@ -162,6 +162,19 @@
           (call-interactively 'goto-line)))
     (linum-mode -1)))
 
+;;;###autoload
+(defun my/projectile-disable-remove-current-project (orig-fun &rest args)
+  "Call ORIG-FUN with ARGS while replacing projectile--remove-current-project with identity function."
+  (cl-letf (((symbol-function 'projectile--remove-current-project) #'identity))
+    (apply orig-fun args)))
+
+;;;###autoload
+(defun my/projectile-switch-to-git ()
+  "Run `projectile-vc' (magit) on selected project."
+  (interactive)
+  (let ((projectile-switch-project-action 'projectile-vc))
+    (projectile-switch-project)))
+
 
 ;; C++ auto insert
 

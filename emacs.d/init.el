@@ -506,10 +506,12 @@
               projectile-enable-caching t)
   :config
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
+  (advice-add 'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
   (projectile-global-mode 1)
-  :bind (("C-c f" . projectile-find-in-known-projects)
+  :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
+         ("g" . my/projectile-switch-to-git)
          ("s g" . counsel-git-grep)
          ("s s" . my/counsel-projectile-ag)))
 

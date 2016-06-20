@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22346 48240
-;;;;;;  514791 482000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22375 44602
+;;;;;;  374113 784000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -84,6 +84,16 @@ Decrement number at point by N.
 
 (autoload 'my/goto-line-with-feedback "config-defuns" "\
 Show line numbers temporarily, while prompting for the line number input.
+
+\(fn)" t nil)
+
+(autoload 'my/projectile-disable-remove-current-project "config-defuns" "\
+Call ORIG-FUN with ARGS while replacing projectile--remove-current-project with identity function.
+
+\(fn ORIG-FUN &rest ARGS)" nil nil)
+
+(autoload 'my/projectile-switch-to-git "config-defuns" "\
+Run vc (magit) on selected project.
 
 \(fn)" t nil)
 
