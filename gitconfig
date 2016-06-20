@@ -33,6 +33,14 @@
     abbrev = 12
     untrackedCache = true
 
+[commit]
+    verbose = true
+
+[pager]
+    log = /usr/share/git/diff-highlight/diff-highlight | less -F
+    show = /usr/share/git/diff-highlight/diff-highlight | less -F
+    diff = /usr/share/git/diff-highlight/diff-highlight | less -F
+
 [diff]
     algorithm = histogram
     renamelimit = 0
@@ -53,6 +61,9 @@
 [push]
     default = simple
     followTags = true
+
+[interactive]
+    diffFilter = /usr/share/git/diff-highlight/diff-highlight
 
 [user]
     useConfigOnly = true
