@@ -186,11 +186,10 @@
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) ")
-  :config
-  (bind-keys :map ivy-minibuffer-map
-             ("C-m" . ivy-alt-done)
-             ("C-j" . ivy-done))
-  (ivy-mode 1))
+  :bind (:map ivy-minibuffer-map
+         ("C-m" . ivy-alt-done)
+         ("C-j" . ivy-done))
+  :config (ivy-mode 1))
 
 (use-package counsel
   :ensure t
@@ -259,20 +258,19 @@
   :mode ("\\.x\\'" . c++-mode)
   :init (setq c-basic-offset 4
               c-default-style "bsd")
-  :config
-  (bind-keys :map c-mode-base-map
-             ("C-c o" . ff-get-other-file)
-             ("C-c i a" . my/insert-all-special)
-             ("C-c i c" . my/insert-default-ctor)
-             ("C-c i d" . my/insert-virtual-dtor)
-             ("C-c i p" . my/insert-copy-ctor)
-             ("C-c i P" . my/insert-copy-assignment-operator)
-             ("C-c i m" . my/insert-move-ctor)
-             ("C-c i M" . my/insert-move-assignment-operator))
-  (add-hook 'c-mode-common-hook (lambda ()
-                                  (setq comment-start "/*"
-                                        comment-end "*/")
-                                  (c-set-offset 'innamespace 0))))
+  :bind (:map c-mode-base-map
+         ("C-c o" . ff-get-other-file)
+         ("C-c i a" . my/insert-all-special)
+         ("C-c i c" . my/insert-default-ctor)
+         ("C-c i d" . my/insert-virtual-dtor)
+         ("C-c i p" . my/insert-copy-ctor)
+         ("C-c i P" . my/insert-copy-assignment-operator)
+         ("C-c i m" . my/insert-move-ctor)
+         ("C-c i M" . my/insert-move-assignment-operator))
+  :config (add-hook 'c-mode-common-hook (lambda ()
+                                          (setq comment-start "/*"
+                                                comment-end "*/")
+                                          (c-set-offset 'innamespace 0))))
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
