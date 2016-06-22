@@ -371,6 +371,10 @@
   :defer t
   :config (setq drag-stuff-modifier '(meta shift)))
 
+(use-package dumb-jump
+  :ensure t
+  :config (dumb-jump-mode 1))
+
 (use-package easy-kill
   :ensure t)
 
