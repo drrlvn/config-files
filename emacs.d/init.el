@@ -504,8 +504,7 @@
 (use-package projectile
   :ensure t
   :init (setq projectile-completion-system 'ivy
-              projectile-use-git-grep t
-              projectile-enable-caching t)
+              projectile-use-git-grep t)
   :config
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
   (advice-add 'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
