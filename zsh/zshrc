@@ -271,4 +271,4 @@ if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
 fi
 
 # enable command-not-found hook on arch
-[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh || true
