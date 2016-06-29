@@ -200,7 +200,7 @@ unset ruby_bin_dirs
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
-export LESS="-R -n -X"
+export LESS="-R -n -X -m -i"
 
 alias gg='git grep'
 
