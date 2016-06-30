@@ -185,7 +185,8 @@
          ("C-S-s" . my/swiper-region-or-current-word)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
-              ivy-count-format "(%d/%d) ")
+              ivy-count-format "(%d/%d) "
+              ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   :bind (:map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
          ("C-j" . ivy-done))
