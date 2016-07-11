@@ -2,4 +2,4 @@
 # name: pdb
 # key: pdb
 # --
-import ipdb; ipdb.set_trace()
+import pudb; pu.db

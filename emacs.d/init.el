@@ -123,6 +123,7 @@
       )
 
 (setq-default fill-column 100
+              comment-column 0
               indent-tabs-mode nil
               tab-width 4)
 
@@ -276,6 +277,9 @@
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
   :bind ("C-<f8>" . my/pylint-ignore-errors-at-point))
+
+(use-package pyvenv
+  :ensure t)
 
 (use-package go-mode
   :ensure t)
@@ -574,6 +578,7 @@
                                   (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)))
 
 (add-hook 'python-mode-hook (lambda ()
+                              (pyvenv-tracking-mode t)
                               (define-key python-mode-map (kbd "C-c C-f") nil)))
 
 ;;; init.el ends here
