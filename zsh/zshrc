@@ -192,7 +192,7 @@ READNULLCMD=less
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PATH="${HOME}/bin:${PATH}"
-ruby_bin_dirs=($HOME/.gem/ruby/*/bin)
+ruby_bin_dirs=($HOME/.gem/ruby/*/bin(N))
 if [[ -n $ruby_bin_dirs ]]; then
     PATH="$PATH:${(@j/:/)ruby_bin_dirs}"
 fi
