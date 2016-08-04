@@ -21,3 +21,5 @@ mkdir -p ~/.zsh
 pushd ~/.zsh
 ln -sf ${~REPO_PATH}/zsh/prompt_spatz_setup .
 popd
+
+git clone https://github.com/zplug/zplug ~/.zplug
