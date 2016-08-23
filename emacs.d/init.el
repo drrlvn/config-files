@@ -457,9 +457,6 @@
                                        )))
   (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default"))))
 
-(use-package iedit
-  :ensure t)
-
 (use-package magit
   :ensure t
   :bind (("<f9>" . magit-status)
@@ -485,10 +482,9 @@
 (use-package multiple-cursors
   :ensure t
   :bind (("C-|" . mc/edit-lines)
+         ("C-;" . mc/mark-all-like-this-dwim)
          ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this-dwim)
-         ("C-c C->" . mc/mark-all-like-this-dwim)))
+         ("C-<" . mc/mark-previous-like-this)))
 
 (use-package mwim
   :ensure t)

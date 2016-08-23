@@ -56,7 +56,10 @@
 
 (setq mc/cmds-to-run-once
       '(
+        counsel-M-x
+        highlight-symbol-at-point
         iedit-mode
+        ivy-alt-done
         shell
         widget-button-click
         ))
