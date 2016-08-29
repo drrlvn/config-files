@@ -84,6 +84,9 @@
 
 (bind-key "C-h C-f" 'find-function)
 
+(bind-key "C-x n r" 'narrow-to-region)
+(bind-key "C-x n n" 'my/narrow-or-widen-dwim)
+
 (bind-key [remap goto-line] 'my/goto-line-with-feedback)
 
 (prefer-coding-system 'utf-8)
@@ -412,7 +415,7 @@
 
 (use-package guide-key
   :ensure t
-  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c"
+  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x n" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c"
                                              "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
               guide-key/idle-delay 0.0
               guide-key/popup-window-position (quote bottom)

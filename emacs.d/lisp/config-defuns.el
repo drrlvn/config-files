@@ -175,6 +175,21 @@
   (let ((projectile-switch-project-action 'projectile-vc))
     (projectile-switch-project)))
 
+;;;###autoload
+(defun my/narrow-or-widen-dwim (p)
+  "Widen if buffer is narrowed, narrow-dwim otherwise.
+Dwim means: region, org-src-block, org-subtree, or
+defun, whichever applies first.  Narrowing to
+org-src-block actually calls `org-edit-src-code'.
+
+With prefix P, don't widen, just narrow even if buffer
+is already narrowed.
+
+Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
+  (interactive "P")
+  (cond ((and (buffer-narrowed-p) (not p)) (widen))
+        ((region-active-p) (narrow-to-region (region-beginning) (region-end)))
+        (t (narrow-to-defun))))
 
 ;; C++ auto insert
 

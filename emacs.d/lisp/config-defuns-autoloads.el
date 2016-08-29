@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22375 44602
-;;;;;;  374113 784000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22467 60568
+;;;;;;  65941 437000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -93,9 +93,22 @@ Call ORIG-FUN with ARGS while replacing projectile--remove-current-project with 
 \(fn ORIG-FUN &rest ARGS)" nil nil)
 
 (autoload 'my/projectile-switch-to-git "config-defuns" "\
-Run vc (magit) on selected project.
+Run `projectile-vc' (magit) on selected project.
 
 \(fn)" t nil)
+
+(autoload 'my/narrow-or-widen-dwim "config-defuns" "\
+Widen if buffer is narrowed, narrow-dwim otherwise.
+Dwim means: region, org-src-block, org-subtree, or
+defun, whichever applies first.  Narrowing to
+org-src-block actually calls `org-edit-src-code'.
+
+With prefix P, don't widen, just narrow even if buffer
+is already narrowed.
+
+Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
+
+\(fn P)" t nil)
 
 (autoload 'my/get-current-class "config-defuns" "\
 Return name of enclosing class.
