@@ -470,7 +470,9 @@
                 magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
 
 (use-package git-commit
-  :init (setq git-commit-summary-max-length 80)
+  :init
+  (setq git-commit-summary-max-length 80)
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   :config (global-git-commit-mode t))
 
 (use-package markdown-mode
