@@ -20,6 +20,7 @@
   (package-install 'use-package))
 
 (eval-when-compile
+  (setq use-package-enable-imenu-support t)
   (require 'use-package))
 (use-package bind-key
   :ensure t)
@@ -182,6 +183,9 @@
 (use-package recentf
   :init (setq recentf-max-saved-items 1000)
   :config (recentf-mode 1))
+
+(use-package smex
+  :ensure t)
 
 (use-package swiper
   :ensure t
@@ -413,14 +417,10 @@
   :ensure t
   :bind ("C-x v t" . git-timemachine))
 
-(use-package guide-key
+(use-package which-key
   :ensure t
-  :init (setq guide-key/guide-key-sequence '("C-x r" "C-x v" "C-x n" "C-x 8" "C-c p" "C-c C-a" "C-c C-b" "C-c C-c"
-                                             "C-c C-e" "C-c C-s" "C-c C-t" "C-c ," "C-c i")
-              guide-key/idle-delay 0.0
-              guide-key/popup-window-position (quote bottom)
-              guide-key/recursive-key-sequence-flag t)
-  :config (guide-key-mode 1))
+  :init (setq which-key-idle-delay 0.5)
+  :config (which-key-mode 1))
 
 (use-package highlight-symbol
   :ensure t
