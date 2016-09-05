@@ -274,7 +274,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 (defun my/counsel-projectile-ag ()
   "Run `counsel-ag' in the project root."
   (interactive)
-  (counsel-ag nil (projectile-project-root)))
+  (counsel-ag (current-word) (projectile-project-root)))
 
 ;;;###autoload
 (defun my/pylint-ignore-errors-at-point ()

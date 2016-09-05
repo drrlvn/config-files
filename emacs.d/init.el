@@ -35,7 +35,6 @@
 (bind-key "<end>" 'end-of-line)
 (bind-key "<escape>" 'keyboard-escape-quit)
 (bind-key "<f5>" 'my/revert-buffer-no-confirmation)
-(bind-key "<f6>" 'ag-project-at-point)
 (bind-key "<f7>" 'previous-error)
 (bind-key "<f8>" 'next-error)
 (bind-key "M-<f9>" 'vc-revision-other-window)
@@ -190,6 +189,7 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
+         ("C-c s". ivy-resume)
          ("C-S-s" . my/swiper-region-or-current-word)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
