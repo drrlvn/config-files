@@ -188,16 +188,18 @@
 
 (use-package swiper
   :ensure t
-  :bind (("C-s" . swiper)
+  :bind (("C-s" . my/swiper-region-or-current-word)
          ("C-c s". ivy-resume)
-         ("C-S-s" . my/swiper-region-or-current-word)
+         ("C-S-s" . swiper)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
               ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   :bind (:map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
-         ("C-j" . ivy-done))
+         ("C-j" . ivy-done)
+         ("<next>" . ivy-scroll-up-command)
+         ("<prior>" . ivy-scroll-down-command))
   :config (ivy-mode 1))
 
 (use-package counsel

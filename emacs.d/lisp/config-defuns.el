@@ -77,6 +77,12 @@
      (current-word))))
 
 ;;;###autoload
+(defun my/counsel-projectile-ag ()
+  "Run `counsel-ag' in the project root."
+  (interactive)
+  (counsel-ag (current-word) (projectile-project-root)))
+
+;;;###autoload
 (defun my/autoload-and-set-key (package keys-and-functions)
   "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
   (dolist (key-and-function keys-and-functions)
@@ -269,12 +275,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   "Kill all buffers from current project."
   (interactive)
   (mapc 'kill-buffer (-remove 'buffer-base-buffer (projectile-project-buffers))))
-
-;;;###autoload
-(defun my/counsel-projectile-ag ()
-  "Run `counsel-ag' in the project root."
-  (interactive)
-  (counsel-ag (current-word) (projectile-project-root)))
 
 ;;;###autoload
 (defun my/pylint-ignore-errors-at-point ()

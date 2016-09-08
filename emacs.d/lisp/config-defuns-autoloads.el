@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22467 60568
-;;;;;;  65941 437000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22481 21641
+;;;;;;  497572 534000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -49,6 +49,11 @@ Open a new buffer with the contents of the URL provided.
 
 (autoload 'my/swiper-region-or-current-word "config-defuns" "\
 Run swiper on region or current word.
+
+\(fn)" t nil)
+
+(autoload 'my/counsel-projectile-ag "config-defuns" "\
+Run `counsel-ag' in the project root.
 
 \(fn)" t nil)
 
@@ -157,11 +162,6 @@ Add binding for avy-goto M to key C.
 
 (autoload 'my/projectile-kill-buffers "config-defuns" "\
 Kill all buffers from current project.
-
-\(fn)" t nil)
-
-(autoload 'my/counsel-projectile-ag "config-defuns" "\
-Run `counsel-ag' in the project root.
 
 \(fn)" t nil)
 
