@@ -186,6 +186,9 @@
 (use-package smex
   :ensure t)
 
+(use-package wgrep
+  :ensure t)
+
 (use-package swiper
   :ensure t
   :bind (("C-s" . my/swiper-region-or-current-word)
