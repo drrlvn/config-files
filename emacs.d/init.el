@@ -191,9 +191,9 @@
 
 (use-package swiper
   :ensure t
-  :bind (("C-s" . my/swiper-region-or-current-word)
+  :bind (("C-s" . swiper)
          ("C-c s". ivy-resume)
-         ("C-S-s" . swiper)
+         ("C-S-s" . my/swiper-region-or-current-word)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
