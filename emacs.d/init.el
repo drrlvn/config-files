@@ -189,21 +189,25 @@
 (use-package wgrep
   :ensure t)
 
-(use-package swiper
+(use-package ivy
   :ensure t
-  :bind (("C-s" . swiper)
-         ("C-c s". ivy-resume)
-         ("C-S-s" . my/swiper-region-or-current-word)
+  :bind (("C-c s". ivy-resume)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
+              ivy-extra-directories nil
               ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   :bind (:map ivy-minibuffer-map
-         ("C-m" . ivy-alt-done)
-         ("C-j" . ivy-done)
-         ("<next>" . ivy-scroll-up-command)
-         ("<prior>" . ivy-scroll-down-command))
-  :config (ivy-mode 1))
+              ("C-m" . ivy-alt-done)
+              ("C-j" . ivy-done)
+              ("<next>" . ivy-scroll-up-command)
+              ("<prior>" . ivy-scroll-down-command))
+  :config
+  (ivy-add-actions
+   t
+   '(("W" kill-new "save to kill ring")
+     ("I" insert "insert in buffer")))
+  (ivy-mode 1))
 
 (use-package counsel
   :ensure t
@@ -212,7 +216,18 @@
          ("C-x y" . counsel-yank-pop)
          ("C-c a" . counsel-ag)
          ("C-c u" . counsel-unicode-char)
-         ("M-i" . counsel-imenu)))
+         ("M-i" . counsel-imenu))
+  :init (setq counsel-find-file-ignore-regexp
+              (concat
+               ;; file names beginning with # or .
+               "\\(?:\\`[#.]\\)"
+               ;; file names ending with # or ~
+               "\\|\\(?:[#~]\\'\\)")))
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+         ("C-S-s" . my/swiper-region-or-current-word)))
 
 (use-package cua-base
   :init (setq cua-enable-cua-keys nil)
