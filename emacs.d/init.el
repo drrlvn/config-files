@@ -184,7 +184,8 @@
   :config (recentf-mode 1))
 
 (use-package smex
-  :ensure t)
+  :ensure t
+  :init (setq smex-history-length 3))
 
 (use-package wgrep
   :ensure t)
