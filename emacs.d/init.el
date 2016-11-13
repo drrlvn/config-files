@@ -552,8 +552,6 @@
 
 (use-package undo-tree
   :ensure t
-  :init (setq undo-tree-auto-save-history t
-              undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
   :config (global-undo-tree-mode 1))
 
 (use-package web-mode
