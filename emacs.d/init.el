@@ -46,7 +46,6 @@
 (bind-key "M-S-<return>" 'my/open-line-above)
 (bind-key "C-<delete>" 'kill-word)
 (bind-key "M-SPC" 'cycle-spacing)
-(bind-key [remap kill-ring-save] 'easy-kill)
 
 (bind-key "C-<tab>" 'previous-buffer)
 (bind-key "C-S-<iso-lefttab>" 'next-buffer)
@@ -61,10 +60,6 @@
 (bind-key "C-M-!" 'my/kill-buffer-other-window)
 (bind-key "C-^" 'bury-buffer)
 (bind-key "C-#" 'quick-calc)
-(bind-key "C-'" 'highlight-symbol-at-point)
-(bind-key "C-," 'highlight-symbol-prev)
-(bind-key "C-." 'highlight-symbol-next)
-(bind-key "M-s o" 'highlight-symbol-occur)
 
 (bind-key "C-c C-<return>" 'delete-blank-lines)
 (bind-key "C-c n" 'my/cleanup-buffer)
@@ -139,6 +134,44 @@
 (electric-layout-mode 1)
 (global-ede-mode 1)
 (global-hl-line-mode 1)
+
+(setq-default save-place t)
+(setq
+ ;; ediff
+ ediff-split-window-function 'split-window-horizontally
+ ;; doc-view
+ doc-view-continuous t
+ ;; dired
+ dired-isearch-filenames t
+ dired-recursive-deletes 'always
+ ;; org
+ org-replace-disputed-keys t
+ org-src-fontify-natively t
+ org-startup-indented t
+ org-html-postamble nil
+ ;; glasses
+ glasses-separate-parentheses-p nil
+ glasses-uncapitalize-p t
+ ;; eldoc
+ eldoc-idle-delay 0.1
+ ;; imenu
+ imenu-auto-rescan t
+ ;; uniquify
+ uniquify-buffer-name-style 'post-forward
+ uniquify-separator ":"
+ )
+
+(add-hook 'dired-mode-hook (lambda ()
+                             (require 'dired-x)
+                             (dired-omit-mode 1)))
+
+(add-hook 'org-mode-hook (lambda ()
+                           (make-local-variable 'show-paren-mode)
+                           (setq show-paren-mode nil)
+                           (flyspell-mode 1)))
+
+(add-hook 'rst-mode-hook (lambda ()
+                           (flyspell-mode 1)))
 
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
@@ -234,55 +267,15 @@
   :init (setq cua-enable-cua-keys nil)
   :config (cua-mode 1))
 
-(use-package semantic
-  :bind ("M-." . semantic-ia-fast-jump)
-  :init (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode global-semanticdb-minor-mode))
-  :config (semantic-mode 1))
-
 (use-package paren
   :init (setq show-paren-delay 0)
   :config (show-paren-mode 1))
-
-(use-package saveplace
-  :init (setq-default save-place t))
-
-(use-package ediff
-  :defer t
-  :config (setq ediff-split-window-function 'split-window-horizontally))
-
-(use-package doc-view
-  :defer t
-  :config (setq doc-view-continuous t))
 
 (use-package flycheck
   :ensure t
   :init
   (setq flycheck-clang-language-standard "c++1z")
-  (add-to-list 'after-init-hook 'global-flycheck-mode))
-
-(use-package dired
-  :defer t
-  :config
-  (setq dired-isearch-filenames t
-        dired-recursive-deletes 'always)
-  (add-hook 'dired-mode-hook (lambda ()
-                               (require 'dired-x)
-                               (dired-omit-mode 1))))
-
-(use-package org
-  :defer t
-  :config
-  (setq org-replace-disputed-keys t
-        org-src-fontify-natively t
-        org-startup-indented t
-        org-html-postamble nil)
-  (add-hook 'org-mode-hook (lambda ()
-                             (make-local-variable 'show-paren-mode)
-                             (setq show-paren-mode nil)
-                             (flyspell-mode 1))))
-
-(add-hook 'rst-mode-hook (lambda ()
-                           (flyspell-mode 1)))
+  (add-hook 'after-init-hook 'global-flycheck-mode t))
 
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
@@ -304,26 +297,32 @@
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
-  :bind ("C-<f8>" . my/pylint-ignore-errors-at-point))
+  :bind ("C-<f8>" . my/pylint-ignore-errors-at-point)
+  :config (unbind-key "C-c C-f" python-mode-map))
 
 (use-package pyvenv
-  :ensure t)
+  :ensure t
+  :init (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode 1))))
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package rust-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package auto-compile
   :ensure t
-  :config (auto-compile-on-save-mode))
+  :config (auto-compile-on-save-mode 1))
 
 (use-package cmake-font-lock
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package cmake-mode
   :ensure t
@@ -333,33 +332,16 @@
 (use-package sh-script
   :mode ("rc\\'" . sh-mode))
 
-(use-package glasses
-  :defer t
-  :init (setq glasses-separate-parentheses-p nil
-              glasses-uncapitalize-p t))
-
 (use-package hippie-exp
   :bind ("M-/" . hippie-expand)
-  :config (setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                                   try-expand-dabbrev-all-buffers
-                                                   try-expand-dabbrev-from-kill
-                                                   try-complete-file-name-partially
-                                                   try-complete-file-name
-                                                   try-expand-all-abbrevs
-                                                   try-complete-lisp-symbol-partially
-                                                   try-complete-lisp-symbol)))
-
-(use-package eldoc
-  :defer t
-  :config (setq eldoc-idle-delay 0.1))
-
-(use-package imenu
-  :defer t
-  :config (setq imenu-auto-rescan t))
-
-(use-package uniquify
-  :config (setq uniquify-buffer-name-style 'post-forward
-                uniquify-separator ":"))
+  :init (setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                                 try-expand-dabbrev-all-buffers
+                                                 try-expand-dabbrev-from-kill
+                                                 try-complete-file-name-partially
+                                                 try-complete-file-name
+                                                 try-expand-all-abbrevs
+                                                 try-complete-lisp-symbol-partially
+                                                 try-complete-lisp-symbol)))
 
 (use-package avy
   :ensure t
@@ -399,24 +381,30 @@
 
 (use-package drag-stuff
   :ensure t
-  :defer t
-  :config (setq drag-stuff-modifier '(meta shift)))
+  :bind (("M-S-<up>" . drag-stuff-up)
+         ("M-S-<down>" . drag-stuff-down)
+         ("M-S-<left>" . drag-stuff-left)
+         ("M-S-<right>" . drag-stuff-right)))
 
 (use-package dumb-jump
   :ensure t
-  :config (dumb-jump-mode 1))
+  :init (setq dumb-jump-selector 'ivy)
+  :bind (("M-g o" . dumb-jump-go)
+         ("M-g O" . dumb-jump-go-other-window)
+         ("M-g M-o" . dumb-jump-quick-look)))
 
 (use-package easy-kill
-  :ensure t)
+  :ensure t
+  :bind ([remap kill-ring-save] . easy-kill))
 
 (use-package emmet-mode
   :ensure t
-  :defer t
+  :commands emmet-mode
   :init
+  (setq emmet-indentation 2
+        emmet-preview-default nil)
   (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode)
-  :config (setq emmet-indentation 2
-                emmet-preview-default nil))
+  (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package expand-region
   :ensure t
@@ -425,14 +413,14 @@
 
 (use-package eyebrowse
   :ensure t
-  :config (setq eyebrowse-wrap-around t
-                eyebrowse-new-workspace t)
-  :init (eyebrowse-mode t))
+  :init (setq eyebrowse-wrap-around t
+              eyebrowse-new-workspace t)
+  :config (eyebrowse-mode t))
 
 (use-package git-messenger
   :ensure t
   :bind ("C-x v p" . git-messenger:popup-message)
-  :config (setq git-messenger:show-detail t))
+  :init (setq git-messenger:show-detail t))
 
 (use-package git-timemachine
   :ensure t
@@ -445,12 +433,15 @@
 
 (use-package highlight-symbol
   :ensure t
-  :defer t
-  :config (setq highlight-symbol-idle-delay 0))
+  :bind (("C-'" . highlight-symbol-at-point)
+         ("C-," . highlight-symbol-prev)
+         ("C-." . highlight-symbol-next)
+         ("M-s o" . highlight-symbol-occur))
+  :init (setq highlight-symbol-idle-delay 0))
 
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
-  :config
+  :init
   (setq ibuffer-expert t
         ibuffer-show-empty-filter-groups nil
         ibuffer-formats '((mark modified read-only " "
@@ -487,8 +478,8 @@
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
          ("C-c g" . magit-dispatch-popup))
-  :config (setq magit-push-always-verify nil
-                magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+  :init (setq magit-push-always-verify nil
+              magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
 
 (use-package git-commit
   :init
@@ -499,7 +490,7 @@
 (use-package markdown-mode
   :ensure t
   :mode "\\.md\\'"
-  :config
+  :init
   (add-hook 'markdown-mode-hook (lambda ()
                                   (auto-fill-mode 1)
                                   (refill-mode 1)))
@@ -517,12 +508,12 @@
 
 (use-package paredit
   :ensure t
-  :defer t
   :config
   ;; making paredit work with delete-selection-mode
   (put 'paredit-forward-delete 'delete-selection 'supersede)
   (put 'paredit-backward-delete 'delete-selection 'supersede)
-  (put 'paredit-newline 'delete-selection t))
+  (put 'paredit-newline 'delete-selection t)
+  (add-hook 'emacs-list-mode-hook 'enable-paredit-mode))
 
 (use-package popwin
   :ensure t
@@ -544,7 +535,9 @@
          ("s s" . my/counsel-projectile-ag)))
 
 (use-package rainbow-delimiters
-  :ensure t)
+  :ensure t
+  :commands rainbow-delimiters-mode
+  :init (add-hook 'prog-mode-hook (lambda () (rainbow-delimiters-mode 1))))
 
 (use-package restclient
   :ensure t
@@ -556,7 +549,7 @@
 
 (use-package web-mode
   :ensure t
-  :mode "\\.html$"
+  :mode "\\.html\\'"
   :init (setq web-mode-code-indent-offset 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
@@ -577,28 +570,20 @@
               yas-verbosity 1)
   :config (yas-global-mode 1))
 
-(bind-keys
- :map prog-mode-map
- ("<return>" . newline-and-indent)
- ("C-<delete>" . subword-kill)
- ("C-<right>" . subword-forward)
- ("C-<left>" . subword-backward))
+(bind-keys :map prog-mode-map
+           ("<return>" . newline-and-indent)
+           ("C-<delete>" . subword-kill)
+           ("C-<right>" . subword-forward)
+           ("C-<left>" . subword-backward))
 (add-hook 'prog-mode-hook (lambda ()
                             (subword-mode 1)
-                            (drag-stuff-mode 1)
-                            (rainbow-delimiters-mode 1)
                             (setq show-trailing-whitespace t)
                             (font-lock-add-keywords
                              nil
                              '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))))
 
+(bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (eldoc-mode 1)
-                                  (paredit-mode 1)
-                                  (local-set-key (kbd "C-c C-e") 'my/eval-and-replace)))
-
-(add-hook 'python-mode-hook (lambda ()
-                              (pyvenv-tracking-mode t)
-                              (define-key python-mode-map (kbd "C-c C-f") nil)))
+                                  (eldoc-mode 1)))
 
 ;;; init.el ends here
