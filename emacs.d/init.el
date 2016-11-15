@@ -126,6 +126,7 @@
               tab-width 4)
 
 (scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (blink-cursor-mode 1)
@@ -232,7 +233,7 @@
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
-              ivy-extra-directories nil
+              ivy-extra-directories '("./")
               ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   :bind (:map ivy-minibuffer-map
               ("C-m" . ivy-alt-done)
@@ -516,7 +517,7 @@
   (put 'paredit-forward-delete 'delete-selection 'supersede)
   (put 'paredit-backward-delete 'delete-selection 'supersede)
   (put 'paredit-newline 'delete-selection t)
-  (add-hook 'emacs-list-mode-hook 'enable-paredit-mode))
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 (use-package popwin
   :ensure t
