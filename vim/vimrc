@@ -8,7 +8,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " github
-Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'joshdick/onedark.vim'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'rking/ag.vim'
@@ -292,8 +292,8 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "highlight link WhitespaceErrors Error
 "au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
-set background=dark
-colorscheme Tomorrow-Night-Bright
+set termguicolors
+colorscheme onedark
 " }}}
 
 if has('cscope')
