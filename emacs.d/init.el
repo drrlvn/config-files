@@ -156,6 +156,9 @@
  eldoc-idle-delay 0.1
  ;; imenu
  imenu-auto-rescan t
+ ;; tramp
+ tramp-use-ssh-controlmaster-options nil
+ tramp-default-method "scpx"
  ;; uniquify
  uniquify-buffer-name-style 'post-forward
  uniquify-separator ":"
