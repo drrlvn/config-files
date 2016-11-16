@@ -135,8 +135,8 @@
 (electric-layout-mode 1)
 (global-ede-mode 1)
 (global-hl-line-mode 1)
+(save-place-mode 1)
 
-(setq-default save-place t)
 (setq
  ;; ediff
  ediff-split-window-function 'split-window-horizontally
@@ -525,12 +525,13 @@
 
 (use-package projectile
   :ensure t
+  :defer 0
   :init (setq projectile-completion-system 'ivy
               projectile-use-git-grep t)
   :config
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
   (advice-add 'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
-  (projectile-global-mode 1)
+  (projectile-mode 1)
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
