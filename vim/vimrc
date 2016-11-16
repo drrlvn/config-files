@@ -2,36 +2,35 @@ scriptencoding utf-8
 
 runtime macros/matchit.vim
 
-set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Plugin 'gmarik/vundle'
+call plug#begin()
 
 " github
-Plugin 'joshdick/onedark.vim'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'rking/ag.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'sjbach/lusty'
-Plugin 'sjl/gundo.vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'bling/vim-airline'
+Plug 'joshdick/onedark.vim'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'rking/ag.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'sjbach/lusty'
+Plug 'sjl/gundo.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'bling/vim-airline'
 
 " snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 " vim-scripts
-Plugin 'bufkill.vim'
+Plug 'bufkill.vim'
+
+call plug#end()
 
 " {{{ useful options
 set autoindent
