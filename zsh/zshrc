@@ -129,11 +129,7 @@ cycle-dir-right() { pushd +1 &> /dev/null && zle redraw-prompt }
 zle -N cycle-dir-right
 bindkey '\e[1;7D' cycle-dir-right
 
-if [[ $TERM = "xterm-termite" ]]; then
-    eval $(dircolors -b <(dircolors -p | sed '/^TERM xterm$/a TERM xterm-termite'))
-else
-    eval $(dircolors -b)
-fi
+eval $(dircolors -b)
 
 # update window title
 set-window-title() {
