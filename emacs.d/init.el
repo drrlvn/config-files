@@ -437,7 +437,7 @@
 
 (use-package highlight-symbol
   :ensure t
-  :bind (("C-'" . highlight-symbol-at-point)
+  :bind (("C-\"" . highlight-symbol-at-point)
          ("C-," . highlight-symbol-prev)
          ("C-." . highlight-symbol-next)
          ("M-s o" . highlight-symbol-occur))
