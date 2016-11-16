@@ -1,10 +1,9 @@
 scriptencoding utf-8
 
-runtime macros/matchit.vim
-
 call plug#begin()
 
 " github
+Plug 'tpope/vim-sensible'
 Plug 'joshdick/onedark.vim'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
@@ -33,7 +32,6 @@ Plug 'bufkill.vim'
 call plug#end()
 
 " {{{ useful options
-set autoindent
 set cinoptions=:0,l1,g0,t0,(0
 set confirm
 set dict+=/usr/share/dict/words
@@ -42,9 +40,7 @@ set gdefault
 set hidden
 set hlsearch
 set ignorecase smartcase
-set incsearch
-set laststatus=2
-set list listchars=tab:»\ ,trail:·
+set list
 set modeline
 set nocursorline
 set nofoldenable
@@ -59,7 +55,6 @@ set showcmd
 set showmatch
 set spelllang=en_us
 set switchbuf=useopen,usetab
-set tags+=/
 set timeoutlen=500
 set virtualedit=block
 set visualbell
@@ -265,9 +260,6 @@ imap <M-F11> <Esc><M-F11>
 "}}}
 
 " {{{ set per filetype options
-filetype plugin indent on
-syntax on
-
 au BufRead,BufNewFile *.txt setlocal wrapmargin=2 textwidth=78 spell
 au FileType * exec 'setlocal dict='.substitute($VIMRUNTIME, ' ', '\\\ ', 'g').'/syntax/'.&filetype.'.vim,'.&dict
 au FileType mail setlocal spell
