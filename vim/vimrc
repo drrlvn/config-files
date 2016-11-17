@@ -283,6 +283,8 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "highlight link WhitespaceErrors Error
 "au BufRead,BufNewFile * match WhitespaceErrors /\s\+$/
 
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
 set termguicolors
 colorscheme onedark
 " }}}
