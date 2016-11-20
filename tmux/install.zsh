@@ -8,4 +8,4 @@ echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 source ${REPO_PATH}/tmux/tmux.conf
 END
 
-ln -sf ~/.tmux ${REPO_PATH}/tmux
+ln -sf ${REPO_PATH}/tmux ~/.tmux
