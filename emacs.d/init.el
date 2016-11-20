@@ -182,22 +182,22 @@
   (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
   (add-to-list 'exec-path "C:/Go/bin"))
 
-(defun my/balance-windows (&rest args)
-  (balance-windows))
-(advice-add 'split-window-right :after #'my/balance-windows)
-(advice-add 'split-window-below :after #'my/balance-windows)
-(advice-add 'delete-window :after #'my/balance-windows)
+(advice-add 'split-window-right :after 'balance-windows)
+(advice-add 'split-window-below :after 'balance-windows)
+(advice-add 'delete-window :after 'balance-windows)
 
 (defun my/indent-yanked-region (&rest args)
+  "Indent region in major modes that don't mind indentation, ignoring ARGS."
   (if (and
        (derived-mode-p 'prog-mode)
        (not (member major-mode '(python-mode ruby-mode makefile-mode))))
       (let ((mark-even-if-inactive transient-mark-mode))
         (indent-region (region-beginning) (region-end) nil))))
-(advice-add 'yank :after #'my/indent-yanked-region)
-(advice-add 'yank-pop :after #'my/indent-yanked-region)
+(advice-add 'yank :after 'my/indent-yanked-region)
+(advice-add 'yank-pop :after 'my/indent-yanked-region)
 
 (defun my/colorize-compilation-buffer ()
+  "Colorize complication buffer."
   (when (eq major-mode 'compilation-mode)
     (ansi-color-apply-on-region compilation-filter-start (point-max))))
 (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
@@ -215,6 +215,10 @@
   :init (setq auto-revert-verbose nil
               global-auto-revert-non-file-buffers t)
   :config (global-auto-revert-mode 1))
+
+(use-package hungry-delete
+  :ensure t
+  :config (global-hungry-delete-mode))
 
 (use-package recentf
   :init (setq recentf-max-saved-items 1000)
@@ -530,7 +534,7 @@
               projectile-use-git-grep t)
   :config
   (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
-  (advice-add 'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
+  (advice-add 'projectile-switch-project :around 'my/projectile-disable-remove-current-project)
   (projectile-mode 1)
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)

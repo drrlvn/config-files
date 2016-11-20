@@ -32,5 +32,9 @@
   (spaceline-toggle-flycheck-info-off)
   (spaceline-spacemacs-theme))
 
+(use-package mode-icons
+  :ensure t
+  :config (mode-icons-mode 1))
+
 (provide 'config-looks)
 ;;; config-looks.el ends here
