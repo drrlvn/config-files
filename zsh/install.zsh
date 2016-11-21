@@ -9,7 +9,7 @@ if [[ -e ~/.zshrc ]]; then
 	fi
 fi
 
-REPO_PATH="${1:-~/config-files}"
+REPO_PATH="${1:-${HOME}/config-files}"
 
 echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 
@@ -19,7 +19,7 @@ END
 
 mkdir -p ~/.zsh
 pushd ~/.zsh
-ln -sf ${~REPO_PATH}/zsh/prompt_spatz_setup .
+ln -sf ${REPO_PATH}/zsh/prompt_spatz_setup .
 popd
 
 git clone https://github.com/zplug/zplug ~/.zplug
