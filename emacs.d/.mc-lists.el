@@ -38,6 +38,7 @@
         paredit-forward-barf-sexp
         paredit-forward-delete
         paredit-forward-slurp-sexp
+        paredit-semicolon
         paredit-splice-sexp-killing-backward
         python-backspace
         python-indent-dedent-line-backspace

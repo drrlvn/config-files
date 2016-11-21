@@ -182,9 +182,12 @@
   (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
   (add-to-list 'exec-path "C:/Go/bin"))
 
-(advice-add 'split-window-right :after 'balance-windows)
-(advice-add 'split-window-below :after 'balance-windows)
-(advice-add 'delete-window :after 'balance-windows)
+(defun my/balance-windows (&rest args)
+  "Call `balance-windows' while ignoring ARGS."
+  (balance-windows))
+(advice-add 'split-window-right :after 'my/balance-windows)
+(advice-add 'split-window-below :after 'my/balance-windows)
+(advice-add 'delete-window :after 'my/balance-windows)
 
 (defun my/indent-yanked-region (&rest args)
   "Indent region in major modes that don't mind indentation, ignoring ARGS."
