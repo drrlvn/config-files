@@ -210,18 +210,10 @@
   :init
   (add-hook 'after-init-hook 'server-start t))
 
-(use-package desktop
-  :init (setq desktop-restore-eager 5)
-  :config (desktop-save-mode 1))
-
 (use-package autorevert
   :init (setq auto-revert-verbose nil
               global-auto-revert-non-file-buffers t)
   :config (global-auto-revert-mode 1))
-
-(use-package hungry-delete
-  :ensure t
-  :config (global-hungry-delete-mode))
 
 (use-package recentf
   :init (setq recentf-max-saved-items 1000)
@@ -236,6 +228,7 @@
 
 (use-package ivy
   :ensure t
+  :defer 0
   :bind (("C-c s". ivy-resume)
          ("C-x C-r" . ivy-recentf))
   :init (setq ivy-use-virtual-buffers t
