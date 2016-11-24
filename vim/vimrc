@@ -11,7 +11,6 @@ Plug 'rking/ag.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
-Plug 'sjbach/lusty'
 Plug 'sjl/gundo.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-commentary'
@@ -241,7 +240,6 @@ nnoremap <F6> :GundoToggle<CR>
 nnoremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <F8> :call Taglist_Toggle()<CR>
-nnoremap <F9> :LustyJuggler<CR>
 noremap <Leader>q :quit<CR>
 noremap <F10> <Esc>:quit<CR>
 noremap <S-F10> <Esc>:quitall!<CR>
