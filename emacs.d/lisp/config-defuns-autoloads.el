@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22481 21641
-;;;;;;  497572 534000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22586 41679
+;;;;;;  883099 386000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -99,6 +99,11 @@ Call ORIG-FUN with ARGS while replacing projectile--remove-current-project with 
 
 (autoload 'my/projectile-switch-to-git "config-defuns" "\
 Run `projectile-vc' (magit) on selected project.
+
+\(fn)" t nil)
+
+(autoload 'my/projectile-switch-to-ag "config-defuns" "\
+Run `my/counsel-projectile-ag' on selected project.
 
 \(fn)" t nil)
 

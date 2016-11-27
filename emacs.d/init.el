@@ -536,6 +536,7 @@
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
          ("g" . my/projectile-switch-to-git)
+         ("s a". my/projectile-switch-to-ag)
          ("s g" . counsel-git-grep)
          ("s s" . my/counsel-projectile-ag)))
 
