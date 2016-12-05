@@ -487,7 +487,8 @@
 
 (use-package git-commit
   :init
-  (setq git-commit-summary-max-length 80)
+  (setq git-commit-summary-max-length 80
+        git-commit-fill-column 80)
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   :config (global-git-commit-mode t))
 
