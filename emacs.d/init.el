@@ -56,6 +56,7 @@
 (bind-key "M-p" (lambda (n) (interactive "p") (scroll-other-window (- n))))
 
 (bind-key "C-z" 'repeat)
+(unbind-key "C-x C-z")
 (bind-key "C-!" 'kill-this-buffer)
 (bind-key "C-M-!" 'my/kill-buffer-other-window)
 (bind-key "C-^" 'bury-buffer)
@@ -224,7 +225,8 @@
   :init (setq smex-history-length 3))
 
 (use-package wgrep
-  :ensure t)
+  :ensure t
+  :init (setq wgrep-auto-save-buffer t))
 
 (use-package ivy
   :ensure t

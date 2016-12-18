@@ -25,6 +25,7 @@
         eval-last-sexp
         forward-sexp
         highlight-symbol-next
+        ivy-wgrep-change-to-wgrep-mode
         jedi:dot-complete
         kill-visual-line
         mwim-beginning-of-code-or-line
@@ -49,6 +50,7 @@
         sp-cua-replace-region
         subword-left
         subword-right
+        wgrep-exit
         yaml-electric-backspace
         yaml-electric-dash-and-dot
         yas-expand
