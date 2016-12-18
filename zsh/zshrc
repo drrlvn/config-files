@@ -213,6 +213,14 @@ alias cprogress='rsync -ah --progress'
 alias e="emacsclient -n"
 alias agf="ag -l -G"
 
+ssh() {
+    if [[ "${TERM}" = tmux* ]]; then
+        TERM=screen command ssh "$@"
+    else
+        command ssh "$@"
+    fi
+}
+
 fasd_cache="$HOME/.fasd-init-zsh"
 source "$HOME/.zplug/init.zsh"
 zplug clvv/fasd, \
