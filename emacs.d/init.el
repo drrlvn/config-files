@@ -423,7 +423,9 @@
 
 (use-package git-messenger
   :ensure t
-  :bind ("C-x v p" . git-messenger:popup-message)
+  :bind (("C-x v p" . git-messenger:popup-message)
+         :map git-messenger-map
+         ("d" . my/git-messenger-show-with-magit))
   :init (setq git-messenger:show-detail t))
 
 (use-package git-timemachine

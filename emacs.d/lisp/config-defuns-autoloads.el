@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22586 41679
-;;;;;;  883099 386000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22614 35936
+;;;;;;  259467 320000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -53,9 +53,9 @@ Run swiper on region or current word.
 \(fn)" t nil)
 
 (autoload 'my/counsel-projectile-ag "config-defuns" "\
-Run `counsel-ag' in the project root.
+Run `counsel-ag' in the PROJECT-ROOT.
 
-\(fn)" t nil)
+\(fn &optional PROJECT-ROOT)" t nil)
 
 (autoload 'my/autoload-and-set-key "config-defuns" "\
 Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS.
@@ -119,6 +119,11 @@ is already narrowed.
 Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 
 \(fn P)" t nil)
+
+(autoload 'my/git-messenger-show-with-magit "config-defuns" "\
+Use magit to show the commit of git-messenger.
+
+\(fn)" t nil)
 
 (autoload 'my/get-current-class "config-defuns" "\
 Return name of enclosing class.

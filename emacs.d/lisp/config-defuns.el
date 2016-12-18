@@ -205,6 +205,13 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
         ((region-active-p) (narrow-to-region (region-beginning) (region-end)))
         (t (narrow-to-defun))))
 
+;;;###autoload
+(defun my/git-messenger-show-with-magit ()
+  "Use magit to show the commit of git-messenger."
+  (interactive)
+  (magit-show-commit git-messenger:last-commit-id)
+  (git-messenger:popup-close))
+
 ;; C++ auto insert
 
 ;;;###autoload
