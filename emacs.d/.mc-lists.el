@@ -63,6 +63,12 @@
         highlight-symbol-at-point
         iedit-mode
         ivy-alt-done
+        my/hydra-multiple-cursors/mc/mark-all-like-this-and-exit
+        my/hydra-multiple-cursors/mc/mark-next-like-this
+        my/hydra-multiple-cursors/mc/mark-previous-like-this
+        my/hydra-multiple-cursors/mc/skip-to-next-like-this
+        my/hydra-multiple-cursors/mc/unmark-next-like-this
+        my/hydra-multiple-cursors/nil
         shell
         widget-button-click
         ))

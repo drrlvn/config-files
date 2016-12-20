@@ -35,8 +35,6 @@
 (bind-key "<end>" 'end-of-line)
 (bind-key "<escape>" 'keyboard-escape-quit)
 (bind-key "<f5>" 'my/revert-buffer-no-confirmation)
-(bind-key "<f7>" 'previous-error)
-(bind-key "<f8>" 'next-error)
 (bind-key "M-<f9>" 'vc-revision-other-window)
 (bind-key "<f11>" 'my/cleanup-buffer)
 (bind-key "S-<f11>" 'whitespace-cleanup)
@@ -84,6 +82,18 @@
 (bind-key "C-x n n" 'my/narrow-or-widen-dwim)
 
 (bind-key [remap goto-line] 'my/goto-line-with-feedback)
+
+(use-package hydra
+  :ensure t
+  :bind ("<f8>" . my/hydra-error/body)
+  :init
+  (defhydra my/hydra-error ()
+    "goto-error"
+    ("P" first-error "first")
+    ("n" next-error "next")
+    ("p" previous-error "prev")
+    ("v" recenter-top-bottom "recenter")
+    ("q" nil "quit")))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -288,14 +298,14 @@
   :init (setq c-basic-offset 4
               c-default-style "bsd")
   :bind (:map c-mode-base-map
-         ("C-c o" . ff-get-other-file)
-         ("C-c i a" . my/insert-all-special)
-         ("C-c i c" . my/insert-default-ctor)
-         ("C-c i d" . my/insert-virtual-dtor)
-         ("C-c i p" . my/insert-copy-ctor)
-         ("C-c i P" . my/insert-copy-assignment-operator)
-         ("C-c i m" . my/insert-move-ctor)
-         ("C-c i M" . my/insert-move-assignment-operator))
+              ("C-c o" . ff-get-other-file)
+              ("C-c i a" . my/insert-all-special)
+              ("C-c i c" . my/insert-default-ctor)
+              ("C-c i d" . my/insert-virtual-dtor)
+              ("C-c i p" . my/insert-copy-ctor)
+              ("C-c i P" . my/insert-copy-assignment-operator)
+              ("C-c i m" . my/insert-move-ctor)
+              ("C-c i M" . my/insert-move-assignment-operator))
   :config (add-hook 'c-mode-common-hook (lambda ()
                                           (setq comment-start "/*"
                                                 comment-end "*/")
@@ -303,12 +313,19 @@
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
-  :bind ("C-<f8>" . my/pylint-ignore-errors-at-point)
+  :bind (:map python-mode-map
+              ("C-<f8>" . my/pylint-ignore-errors-at-point))
   :config (unbind-key "C-c C-f" python-mode-map))
 
 (use-package pyvenv
   :ensure t
+  :commands pyvenv-tracking-mode
   :init (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode 1))))
+
+(use-package indent-tools
+  :ensure t
+  :commands indent-tools-hydra/body
+  :init (add-hook 'python-mode-hook (lambda () (bind-key "C-c >" 'indent-tools-hydra/body python-mode-map))))
 
 (use-package go-mode
   :ensure t
@@ -510,7 +527,25 @@
   :bind (("C-|" . mc/edit-lines)
          ("C-;" . mc/mark-all-like-this-dwim)
          ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)))
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-:" . my/hydra-multiple-cursors/body))
+  :init
+  (defhydra my/hydra-multiple-cursors (:hint nil)
+    "
+^Up^           ^Down^         ^Miscellaneous^
+---------------------------------------------
+_p_:   Next    _n_:   Next    _l_: Edit lines
+_P_:   Skip    _N_:   Skip    _a_: Mark all
+_M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
+    ("l" mc/edit-lines :exit t)
+    ("a" mc/mark-all-like-this :exit t)
+    ("n" mc/mark-next-like-this)
+    ("N" mc/skip-to-next-like-this)
+    ("M-n" mc/unmark-next-like-this)
+    ("p" mc/mark-previous-like-this)
+    ("P" mc/skip-to-previous-like-this)
+    ("M-p" mc/unmark-previous-like-this)
+    ("q" nil)))
 
 (use-package mwim
   :ensure t)
