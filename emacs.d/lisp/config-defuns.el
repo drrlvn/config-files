@@ -212,6 +212,16 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (magit-show-commit git-messenger:last-commit-id)
   (git-messenger:popup-close))
 
+(defun my/show-buffer-file-name ()
+  "Show the full path to the current file in the minibuffer."
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (if file-name
+        (progn
+          (message file-name)
+          (kill-new file-name))
+      (error "Buffer not visiting a file"))))
+
 ;; C++ auto insert
 
 ;;;###autoload

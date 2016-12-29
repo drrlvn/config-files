@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-sexp
         beginning-of-visual-line
         c-electric-brace
         c-electric-colon
@@ -70,5 +71,6 @@
         my/hydra-multiple-cursors/mc/unmark-next-like-this
         my/hydra-multiple-cursors/nil
         shell
+        wgrep-finish-edit
         widget-button-click
         ))

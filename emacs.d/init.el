@@ -78,6 +78,8 @@
 
 (bind-key "C-h C-f" 'find-function)
 
+(bind-key "C-x C-p" 'my/show-buffer-file-name)
+
 (bind-key "C-x n r" 'narrow-to-region)
 (bind-key "C-x n n" 'my/narrow-or-widen-dwim)
 
