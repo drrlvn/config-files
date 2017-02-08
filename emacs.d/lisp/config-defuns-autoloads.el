@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22614 35936
-;;;;;;  259467 320000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22683 11182
+;;;;;;  301863 35000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -41,11 +41,6 @@ Invoke `revert-buffer' without the confirmation.
 Kill buffer in other window.
 
 \(fn)" t nil)
-
-(autoload 'my/url-edit "config-defuns" "\
-Open a new buffer with the contents of the URL provided.
-
-\(fn URL)" t nil)
 
 (autoload 'my/swiper-region-or-current-word "config-defuns" "\
 Run swiper on region or current word.
@@ -164,6 +159,76 @@ Insert move assignment operator.
 Insert all special methods.
 
 \(fn)" t nil)
+
+(autoload 'my/find-user-init-file "config-defuns" "\
+Run `find-file' on `user-init-file'.
+
+\(fn)" t nil)
+
+(autoload 'my/scroll-up "config-defuns" "\
+Scroll up N lines.
+
+\(fn N)" t nil)
+
+(autoload 'my/scroll-down "config-defuns" "\
+Scroll down N lines.
+
+\(fn N)" t nil)
+
+(autoload 'my/scroll-other-window-up "config-defuns" "\
+Scroll other window up N lines.
+
+\(fn N)" t nil)
+
+(autoload 'my/scroll-other-window-down "config-defuns" "\
+Scroll other window down N lines.
+
+\(fn N)" t nil)
+
+(autoload 'my/dired-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/org-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/rst-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/prog-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/c-mode-common-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/python-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/emacs-lisp-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/ibuffer-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/markdown-mode-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
 
 (autoload 'my/add-super-char-to-avy "config-defuns" "\
 Add binding for avy-goto M to key C.

@@ -1,4 +1,4 @@
-;;; config-defuns.el --- custom functions, macros and advices
+;;; config-defuns.el --- custom functions, macros and advices -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -54,18 +54,6 @@
   (other-window 1)
   (kill-buffer)
   (other-window -1))
-
-;;;###autoload
-(defun my/url-edit (url)
-  "Open a new buffer with the contents of the URL provided."
-  (interactive "sURL: ")
-  (url-retrieve url
-                (lambda (status url)
-                  (progn
-                    (rename-buffer url)
-                    (fundamental-mode)
-                    (switch-to-buffer (current-buffer))))
-                (list url)))
 
 ;;;###autoload
 (defun my/swiper-region-or-current-word ()
@@ -286,6 +274,90 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (my/insert-move-assignment-operator)
   (newline-and-indent)
   )
+
+;;;###autoload
+(defun my/find-user-init-file ()
+  "Run `find-file' on `user-init-file'."
+  (interactive)
+  (find-file user-init-file))
+
+;;;###autoload
+(defun my/scroll-up (n)
+  "Scroll up N lines."
+  (interactive "p")
+  (scroll-up n))
+;;;###autoload
+(defun my/scroll-down (n)
+  "Scroll down N lines."
+  (interactive "p")
+  (scroll-down n))
+;;;###autoload
+(defun my/scroll-other-window-up (n)
+  "Scroll other window up N lines."
+  (interactive "p")
+  (scroll-other-window n))
+;;;###autoload
+(defun my/scroll-other-window-down (n)
+  "Scroll other window down N lines."
+  (interactive "p")
+  (scroll-other-window (- n)))
+
+;; hooks
+;;;###autoload
+(defun my/dired-mode-hook ()
+  "."
+  (require 'dired-x)
+  (dired-omit-mode 1))
+
+;;;###autoload
+(defun my/org-mode-hook ()
+  "."
+  (make-local-variable 'show-paren-mode)
+  (setq show-paren-mode nil)
+  (flyspell-mode 1))
+
+;;;###autoload
+(defun my/rst-mode-hook ()
+  "."
+  (flyspell-mode 1))
+
+;;;###autoload
+(defun my/prog-mode-hook ()
+  "."
+  (rainbow-delimiters-mode 1)
+  (subword-mode 1)
+  (setq show-trailing-whitespace t)
+  (font-lock-add-keywords
+   nil
+   '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t))))
+
+;;;###autoload
+(defun my/c-mode-common-hook ()
+  "."
+  (setq comment-start "/*"
+        comment-end "*/")
+  (c-set-offset 'innamespace 0))
+
+;;;###autoload
+(defun my/python-mode-hook ()
+  "."
+  (bind-key "C-c >" 'indent-tools-hydra/body python-mode-map))
+
+;;;###autoload
+(defun my/emacs-lisp-mode-hook ()
+  "."
+  (eldoc-mode 1))
+
+;;;###autoload
+(defun my/ibuffer-mode-hook ()
+  "."
+  (ibuffer-switch-to-saved-filter-groups "default"))
+
+;;;###autoload
+(defun my/markdown-mode-hook ()
+  "."
+  (auto-fill-mode 1)
+  (refill-mode 1))
 
 ;; for avy
 ;;;###autoload

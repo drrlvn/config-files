@@ -1,4 +1,4 @@
-;;; config-looks.el --- look configuration
+;;; config-looks.el --- look configuration -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

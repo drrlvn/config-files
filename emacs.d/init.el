@@ -1,4 +1,4 @@
-;;; init.el --- emacs config
+;;; init.el --- emacs config -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -38,7 +38,7 @@
 (bind-key "M-<f9>" 'vc-revision-other-window)
 (bind-key "<f11>" 'my/cleanup-buffer)
 (bind-key "S-<f11>" 'whitespace-cleanup)
-(bind-key "S-<f12>" (lambda () (interactive) (find-file user-init-file)))
+(bind-key "S-<f12>" 'my/find-user-init-file)
 
 (bind-key "M-<return>" 'my/open-line-below)
 (bind-key "M-S-<return>" 'my/open-line-above)
@@ -48,10 +48,10 @@
 (bind-key "C-<tab>" 'previous-buffer)
 (bind-key "C-S-<iso-lefttab>" 'next-buffer)
 
-(bind-key "C-n" (lambda (n) (interactive "p") (scroll-up n)))
-(bind-key "C-p" (lambda (n) (interactive "p") (scroll-down n)))
-(bind-key "M-n" (lambda (n) (interactive "p") (scroll-other-window n)))
-(bind-key "M-p" (lambda (n) (interactive "p") (scroll-other-window (- n))))
+(bind-key "C-n" 'my/scroll-up)
+(bind-key "C-p" 'my/scroll-down)
+(bind-key "M-n" 'my/scroll-other-window-up)
+(bind-key "M-p" 'my/scroll-other-window-down)
 
 (bind-key "C-z" 'repeat)
 (unbind-key "C-x C-z")
@@ -178,17 +178,9 @@
  uniquify-separator ":"
  )
 
-(add-hook 'dired-mode-hook (lambda ()
-                             (require 'dired-x)
-                             (dired-omit-mode 1)))
-
-(add-hook 'org-mode-hook (lambda ()
-                           (make-local-variable 'show-paren-mode)
-                           (setq show-paren-mode nil)
-                           (flyspell-mode 1)))
-
-(add-hook 'rst-mode-hook (lambda ()
-                           (flyspell-mode 1)))
+(add-hook 'dired-mode-hook 'my/dired-mode-hook)
+(add-hook 'org-mode-hook 'my/org-mode-hook)
+(add-hook 'rst-mode-hook 'my/rst-mode-hook)
 
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plinkx")
@@ -308,10 +300,7 @@
               ("C-c i P" . my/insert-copy-assignment-operator)
               ("C-c i m" . my/insert-move-ctor)
               ("C-c i M" . my/insert-move-assignment-operator))
-  :config (add-hook 'c-mode-common-hook (lambda ()
-                                          (setq comment-start "/*"
-                                                comment-end "*/")
-                                          (c-set-offset 'innamespace 0))))
+  :config (add-hook 'c-mode-common-hook 'my/c-mode-common-hook))
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
@@ -327,7 +316,7 @@
 (use-package indent-tools
   :ensure t
   :commands indent-tools-hydra/body
-  :init (add-hook 'python-mode-hook (lambda () (bind-key "C-c >" 'indent-tools-hydra/body python-mode-map))))
+  :init (add-hook 'python-mode-hook 'my/python-mode-hook))
 
 (use-package go-mode
   :ensure t
@@ -497,7 +486,7 @@
                                                 (mode . rst-mode)))
                                        ("Misc" (name . "^\\*"))
                                        )))
-  (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-switch-to-saved-filter-groups "default"))))
+  (add-hook 'ibuffer-mode-hook 'my/ibuffer-mode-hook))
 
 (use-package magit
   :ensure t
@@ -505,7 +494,9 @@
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
          ("C-c g" . magit-dispatch-popup))
-  :init (setq magit-push-always-verify nil
+  :init (setq magit-repository-directories '(("~/dev" . 1))
+              magit-tag-arguments '("--annotate")
+              magit-push-always-verify nil
               magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
 
 (use-package git-commit
@@ -519,9 +510,7 @@
   :ensure t
   :mode "\\.md\\'"
   :init
-  (add-hook 'markdown-mode-hook (lambda ()
-                                  (auto-fill-mode 1)
-                                  (refill-mode 1)))
+  (add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
   (setq markdown-command "markdown_py"))
 
 (use-package multiple-cursors
@@ -583,9 +572,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
          ("s s" . my/counsel-projectile-ag)))
 
 (use-package rainbow-delimiters
-  :ensure t
-  :commands rainbow-delimiters-mode
-  :init (add-hook 'prog-mode-hook (lambda () (rainbow-delimiters-mode 1))))
+  :ensure t)
 
 (use-package restclient
   :ensure t
@@ -623,15 +610,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
            ("C-<delete>" . subword-kill)
            ("C-<right>" . subword-forward)
            ("C-<left>" . subword-backward))
-(add-hook 'prog-mode-hook (lambda ()
-                            (subword-mode 1)
-                            (setq show-trailing-whitespace t)
-                            (font-lock-add-keywords
-                             nil
-                             '(("\\<\\(FIXME\\|TODO\\|XXX\\|BUG\\)\\>" 1 font-lock-warning-face t)))))
+(add-hook 'prog-mode-hook 'my/prog-mode-hook)
 
 (bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (eldoc-mode 1)))
+(add-hook 'emacs-lisp-mode-hook 'my/emacs-lisp-mode-hook)
 
 ;;; init.el ends here

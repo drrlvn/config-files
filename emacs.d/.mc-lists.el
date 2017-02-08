@@ -26,6 +26,7 @@
         eval-last-sexp
         forward-sexp
         highlight-symbol-next
+        indent-for-tab-command
         ivy-wgrep-change-to-wgrep-mode
         jedi:dot-complete
         kill-visual-line
@@ -36,10 +37,12 @@
         my/zap-to-char-exclusive
         org-self-insert-command
         overwrite-mode
+        paredit-backward-barf-sexp
         paredit-backward-kill-word
         paredit-forward-barf-sexp
         paredit-forward-delete
         paredit-forward-slurp-sexp
+        paredit-newline
         paredit-semicolon
         paredit-splice-sexp-killing-backward
         python-backspace
@@ -54,6 +57,7 @@
         wgrep-exit
         yaml-electric-backspace
         yaml-electric-dash-and-dot
+        yank-rectangle
         yas-expand
         zap-up-to-char
         ))
@@ -61,9 +65,11 @@
 (setq mc/cmds-to-run-once
       '(
         counsel-M-x
+        cua-set-rectangle-mark
         highlight-symbol-at-point
         iedit-mode
         ivy-alt-done
+        keyboard-escape-quit
         my/hydra-multiple-cursors/mc/mark-all-like-this-and-exit
         my/hydra-multiple-cursors/mc/mark-next-like-this
         my/hydra-multiple-cursors/mc/mark-previous-like-this
