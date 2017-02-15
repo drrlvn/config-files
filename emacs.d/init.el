@@ -313,11 +313,6 @@
   :commands pyvenv-tracking-mode
   :init (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode 1))))
 
-(use-package indent-tools
-  :ensure t
-  :commands indent-tools-hydra/body
-  :init (add-hook 'python-mode-hook 'my/python-mode-hook))
-
 (use-package go-mode
   :ensure t
   :defer t)
