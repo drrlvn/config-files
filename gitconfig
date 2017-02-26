@@ -44,7 +44,7 @@
     diff = /usr/share/git/diff-highlight/diff-highlight | less -F
 
 [diff]
-    algorithm = histogram
+    indentHeuristic = true
     renamelimit = 0
     renames = copy
     ignoreSubmodules = dirty
