@@ -88,3 +88,8 @@
 
 [tig]
     line-graphics = utf-8
+
+[url "https://github.com/"]
+    insteadOf = "gh:"
+[url "git@github.com:"]
+    pushInsteadOf = "gh:"
