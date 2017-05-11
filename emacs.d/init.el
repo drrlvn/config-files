@@ -258,7 +258,7 @@
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-x y" . counsel-yank-pop)
-         ("C-c a" . counsel-ag)
+         ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
          ("M-i" . counsel-imenu))
   :init (setq counsel-find-file-ignore-regexp
@@ -561,10 +561,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
-         ("g" . my/projectile-switch-to-git)
-         ("s a". my/projectile-switch-to-ag)
+         ("G" . my/projectile-switch-to-git)
+         ("s a". my/projectile-switch-to-rg)
          ("s g" . counsel-git-grep)
-         ("s s" . my/counsel-projectile-ag)))
+         ("s s" . my/counsel-projectile-rg)))
 
 (use-package rainbow-delimiters
   :ensure t)

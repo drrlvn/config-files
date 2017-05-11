@@ -65,11 +65,11 @@
      (current-word))))
 
 ;;;###autoload
-(defun my/counsel-projectile-ag (&optional project-root)
-  "Run `counsel-ag' in the PROJECT-ROOT."
+(defun my/counsel-projectile-rg (&optional project-root)
+  "Run `counsel-rg' in the PROJECT-ROOT."
   (interactive)
   (unless project-root (setq project-root (projectile-project-root)))
-  (counsel-ag (current-word) project-root))
+  (counsel-rg (current-word) project-root))
 
 ;;;###autoload
 (defun my/autoload-and-set-key (package keys-and-functions)
@@ -171,10 +171,10 @@
     (projectile-switch-project)))
 
 ;;;###autoload
-(defun my/projectile-switch-to-ag ()
-  "Run `my/counsel-projectile-ag' on selected project."
+(defun my/projectile-switch-to-rg ()
+  "Run `my/counsel-projectile-rg' on selected project."
   (interactive)
-  (let ((projectile-switch-project-action 'my/counsel-projectile-ag))
+  (let ((projectile-switch-project-action 'my/counsel-projectile-rg))
     (projectile-switch-project)))
 
 ;;;###autoload

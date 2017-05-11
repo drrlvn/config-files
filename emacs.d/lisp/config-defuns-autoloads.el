@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22683 11182
-;;;;;;  301863 35000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22804 14355
+;;;;;;  219078 805000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -47,8 +47,8 @@ Run swiper on region or current word.
 
 \(fn)" t nil)
 
-(autoload 'my/counsel-projectile-ag "config-defuns" "\
-Run `counsel-ag' in the PROJECT-ROOT.
+(autoload 'my/counsel-projectile-rg "config-defuns" "\
+Run `counsel-rg' in the PROJECT-ROOT.
 
 \(fn &optional PROJECT-ROOT)" t nil)
 
@@ -97,8 +97,8 @@ Run `projectile-vc' (magit) on selected project.
 
 \(fn)" t nil)
 
-(autoload 'my/projectile-switch-to-ag "config-defuns" "\
-Run `my/counsel-projectile-ag' on selected project.
+(autoload 'my/projectile-switch-to-rg "config-defuns" "\
+Run `my/counsel-projectile-rg' on selected project.
 
 \(fn)" t nil)
 
