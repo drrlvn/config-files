@@ -22,6 +22,7 @@
         cua-paste-pop
         cycle-spacing
         delete-indentation
+        drag-stuff-down
         electric-newline-and-maybe-indent
         end-of-visual-line
         eval-last-sexp
@@ -66,7 +67,9 @@
 (setq mc/cmds-to-run-once
       '(
         counsel-M-x
+        counsel-find-file
         cua-set-rectangle-mark
+        ff-get-other-file
         highlight-symbol-at-point
         iedit-mode
         ivy-alt-done
