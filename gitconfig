@@ -50,7 +50,6 @@
     ignoreSubmodules = dirty
 
 [log]
-    decorate = auto
     date = format:%a %F %T
 
 [status]
