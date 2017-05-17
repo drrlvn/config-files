@@ -164,20 +164,6 @@
     (apply orig-fun args)))
 
 ;;;###autoload
-(defun my/projectile-switch-to-git ()
-  "Run `projectile-vc' (magit) on selected project."
-  (interactive)
-  (let ((projectile-switch-project-action 'projectile-vc))
-    (projectile-switch-project)))
-
-;;;###autoload
-(defun my/projectile-switch-to-rg ()
-  "Run `my/counsel-projectile-rg' on selected project."
-  (interactive)
-  (let ((projectile-switch-project-action 'my/counsel-projectile-rg))
-    (projectile-switch-project)))
-
-;;;###autoload
 (defun my/narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
 Dwim means: region, org-src-block, org-subtree, or

@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22804 14355
-;;;;;;  219078 805000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22812 9348
+;;;;;;  987212 999000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -91,16 +91,6 @@ Show line numbers temporarily, while prompting for the line number input.
 Call ORIG-FUN with ARGS while replacing projectile--remove-current-project with identity function.
 
 \(fn ORIG-FUN &rest ARGS)" nil nil)
-
-(autoload 'my/projectile-switch-to-git "config-defuns" "\
-Run `projectile-vc' (magit) on selected project.
-
-\(fn)" t nil)
-
-(autoload 'my/projectile-switch-to-rg "config-defuns" "\
-Run `my/counsel-projectile-rg' on selected project.
-
-\(fn)" t nil)
 
 (autoload 'my/narrow-or-widen-dwim "config-defuns" "\
 Widen if buffer is narrowed, narrow-dwim otherwise.

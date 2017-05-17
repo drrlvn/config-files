@@ -249,8 +249,11 @@
   :config
   (ivy-add-actions
    t
-   '(("W" kill-new "save to kill ring")
-     ("I" insert "insert in buffer")))
+   '(("I" insert "insert in buffer")))
+  (ivy-set-actions
+   'projectile-switch-project
+   '(("g" magit-status "magit status")
+     ("a" (lambda (x) (counsel-rg nil x)) "ag")))
   (ivy-mode 1))
 
 (use-package counsel
@@ -561,8 +564,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
-         ("G" . my/projectile-switch-to-git)
-         ("s a". my/projectile-switch-to-rg)
          ("s g" . counsel-git-grep)
          ("s s" . my/counsel-projectile-rg)))
 
