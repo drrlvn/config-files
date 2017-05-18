@@ -32,7 +32,6 @@
 [core]
     pager = less -F
     sparseCheckout = true
-    abbrev = 12
     untrackedCache = true
 
 [commit]
