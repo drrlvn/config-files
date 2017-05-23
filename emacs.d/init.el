@@ -492,10 +492,13 @@
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
          ("C-c g" . magit-dispatch-popup))
-  :init (setq magit-repository-directories '(("~/dev" . 1))
-              magit-tag-arguments '("--annotate")
-              magit-push-always-verify nil
-              magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+  :init
+  (setq magit-bury-buffer-function 'magit-mode-quit-window
+        magit-repository-directories '(("~/dev" . 1))
+        magit-tag-arguments '("--annotate")
+        magit-push-always-verify nil
+        magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
+  (remove-hook 'magit-pre-display-buffer-hook 'magit-save-window-configuration))
 
 (use-package git-commit
   :init
