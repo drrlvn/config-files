@@ -253,7 +253,7 @@
   (ivy-set-actions
    'projectile-switch-project
    '(("g" magit-status "magit status")
-     ("a" (lambda (x) (counsel-rg nil x)) "ag")))
+     ("s" (lambda (x) (counsel-rg nil x)) "search (rg)")))
   (ivy-mode 1))
 
 (use-package counsel
