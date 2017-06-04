@@ -269,11 +269,13 @@ save_dirs() {
 if [[ -f /usr/share/fzf/completion.zsh ]]; then
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
+    export FZF_TMUX=1
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='rg --files'
     export FZF_DEFAULT_OPTS="-e"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fasd -Rdl"
+    export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
     _fzf_compgen_path() {
         rg --files "$1"
     }
