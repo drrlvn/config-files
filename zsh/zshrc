@@ -214,7 +214,7 @@ alias e="emacsclient -n"
 alias rg="rg --smart-case"
 
 rgf() {
-    command rg --files "$@[0,-2]" -g '*'"$@[-1]"'*'
+    command rg --files -g '*'"$@[-1]"'*' "$@[0,-2]"
 }
 
 ssh() {
