@@ -200,6 +200,7 @@ export LESS="-R -n -X -m -i"
 
 alias gg='git grep'
 
+alias ip='ip -c'
 alias grep='grep --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'
