@@ -264,12 +264,12 @@
          ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
          ("M-i" . counsel-imenu))
-  :init (setq counsel-find-file-ignore-regexp
-              (concat
-               ;; file names beginning with # or .
-               "\\(?:\\`[#.]\\)"
-               ;; file names ending with # or ~
-               "\\|\\(?:[#~]\\'\\)")))
+  :init (setq counsel-find-file-ignore-regexp (concat
+                                               ;; file names beginning with # or .
+                                               "\\(?:\\`[#.]\\)"
+                                               ;; file names ending with # or ~
+                                               "\\|\\(?:[#~]\\'\\)")
+              counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 150 --color never %s ."))
 
 (use-package swiper
   :ensure t
