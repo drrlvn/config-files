@@ -1,4 +1,7 @@
-set print pretty
+set print pretty on
+set pagination off
+set confirm off
+
 python
 import sys
 import glob
