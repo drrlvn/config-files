@@ -577,6 +577,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure t
   :mode ("\\.http\\'" . restclient-mode))
 
+(use-package syntax-subword
+  :ensure t
+  :config (global-syntax-subword-mode 1))
+
 (use-package undo-tree
   :ensure t
   :config (global-undo-tree-mode 1))
@@ -605,10 +609,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :config (yas-global-mode 1))
 
 (bind-keys :map prog-mode-map
-           ("<return>" . newline-and-indent)
-           ("C-<delete>" . subword-kill)
-           ("C-<right>" . subword-forward)
-           ("C-<left>" . subword-backward))
+           ("<return>" . newline-and-indent))
 (add-hook 'prog-mode-hook 'my/prog-mode-hook)
 
 (bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)

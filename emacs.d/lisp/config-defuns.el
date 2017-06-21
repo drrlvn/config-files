@@ -311,7 +311,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 (defun my/prog-mode-hook ()
   "."
   (rainbow-delimiters-mode 1)
-  (subword-mode 1)
   (setq show-trailing-whitespace t)
   (font-lock-add-keywords
    nil
