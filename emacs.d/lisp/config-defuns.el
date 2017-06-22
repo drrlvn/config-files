@@ -371,6 +371,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 
 ;;;###autoload
 (defun my/pylint-ignore-errors-at-point ()
+  "Add a pylint ignore comment for the error on the current line."
   (interactive)
   (let* ((errs (flycheck-overlay-errors-in (line-beginning-position) (line-end-position)))
          (ids (delete-dups (-map 'flycheck-error-id errs))))
@@ -381,4 +382,9 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
                 (s-join ", " ids))))))
 
 (provide 'config-defuns)
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved)
+;; End:
+
 ;;; config-defuns.el ends here

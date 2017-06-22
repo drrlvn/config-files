@@ -20,12 +20,12 @@
   :config (window-numbering-mode 1))
 (use-package powerline
   :ensure t
-  :init (setq powerline-default-separator 'wave))
+  :config (setq powerline-default-separator 'wave))
 (use-package spaceline-config
   :ensure spaceline
-  :init (setq spaceline-workspace-numbers-unicode t
-              spaceline-window-numbers-unicode t)
   :config
+  (setq spaceline-workspace-numbers-unicode t
+        spaceline-window-numbers-unicode t)
   (spaceline-toggle-minor-modes-off)
   (spaceline-spacemacs-theme))
 
@@ -34,4 +34,9 @@
   :config (mode-icons-mode 1))
 
 (provide 'config-looks)
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
+
 ;;; config-looks.el ends here

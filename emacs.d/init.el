@@ -20,7 +20,7 @@
   (package-install 'use-package))
 
 (eval-when-compile
-  (setq use-package-enable-imenu-support t)
+  (defvar use-package-enable-imenu-support t)
   (require 'use-package))
 (use-package bind-key
   :ensure t)
@@ -129,8 +129,6 @@
       scroll-margin 5
       scroll-preserve-screen-position t
       visual-order-cursor-movement t
-      compilation-scroll-output 'first-error
-      compilation-read-command nil
       )
 
 (setq-default fill-column 100
@@ -150,51 +148,61 @@
 (global-hl-line-mode 1)
 (save-place-mode 1)
 
-(setq
- ;; ediff
- ediff-split-window-function 'split-window-horizontally
- ;; doc-view
- doc-view-continuous t
- ;; dired
- dired-isearch-filenames t
- dired-recursive-deletes 'always
- ;; org
- org-replace-disputed-keys t
- org-src-fontify-natively t
- org-startup-indented t
- org-html-postamble nil
- ;; glasses
- glasses-separate-parentheses-p nil
- glasses-uncapitalize-p t
- ;; eldoc
- eldoc-idle-delay 0.1
- ;; imenu
- imenu-auto-rescan t
- ;; tramp
- tramp-use-ssh-controlmaster-options nil
- tramp-default-method "scpx"
- ;; uniquify
- uniquify-buffer-name-style 'post-forward
- uniquify-separator ":"
- )
+(use-package compile
+  :config (setq compilation-scroll-output 'first-error
+                compilation-read-command nil))
+
+(use-package ediff
+  :config (setq ediff-split-window-function 'split-window-horizontally))
+
+(use-package doc-view
+  :config (setq doc-view-continuous t))
+
+(use-package dired
+  :config (setq dired-recursive-deletes 'always))
+
+(use-package dired-aux
+  :config (setq dired-isearch-filenames t))
+
+(use-package org
+  :config (setq org-replace-disputed-keys t
+                org-src-fontify-natively t
+                org-startup-indented t))
+
+(use-package ox-html
+  :config (setq org-html-postamble nil))
+
+(use-package glasses
+  :config (setq glasses-separate-parentheses-p nil
+                glasses-uncapitalize-p t))
+
+(use-package eldoc
+  :config (setq eldoc-idle-delay 0.1))
+
+(use-package imenu
+  :config (setq imenu-auto-rescan t))
+
+(use-package tramp
+  :config (setq tramp-use-ssh-controlmaster-options nil
+                tramp-default-method "scpx"
+                tramp-histfile-override "/dev/null"))
+
+(use-package uniquify
+  :config (setq uniquify-buffer-name-style 'post-forward
+                uniquify-separator ":"))
 
 (add-hook 'dired-mode-hook 'my/dired-mode-hook)
 (add-hook 'org-mode-hook 'my/org-mode-hook)
 (add-hook 'rst-mode-hook 'my/rst-mode-hook)
 
-(when (eq system-type 'windows-nt)
-  (setq tramp-default-method "plinkx")
-  (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin")
-  (add-to-list 'exec-path "C:/Go/bin"))
-
-(defun my/balance-windows (&rest args)
+(defun my/balance-windows (&rest _args)
   "Call `balance-windows' while ignoring ARGS."
   (balance-windows))
 (advice-add 'split-window-right :after 'my/balance-windows)
 (advice-add 'split-window-below :after 'my/balance-windows)
 (advice-add 'delete-window :after 'my/balance-windows)
 
-(defun my/indent-yanked-region (&rest args)
+(defun my/indent-yanked-region (&rest _args)
   "Indent region in major modes that don't mind indentation, ignoring ARGS."
   (if (and
        (derived-mode-p 'prog-mode)
@@ -216,37 +224,38 @@
   (add-hook 'after-init-hook 'server-start t))
 
 (use-package autorevert
-  :init (setq auto-revert-verbose nil
-              global-auto-revert-non-file-buffers t)
-  :config (global-auto-revert-mode 1))
+  :config
+  (setq auto-revert-verbose nil
+        global-auto-revert-non-file-buffers t)
+  (global-auto-revert-mode 1))
 
 (use-package recentf
-  :init (setq recentf-max-saved-items 1000)
-  :config (recentf-mode 1))
+  :config
+  (setq recentf-max-saved-items 1000)
+  (recentf-mode 1))
 
 (use-package smex
   :ensure t
-  :init (setq smex-history-length 3))
+  :config (setq smex-history-length 3))
 
 (use-package wgrep
   :ensure t
-  :init (setq wgrep-auto-save-buffer t))
+  :config (setq wgrep-auto-save-buffer t))
 
 (use-package ivy
   :ensure t
   :defer 0
   :bind (("C-c s". ivy-resume)
-         ("C-x C-r" . ivy-recentf))
-  :init (setq ivy-use-virtual-buffers t
-              ivy-count-format "(%d/%d) "
-              ivy-extra-directories '("./")
-              ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
-  :bind (:map ivy-minibuffer-map
-              ("C-m" . ivy-alt-done)
-              ("C-j" . ivy-done)
-              ("<next>" . ivy-scroll-up-command)
-              ("<prior>" . ivy-scroll-down-command))
+         :map ivy-minibuffer-map
+         ("C-m" . ivy-alt-done)
+         ("C-j" . ivy-done)
+         ("<next>" . ivy-scroll-up-command)
+         ("<prior>" . ivy-scroll-down-command))
   :config
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        ivy-extra-directories '("./")
+        ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   (ivy-add-actions
    t
    '(("I" insert "insert in buffer")))
@@ -261,6 +270,7 @@
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-x y" . counsel-yank-pop)
+         ("C-x C-r" . counsel-recentf)
          ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
          ("M-i" . counsel-imenu))
@@ -277,18 +287,20 @@
          ("C-S-s" . my/swiper-region-or-current-word)))
 
 (use-package cua-base
-  :init (setq cua-enable-cua-keys nil)
-  :config (cua-mode 1))
+  :config
+  (setq cua-enable-cua-keys nil)
+  (cua-mode 1))
 
 (use-package paren
-  :init (setq show-paren-delay 0)
-  :config (show-paren-mode 1))
+  :config
+  (setq show-paren-delay 0)
+  (show-paren-mode 1))
 
 (use-package flycheck
   :ensure t
-  :init
-  (setq flycheck-clang-language-standard "c++1z")
-  (add-hook 'after-init-hook 'global-flycheck-mode 1))
+  :init (add-hook 'after-init-hook 'global-flycheck-mode 1)
+  :config (setq flycheck-global-modes '(not c++-mode)
+                flycheck-emacs-lisp-load-path 'inherit))
 
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
@@ -434,9 +446,10 @@
 
 (use-package eyebrowse
   :ensure t
-  :init (setq eyebrowse-wrap-around t
-              eyebrowse-new-workspace t)
-  :config (eyebrowse-mode t))
+  :config
+  (setq eyebrowse-wrap-around t
+        eyebrowse-new-workspace t)
+  (eyebrowse-mode t))
 
 (use-package git-messenger
   :ensure t
@@ -451,8 +464,9 @@
 
 (use-package which-key
   :ensure t
-  :init (setq which-key-idle-delay 0.5)
-  :config (which-key-mode 1))
+  :config
+  (setq which-key-idle-delay 0.5)
+  (which-key-mode 1))
 
 (use-package highlight-symbol
   :ensure t
@@ -464,36 +478,37 @@
 
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
-  :init
-  (setq ibuffer-expert t
-        ibuffer-show-empty-filter-groups nil
-        ibuffer-formats '((mark modified read-only " "
-                                (name 25 25 :left :elide) " "
-                                (size 6 -1 :right) " "
-                                (mode 10 10 :left :elide) " "
-                                (filename-and-process -1 60 :left :elide))
-                          (mark " " (name 30 -1)
-                                " " filename))
-        ibuffer-saved-filter-groups '(("default"
-                                       ("Dired" (mode . dired-mode))
-                                       ("C/C++" (or
-                                                 (mode . c-mode)
-                                                 (mode . c++-mode)))
-                                       ("Python" (mode . python-mode))
-                                       ("Go" (mode . go-mode))
-                                       ("Rust" (mode . rust-mode))
-                                       ("Elisp" (mode . emacs-lisp-mode))
-                                       ("Web" (or
-                                               (mode . sgml-mode)
-                                               (mode . web-mode)
-                                               (mode . css-mode)
-                                               (mode . js-mode)))
-                                       ("Docs" (or
-                                                (mode . org-mode)
-                                                (mode . rst-mode)))
-                                       ("Misc" (name . "^\\*"))
-                                       )))
-  (add-hook 'ibuffer-mode-hook 'my/ibuffer-mode-hook))
+  :init (add-hook 'ibuffer-mode-hook 'my/ibuffer-mode-hook)
+  :config (setq ibuffer-expert t
+                ibuffer-formats '((mark modified read-only " "
+                                        (name 25 25 :left :elide) " "
+                                        (size 6 -1 :right) " "
+                                        (mode 10 10 :left :elide) " "
+                                        (filename-and-process -1 60 :left :elide))
+                                  (mark " " (name 30 -1)
+                                        " " filename))))
+
+(use-package ibuf-ext
+  :config (setq ibuffer-show-empty-filter-groups nil
+                ibuffer-saved-filter-groups '(("default"
+                                               ("Dired" (mode . dired-mode))
+                                               ("C/C++" (or
+                                                         (mode . c-mode)
+                                                         (mode . c++-mode)))
+                                               ("Python" (mode . python-mode))
+                                               ("Go" (mode . go-mode))
+                                               ("Rust" (mode . rust-mode))
+                                               ("Elisp" (mode . emacs-lisp-mode))
+                                               ("Web" (or
+                                                       (mode . sgml-mode)
+                                                       (mode . web-mode)
+                                                       (mode . css-mode)
+                                                       (mode . js-mode)))
+                                               ("Docs" (or
+                                                        (mode . org-mode)
+                                                        (mode . rst-mode)))
+                                               ("Misc" (name . "^\\*"))
+                                               ))))
 
 (use-package magit
   :ensure t
@@ -505,16 +520,14 @@
   (setq magit-bury-buffer-function 'magit-mode-quit-window
         magit-repository-directories '(("~/dev" . 1))
         magit-tag-arguments '("--annotate")
-        magit-push-always-verify nil
         magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
   (remove-hook 'magit-pre-display-buffer-hook 'magit-save-window-configuration))
 
 (use-package git-commit
-  :init
-  (setq git-commit-summary-max-length 80
-        git-commit-fill-column 80)
-  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
-  :config (global-git-commit-mode t))
+  :init (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
+  :config
+  (setq git-commit-summary-max-length fill-column)
+  (global-git-commit-mode t))
 
 (use-package markdown-mode
   :ensure t
@@ -613,9 +626,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package yasnippet
   :ensure t
-  :init (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
-              yas-verbosity 1)
-  :config (yas-global-mode 1))
+  :config
+  (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
+        yas-verbosity 1)
+  (yas-global-mode 1))
 
 (bind-keys :map prog-mode-map
            ("<return>" . newline-and-indent))
@@ -623,5 +637,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
 (add-hook 'emacs-lisp-mode-hook 'my/emacs-lisp-mode-hook)
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
 
 ;;; init.el ends here
