@@ -315,6 +315,15 @@
   :ensure t
   :init (add-hook 'hack-local-variables-hook 'my/pyvenv-activate))
 
+(use-package anaconda-mode
+  :ensure t
+  :init (add-hook 'python-mode-hook (apply-partially 'anaconda-mode 1)))
+
+(use-package company-anaconda
+  :ensure t
+  :after company
+  :config (add-hook 'anaconda-mode-hook 'my/company-anaconda-setup))
+
 
 (use-package go-mode
   :ensure t

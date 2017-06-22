@@ -1,10 +1,11 @@
+.python-environments/
+anaconda-mode/
 auto-save-list/
 elpa/
 semanticdb/
 undodir/
 url/
 var/
-.python-environments/
 ac-comphist.dat
 custom.el
 ede-projects.el

@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22812 9348
-;;;;;;  987212 999000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22859 40298
+;;;;;;  240593 567000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -221,6 +221,11 @@ Scroll other window down N lines.
 \(fn)" nil nil)
 
 (autoload 'my/pyvenv-activate "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/company-anaconda-setup "config-defuns" "\
 .
 
 \(fn)" nil nil)

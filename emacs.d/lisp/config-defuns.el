@@ -350,6 +350,11 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (if (bound-and-true-p pyvenv-activate)
       (pyvenv-activate pyvenv-activate)))
 
+;;;###autoload
+(defun my/company-anaconda-setup ()
+  "."
+  (add-to-list (make-local-variable 'company-backends) 'company-anaconda))
+
 ;; for avy
 ;;;###autoload
 (defun my/add-super-char-to-avy (m c)
