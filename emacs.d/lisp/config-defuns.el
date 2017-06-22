@@ -344,6 +344,12 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (auto-fill-mode 1)
   (refill-mode 1))
 
+;;;###autoload
+(defun my/pyvenv-activate ()
+  "."
+  (if (bound-and-true-p pyvenv-activate)
+      (pyvenv-activate pyvenv-activate)))
+
 ;; for avy
 ;;;###autoload
 (defun my/add-super-char-to-avy (m c)

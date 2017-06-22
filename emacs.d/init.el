@@ -252,8 +252,8 @@
    '(("I" insert "insert in buffer")))
   (ivy-set-actions
    'projectile-switch-project
-   '(("g" magit-status "magit status")
-     ("s" (lambda (x) (counsel-rg nil x)) "search (rg)")))
+   `(("g" magit-status "magit status")
+     ("s" ,(apply-partially 'counsel-rg nil) "search (rg)")))
   (ivy-mode 1))
 
 (use-package counsel
@@ -288,7 +288,7 @@
   :ensure t
   :init
   (setq flycheck-clang-language-standard "c++1z")
-  (add-hook 'after-init-hook 'global-flycheck-mode t))
+  (add-hook 'after-init-hook 'global-flycheck-mode 1))
 
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
@@ -313,8 +313,8 @@
 
 (use-package pyvenv
   :ensure t
-  :commands pyvenv-tracking-mode
-  :init (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode 1))))
+  :init (add-hook 'hack-local-variables-hook 'my/pyvenv-activate))
+
 
 (use-package go-mode
   :ensure t

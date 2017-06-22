@@ -220,6 +220,11 @@ Scroll other window down N lines.
 
 \(fn)" nil nil)
 
+(autoload 'my/pyvenv-activate "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
 (autoload 'my/add-super-char-to-avy "config-defuns" "\
 Add binding for avy-goto M to key C.
 

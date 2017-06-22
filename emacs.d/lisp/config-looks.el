@@ -27,9 +27,6 @@
               spaceline-window-numbers-unicode t)
   :config
   (spaceline-toggle-minor-modes-off)
-  (spaceline-toggle-flycheck-error-off)
-  (spaceline-toggle-flycheck-warning-off)
-  (spaceline-toggle-flycheck-info-off)
   (spaceline-spacemacs-theme))
 
 (use-package mode-icons
