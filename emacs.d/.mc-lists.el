@@ -23,6 +23,8 @@
         cycle-spacing
         delete-indentation
         drag-stuff-down
+        drag-stuff-left
+        drag-stuff-right
         electric-newline-and-maybe-indent
         end-of-visual-line
         eval-last-sexp
@@ -56,6 +58,10 @@
         sp-cua-replace-region
         subword-left
         subword-right
+        syntax-subword-backward-kill
+        syntax-subword-kill
+        syntax-subword-left
+        syntax-subword-right
         wgrep-exit
         yaml-electric-backspace
         yaml-electric-dash-and-dot

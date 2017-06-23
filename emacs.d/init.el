@@ -4,17 +4,14 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
-(require 'cl-macs)
-
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
 
-(require 'config-defuns-autoloads)
-
 (setq package-check-signature nil
-      package-enable-at-startup nil)
+      package-enable-at-startup nil
+      load-prefer-newer t)
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (unless (package-installed-p 'use-package)
@@ -23,13 +20,20 @@
 
 (eval-when-compile
   (defvar use-package-enable-imenu-support t)
-  (require 'use-package))
-(use-package bind-key
-  :ensure t)
+  (require 'use-package)
+  (require 'cl-macs))
+
+(use-package auto-compile
+  :ensure t
+  :config
+  (auto-compile-on-save-mode 1))
+
+(require 'config-defuns-autoloads)
 (require 'config-looks)
+(use-package bind-key)
 
 (use-package misc
-  :commands (zap-to-char zap-up-to-char copy-from-above-command))
+  :commands (zap-up-to-char copy-from-above-command))
 
 (bind-key "C-x r q" 'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
@@ -151,45 +155,57 @@
 (save-place-mode 1)
 
 (use-package compile
+  :defer t
   :config (setq compilation-scroll-output 'first-error
                 compilation-read-command nil))
 
 (use-package ediff
+  :defer t
   :config (setq ediff-split-window-function 'split-window-horizontally))
 
 (use-package doc-view
+  :defer t
   :config (setq doc-view-continuous t))
 
 (use-package dired
+  :defer t
   :config (setq dired-recursive-deletes 'always))
 
 (use-package dired-aux
+  :defer t
   :config (setq dired-isearch-filenames t))
 
 (use-package org
+  :defer t
   :config (setq org-replace-disputed-keys t
                 org-src-fontify-natively t
                 org-startup-indented t))
 
 (use-package ox-html
+  :defer t
   :config (setq org-html-postamble nil))
 
 (use-package glasses
+  :defer t
   :config (setq glasses-separate-parentheses-p nil
                 glasses-uncapitalize-p t))
 
 (use-package eldoc
+  :defer t
   :config (setq eldoc-idle-delay 0.1))
 
 (use-package imenu
+  :defer t
   :config (setq imenu-auto-rescan t))
 
 (use-package tramp
+  :defer t
   :config (setq tramp-use-ssh-controlmaster-options nil
                 tramp-default-method "scpx"
                 tramp-histfile-override "/dev/null"))
 
 (use-package uniquify
+  :defer t
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
 
@@ -238,7 +254,7 @@
 
 (use-package smex
   :ensure t
-  :config (setq smex-history-length 3))
+  :init (defvar smex-history-length 3))
 
 (use-package wgrep
   :ensure t
@@ -246,7 +262,7 @@
 
 (use-package ivy
   :ensure t
-  :defer 0
+  :demand
   :bind (("C-c s". ivy-resume)
          :map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
@@ -338,7 +354,6 @@
   :after company
   :config (add-hook 'anaconda-mode-hook 'my/company-anaconda-setup))
 
-
 (use-package go-mode
   :ensure t
   :defer t)
@@ -350,10 +365,6 @@
 (use-package yaml-mode
   :ensure t
   :defer t)
-
-(use-package auto-compile
-  :ensure t
-  :config (auto-compile-on-save-mode 1))
 
 (use-package cmake-font-lock
   :ensure t
@@ -391,24 +402,21 @@
                           ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
            do (my/add-super-char-to-avy 'char c)))
 
-(use-package anzu
-  :ensure t
-  :config (global-anzu-mode 1))
-
 (use-package company
   :ensure t
-  :init (setq company-idle-delay 0
-              company-minimum-prefix-length 2
-              company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
-  :config (global-company-mode 1))
+  :init
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 2
+        company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
+  (add-hook 'after-init-hook (apply-partially 'global-company-mode 1)))
 
 (use-package company-statistics
   :ensure t
-  :config (company-statistics-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'company-statistics-mode 1)))
 
 (use-package diff-hl
   :ensure t
-  :config (global-diff-hl-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'global-diff-hl-mode 1)))
 
 (use-package discover-my-major
   :ensure t
@@ -568,12 +576,13 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package paredit
   :ensure t
+  :commands enable-paredit-mode
+  :init (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
   :config
   ;; making paredit work with delete-selection-mode
   (put 'paredit-forward-delete 'delete-selection 'supersede)
   (put 'paredit-backward-delete 'delete-selection 'supersede)
-  (put 'paredit-newline 'delete-selection t)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  (put 'paredit-newline 'delete-selection t))
 
 (use-package popwin
   :ensure t
@@ -581,7 +590,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package projectile
   :ensure t
-  :defer 0
+  :demand
   :init (setq projectile-completion-system 'ivy
               projectile-use-git-grep t)
   :config
@@ -603,11 +612,11 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package syntax-subword
   :ensure t
-  :config (global-syntax-subword-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'global-syntax-subword-mode 1)))
 
 (use-package undo-tree
   :ensure t
-  :config (global-undo-tree-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'global-undo-tree-mode 1)))
 
 (use-package web-mode
   :ensure t
@@ -620,11 +629,11 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package whitespace-cleanup-mode
   :ensure t
-  :config (global-whitespace-cleanup-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'global-whitespace-cleanup-mode 1)))
 
 (use-package wrap-region
   :ensure t
-  :config (wrap-region-global-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'wrap-region-global-mode 1)))
 
 (use-package yasnippet
   :ensure t
