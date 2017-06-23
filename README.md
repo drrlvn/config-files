@@ -32,7 +32,7 @@ Or clone as usual and then run:
 
 Create the symlink `~/.emacs.d` using:
 
-    ln <REPO_PATH>/emacs.d ~/.emacs.d
+    ln -s <REPO_PATH>/emacs.d ~/.emacs.d
 
 Note: Emacs 24.1 is required, older version will not work.
 
@@ -40,7 +40,8 @@ Note: Emacs 24.1 is required, older version will not work.
 
 Two symlinks are required, `~/.vimrc` and `~/.vim`:
 
-    ln <REPO_PATH>/vim/vimrc.local ~/.vimrc ln <REPO_PATH>/vim/dotvim ~/.vim
+    ln -s <REPO_PATH>/vim/vimrc.local ~/.vimrc
+    ln -s <REPO_PATH>/vim/dotvim ~/.vim
 
 ## Zsh ##
 
@@ -52,8 +53,8 @@ optional and defaults to `~/config-files`).
 Symlink the `gitconfig` in the repository to either the system-wide or user
 specific config files:
 
-    ln <REPO_PATH>/gitconfig /etc/gitconfig
+    ln -s <REPO_PATH>/gitconfig /etc/gitconfig
 
 Or
 
-    ln <REPO_PATH>/gitconfig ~/.gitconfig
+    ln -s <REPO_PATH>/gitconfig ~/.gitconfig
