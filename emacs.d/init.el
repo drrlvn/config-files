@@ -94,7 +94,7 @@
 (use-package hydra
   :ensure t
   :bind ("<f8>" . my/hydra-error/body)
-  :init
+  :config
   (defhydra my/hydra-error ()
     "goto-error"
     ("P" first-error "first")
@@ -248,9 +248,9 @@
   (global-auto-revert-mode 1))
 
 (use-package recentf
-  :config
-  (setq recentf-max-saved-items 1000)
-  (recentf-mode 1))
+  :defer t
+  :init (add-hook 'after-init-hook (apply-partially 'recentf-mode 1))
+  :config (setq recentf-max-saved-items 1000))
 
 (use-package smex
   :ensure t
@@ -347,10 +347,12 @@
 
 (use-package anaconda-mode
   :ensure t
+  :defer t
   :init (add-hook 'python-mode-hook (apply-partially 'anaconda-mode 1)))
 
 (use-package company-anaconda
   :ensure t
+  :defer t
   :after company
   :config (add-hook 'anaconda-mode-hook 'my/company-anaconda-setup))
 
@@ -404,6 +406,7 @@
 
 (use-package company
   :ensure t
+  :defer t
   :init
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
@@ -412,10 +415,12 @@
 
 (use-package company-statistics
   :ensure t
-  :init (add-hook 'after-init-hook (apply-partially 'company-statistics-mode 1)))
+  :after company
+  :init (add-hook 'global-company-mode-hook (apply-partially 'company-statistics-mode 1)))
 
 (use-package diff-hl
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook (apply-partially 'global-diff-hl-mode 1)))
 
 (use-package discover-my-major
@@ -456,10 +461,10 @@
 
 (use-package eyebrowse
   :ensure t
-  :config
-  (setq eyebrowse-wrap-around t
-        eyebrowse-new-workspace t)
-  (eyebrowse-mode t))
+  :defer t
+  :init (add-hook 'after-init-hook (apply-partially 'eyebrowse-mode 1))
+  :config (setq eyebrowse-wrap-around t
+                eyebrowse-new-workspace t))
 
 (use-package git-messenger
   :ensure t
@@ -474,9 +479,9 @@
 
 (use-package which-key
   :ensure t
-  :config
-  (setq which-key-idle-delay 0.5)
-  (which-key-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially 'which-key-mode 1))
+  :defer t
+  :config (setq which-key-idle-delay 0.5))
 
 (use-package highlight-symbol
   :ensure t
@@ -499,6 +504,7 @@
                                         " " filename))))
 
 (use-package ibuf-ext
+  :after ibuffer
   :config (setq ibuffer-show-empty-filter-groups nil
                 ibuffer-saved-filter-groups '(("default"
                                                ("Dired" (mode . dired-mode))
@@ -526,7 +532,7 @@
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
          ("C-c g" . magit-dispatch-popup))
-  :init
+  :config
   (setq magit-bury-buffer-function 'magit-mode-quit-window
         magit-repository-directories '(("~/dev" . 1))
         magit-tag-arguments '("--annotate")
@@ -537,7 +543,7 @@
   :init (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   :config
   (setq git-commit-summary-max-length fill-column)
-  (global-git-commit-mode t))
+  (global-git-commit-mode 1))
 
 (use-package markdown-mode
   :ensure t
@@ -548,6 +554,7 @@
 
 (use-package multiple-cursors
   :ensure t
+  :after hydra
   :bind (("C-|" . mc/edit-lines)
          ("C-;" . mc/mark-all-like-this-dwim)
          ("C->" . mc/mark-next-like-this)
@@ -576,7 +583,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package paredit
   :ensure t
-  :commands enable-paredit-mode
+  :defer t
   :init (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
   :config
   ;; making paredit work with delete-selection-mode
@@ -586,7 +593,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package popwin
   :ensure t
-  :config (popwin-mode 1))
+  :commands popwin-mode
+  :init (add-hook 'after-init-hook (apply-partially 'popwin-mode 1)))
 
 (use-package projectile
   :ensure t
@@ -612,10 +620,12 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package syntax-subword
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook (apply-partially 'global-syntax-subword-mode 1)))
 
 (use-package undo-tree
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook (apply-partially 'global-undo-tree-mode 1)))
 
 (use-package web-mode
@@ -629,18 +639,20 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package whitespace-cleanup-mode
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook (apply-partially 'global-whitespace-cleanup-mode 1)))
 
 (use-package wrap-region
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook (apply-partially 'wrap-region-global-mode 1)))
 
 (use-package yasnippet
   :ensure t
-  :config
-  (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
-        yas-verbosity 1)
-  (yas-global-mode 1))
+  :defer t
+  :init (add-hook 'after-init-hook (apply-partially 'yas-global-mode 1))
+  :config (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
+                yas-verbosity 1))
 
 (bind-keys :map prog-mode-map
            ("<return>" . newline-and-indent))

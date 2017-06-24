@@ -14,7 +14,8 @@
 
 (use-package atom-one-dark-theme
   :ensure t
-  :config (load-theme 'atom-one-dark t))
+  :defer t
+  :init (add-hook 'after-init-hook (apply-partially 'load-theme 'atom-one-dark t)))
 
 (use-package window-numbering
   :ensure t
@@ -32,7 +33,8 @@
 
 (use-package mode-icons
   :ensure t
-  :config (mode-icons-mode 1))
+  :defer t
+  :init (add-hook 'after-init-hook (apply-partially 'mode-icons-mode 1)))
 
 (provide 'config-looks)
 
