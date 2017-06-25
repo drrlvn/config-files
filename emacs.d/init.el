@@ -341,6 +341,12 @@
               ("C-<f8>" . my/pylint-ignore-errors-at-point))
   :config (unbind-key "C-c C-f" python-mode-map))
 
+(use-package py-isort
+  :ensure t
+  :bind (:map python-mode-map
+              ("C-c i" . py-isort-buffer))
+  :after python)
+
 (use-package pyvenv
   :ensure t
   :init (add-hook 'hack-local-variables-hook 'my/pyvenv-activate))
