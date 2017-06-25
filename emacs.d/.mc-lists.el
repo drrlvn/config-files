@@ -38,6 +38,7 @@
         my/kill-line-or-region
         my/save-line-or-region
         my/smart-beginning-of-line
+        my/toggle-comment-line-or-region
         my/zap-to-char-exclusive
         org-self-insert-command
         overwrite-mode

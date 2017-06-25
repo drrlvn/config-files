@@ -9,8 +9,11 @@
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(if (find-font (font-spec :name "Fira Mono"))
-    (set-frame-font "Fira Mono 10" nil t))
+(cond
+  ((find-font (font-spec :name "Operator Mono"))
+   (set-frame-font "Operator Mono 11" nil t))
+  ((find-font (font-spec :name "Fira Mono"))
+   (set-frame-font "Fira Mono 10" nil t)))
 
 (use-package atom-one-dark-theme
   :ensure t
