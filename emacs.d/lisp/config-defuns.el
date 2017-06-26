@@ -1,4 +1,4 @@
-;;; config-defuns.el --- custom functions, macros and advices -*- lexical-binding: t; -*-
+;;; config-defuns.el --- custom functions, macros and advices -*- lexical-binding: t; byte-compile-warnings: (not free-vars unresolved) -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -28,41 +28,42 @@
     (goto-char prev-point)))
 
 ;;;###autoload
-(defun my/open-line-below ()
-  "Go to end of line, then insert newline and indent."
-  (interactive)
+(defun my/open-line-below (n)
+  "Go to end of line, then insert N newlines and indent."
+  (interactive "*p")
   (end-of-line)
-  (newline-and-indent))
+  (newline n t)
+  (indent-according-to-mode))
 
 ;;;###autoload
-(defun my/open-line-above ()
-  "Go to end of line, then insert newline and indent."
-  (interactive)
+(defun my/open-line-above (n)
+  "Go to end of line, then insert N newlines and indent."
+  (interactive "*p")
   (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
+  (newline n t)
+  (forward-line (- n))
+  (indent-according-to-mode))
 
 ;;;###autoload
 (defun my/diff-current-buffer-with-file ()
   "View the differences between current buffer and its associated file."
   (interactive)
-  (diff-buffer-with-file (current-buffer)))
+  (if (buffer-modified-p)
+      (diff-buffer-with-file (current-buffer))
+    (message "Buffer not modified")))
 
 ;;;###autoload
 (defun my/revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
   (revert-buffer nil t t)
-  (message (concat "Reverted buffer " buffer-file-name)))
+  (message "Reverted buffer %s" buffer-file-name))
 
 ;;;###autoload
 (defun my/kill-buffer-other-window ()
   "Kill buffer in other window."
   (interactive)
-  (other-window 1)
-  (kill-buffer)
-  (other-window -1))
+  (kill-buffer (window-buffer (next-window))))
 
 ;;;###autoload
 (defun my/swiper-region-or-current-word ()
@@ -79,15 +80,6 @@
   (interactive)
   (unless project-root (setq project-root (projectile-project-root)))
   (counsel-rg (current-word) project-root))
-
-;;;###autoload
-(defun my/autoload-and-set-key (package keys-and-functions)
-  "Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS."
-  (dolist (key-and-function keys-and-functions)
-    (let ((key (car key-and-function))
-          (function (cadr key-and-function)))
-      (autoload function package nil t)
-      (global-set-key (read-kbd-macro key) function))))
 
 ;;;###autoload
 (defun my/eval-and-replace ()
@@ -208,8 +200,10 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   "Open the repository homepage in the browser."
   (interactive)
   (let ((git-link-open-in-browser t))
+    (ignore git-link-open-in-browser)
     (call-interactively 'git-link-homepage)))
 
+;;;###autoload
 (defun my/show-buffer-file-name ()
   "Show the full path to the current file in the minibuffer."
   (interactive)
@@ -406,9 +400,5 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
                 (s-join ", " ids))))))
 
 (provide 'config-defuns)
-
-;; Local Variables:
-;; byte-compile-warnings: (not free-vars unresolved)
-;; End:
 
 ;;; config-defuns.el ends here

@@ -1,4 +1,4 @@
-;;; init.el --- emacs config -*- lexical-binding: t; -*-
+;;; init.el --- emacs config -*- lexical-binding: t; byte-compile-warnings: (not unresolved) -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -398,14 +398,16 @@
 
 (use-package hippie-exp
   :bind ("M-/" . hippie-expand)
-  :init (setq hippie-expand-try-functions-list '(try-expand-dabbrev
+  :init (setq hippie-expand-try-functions-list '(yas-hippie-try-expand
+                                                 try-expand-dabbrev
                                                  try-expand-dabbrev-all-buffers
                                                  try-expand-dabbrev-from-kill
                                                  try-complete-file-name-partially
                                                  try-complete-file-name
                                                  try-expand-all-abbrevs
                                                  try-complete-lisp-symbol-partially
-                                                 try-complete-lisp-symbol)))
+                                                 try-complete-lisp-symbol
+                                                 )))
 
 (use-package avy
   :ensure t
@@ -423,11 +425,10 @@
 (use-package company
   :ensure t
   :defer t
-  :init
+  :init (add-hook 'after-init-hook (apply-partially 'global-company-mode 1))
+  :config
   (setq company-idle-delay 0
-        company-minimum-prefix-length 2
-        company-backends '(company-bbdb company-nxml company-css company-eclim company-semantic company-xcode company-cmake company-capf company-files (company-dabbrev-code company-gtags company-keywords) company-oddmuse company-dabbrev))
-  (add-hook 'after-init-hook (apply-partially 'global-company-mode 1)))
+        company-minimum-prefix-length 2))
 
 (use-package company-statistics
   :ensure t
@@ -684,9 +685,5 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
 (add-hook 'emacs-lisp-mode-hook (apply-partially 'eldoc-mode 1))
-
-;; Local Variables:
-;; byte-compile-warnings: (not unresolved)
-;; End:
 
 ;;; init.el ends here

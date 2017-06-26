@@ -25,6 +25,7 @@
   :config (window-numbering-mode 1))
 (use-package powerline
   :ensure t
+  :defer t
   :config (setq powerline-default-separator 'wave))
 (use-package spaceline-config
   :ensure spaceline

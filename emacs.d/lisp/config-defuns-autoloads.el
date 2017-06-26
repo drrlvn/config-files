@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22865 2971
-;;;;;;  88766 931000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22866 17862
+;;;;;;  822485 101000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -18,14 +18,14 @@ Run shell command on buffer and replace it with the output.
 \(fn)" t nil)
 
 (autoload 'my/open-line-below "config-defuns" "\
-Go to end of line, then insert newline and indent.
+Go to end of line, then insert N newlines and indent.
 
-\(fn)" t nil)
+\(fn N)" t nil)
 
 (autoload 'my/open-line-above "config-defuns" "\
-Go to end of line, then insert newline and indent.
+Go to end of line, then insert N newlines and indent.
 
-\(fn)" t nil)
+\(fn N)" t nil)
 
 (autoload 'my/diff-current-buffer-with-file "config-defuns" "\
 View the differences between current buffer and its associated file.
@@ -51,11 +51,6 @@ Run swiper on region or current word.
 Run `counsel-rg' in the PROJECT-ROOT.
 
 \(fn &optional PROJECT-ROOT)" t nil)
-
-(autoload 'my/autoload-and-set-key "config-defuns" "\
-Autoloads PACKAGE for keys and function pairs in KEYS-AND-FUNCTIONS.
-
-\(fn PACKAGE KEYS-AND-FUNCTIONS)" nil nil)
 
 (autoload 'my/eval-and-replace "config-defuns" "\
 Replace the preceding sexp with its value.
@@ -117,6 +112,11 @@ Get a link to the commit of git-messenger.
 
 (autoload 'my/git-link-homepage-in-browser "config-defuns" "\
 Open the repository homepage in the browser.
+
+\(fn)" t nil)
+
+(autoload 'my/show-buffer-file-name "config-defuns" "\
+Show the full path to the current file in the minibuffer.
 
 \(fn)" t nil)
 
