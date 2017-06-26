@@ -2,6 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
+(defmacro my/save-kill-ring (&rest body)
+  "Save `kill-ring' and restore it after executing BODY."
+  `(let ((orig-kill-ring kill-ring)
+         (orig-kill-ring-yank-pointer kill-ring-yank-pointer))
+     (unwind-protect
+         ,@body)
+     (setq kill-ring orig-kill-ring
+           kill-ring-yank-pointer orig-kill-ring-yank-pointer)))
+
 ;;;###autoload
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
@@ -288,23 +297,33 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (interactive "p")
   (scroll-other-window (- n)))
 
-;; hooks
+(defun my/py-isort-buffer ()
+  "Wrap `py-isort-buffer' with `my/save-kill-ring'."
+  (interactive)
+  (my/save-kill-ring
+   (py-isort-buffer)))
+
 ;;;###autoload
-(defun my/dired-mode-hook ()
-  "."
-  (require 'dired-x)
-  (dired-omit-mode 1))
+(defun my/python-insert-import ()
+  "Move current line, which should be an import statement, to the beginning of the file and run isort."
+  (interactive)
+  (save-excursion
+    (let ((import-string (delete-and-extract-region (line-beginning-position) (line-end-position))))
+      (delete-char -1)
+      (goto-char (point-min))
+      (while (or (not (looking-at "$")) (python-syntax-comment-or-string-p))
+        (forward-line))
+      (insert import-string)
+      (indent-region (line-beginning-position) (line-end-position))
+      (my/py-isort-buffer))))
+
+;; hooks
 
 ;;;###autoload
 (defun my/org-mode-hook ()
   "."
   (make-local-variable 'show-paren-mode)
   (setq show-paren-mode nil)
-  (flyspell-mode 1))
-
-;;;###autoload
-(defun my/rst-mode-hook ()
-  "."
   (flyspell-mode 1))
 
 ;;;###autoload
@@ -322,16 +341,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (setq comment-start "/*"
         comment-end "*/")
   (c-set-offset 'innamespace 0))
-
-;;;###autoload
-(defun my/python-mode-hook ()
-  "."
-  (bind-key "C-c >" 'indent-tools-hydra/body python-mode-map))
-
-;;;###autoload
-(defun my/emacs-lisp-mode-hook ()
-  "."
-  (eldoc-mode 1))
 
 ;;;###autoload
 (defun my/ibuffer-mode-hook ()

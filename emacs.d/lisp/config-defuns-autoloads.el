@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22859 40298
-;;;;;;  240593 567000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22864 60653
+;;;;;;  376025 228000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -175,17 +175,12 @@ Scroll other window down N lines.
 
 \(fn N)" t nil)
 
-(autoload 'my/dired-mode-hook "config-defuns" "\
-.
+(autoload 'my/python-insert-import "config-defuns" "\
+Move current line, which should be an import statement, to the beginning of the file and run isort.
 
-\(fn)" nil nil)
+\(fn)" t nil)
 
 (autoload 'my/org-mode-hook "config-defuns" "\
-.
-
-\(fn)" nil nil)
-
-(autoload 'my/rst-mode-hook "config-defuns" "\
 .
 
 \(fn)" nil nil)
@@ -196,16 +191,6 @@ Scroll other window down N lines.
 \(fn)" nil nil)
 
 (autoload 'my/c-mode-common-hook "config-defuns" "\
-.
-
-\(fn)" nil nil)
-
-(autoload 'my/python-mode-hook "config-defuns" "\
-.
-
-\(fn)" nil nil)
-
-(autoload 'my/emacs-lisp-mode-hook "config-defuns" "\
 .
 
 \(fn)" nil nil)
@@ -241,7 +226,7 @@ Kill all buffers from current project.
 \(fn)" t nil)
 
 (autoload 'my/pylint-ignore-errors-at-point "config-defuns" "\
-
+Add a pylint ignore comment for the error on the current line.
 
 \(fn)" t nil)
 

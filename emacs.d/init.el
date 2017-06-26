@@ -169,17 +169,24 @@
 
 (use-package dired
   :defer t
-  :config (setq dired-recursive-deletes 'always))
+  :config
+  (setq dired-recursive-deletes 'always)
+  (add-hook 'dired-mode-hook (apply-partially 'dired-omit-mode 1)))
 
 (use-package dired-aux
   :defer t
   :config (setq dired-isearch-filenames t))
 
+(use-package dired-x
+  :commands dired-omit-mode)
+
 (use-package org
   :defer t
-  :config (setq org-replace-disputed-keys t
-                org-src-fontify-natively t
-                org-startup-indented t))
+  :config
+  (setq org-replace-disputed-keys t
+        org-src-fontify-natively t
+        org-startup-indented t)
+  (add-hook 'org-mode-hook 'my/org-mode-hook))
 
 (use-package ox-html
   :defer t
@@ -209,9 +216,9 @@
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
 
-(add-hook 'dired-mode-hook 'my/dired-mode-hook)
-(add-hook 'org-mode-hook 'my/org-mode-hook)
-(add-hook 'rst-mode-hook 'my/rst-mode-hook)
+(use-package rst
+  :defer t
+  :config (add-hook 'rst-mode-hook (apply-partially 'flyspell-mode 1)))
 
 (defun my/balance-windows (&rest _args)
   "Call `balance-windows' while ignoring ARGS."
@@ -344,8 +351,10 @@
 (use-package py-isort
   :ensure t
   :after python
+  :commands py-isort-buffer
   :bind (:map python-mode-map
-              ("C-c i" . py-isort-buffer))
+              ("C-c i" . my/python-insert-import)
+              ("C-c I" . my/py-isort-buffer))
   :config (setq py-isort-options '("-ds")))
 
 (use-package pyvenv
@@ -666,7 +675,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (add-hook 'prog-mode-hook 'my/prog-mode-hook)
 
 (bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
-(add-hook 'emacs-lisp-mode-hook 'my/emacs-lisp-mode-hook)
+(add-hook 'emacs-lisp-mode-hook (apply-partially 'eldoc-mode 1))
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)
