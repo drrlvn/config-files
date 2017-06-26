@@ -343,9 +343,10 @@
 
 (use-package py-isort
   :ensure t
+  :after python
   :bind (:map python-mode-map
               ("C-c i" . py-isort-buffer))
-  :after python)
+  :config (setq py-isort-options '("-ds")))
 
 (use-package pyvenv
   :ensure t

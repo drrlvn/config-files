@@ -198,8 +198,6 @@ export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
 export LESS="-R -n -X -m -i"
 
-alias gg='git grep'
-
 alias ip='ip -c'
 alias grep='grep --color=auto'
 alias cp='cp -iv'
