@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22864 60653
-;;;;;;  376025 228000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22865 2971
+;;;;;;  88766 931000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -107,6 +107,16 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 
 (autoload 'my/git-messenger-show-with-magit "config-defuns" "\
 Use magit to show the commit of git-messenger.
+
+\(fn)" t nil)
+
+(autoload 'my/git-messenger-link-commit "config-defuns" "\
+Get a link to the commit of git-messenger.
+
+\(fn)" t nil)
+
+(autoload 'my/git-link-homepage-in-browser "config-defuns" "\
+Open the repository homepage in the browser.
 
 \(fn)" t nil)
 

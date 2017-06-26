@@ -195,6 +195,21 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (magit-show-commit git-messenger:last-commit-id)
   (git-messenger:popup-close))
 
+;;;###autoload
+(defun my/git-messenger-link-commit ()
+  "Get a link to the commit of git-messenger."
+  (interactive)
+  (cl-letf (((symbol-function 'word-at-point) (lambda () git-messenger:last-commit-id)))
+    (call-interactively 'git-link-commit))
+  (git-messenger:popup-close))
+
+;;;###autoload
+(defun my/git-link-homepage-in-browser ()
+  "Open the repository homepage in the browser."
+  (interactive)
+  (let ((git-link-open-in-browser t))
+    (call-interactively 'git-link-homepage)))
+
 (defun my/show-buffer-file-name ()
   "Show the full path to the current file in the minibuffer."
   (interactive)
