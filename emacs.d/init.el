@@ -486,7 +486,8 @@
   :ensure t
   :bind (("C-x v p" . git-messenger:popup-message)
          :map git-messenger-map
-         ("d" . my/git-messenger-show-with-magit))
+         ("d" . my/git-messenger-show-with-magit)
+         ("l" . my/git-messenger-link-commit))
   :init (setq git-messenger:show-detail t))
 
 (use-package git-timemachine
@@ -560,6 +561,13 @@
   :config
   (setq git-commit-summary-max-length fill-column)
   (global-git-commit-mode 1))
+
+(use-package git-link
+  :ensure t
+  :bind (("C-c C-g h" . git-link-homepage)
+         ("C-c C-g c" . git-link-commit)
+         ("C-c C-g l" . git-link)
+         ("C-c C-g H" . my/git-link-homepage-in-browser)))
 
 (use-package markdown-mode
   :ensure t
