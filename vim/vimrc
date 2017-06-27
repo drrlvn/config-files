@@ -26,7 +26,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " vim-scripts
-Plug 'bufkill.vim'
+Plug 'vim-scripts/bufkill.vim'
 
 call plug#end()
 
