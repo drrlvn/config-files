@@ -579,6 +579,10 @@
         magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration))
 
+(use-package magit-gitflow
+  :ensure t
+  :init (add-hook 'magit-mode-hook #'turn-on-magit-gitflow))
+
 (use-package git-commit
   :init (add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
   :config
