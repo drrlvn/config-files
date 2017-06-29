@@ -13,7 +13,7 @@
   ((find-font (font-spec :name "Operator Mono"))
    (set-frame-font "Operator Mono 11" nil t))
   ((find-font (font-spec :name "Fira Mono"))
-   (set-frame-font "Fira Mono 10" nil t)))
+   (set-frame-font "Fira Mono Bold 10" nil t)))
 
 (use-package atom-one-dark-theme
   :ensure t
