@@ -2,18 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(push "~/.emacs.d/lisp" load-path)
 
-(setq custom-file "~/.emacs.d/custom.el")
+(setq load-prefer-newer t
+      custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
 
+(require 'package)
 (setq package-check-signature nil
       package-enable-at-startup nil
-      load-prefer-newer t)
+      package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -35,61 +37,61 @@
 (use-package misc
   :commands (zap-up-to-char copy-from-above-command))
 
-(bind-key "C-x r q" 'save-buffers-kill-emacs)
+(bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
-(bind-key "<home>" 'mwim-beginning-of-code-or-line)
-(bind-key "<end>" 'end-of-line)
-(bind-key "<escape>" 'keyboard-escape-quit)
-(bind-key "<f5>" 'my/revert-buffer-no-confirmation)
-(bind-key "M-<f9>" 'vc-revision-other-window)
-(bind-key "<f11>" 'my/cleanup-buffer)
-(bind-key "S-<f11>" 'whitespace-cleanup)
-(bind-key "S-<f12>" 'my/find-user-init-file)
+(bind-key "<home>" #'mwim-beginning-of-code-or-line)
+(bind-key "<end>" #'end-of-line)
+(bind-key "<escape>" #'keyboard-escape-quit)
+(bind-key "<f5>" #'my/revert-buffer-no-confirmation)
+(bind-key "M-<f9>" #'vc-revision-other-window)
+(bind-key "<f11>" #'my/cleanup-buffer)
+(bind-key "S-<f11>" #'whitespace-cleanup)
+(bind-key "S-<f12>" #'my/find-user-init-file)
 
-(bind-key "M-<return>" 'my/open-line-below)
-(bind-key "M-S-<return>" 'my/open-line-above)
-(bind-key "C-<delete>" 'kill-word)
-(bind-key "M-SPC" 'cycle-spacing)
+(bind-key "M-<return>" #'my/open-line-below)
+(bind-key "M-S-<return>" #'my/open-line-above)
+(bind-key "C-<delete>" #'kill-word)
+(bind-key "M-SPC" #'cycle-spacing)
 
-(bind-key "C-<tab>" 'previous-buffer)
-(bind-key "C-S-<iso-lefttab>" 'next-buffer)
+(bind-key "C-<tab>" #'previous-buffer)
+(bind-key "C-S-<iso-lefttab>" #'next-buffer)
 
-(bind-key "C-n" 'my/scroll-up)
-(bind-key "C-p" 'my/scroll-down)
-(bind-key "M-n" 'my/scroll-other-window-up)
-(bind-key "M-p" 'my/scroll-other-window-down)
+(bind-key "C-n" #'my/scroll-up)
+(bind-key "C-p" #'my/scroll-down)
+(bind-key "M-n" #'my/scroll-other-window-up)
+(bind-key "M-p" #'my/scroll-other-window-down)
 
-(bind-key "C-z" 'repeat)
+(bind-key "C-z" #'repeat)
 (unbind-key "C-x C-z")
-(bind-key "C-!" 'kill-this-buffer)
-(bind-key "C-M-!" 'my/kill-buffer-other-window)
-(bind-key "C-^" 'bury-buffer)
-(bind-key "C-#" 'quick-calc)
+(bind-key "C-!" #'kill-this-buffer)
+(bind-key "C-M-!" #'my/kill-buffer-other-window)
+(bind-key "C-^" #'bury-buffer)
+(bind-key "C-#" #'quick-calc)
 
-(bind-key "C-c C-<return>" 'delete-blank-lines)
-(bind-key "C-c n" 'my/cleanup-buffer)
-(bind-key "C-c d" 'my/diff-current-buffer-with-file)
-(bind-key "C-c r" 'my/rotate-windows)
-(bind-key "C-c C-;" 'my/toggle-comment-line-or-region)
-(bind-key "M-s s" 'sort-lines)
-(bind-key "M-s M-s" 'sort-lines)
-(bind-key "M-s O" 'occur)
-(bind-key "M-z" 'zap-up-to-char)
-(bind-key "M-Z" 'zap-to-char)
-(bind-key "C-%" 'my/filter-buffer)
+(bind-key "C-c C-<return>" #'delete-blank-lines)
+(bind-key "C-c n" #'my/cleanup-buffer)
+(bind-key "C-c d" #'my/diff-current-buffer-with-file)
+(bind-key "C-c r" #'my/rotate-windows)
+(bind-key "C-c C-;" #'my/toggle-comment-line-or-region)
+(bind-key "M-s s" #'sort-lines)
+(bind-key "M-s M-s" #'sort-lines)
+(bind-key "M-s O" #'occur)
+(bind-key "M-z" #'zap-up-to-char)
+(bind-key "M-Z" #'zap-to-char)
+(bind-key "C-%" #'my/filter-buffer)
 
-(bind-key "C-+" 'my/increment-number-at-point)
-(bind-key "C-M-+" 'my/decrement-number-at-point)
-(bind-key "C-$" 'copy-from-above-command)
+(bind-key "C-+" #'my/increment-number-at-point)
+(bind-key "C-M-+" #'my/decrement-number-at-point)
+(bind-key "C-$" #'copy-from-above-command)
 
-(bind-key "C-h C-f" 'find-function)
+(bind-key "C-h C-f" #'find-function)
 
-(bind-key "C-x C-p" 'my/show-buffer-file-name)
+(bind-key "C-x C-p" #'my/show-buffer-file-name)
 
-(bind-key "C-x n r" 'narrow-to-region)
-(bind-key "C-x n n" 'my/narrow-or-widen-dwim)
+(bind-key "C-x n r" #'narrow-to-region)
+(bind-key "C-x n n" #'my/narrow-or-widen-dwim)
 
-(bind-key [remap goto-line] 'my/goto-line-with-feedback)
+(bind-key [remap goto-line] #'my/goto-line-with-feedback)
 
 (use-package hydra
   :ensure t
@@ -108,7 +110,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(fset 'yes-or-no-p 'y-or-n-p)
+(fset #'yes-or-no-p #'y-or-n-p)
 
 (windmove-default-keybindings 'super)   ; enable windmove
 
@@ -171,7 +173,7 @@
   :defer t
   :config
   (setq dired-recursive-deletes 'always)
-  (add-hook 'dired-mode-hook (apply-partially 'dired-omit-mode 1)))
+  (add-hook 'dired-mode-hook (apply-partially #'dired-omit-mode 1)))
 
 (use-package dired-aux
   :defer t
@@ -186,7 +188,7 @@
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
         org-startup-indented t)
-  (add-hook 'org-mode-hook 'my/org-mode-hook))
+  (add-hook 'org-mode-hook #'my/org-mode-hook))
 
 (use-package ox-html
   :defer t
@@ -218,14 +220,14 @@
 
 (use-package rst
   :defer t
-  :config (add-hook 'rst-mode-hook (apply-partially 'flyspell-mode 1)))
+  :config (add-hook 'rst-mode-hook (apply-partially #'flyspell-mode 1)))
 
 (defun my/balance-windows (&rest _args)
   "Call `balance-windows' while ignoring ARGS."
   (balance-windows))
-(advice-add 'split-window-right :after 'my/balance-windows)
-(advice-add 'split-window-below :after 'my/balance-windows)
-(advice-add 'delete-window :after 'my/balance-windows)
+(advice-add #'split-window-right :after #'my/balance-windows)
+(advice-add #'split-window-below :after #'my/balance-windows)
+(advice-add #'delete-window :after #'my/balance-windows)
 
 (defun my/indent-yanked-region (&rest _args)
   "Indent region in major modes that don't mind indentation, ignoring ARGS."
@@ -234,19 +236,19 @@
        (not (member major-mode '(python-mode ruby-mode makefile-mode))))
       (let ((mark-even-if-inactive transient-mark-mode))
         (indent-region (region-beginning) (region-end) nil))))
-(advice-add 'yank :after 'my/indent-yanked-region)
-(advice-add 'yank-pop :after 'my/indent-yanked-region)
+(advice-add #'yank :after #'my/indent-yanked-region)
+(advice-add #'yank-pop :after #'my/indent-yanked-region)
 
 (defun my/colorize-compilation-buffer ()
   "Colorize complication buffer."
   (when (eq major-mode 'compilation-mode)
     (ansi-color-apply-on-region compilation-filter-start (point-max))))
-(add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
+(add-hook 'compilation-filter-hook #'my/colorize-compilation-buffer)
 
 (use-package server
   :if window-system
   :init
-  (add-hook 'after-init-hook 'server-start t))
+  (add-hook 'after-init-hook #'server-start t))
 
 (use-package autorevert
   :config
@@ -256,7 +258,7 @@
 
 (use-package recentf
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'recentf-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially #'recentf-mode 1))
   :config (setq recentf-max-saved-items 1000))
 
 (use-package smex
@@ -287,7 +289,7 @@
   (ivy-set-actions
    'projectile-switch-project
    `(("g" magit-status "magit status")
-     ("s" ,(apply-partially 'counsel-rg nil) "search (rg)")))
+     ("s" ,(apply-partially #'counsel-rg nil) "search (rg)")))
   (ivy-mode 1))
 
 (use-package counsel
@@ -323,9 +325,19 @@
 
 (use-package flycheck
   :ensure t
-  :init (add-hook 'after-init-hook 'global-flycheck-mode 1)
+  :init (add-hook 'after-init-hook #'global-flycheck-mode 1)
   :config (setq flycheck-global-modes '(not c++-mode)
                 flycheck-emacs-lisp-load-path 'inherit))
+
+(use-package prog-mode
+  :bind (:map prog-mode-map
+              ("<return>" . newline-and-indent))
+  :init (add-hook 'prog-mode-hook #'my/prog-mode-hook))
+
+(use-package elisp-mode
+  :bind (:map emacs-lisp-mode-map
+              ("C-c C-e" . my/eval-and-replace))
+  :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'eldoc-mode 1)))
 
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
@@ -340,7 +352,7 @@
               ("C-c i P" . my/insert-copy-assignment-operator)
               ("C-c i m" . my/insert-move-ctor)
               ("C-c i M" . my/insert-move-assignment-operator))
-  :config (add-hook 'c-mode-common-hook 'my/c-mode-common-hook))
+  :config (add-hook 'c-mode-common-hook #'my/c-mode-common-hook))
 
 (use-package python
   :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
@@ -359,18 +371,18 @@
 
 (use-package pyvenv
   :ensure t
-  :init (add-hook 'hack-local-variables-hook 'my/pyvenv-activate))
+  :init (add-hook 'hack-local-variables-hook #'my/pyvenv-activate))
 
 (use-package anaconda-mode
   :ensure t
   :defer t
-  :init (add-hook 'python-mode-hook (apply-partially 'anaconda-mode 1)))
+  :init (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1)))
 
 (use-package company-anaconda
   :ensure t
   :defer t
   :after company
-  :config (add-hook 'anaconda-mode-hook 'my/company-anaconda-setup))
+  :config (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
 
 (use-package go-mode
   :ensure t
@@ -391,7 +403,7 @@
 (use-package cmake-mode
   :ensure t
   :mode "CMakeLists\\.txt\\'"
-  :config (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
+  :config (add-hook 'cmake-mode-hook #'cmake-font-lock-activate))
 
 (use-package sh-script
   :mode ("rc\\'" . sh-mode))
@@ -425,20 +437,21 @@
 (use-package company
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'global-company-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially #'global-company-mode 1))
   :config
   (setq company-idle-delay 0
-        company-minimum-prefix-length 2))
+        company-minimum-prefix-length 2
+        company-backends (delete 'company-clang company-backends)))
 
 (use-package company-statistics
   :ensure t
   :after company
-  :init (add-hook 'global-company-mode-hook (apply-partially 'company-statistics-mode 1)))
+  :init (add-hook 'global-company-mode-hook (apply-partially #'company-statistics-mode 1)))
 
 (use-package diff-hl
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'global-diff-hl-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1)))
 
 (use-package discover-my-major
   :ensure t
@@ -468,8 +481,8 @@
   :init
   (setq emmet-indentation 2
         emmet-preview-default nil)
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode))
+  (add-hook 'sgml-mode-hook #'emmet-mode)
+  (add-hook 'web-mode-hook #'emmet-mode))
 
 (use-package expand-region
   :ensure t
@@ -479,7 +492,7 @@
 (use-package eyebrowse
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'eyebrowse-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially #'eyebrowse-mode 1))
   :config (setq eyebrowse-wrap-around t
                 eyebrowse-new-workspace t))
 
@@ -497,7 +510,7 @@
 
 (use-package which-key
   :ensure t
-  :init (add-hook 'after-init-hook (apply-partially 'which-key-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially #'which-key-mode 1))
   :defer t
   :config (setq which-key-idle-delay 0.5))
 
@@ -511,7 +524,7 @@
 
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
-  :init (add-hook 'ibuffer-mode-hook 'my/ibuffer-mode-hook)
+  :init (add-hook 'ibuffer-mode-hook #'my/ibuffer-mode-hook)
   :config (setq ibuffer-expert t
                 ibuffer-formats '((mark modified read-only " "
                                         (name 25 25 :left :elide) " "
@@ -555,10 +568,10 @@
         magit-repository-directories '(("~/dev" . 1))
         magit-tag-arguments '("--annotate")
         magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
-  (remove-hook 'magit-pre-display-buffer-hook 'magit-save-window-configuration))
+  (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration))
 
 (use-package git-commit
-  :init (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
+  :init (add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
   :config
   (setq git-commit-summary-max-length fill-column)
   (global-git-commit-mode 1))
@@ -574,7 +587,7 @@
   :ensure t
   :mode "\\.md\\'"
   :init
-  (add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
+  (add-hook 'markdown-mode-hook #'my/markdown-mode-hook)
   (setq markdown-command "markdown_py"))
 
 (use-package multiple-cursors
@@ -609,7 +622,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package paredit
   :ensure t
   :defer t
-  :init (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+  :init (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
   :config
   ;; making paredit work with delete-selection-mode
   (put 'paredit-forward-delete 'delete-selection 'supersede)
@@ -619,7 +632,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package popwin
   :ensure t
   :commands popwin-mode
-  :init (add-hook 'after-init-hook (apply-partially 'popwin-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'popwin-mode 1)))
 
 (use-package projectile
   :ensure t
@@ -627,8 +640,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :init (setq projectile-completion-system 'ivy
               projectile-use-git-grep t)
   :config
-  (fset 'projectile-kill-buffers 'my/projectile-kill-buffers)
-  (advice-add 'projectile-switch-project :around 'my/projectile-disable-remove-current-project)
+  (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
+  (advice-add #'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
   (projectile-mode 1)
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
@@ -646,12 +659,12 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package syntax-subword
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'global-syntax-subword-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'global-syntax-subword-mode 1)))
 
 (use-package undo-tree
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'global-undo-tree-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'global-undo-tree-mode 1)))
 
 (use-package web-mode
   :ensure t
@@ -665,25 +678,21 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package whitespace-cleanup-mode
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'global-whitespace-cleanup-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'global-whitespace-cleanup-mode 1)))
 
 (use-package wrap-region
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'wrap-region-global-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'wrap-region-global-mode 1)))
 
 (use-package yasnippet
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'yas-global-mode 1))
-  :config (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
-                yas-verbosity 1))
-
-(bind-keys :map prog-mode-map
-           ("<return>" . newline-and-indent))
-(add-hook 'prog-mode-hook 'my/prog-mode-hook)
-
-(bind-key "C-c C-e" 'my/eval-and-replace emacs-lisp-mode-map)
-(add-hook 'emacs-lisp-mode-hook (apply-partially 'eldoc-mode 1))
+  :init (add-hook 'after-init-hook (apply-partially #'yas-global-mode 1))
+  :config
+  (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
+        yas-verbosity 1)
+  (unbind-key "TAB" yas-minor-mode-map)
+  (unbind-key "<tab>" yas-minor-mode-map))
 
 ;;; init.el ends here

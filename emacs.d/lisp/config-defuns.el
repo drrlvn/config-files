@@ -371,7 +371,8 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 ;;;###autoload
 (defun my/company-anaconda-setup ()
   "."
-  (add-to-list (make-local-variable 'company-backends) 'company-anaconda))
+  (make-local-variable 'company-backends)
+  (push 'company-anaconda company-backends))
 
 ;; for avy
 ;;;###autoload

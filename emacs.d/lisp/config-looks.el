@@ -18,7 +18,7 @@
 (use-package atom-one-dark-theme
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'load-theme 'atom-one-dark t)))
+  :init (add-hook 'after-init-hook (apply-partially #'load-theme 'atom-one-dark t)))
 
 (use-package window-numbering
   :ensure t
@@ -29,16 +29,17 @@
   :config (setq powerline-default-separator 'wave))
 (use-package spaceline-config
   :ensure spaceline
+  :commands spaceline-spacemacs-theme
+  :init (add-hook 'after-init-hook #'spaceline-spacemacs-theme)
   :config
   (setq spaceline-workspace-numbers-unicode t
         spaceline-window-numbers-unicode t)
-  (spaceline-toggle-minor-modes-off)
-  (spaceline-spacemacs-theme))
+  (spaceline-toggle-minor-modes-off))
 
 (use-package mode-icons
   :ensure t
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially 'mode-icons-mode 1)))
+  :init (add-hook 'after-init-hook (apply-partially #'mode-icons-mode 1)))
 
 (provide 'config-looks)
 
