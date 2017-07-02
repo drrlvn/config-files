@@ -326,6 +326,12 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
       (indent-region (line-beginning-position) (line-end-position))
       (my/py-isort-buffer))))
 
+;;;###autoload
+(defun my/turn-on-anaconda-mode ()
+  "Turn on Anaconda mode and Anaconda eldoc mode."
+  (anaconda-mode 1)
+  (anaconda-eldoc-mode 1))
+
 ;; hooks
 
 ;;;###autoload
