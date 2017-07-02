@@ -450,8 +450,17 @@
 
 (use-package diff-hl
   :ensure t
+  :after hydra
+  :bind (("C-]" . my/hydra-diff-hl/body))
   :defer t
-  :init (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1)))
+  :init
+  (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1))
+  (defhydra my/hydra-diff-hl (:hint nil)
+    "diff-hl actions"
+    ("n" diff-hl-next-hunk "next")
+    ("p" diff-hl-previous-hunk "previous")
+    ("r" diff-hl-revert-hunk "revert")
+    ("q" nil "quit")))
 
 (use-package discover-my-major
   :ensure t
