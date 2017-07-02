@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22866 17862
-;;;;;;  822485 101000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22873 1685
+;;;;;;  264489 910000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -189,6 +189,11 @@ Scroll other window down N lines.
 Move current line, which should be an import statement, to the beginning of the file and run isort.
 
 \(fn)" t nil)
+
+(autoload 'my/turn-on-anaconda-mode "config-defuns" "\
+Turn on Anaconda mode and Anaconda eldoc mode.
+
+\(fn)" nil nil)
 
 (autoload 'my/org-mode-hook "config-defuns" "\
 .

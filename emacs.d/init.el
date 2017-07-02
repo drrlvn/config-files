@@ -376,7 +376,7 @@
 (use-package anaconda-mode
   :ensure t
   :defer t
-  :init (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1)))
+  :init (add-hook 'python-mode-hook #'my/turn-on-anaconda-mode))
 
 (use-package company-anaconda
   :ensure t
