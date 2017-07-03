@@ -466,6 +466,10 @@
   :ensure t
   :bind ("C-h C-m" . discover-my-major))
 
+(use-package dockerfile-mode
+  :ensure t
+  :mode "Dockerfile.*\\'")
+
 (use-package drag-stuff
   :ensure t
   :bind (("M-S-<up>" . drag-stuff-up)
