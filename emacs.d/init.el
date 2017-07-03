@@ -581,6 +581,7 @@
 
 (use-package magit-gitflow
   :ensure t
+  :defer t
   :init (add-hook 'magit-mode-hook #'turn-on-magit-gitflow))
 
 (use-package git-commit
