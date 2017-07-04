@@ -60,9 +60,11 @@
         subword-left
         subword-right
         syntax-subword-backward-kill
+        syntax-subword-capitalize
         syntax-subword-kill
         syntax-subword-left
         syntax-subword-right
+        syntax-subword-upcase
         wgrep-exit
         yaml-electric-backspace
         yaml-electric-dash-and-dot

@@ -11,6 +11,12 @@
      (setq kill-ring orig-kill-ring
            kill-ring-yank-pointer orig-kill-ring-yank-pointer)))
 
+(defun my/region-or-current-word ()
+  "Return region if active else current word."
+  (if (region-active-p)
+      (buffer-substring (region-beginning) (region-end))
+    (current-word)))
+
 ;;;###autoload
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
@@ -69,17 +75,14 @@
 (defun my/swiper-region-or-current-word ()
   "Run swiper on region or current word."
   (interactive)
-  (swiper
-   (if (region-active-p)
-       (buffer-substring (region-beginning) (region-end))
-     (current-word))))
+  (swiper (my/region-or-current-word)))
 
 ;;;###autoload
 (defun my/counsel-projectile-rg (&optional project-root)
   "Run `counsel-rg' in the PROJECT-ROOT."
   (interactive)
   (unless project-root (setq project-root (projectile-project-root)))
-  (counsel-rg (current-word) project-root))
+  (counsel-rg (my/region-or-current-word) project-root))
 
 ;;;###autoload
 (defun my/eval-and-replace ()
