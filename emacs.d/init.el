@@ -282,10 +282,10 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "(%d/%d) "
         ivy-extra-directories '("./")
-        ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
-  (ivy-add-actions
-   t
-   '(("I" insert "insert in buffer")))
+        ivy-re-builders-alist '((t . ivy--regex-ignore-order))
+        ivy-initial-inputs-alist (my/multi-filter-alist
+                                  '(counsel-M-x counsel-describe-function counsel-describe-variable)
+                                  ivy-initial-inputs-alist))
   (ivy-set-actions
    'projectile-switch-project
    `(("g" magit-status "magit status")
@@ -300,7 +300,9 @@
          ("C-x C-r" . counsel-recentf)
          ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
-         ("M-i" . counsel-imenu))
+         ("M-i" . counsel-imenu)
+         ("C-h f" . counsel-describe-function)
+         ("C-h v" . counsel-describe-variable))
   :init (setq counsel-find-file-ignore-regexp (concat
                                                ;; file names beginning with # or .
                                                "\\(?:\\`[#.]\\)"
