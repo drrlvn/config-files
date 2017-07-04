@@ -294,21 +294,19 @@
 
 (use-package counsel
   :ensure t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x y" . counsel-yank-pop)
+  :demand
+  :bind (("C-x y" . counsel-yank-pop)
          ("C-x C-r" . counsel-recentf)
          ("C-c a" . counsel-rg)
-         ("C-c u" . counsel-unicode-char)
-         ("M-i" . counsel-imenu)
-         ("C-h f" . counsel-describe-function)
-         ("C-h v" . counsel-describe-variable))
-  :init (setq counsel-find-file-ignore-regexp (concat
-                                               ;; file names beginning with # or .
-                                               "\\(?:\\`[#.]\\)"
-                                               ;; file names ending with # or ~
-                                               "\\|\\(?:[#~]\\'\\)")
-              counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 150 --color never %s ."))
+         ("C-c u" . counsel-unicode-char))
+  :config
+  (setq counsel-find-file-ignore-regexp (concat
+                                         ;; file names beginning with # or .
+                                         "\\(?:\\`[#.]\\)"
+                                         ;; file names ending with # or ~
+                                         "\\|\\(?:[#~]\\'\\)")
+        counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 150 --color never %s .")
+  (counsel-mode 1))
 
 (use-package swiper
   :ensure t
