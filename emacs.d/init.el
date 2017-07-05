@@ -297,7 +297,8 @@
   :demand
   :bind (("C-x y" . counsel-yank-pop)
          ("C-x C-r" . counsel-recentf)
-         ("C-c a" . counsel-rg)
+         ("M-i" . counsel-imenu)
+         ("C-c a" . my/counsel-rg)
          ("C-c u" . counsel-unicode-char))
   :config
   (setq counsel-find-file-ignore-regexp (concat

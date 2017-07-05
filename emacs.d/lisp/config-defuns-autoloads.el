@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22875 36535
-;;;;;;  251624 532000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22876 54840
+;;;;;;  655159 93000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/multi-filter-alist "config-defuns" "\
@@ -52,10 +52,15 @@ Run swiper on region or current word.
 
 \(fn)" t nil)
 
+(autoload 'my/counsel-rg "config-defuns" "\
+Run `counsel-rg' in working directory or in INITIAL-DIRECTORY if non-nil.
+
+\(fn &optional INITIAL-DIRECTORY)" t nil)
+
 (autoload 'my/counsel-projectile-rg "config-defuns" "\
 Run `counsel-rg' in the PROJECT-ROOT.
 
-\(fn &optional PROJECT-ROOT)" t nil)
+\(fn)" t nil)
 
 (autoload 'my/eval-and-replace "config-defuns" "\
 Replace the preceding sexp with its value.

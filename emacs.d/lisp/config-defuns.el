@@ -83,11 +83,16 @@
   (swiper (my/region-or-current-word)))
 
 ;;;###autoload
-(defun my/counsel-projectile-rg (&optional project-root)
+(defun my/counsel-rg (&optional initial-directory)
+  "Run `counsel-rg' in working directory or in INITIAL-DIRECTORY if non-nil."
+  (interactive)
+  (counsel-rg (my/region-or-current-word) (or initial-directory default-directory)))
+
+;;;###autoload
+(defun my/counsel-projectile-rg ()
   "Run `counsel-rg' in the PROJECT-ROOT."
   (interactive)
-  (unless project-root (setq project-root (projectile-project-root)))
-  (counsel-rg (my/region-or-current-word) project-root))
+  (my/counsel-rg (projectile-project-root)))
 
 ;;;###autoload
 (defun my/eval-and-replace ()
