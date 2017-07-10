@@ -327,13 +327,13 @@
 
 (use-package flycheck
   :ensure t
+  :defer t
   :init (add-hook 'after-init-hook #'global-flycheck-mode 1)
   :config (setq flycheck-global-modes '(not c++-mode)
                 flycheck-emacs-lisp-load-path 'inherit))
 
 (use-package prog-mode
-  :bind (:map prog-mode-map
-              ("<return>" . newline-and-indent))
+  :defer t
   :init (add-hook 'prog-mode-hook #'my/prog-mode-hook))
 
 (use-package elisp-mode
