@@ -167,7 +167,8 @@
 
 (use-package doc-view
   :defer t
-  :config (setq doc-view-continuous t))
+  :config (setq doc-view-continuous t
+                doc-view-resolution 300))
 
 (use-package dired
   :defer t
