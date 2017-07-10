@@ -583,6 +583,7 @@
   (setq magit-bury-buffer-function 'magit-mode-quit-window
         magit-repository-directories '(("~/dev" . 1))
         magit-tag-arguments '("--annotate")
+        magit-fetch-arguments '("--prune")
         magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration))
 
