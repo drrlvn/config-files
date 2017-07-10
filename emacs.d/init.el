@@ -356,7 +356,8 @@
   :config (add-hook 'c-mode-common-hook #'my/c-mode-common-hook))
 
 (use-package python
-  :mode ("SCons\\(truct\\|cript\\)\\'" . python-mode)
+  :mode (("SCons\\(truct\\|cript\\)\\'" . python-mode)
+         ("slashrc\\'" . python-mode))
   :bind (:map python-mode-map
               ("C-<f8>" . my/pylint-ignore-errors-at-point))
   :config (unbind-key "C-c C-f" python-mode-map))
@@ -403,11 +404,8 @@
 
 (use-package cmake-mode
   :ensure t
-  :mode "CMakeLists\\.txt\\'"
+  :defer t
   :config (add-hook 'cmake-mode-hook #'cmake-font-lock-activate))
-
-(use-package sh-script
-  :mode ("rc\\'" . sh-mode))
 
 (use-package hippie-exp
   :bind ("M-/" . hippie-expand)
@@ -469,7 +467,7 @@
 
 (use-package dockerfile-mode
   :ensure t
-  :mode "Dockerfile.*\\'")
+  :defer t)
 
 (use-package drag-stuff
   :ensure t
@@ -604,7 +602,7 @@
 
 (use-package markdown-mode
   :ensure t
-  :mode "\\.md\\'"
+  :defer t
   :init
   (add-hook 'markdown-mode-hook #'my/markdown-mode-hook)
   (setq markdown-command "markdown_py"))
@@ -687,7 +685,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package web-mode
   :ensure t
-  :mode "\\.html\\'"
+  :defer t
   :init (setq web-mode-code-indent-offset 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
