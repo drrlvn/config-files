@@ -607,9 +607,7 @@
 (use-package markdown-mode
   :ensure t
   :defer t
-  :init
-  (add-hook 'markdown-mode-hook #'my/markdown-mode-hook)
-  (setq markdown-command "markdown_py"))
+  :init (add-hook 'markdown-mode-hook #'my/markdown-mode-hook))
 
 (use-package multiple-cursors
   :ensure t
