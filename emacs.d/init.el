@@ -679,6 +679,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :defer t
   :init (add-hook 'after-init-hook (apply-partially #'global-syntax-subword-mode 1)))
 
+(use-package systemd
+  :ensure t
+  :defer t)
+
 (use-package undo-tree
   :ensure t
   :defer t
