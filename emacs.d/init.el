@@ -685,7 +685,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package web-mode
   :ensure t
-  :defer t
+  :mode "\\.hbs\\'"
   :init (setq web-mode-code-indent-offset 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
