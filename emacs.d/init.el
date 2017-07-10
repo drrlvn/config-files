@@ -448,6 +448,9 @@
   :after company
   :init (add-hook 'global-company-mode-hook (apply-partially #'company-statistics-mode 1)))
 
+(use-package conf-mode
+  :mode "\\.pylintrc\\'")
+
 (use-package diff-hl
   :ensure t
   :after hydra
