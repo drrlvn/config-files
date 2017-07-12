@@ -227,6 +227,18 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
           (kill-new file-name))
       (error "Buffer not visiting a file"))))
 
+;;;###autoload
+(defun my/indent-line-or-region ()
+  "Indent region if it is active, otherwise indent line."
+  (interactive)
+  (if (region-active-p)
+      (let ((start (save-excursion
+                     (goto-char (region-beginning))
+                     (line-beginning-position))))
+        (indent-region start (region-end))
+        (setq deactivate-mark nil))
+    (indent-according-to-mode)))
+
 ;; C++ auto insert
 
 ;;;###autoload

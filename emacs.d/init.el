@@ -478,7 +478,8 @@
   :bind (("M-S-<up>" . drag-stuff-up)
          ("M-S-<down>" . drag-stuff-down)
          ("M-S-<left>" . drag-stuff-left)
-         ("M-S-<right>" . drag-stuff-right)))
+         ("M-S-<right>" . drag-stuff-right))
+  :config (add-hook 'drag-stuff-after-drag-hook #'my/indent-line-or-region))
 
 (use-package dumb-jump
   :ensure t

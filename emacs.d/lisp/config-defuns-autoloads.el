@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22876 54840
-;;;;;;  655159 93000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22886 9814
+;;;;;;  883766 636000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/multi-filter-alist "config-defuns" "\
@@ -127,6 +127,11 @@ Open the repository homepage in the browser.
 
 (autoload 'my/show-buffer-file-name "config-defuns" "\
 Show the full path to the current file in the minibuffer.
+
+\(fn)" t nil)
+
+(autoload 'my/indent-line-or-region "config-defuns" "\
+Indent region if it is active, otherwise indent line.
 
 \(fn)" t nil)
 
