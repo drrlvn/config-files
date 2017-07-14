@@ -525,6 +525,10 @@
   :ensure t
   :bind ("C-x v t" . git-timemachine))
 
+(use-package gitignore-mode
+  :ensure t
+  :defer t)
+
 (use-package which-key
   :ensure t
   :init (add-hook 'after-init-hook (apply-partially #'which-key-mode 1))
