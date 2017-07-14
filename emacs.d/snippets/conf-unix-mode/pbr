@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: pbr
+# key: pbr
+# expand-env: ((yas-indent-line 'none))
+# --
+[metadata]
+name = $1
+author = $2
+author-email = $3
+summary = $4
+description-file = ${README.md}
+home-page = $5
+license = ${GPL}
+classifier =
+    Programming Language :: Python
+
+[entry_points]
+console_scripts =
+    $1 = $1.cmd:main
