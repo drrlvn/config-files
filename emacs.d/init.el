@@ -341,6 +341,11 @@
               ("C-c C-e" . my/eval-and-replace))
   :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'eldoc-mode 1)))
 
+(use-package macrostep
+  :ensure t
+  :bind (:map emacs-lisp-mode-map
+              ("C-c e" . macrostep-expand)))
+
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
   :init (setq c-basic-offset 4
@@ -539,8 +544,7 @@
   :ensure t
   :bind (("C-\"" . highlight-symbol-at-point)
          ("C-," . highlight-symbol-prev)
-         ("C-." . highlight-symbol-next)
-         ("M-s o" . highlight-symbol-occur))
+         ("C-." . highlight-symbol-next))
   :init (setq highlight-symbol-idle-delay 0))
 
 (use-package ibuffer
