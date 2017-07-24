@@ -472,7 +472,7 @@
 
 (use-package discover-my-major
   :ensure t
-  :bind ("C-h C-m" . discover-my-major))
+  :bind ("C-h <return>" . discover-my-major))
 
 (use-package dockerfile-mode
   :ensure t
@@ -675,8 +675,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
          :map projectile-command-map
-         ("s g" . counsel-git-grep)
-         ("s s" . my/counsel-projectile-rg)))
+         ("s" . my/counsel-projectile-rg)))
 
 (use-package rainbow-delimiters
   :ensure t)
