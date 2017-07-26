@@ -96,14 +96,13 @@
 (use-package hydra
   :ensure t
   :bind ("<f8>" . my/hydra-error/body)
-  :config
-  (defhydra my/hydra-error ()
-    "goto-error"
-    ("P" first-error "first")
-    ("n" next-error "next")
-    ("p" previous-error "prev")
-    ("v" recenter-top-bottom "recenter")
-    ("q" nil "quit")))
+  :config (defhydra my/hydra-error ()
+            "goto-error"
+            ("P" first-error "first")
+            ("n" next-error "next")
+            ("p" previous-error "prev")
+            ("v" recenter-top-bottom "recenter")
+            ("q" nil "quit")))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -287,11 +286,19 @@
         ivy-initial-inputs-alist (my/multi-filter-alist
                                   '(counsel-M-x counsel-describe-function counsel-describe-variable)
                                   ivy-initial-inputs-alist))
+  (push '(emacs-lisp-mode . swiper-match-face-1) ivy-switch-buffer-faces-alist)
+  (push '(python-mode . swiper-match-face-2) ivy-switch-buffer-faces-alist)
+  (push '(c++-mode . swiper-match-face-3) ivy-switch-buffer-faces-alist)
   (ivy-set-actions
    'projectile-switch-project
    `(("g" magit-status "magit status")
      ("s" ,(apply-partially #'counsel-rg nil) "search (rg)")))
   (ivy-mode 1))
+
+(use-package ivy-hydra
+  :ensure t
+  :bind (:map ivy-minibuffer-map
+         ("M-o" . ivy-dispatching-done-hydra)))
 
 (use-package counsel
   :ensure t
@@ -461,14 +468,13 @@
   :after hydra
   :bind (("C-]" . my/hydra-diff-hl/body))
   :defer t
-  :init
-  (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1))
-  (defhydra my/hydra-diff-hl (:hint nil)
-    "diff-hl actions"
-    ("n" diff-hl-next-hunk "next")
-    ("p" diff-hl-previous-hunk "previous")
-    ("r" diff-hl-revert-hunk "revert")
-    ("q" nil "quit")))
+  :init (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1))
+  :config (defhydra my/hydra-diff-hl (:hint nil)
+            "diff-hl actions"
+            ("n" diff-hl-next-hunk "next")
+            ("p" diff-hl-previous-hunk "previous")
+            ("r" diff-hl-revert-hunk "revert")
+            ("q" nil "quit")))
 
 (use-package discover-my-major
   :ensure t
@@ -627,36 +633,31 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-:" . my/hydra-multiple-cursors/body))
-  :init
-  (defhydra my/hydra-multiple-cursors (:hint nil)
-    "
+  :config (defhydra my/hydra-multiple-cursors (:hint nil)
+            "
 ^Up^           ^Down^         ^Miscellaneous^
 ---------------------------------------------
 _p_:   Next    _n_:   Next    _l_: Edit lines
 _P_:   Skip    _N_:   Skip    _a_: Mark all
 _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
-    ("l" mc/edit-lines :exit t)
-    ("a" mc/mark-all-like-this :exit t)
-    ("n" mc/mark-next-like-this)
-    ("N" mc/skip-to-next-like-this)
-    ("M-n" mc/unmark-next-like-this)
-    ("p" mc/mark-previous-like-this)
-    ("P" mc/skip-to-previous-like-this)
-    ("M-p" mc/unmark-previous-like-this)
-    ("q" nil)))
+            ("l" mc/edit-lines :exit t)
+            ("a" mc/mark-all-like-this :exit t)
+            ("n" mc/mark-next-like-this)
+            ("N" mc/skip-to-next-like-this)
+            ("M-n" mc/unmark-next-like-this)
+            ("p" mc/mark-previous-like-this)
+            ("P" mc/skip-to-previous-like-this)
+            ("M-p" mc/unmark-previous-like-this)
+            ("q" nil)))
 
 (use-package mwim
   :ensure t)
 
-(use-package paredit
+(use-package lispy
   :ensure t
   :defer t
-  :init (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-  :config
-  ;; making paredit work with delete-selection-mode
-  (put 'paredit-forward-delete 'delete-selection 'supersede)
-  (put 'paredit-backward-delete 'delete-selection 'supersede)
-  (put 'paredit-newline 'delete-selection t))
+  :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
+  :config (unbind-key "M-i" lispy-mode-map))
 
 (use-package popwin
   :ensure t
