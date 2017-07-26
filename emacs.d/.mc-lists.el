@@ -165,6 +165,7 @@
         my/hydra-multiple-cursors/body
         my/hydra-multiple-cursors/mc/edit-lines-and-exit
         my/hydra-multiple-cursors/mc/mark-all-like-this-and-exit
+        my/hydra-multiple-cursors/mc/mark-all-like-this-dwim-and-exit
         my/hydra-multiple-cursors/mc/mark-next-like-this
         my/hydra-multiple-cursors/mc/mark-previous-like-this
         my/hydra-multiple-cursors/mc/skip-to-next-like-this
