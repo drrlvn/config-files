@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22886 9814
-;;;;;;  883766 636000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22905 60922
+;;;;;;  629345 467000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/multi-filter-alist "config-defuns" "\
@@ -244,11 +244,6 @@ Turn on Anaconda mode and Anaconda eldoc mode.
 .
 
 \(fn)" nil nil)
-
-(autoload 'my/add-super-char-to-avy "config-defuns" "\
-Add binding for avy-goto M to key C.
-
-\(fn M C)" nil nil)
 
 (autoload 'my/projectile-kill-buffers "config-defuns" "\
 Kill all buffers from current project.

@@ -15,7 +15,6 @@
     (write-region "" nil custom-file))
   (load custom-file)
 
-  (require 'package)
   (setq package-check-signature nil
         package-enable-at-startup nil
         package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -27,8 +26,7 @@
 
   (eval-when-compile
     (defvar use-package-enable-imenu-support t)
-    (require 'use-package)
-    (require 'cl-macs))
+    (require 'use-package))
 
   (use-package auto-compile
     :ensure t
@@ -44,7 +42,6 @@
 
   (bind-key "C-x r q" #'save-buffers-kill-emacs)
   (unbind-key "C-x C-c")
-  (bind-key "<home>" #'mwim-beginning-of-code-or-line)
   (bind-key "<end>" #'end-of-line)
   (bind-key "<escape>" #'keyboard-escape-quit)
   (bind-key "<f5>" #'my/revert-buffer-no-confirmation)
@@ -252,8 +249,7 @@
 
   (use-package server
     :if window-system
-    :init
-    (add-hook 'after-init-hook #'server-start t))
+    :config (server-start t))
 
   (use-package autorevert
     :config
@@ -262,9 +258,9 @@
     (global-auto-revert-mode 1))
 
   (use-package recentf
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'recentf-mode 1))
-    :config (setq recentf-max-saved-items 1000))
+    :config
+    (setq recentf-max-saved-items 1000)
+    (recentf-mode 1))
 
   (use-package smex
     :ensure t
@@ -339,10 +335,10 @@
 
   (use-package flycheck
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook #'global-flycheck-mode 1)
-    :config (setq flycheck-global-modes '(not c++-mode)
-                  flycheck-emacs-lisp-load-path 'inherit))
+    :config
+    (setq flycheck-global-modes '(not c++-mode)
+          flycheck-emacs-lisp-load-path 'inherit)
+    (global-flycheck-mode 1))
 
   (use-package prog-mode
     :defer t
@@ -400,8 +396,7 @@
 
   (use-package company-anaconda
     :ensure t
-    :defer t
-    :after company
+    :commands my/company-anaconda-setup
     :config (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
 
   (use-package go-mode
@@ -440,29 +435,18 @@
 
   (use-package avy
     :ensure t
-    :bind (("C-`" . avy-goto-char)
-           ("C-~" . avy-goto-word-or-subword-1))
-    :init
-    (cl-loop for c from ?0 to ?9 do (my/add-super-char-to-avy 'subword-1 c))
-    (cl-loop for c from ?A to ?Z do (my/add-super-char-to-avy 'subword-1 c))
-    (cl-loop for c from ?a to ?z do (my/add-super-char-to-avy 'subword-1 c))
-    (cl-loop for c in '(?\( ?\) ?{ ?} ?[ ?] ?< ?>
-                            ?` ?~ ?! ?@ ?# ?$ ?% ?^ ?& ?* ?- ?_ ?= ?+
-                            ?\\ ?| ?\; ?: ?\" ?' ?, ?. ?/ ??)
-             do (my/add-super-char-to-avy 'char c)))
+    :bind ("s-s" . avy-goto-char))
 
   (use-package company
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'global-company-mode 1))
     :config
     (setq company-idle-delay 0
           company-minimum-prefix-length 2
-          company-backends (delete 'company-clang company-backends)))
+          company-backends (delete 'company-clang company-backends))
+    (global-company-mode 1))
 
   (use-package company-statistics
     :ensure t
-    :after company
     :init (add-hook 'global-company-mode-hook (apply-partially #'company-statistics-mode 1)))
 
   (use-package conf-mode
@@ -470,16 +454,18 @@
 
   (use-package diff-hl
     :ensure t
-    :after hydra
-    :bind (("C-]" . my/hydra-diff-hl/body))
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'global-diff-hl-mode 1))
-    :config (defhydra my/hydra-diff-hl (:hint nil)
-              "diff-hl actions"
-              ("n" diff-hl-next-hunk "next")
-              ("p" diff-hl-previous-hunk "previous")
-              ("r" diff-hl-revert-hunk "revert")
-              ("q" nil "quit")))
+    :demand
+    :bind ("C-]" . my/hydra-diff-hl/body)
+    :config
+    (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+    (defhydra my/hydra-diff-hl (:hint nil)
+      "diff-hl actions"
+      ("]" diff-hl-next-hunk "next")
+      ("[" diff-hl-previous-hunk "previous")
+      ("r" diff-hl-revert-hunk "revert")
+      ("q" nil "quit"))
+    (global-diff-hl-mode 1))
 
   (use-package discover-my-major
     :ensure t
@@ -524,10 +510,10 @@
 
   (use-package eyebrowse
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'eyebrowse-mode 1))
-    :config (setq eyebrowse-wrap-around t
-                  eyebrowse-new-workspace t))
+    :config
+    (setq eyebrowse-wrap-around t
+          eyebrowse-new-workspace t)
+    (eyebrowse-mode 1))
 
   (use-package git-messenger
     :ensure t
@@ -543,9 +529,9 @@
 
   (use-package which-key
     :ensure t
-    :init (add-hook 'after-init-hook (apply-partially #'which-key-mode 1))
-    :defer t
-    :config (setq which-key-idle-delay 0.5))
+    :config
+    (setq which-key-idle-delay 0.5)
+    (which-key-mode 1))
 
   (use-package highlight-symbol
     :ensure t
@@ -556,17 +542,19 @@
 
   (use-package ibuffer
     :bind ("C-x C-b" . ibuffer)
-    :init (add-hook 'ibuffer-mode-hook #'my/ibuffer-mode-hook)
-    :config (setq ibuffer-expert t
-                  ibuffer-formats '((mark modified read-only " "
-                                          (name 25 25 :left :elide) " "
-                                          (size 6 -1 :right) " "
-                                          (mode 10 10 :left :elide) " "
-                                          (filename-and-process -1 60 :left :elide))
-                                    (mark " " (name 30 -1)
-                                          " " filename))))
+    :config
+    (setq ibuffer-expert t
+          ibuffer-formats '((mark modified read-only " "
+                                  (name 25 25 :left :elide) " "
+                                  (size 6 -1 :right) " "
+                                  (mode 10 10 :left :elide) " "
+                                  (filename-and-process -1 60 :left :elide))
+                            (mark " " (name 30 -1)
+                                  " " filename)))
+    (add-hook 'ibuffer-mode-hook #'my/ibuffer-mode-hook))
 
   (use-package ibuf-ext
+    :defer t
     :after ibuffer
     :config (setq ibuffer-show-empty-filter-groups nil
                   ibuffer-saved-filter-groups '(("default"
@@ -628,7 +616,6 @@
 
   (use-package multiple-cursors
     :ensure t
-    :after hydra
     :bind (("C-|" . mc/edit-lines)
            ("C-;" . mc/mark-all-like-this-dwim)
            ("C->" . mc/mark-next-like-this)
@@ -652,32 +639,33 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
               ("q" nil)))
 
   (use-package mwim
-    :ensure t)
+    :ensure t
+    :bind ("<home>" . mwim-beginning-of-code-or-line))
 
   (use-package lispy
     :ensure t
     :defer t
     :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
-    :config (unbind-key "M-i" lispy-mode-map))
+    :config
+    (unbind-key "M-i" lispy-mode-map-lispy)
+    (unbind-key "C-," lispy-mode-map-lispy))
 
   (use-package popwin
-    :ensure t
-    :commands popwin-mode
-    :init (add-hook 'after-init-hook (apply-partially #'popwin-mode 1)))
+    :commands (popwin:display-buffer-condition popwin:display-buffer-action)
+    :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist))
 
   (use-package projectile
     :ensure t
     :demand
-    :init (setq projectile-completion-system 'ivy
-                projectile-use-git-grep t)
-    :config
-    (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
-    (advice-add #'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
-    (projectile-mode 1)
     :bind (("C-c f" . projectile-find-file-in-known-projects)
            ("C-c C-f" . projectile-find-file)
            :map projectile-command-map
-           ("s" . my/counsel-projectile-rg)))
+           ("s" . my/counsel-projectile-rg))
+    :config
+    (setq projectile-completion-system 'ivy)
+    (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
+    (advice-add #'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
+    (projectile-mode 1))
 
   (use-package rainbow-delimiters
     :ensure t)
@@ -688,8 +676,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
   (use-package syntax-subword
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'global-syntax-subword-mode 1)))
+    :config (global-syntax-subword-mode 1))
 
   (use-package systemd
     :ensure t
@@ -697,8 +684,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
   (use-package undo-tree
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'global-undo-tree-mode 1)))
+    :config (global-undo-tree-mode 1))
 
   (use-package web-mode
     :ensure t
@@ -712,23 +698,20 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
   (use-package whitespace-cleanup-mode
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'global-whitespace-cleanup-mode 1)))
+    :config (global-whitespace-cleanup-mode 1))
 
   (use-package wrap-region
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'wrap-region-global-mode 1)))
+    :config (wrap-region-global-mode 1))
 
   (use-package yasnippet
     :ensure t
-    :defer t
-    :init (add-hook 'after-init-hook (apply-partially #'yas-global-mode 1))
     :config
     (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
           yas-verbosity 1)
     (unbind-key "TAB" yas-minor-mode-map)
-    (unbind-key "<tab>" yas-minor-mode-map))
+    (unbind-key "<tab>" yas-minor-mode-map)
+    (yas-global-mode 1))
 
   (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold original-gc-cons-threshold)) t))
 

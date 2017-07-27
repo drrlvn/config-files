@@ -405,14 +405,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (make-local-variable 'company-backends)
   (push 'company-anaconda company-backends))
 
-;; for avy
-;;;###autoload
-(defun my/add-super-char-to-avy (m c)
-  "Add binding for avy-goto M to key C."
-  (global-set-key
-   (read-kbd-macro (concat "s-" (string c)))
-   `(lambda () (interactive) (,(intern (concat "avy-goto-" (symbol-name m))) ,c))))
-
 ;;;###autoload
 (defun my/projectile-kill-buffers ()
   "Kill all buffers from current project."
