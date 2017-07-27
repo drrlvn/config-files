@@ -730,6 +730,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
     (unbind-key "TAB" yas-minor-mode-map)
     (unbind-key "<tab>" yas-minor-mode-map))
 
-  (setq gc-cons-threshold original-gc-cons-threshold))
+  (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold original-gc-cons-threshold)) t))
 
 ;;; init.el ends here
