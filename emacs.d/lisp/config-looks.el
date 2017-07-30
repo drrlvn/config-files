@@ -1,4 +1,4 @@
-;;; config-looks.el --- look configuration -*- lexical-binding: t; -*-
+;;; config-looks.el --- look configuration -*- lexical-binding: t; byte-compile-warnings: (not unresolved) -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -42,9 +42,5 @@
   (spaceline-all-the-icons-theme))
 
 (provide 'config-looks)
-
-;; Local Variables:
-;; byte-compile-warnings: (not unresolved)
-;; End:
 
 ;;; config-looks.el ends here

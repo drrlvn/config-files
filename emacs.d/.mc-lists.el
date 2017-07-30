@@ -37,9 +37,11 @@
         lispy-braces
         lispy-brackets
         lispy-delete
+        lispy-delete-backward
         lispy-kill
         lispy-parens
         lispy-quotes
+        lispy-space
         mwim-beginning-of-code-or-line
         my/decrement-number-at-point
         my/increment-number-at-point
