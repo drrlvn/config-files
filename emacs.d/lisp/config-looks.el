@@ -12,33 +12,27 @@
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
 (cond
-  ((find-font (font-spec :name "Operator Mono"))
-   (set-frame-font "Operator Mono 11" nil t))
-  ((find-font (font-spec :name "Fira Mono"))
-   (set-frame-font "Fira Mono Bold 10" nil t)))
+ ((find-font (font-spec :name "Operator Mono"))
+  (set-frame-font "Operator Mono 11" nil t))
+ ((find-font (font-spec :name "Fira Mono"))
+  (set-frame-font "Fira Mono Bold 10" nil t)))
 
-(use-package atom-one-dark-theme
+(use-package doom-themes
   :ensure t
-  :init (load-theme 'atom-one-dark t))
+  :config (load-theme 'doom-one t))
 
 (use-package window-numbering
   :ensure t
   :config (window-numbering-mode 1))
-(use-package powerline
-  :ensure t
-  :defer t
-  :config (setq powerline-default-separator 'wave))
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (setq spaceline-workspace-numbers-unicode t
-        spaceline-window-numbers-unicode t)
-  (spaceline-toggle-minor-modes-off)
-  (spaceline-spacemacs-theme))
 
-(use-package mode-icons
+(use-package spaceline-all-the-icons
   :ensure t
-  :init (mode-icons-mode 1))
+  :config
+  (setq spaceline-all-the-icons-primary-separator ""
+        spaceline-all-the-icons-secondary-separator ""
+        spaceline-all-the-icons-separator-type 'none
+        spaceline-all-the-icons-flycheck-alternate t)
+  (spaceline-all-the-icons-theme))
 
 (provide 'config-looks)
 
