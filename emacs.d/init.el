@@ -696,7 +696,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
     (projectile-mode 1))
 
   (use-package rainbow-delimiters
-    :ensure t)
+    :ensure t
+    :defer t)
 
   (use-package restclient
     :ensure t
