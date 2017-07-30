@@ -19,7 +19,13 @@
 
 (use-package doom-themes
   :ensure t
-  :config (load-theme 'doom-one t))
+  :config
+  (load-theme 'doom-one t)
+  (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a"))
+
+(use-package git-gutter-fringe
+  :defer t
+  :config (set-face-foreground 'git-gutter-fr:modified "#da8548"))
 
 (use-package window-numbering
   :ensure t
