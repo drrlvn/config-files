@@ -143,7 +143,8 @@
   (setq-default fill-column 100
                 comment-column 0
                 indent-tabs-mode nil
-                tab-width 4)
+                tab-width 4
+                fringes-outside-margins t)
 
   (scroll-bar-mode -1)
   (horizontal-scroll-bar-mode -1)
@@ -336,8 +337,17 @@
   (use-package flycheck
     :ensure t
     :config
-    (setq flycheck-global-modes '(not c++-mode)
+    (setq flycheck-indication-mode 'right-fringe
+          flycheck-global-modes '(not c++-mode)
           flycheck-emacs-lisp-load-path 'inherit)
+    (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+      (vector #b00010000
+              #b00110000
+              #b01110000
+              #b11110000
+              #b01110000
+              #b00110000
+              #b00010000))
     (global-flycheck-mode 1))
 
   (use-package prog-mode
@@ -464,20 +474,30 @@
   (use-package conf-mode
     :mode "\\.pylintrc\\'")
 
-  (use-package diff-hl
+  (use-package git-gutter-fringe
     :ensure t
     :demand
-    :bind ("C-]" . my/hydra-diff-hl/body)
+    :bind ("C-]" . my/hydra-git-gutter/body)
     :config
-    (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
-    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
-    (defhydra my/hydra-diff-hl (:hint nil)
-      "diff-hl actions"
-      ("]" diff-hl-next-hunk "next")
-      ("[" diff-hl-previous-hunk "previous")
-      ("r" diff-hl-revert-hunk "revert")
+    (defhydra my/hydra-git-gutter (:hint nil)
+      "git-gutter"
+      ("]" git-gutter:next-hunk "next")
+      ("[" git-gutter:previous-hunk "previous")
+      ("r" git-gutter:revert-hunk "revert")
       ("q" nil "quit"))
-    (global-diff-hl-mode 1))
+    (define-fringe-bitmap 'git-gutter-fr:added
+      (vector #b11100000)
+      nil nil '(center t))
+    (define-fringe-bitmap 'git-gutter-fr:modified
+      (vector #b11100000)
+      nil nil '(center t))
+    (define-fringe-bitmap 'git-gutter-fr:deleted
+      (vector #b10000000
+              #b11000000
+              #b11100000
+              #b11110000)
+      nil nil 'bottom)
+    (global-git-gutter-mode 1))
 
   (use-package discover-my-major
     :ensure t
