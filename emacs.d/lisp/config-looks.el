@@ -21,7 +21,8 @@
   :ensure t
   :config
   (load-theme 'doom-one t)
-  (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a"))
+  (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a")
+  (set-face-background 'mode-line-inactive (face-attribute 'mode-line :background)))
 
 (use-package git-gutter-fringe
   :defer t
