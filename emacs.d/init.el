@@ -675,6 +675,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
     :bind ("<home>" . mwim-beginning-of-code-or-line))
 
   (use-package popwin
+    :ensure t
     :commands (popwin:display-buffer-condition popwin:display-buffer-action)
     :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist))
 
