@@ -349,10 +349,22 @@
                 ("C-c C-e" . my/eval-and-replace))
     :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'eldoc-mode 1)))
 
+  (use-package lispy
+    :ensure t
+    :defer t
+    :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
+    :config
+    (unbind-key "M-i" lispy-mode-map-lispy)
+    (unbind-key "C-," lispy-mode-map-lispy))
+
   (use-package macrostep
     :ensure t
     :bind (:map emacs-lisp-mode-map
                 ("C-c e" . macrostep-expand)))
+
+  (use-package suggest
+    :ensure t
+    :defer t)
 
   (use-package cc-mode
     :mode ("\\.x\\'" . c++-mode)
@@ -641,14 +653,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (use-package mwim
     :ensure t
     :bind ("<home>" . mwim-beginning-of-code-or-line))
-
-  (use-package lispy
-    :ensure t
-    :defer t
-    :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
-    :config
-    (unbind-key "M-i" lispy-mode-map-lispy)
-    (unbind-key "C-," lispy-mode-map-lispy))
 
   (use-package popwin
     :commands (popwin:display-buffer-condition popwin:display-buffer-action)

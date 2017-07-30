@@ -5,6 +5,8 @@
 (eval-when-compile
   (require 'use-package))
 
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
 ;; frame title
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
