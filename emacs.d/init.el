@@ -336,6 +336,8 @@
 
   (use-package flycheck
     :ensure t
+    :demand
+    :bind (("M-<f8>" . flycheck-list-errors))
     :config
     (setq flycheck-indication-mode 'right-fringe
           flycheck-global-modes '(not c++-mode)
@@ -677,7 +679,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (use-package popwin
     :ensure t
     :commands (popwin:display-buffer-condition popwin:display-buffer-action)
-    :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist))
+    :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist)
+    :config (push '("*Flycheck errors*" :stick t) popwin:special-display-config))
 
   (use-package projectile
     :ensure t
