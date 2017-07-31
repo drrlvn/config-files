@@ -18,11 +18,6 @@
     (current-word)))
 
 ;;;###autoload
-(defun my/multi-filter-alist (keys alist)
-  "Return new alist with elements whose car is not in KEYS from ALIST."
-  (-filter (lambda (x) (not (member (car x) keys))) alist))
-
-;;;###autoload
 (defun my/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)

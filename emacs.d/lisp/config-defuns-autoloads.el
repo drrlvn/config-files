@@ -3,14 +3,9 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22905 60922
-;;;;;;  629345 467000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22911 6613
+;;;;;;  551758 376000))
 ;;; Generated autoloads from config-defuns.el
-
-(autoload 'my/multi-filter-alist "config-defuns" "\
-Return new alist with elements whose car is not in KEYS from ALIST.
-
-\(fn KEYS ALIST)" nil nil)
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
 Perform a bunch of operations on the whitespace content of a buffer.

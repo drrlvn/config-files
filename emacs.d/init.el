@@ -67,9 +67,7 @@
 (bind-key "C-c d" #'my/diff-current-buffer-with-file)
 (bind-key "C-c r" #'my/rotate-windows)
 (bind-key "C-c C-;" #'my/toggle-comment-line-or-region)
-(bind-key "M-s s" #'sort-lines)
 (bind-key "M-s M-s" #'sort-lines)
-(bind-key "M-s O" #'occur)
 (bind-key "C-%" #'my/filter-buffer)
 
 (bind-key "C-+" #'my/increment-number-at-point)
@@ -283,15 +281,14 @@
         ivy-count-format "(%d/%d) "
         ivy-extra-directories '("./")
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-        ivy-initial-inputs-alist (my/multi-filter-alist
-                                  '(counsel-M-x counsel-describe-function counsel-describe-variable)
-                                  ivy-initial-inputs-alist))
+        ivy-initial-inputs-alist nil)
   (push '(emacs-lisp-mode . swiper-match-face-1) ivy-switch-buffer-faces-alist)
   (push '(python-mode . swiper-match-face-2) ivy-switch-buffer-faces-alist)
   (push '(c++-mode . swiper-match-face-3) ivy-switch-buffer-faces-alist)
   (ivy-set-actions
    'projectile-switch-project
-   `(("g" magit-status "magit status")
+   `(("d" dired "dired")
+     ("g" magit-status "magit status")
      ("s" ,(apply-partially #'counsel-rg nil) "search (rg)")))
   (ivy-mode 1))
 
@@ -314,7 +311,7 @@
                                          "\\(?:\\`[#.]\\)"
                                          ;; file names ending with # or ~
                                          "\\|\\(?:[#~]\\'\\)")
-        counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 150 --color never %s .")
+        counsel-rg-base-command "rg -S --no-heading --line-number --color never %s .")
   (counsel-mode 1))
 
 (use-package swiper
@@ -335,7 +332,7 @@
 (use-package flycheck
   :ensure t
   :demand
-  :bind (("M-<f8>" . flycheck-list-errors))
+  :bind ("M-<f8>" . flycheck-list-errors)
   :config
   (setq flycheck-indication-mode 'right-fringe
         flycheck-global-modes '(not c++-mode)
