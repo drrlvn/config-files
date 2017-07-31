@@ -37,8 +37,9 @@
 (bind-key "<escape>" #'keyboard-escape-quit)
 (bind-key "<f5>" #'my/revert-buffer-no-confirmation)
 (bind-key "M-<f9>" #'vc-revision-other-window)
-(bind-key "<f11>" #'my/cleanup-buffer)
+(bind-key "<f11>" #'toggle-frame-fullscreen)
 (bind-key "S-<f11>" #'whitespace-cleanup)
+(bind-key "<f12>" #'my/cleanup-buffer)
 (bind-key "S-<f12>" #'my/find-user-init-file)
 
 (bind-key "M-<return>" #'my/open-line-below)
@@ -711,7 +712,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package undo-tree
   :ensure t
-  :config (global-undo-tree-mode 1))
+  :config
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
+  (global-undo-tree-mode 1))
 
 (use-package web-mode
   :ensure t
