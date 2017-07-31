@@ -24,9 +24,9 @@
   (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a")
   (set-face-background 'mode-line-inactive (face-attribute 'mode-line :background)))
 
-(use-package git-gutter-fringe
+(use-package diff-hl
   :defer t
-  :config (set-face-foreground 'git-gutter-fr:modified "#da8548"))
+  :config (set-face-foreground 'diff-hl-change "#da8548"))
 
 (use-package window-numbering
   :ensure t

@@ -472,31 +472,33 @@
 (use-package conf-mode
   :mode "\\.pylintrc\\'")
 
-(use-package git-gutter-fringe
+(use-package diff-hl
   :ensure t
   :demand
-  :bind ("C-]" . my/hydra-git-gutter/body)
+  :bind ("C-]" . my/hydra-diff-hl/body)
   :config
-  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
-  (defhydra my/hydra-git-gutter (:hint nil)
+  (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+  (defhydra my/hydra-diff-hl (:hint nil)
     "git-gutter"
-    ("]" git-gutter:next-hunk "next")
-    ("[" git-gutter:previous-hunk "previous")
-    ("r" git-gutter:revert-hunk "revert")
+    ("]" diff-hl-next-hunk "next")
+    ("[" diff-hl-previous-hunk "previous")
+    ("r" diff-hl-revert-hunk "revert")
     ("q" nil "quit"))
-  (define-fringe-bitmap 'git-gutter-fr:added
-    (vector #b11100000)
-    nil nil '(center t))
-  (define-fringe-bitmap 'git-gutter-fr:modified
-    (vector #b11100000)
-    nil nil '(center t))
-  (define-fringe-bitmap 'git-gutter-fr:deleted
-    (vector #b10000000
-            #b11000000
-            #b11100000
-            #b11110000)
-    nil nil 'bottom)
-  (global-git-gutter-mode 1))
+  (defun diff-hl-define-bitmaps ()
+    (define-fringe-bitmap 'diff-hl-bmp-top
+      (vector #b11100000)
+      nil nil '(center t))
+    (define-fringe-bitmap 'diff-hl-bmp-middle
+      (vector #b11100000)
+      nil nil '(center t))
+    (define-fringe-bitmap 'diff-hl-bmp-bottom
+      (vector #b11100000)
+      nil nil '(center t))
+    (define-fringe-bitmap 'diff-hl-bmp-single
+      (vector #b11100000)
+      nil nil '(center t)))
+  (global-diff-hl-mode 1))
 
 (use-package discover-my-major
   :ensure t
