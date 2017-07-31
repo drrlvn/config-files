@@ -17,8 +17,8 @@
  ((find-font (font-spec :name "Fira Mono"))
   (set-frame-font "Fira Mono Bold 10" nil t)))
 
-(use-package doom-themes
-  :ensure t
+(use-package doom-one-theme
+  :ensure doom-themes
   :config
   (load-theme 'doom-one t)
   (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a")
@@ -31,6 +31,14 @@
 (use-package window-numbering
   :ensure t
   :config (window-numbering-mode 1))
+
+(use-package powerline
+  :defer t
+  :config (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
+
+(use-package spaceline
+  :defer t
+  :config (setq spaceline-responsive nil))
 
 (use-package spaceline-all-the-icons
   :ensure t
