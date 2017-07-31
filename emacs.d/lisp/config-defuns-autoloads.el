@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22911 6613
-;;;;;;  551758 376000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22911 27760
+;;;;;;  587511 519000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -61,6 +61,21 @@ Run `counsel-rg' in the PROJECT-ROOT.
 Replace the preceding sexp with its value.
 
 \(fn)" t nil)
+
+(autoload 'my/balance-windows "config-defuns" "\
+Call `balance-windows' while ignoring ARGS.
+
+\(fn &rest ARGS)" nil nil)
+
+(autoload 'my/indent-yanked-region "config-defuns" "\
+Indent region in major modes that don't mind indentation, ignoring ARGS.
+
+\(fn &rest ARGS)" nil nil)
+
+(autoload 'my/colorize-compilation-buffer "config-defuns" "\
+Colorize complication buffer.
+
+\(fn)" nil nil)
 
 (autoload 'my/rotate-windows "config-defuns" "\
 Rotate your windows.

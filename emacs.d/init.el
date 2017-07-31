@@ -87,6 +87,12 @@
          ("M-Z" . zap-to-char)
          ("C-$" . copy-from-above-command)))
 
+(use-package windmove
+  :bind (("s-<left>" . windmove-left)
+         ("s-<right>" . windmove-right)
+         ("s-<up>" . windmove-up)
+         ("s-<down>" . windmove-down)))
+
 (use-package hydra
   :ensure t
   :bind ("<f8>" . my/hydra-error/body)
@@ -103,13 +109,18 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+(advice-add #'split-window-right :after #'my/balance-windows)
+(advice-add #'split-window-below :after #'my/balance-windows)
+(advice-add #'delete-window :after #'my/balance-windows)
+
+(advice-add #'yank :after #'my/indent-yanked-region)
+(advice-add #'yank-pop :after #'my/indent-yanked-region)
+
 (fset #'yes-or-no-p #'y-or-n-p)
 
-(windmove-default-keybindings 'super) ; enable windmove
+(remove-hook 'kill-buffer-query-functions #'process-kill-buffer-query-function)
 
-(defun display-startup-echo-area-message ()
-  "Override default function and display nothing."
-  )
+(defun display-startup-echo-area-message () ".")
 
 (setq backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
@@ -136,24 +147,21 @@
               comment-column 0
               indent-tabs-mode nil
               tab-width 4
-              fringes-outside-margins t)
+              fringes-outside-margins t
+              )
 
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(blink-cursor-mode 1)
-(winner-mode 1)
+(use-package hl-line
+  :config (global-hl-line-mode 1))
 
-(electric-layout-mode 1)
-(global-ede-mode 1)
-(global-hl-line-mode 1)
-(save-place-mode 1)
+(use-package saveplace
+  :config (save-place-mode 1))
 
 (use-package compile
   :defer t
-  :config (setq compilation-scroll-output 'first-error
-                compilation-read-command nil))
+  :config
+  (setq compilation-scroll-output 'first-error
+        compilation-read-command nil)
+  (add-hook 'compilation-filter-hook #'my/colorize-compilation-buffer))
 
 (use-package ediff
   :defer t
@@ -216,29 +224,6 @@
 (use-package rst
   :defer t
   :config (add-hook 'rst-mode-hook (apply-partially #'flyspell-mode 1)))
-
-(defun my/balance-windows (&rest _args)
-  "Call `balance-windows' while ignoring ARGS."
-  (balance-windows))
-(advice-add #'split-window-right :after #'my/balance-windows)
-(advice-add #'split-window-below :after #'my/balance-windows)
-(advice-add #'delete-window :after #'my/balance-windows)
-
-(defun my/indent-yanked-region (&rest _args)
-  "Indent region in major modes that don't mind indentation, ignoring ARGS."
-  (if (and
-       (derived-mode-p 'prog-mode)
-       (not (member major-mode '(python-mode ruby-mode makefile-mode))))
-      (let ((mark-even-if-inactive transient-mark-mode))
-        (indent-region (region-beginning) (region-end) nil))))
-(advice-add #'yank :after #'my/indent-yanked-region)
-(advice-add #'yank-pop :after #'my/indent-yanked-region)
-
-(defun my/colorize-compilation-buffer ()
-  "Colorize complication buffer."
-  (when (eq major-mode 'compilation-mode)
-    (ansi-color-apply-on-region compilation-filter-start (point-max))))
-(add-hook 'compilation-filter-hook #'my/colorize-compilation-buffer)
 
 (use-package server
   :if window-system
