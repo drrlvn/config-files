@@ -477,6 +477,7 @@
   :demand
   :bind ("C-]" . my/hydra-git-gutter/body)
   :config
+  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
   (defhydra my/hydra-git-gutter (:hint nil)
     "git-gutter"
     ("]" git-gutter:next-hunk "next")
