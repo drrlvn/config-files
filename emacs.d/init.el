@@ -485,19 +485,19 @@
     ("[" diff-hl-previous-hunk "previous")
     ("r" diff-hl-revert-hunk "revert")
     ("q" nil "quit"))
+  (setq diff-hl-fringe-bmp-function
+        (lambda (type _pos) (if (eq type 'delete) 'diff-hl-bmp-delete 'diff-hl-bmp-change)))
   (defun diff-hl-define-bitmaps ()
-    (define-fringe-bitmap 'diff-hl-bmp-top
-      (vector #b11100000)
-      nil nil '(center t))
-    (define-fringe-bitmap 'diff-hl-bmp-middle
-      (vector #b11100000)
-      nil nil '(center t))
-    (define-fringe-bitmap 'diff-hl-bmp-bottom
-      (vector #b11100000)
-      nil nil '(center t))
-    (define-fringe-bitmap 'diff-hl-bmp-single
-      (vector #b11100000)
-      nil nil '(center t)))
+    (unless (fringe-bitmap-p 'diff-hl-bmp-delete)
+      (define-fringe-bitmap 'diff-hl-bmp-delete
+        (vector #b10000000
+                #b11000000
+                #b11100000
+                #b11110000)
+        nil nil 'bottom)
+      (define-fringe-bitmap 'diff-hl-bmp-change
+        (vector #b11100000)
+        nil nil '(center t))))
   (global-diff-hl-mode 1))
 
 (use-package discover-my-major
