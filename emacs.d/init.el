@@ -34,7 +34,6 @@
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
 (bind-key "<end>" #'end-of-line)
-(bind-key "<escape>" #'keyboard-escape-quit)
 (bind-key "<f5>" #'my/revert-buffer-no-confirmation)
 (bind-key "M-<f9>" #'vc-revision-other-window)
 (bind-key "<f11>" #'toggle-frame-fullscreen)
@@ -72,8 +71,6 @@
 
 (bind-key "C-+" #'my/increment-number-at-point)
 (bind-key "C-M-+" #'my/decrement-number-at-point)
-
-(bind-key "C-h C-f" #'find-function)
 
 (bind-key "C-x C-p" #'my/show-buffer-file-name)
 
@@ -522,7 +519,7 @@
 
 (use-package emmet-mode
   :ensure t
-  :commands emmet-mode
+  :defer t
   :init
   (add-hook 'sgml-mode-hook #'emmet-mode)
   (add-hook 'web-mode-hook #'emmet-mode)
@@ -580,7 +577,6 @@
   (add-hook 'ibuffer-mode-hook #'my/ibuffer-mode-hook))
 
 (use-package ibuf-ext
-  :defer t
   :after ibuffer
   :config (setq ibuffer-show-empty-filter-groups nil
                 ibuffer-saved-filter-groups '(("default"

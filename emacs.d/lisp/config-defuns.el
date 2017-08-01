@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 's)
+
 (defmacro my/save-kill-ring (&rest body)
   "Save `kill-ring' and restore it after executing BODY."
   `(let ((orig-kill-ring kill-ring)
