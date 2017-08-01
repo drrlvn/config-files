@@ -52,8 +52,10 @@
         spaceline-all-the-icons-flycheck-alternate t)
   (spaceline-all-the-icons-theme))
 
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
+(when window-system
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1))
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (blink-cursor-mode 1)

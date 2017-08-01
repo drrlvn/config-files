@@ -323,14 +323,15 @@
   (setq flycheck-indication-mode 'right-fringe
         flycheck-global-modes '(not c++-mode)
         flycheck-emacs-lisp-load-path 'inherit)
-  (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-    (vector #b00010000
-            #b00110000
-            #b01110000
-            #b11110000
-            #b01110000
-            #b00110000
-            #b00010000))
+  (when window-system
+    (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+      (vector #b00010000
+              #b00110000
+              #b01110000
+              #b11110000
+              #b01110000
+              #b00110000
+              #b00010000)))
   (global-flycheck-mode 1))
 
 (use-package prog-mode
