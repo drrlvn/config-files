@@ -122,17 +122,18 @@
 
 (defun display-startup-echo-area-message () ".")
 
-(setq backup-directory-alist `((".*" . ,temporary-file-directory))
-      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+      backup-directory-alist `((".*" . ,temporary-file-directory))
       comment-padding nil
       diff-switches "-u"
-      disabled-command-function nil   ; enable all disabled commands
+      disabled-command-function nil
       history-length 500
       indicate-buffer-boundaries 'left
       indicate-empty-lines t
       inhibit-startup-screen t
       initial-scratch-message nil
       kill-whole-line t
+      large-file-warning-threshold (* 100 1024 1024)
       lazy-highlight-initial-delay 0
       mouse-wheel-progressive-speed nil
       resize-mini-windows t
@@ -143,11 +144,11 @@
       visual-order-cursor-movement t
       )
 
-(setq-default fill-column 100
-              comment-column 0
+(setq-default comment-column 0
+              fill-column 100
+              fringes-outside-margins t
               indent-tabs-mode nil
               tab-width 4
-              fringes-outside-margins t
               )
 
 (use-package hl-line
