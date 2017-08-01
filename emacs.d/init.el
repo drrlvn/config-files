@@ -41,7 +41,6 @@
 
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
-(bind-key "<end>" #'end-of-line)
 (bind-key "<f5>" #'my/revert-buffer-no-confirmation)
 (bind-key "M-<f9>" #'vc-revision-other-window)
 (bind-key "<f11>" #'toggle-frame-fullscreen)
@@ -86,6 +85,11 @@
 (bind-key "C-x n n" #'my/narrow-or-widen-dwim)
 
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
+
+(use-package mwim
+  :ensure t
+  :bind (("<home>" . mwim-beginning-of-code-or-line)
+         ("<end>" . mwim-end-of-code-or-line)))
 
 (use-package misc
   :bind (("M-z" . zap-up-to-char)
@@ -667,10 +671,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
             ("P" mc/skip-to-previous-like-this)
             ("M-p" mc/unmark-previous-like-this)
             ("q" nil)))
-
-(use-package mwim
-  :ensure t
-  :bind ("<home>" . mwim-beginning-of-code-or-line))
 
 (use-package popwin
   :ensure t
