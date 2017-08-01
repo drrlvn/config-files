@@ -252,6 +252,7 @@
 
 (use-package smex
   :ensure t
+  :defer t
   :config (setq smex-history-length 3))
 
 (use-package wgrep
