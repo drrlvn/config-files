@@ -240,6 +240,11 @@
         global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1))
 
+(use-package bln-mode
+  :ensure t
+  :bind (("M-[" . bln-backward-half)
+         ("M-]" . bln-forward-half)))
+
 (use-package recentf
   :config
   (setq recentf-max-saved-items 1000)
