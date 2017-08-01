@@ -440,6 +440,15 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
         (insert "pylint: disable="
                 (s-join ", " ids))))))
 
+;;;###autoload
+(defun my/update-file-autoloads ()
+  "Update current file's autoloads and save."
+  (update-file-autoloads buffer-file-name t (format "%s-autoloads.el" (file-name-sans-extension buffer-file-name))))
+
 (provide 'config-defuns)
+
+;;; Local Variables:
+;;; eval: (add-hook 'write-contents-functions #'my/update-file-autoloads)
+;;; End:
 
 ;;; config-defuns.el ends here

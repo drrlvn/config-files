@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22911 27760
-;;;;;;  587511 519000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22912 63757
+;;;;;;  148952 211000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -264,6 +264,11 @@ Kill all buffers from current project.
 Add a pylint ignore comment for the error on the current line.
 
 \(fn)" t nil)
+
+(autoload 'my/update-file-autoloads "config-defuns" "\
+Update current file's autoloads and save.
+
+\(fn)" nil nil)
 
 ;;;***
 
