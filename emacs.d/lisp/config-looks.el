@@ -11,11 +11,12 @@
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(cond
- ((find-font (font-spec :name "Operator Mono"))
-  (set-frame-font "Operator Mono 11" nil t))
- ((find-font (font-spec :name "Fira Mono"))
-  (set-frame-font "Fira Mono Bold 10" nil t)))
+(let ((font-size (if (eq system-type 'darwin) 15 10)))
+  (cond
+   ((find-font (font-spec :name "Operator Mono"))
+    (set-frame-font (format "Operator Mono %d" (1+ font-size)) nil t))
+   ((find-font (font-spec :name "Fira Mono"))
+    (set-frame-font (format (concat "Fira Mono " (if (eq system-type 'gnu/linux) "Bold ") "%d") font-size) nil t))))
 
 (use-package doom-one-theme
   :ensure doom-themes
