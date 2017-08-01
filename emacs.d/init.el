@@ -2,14 +2,22 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq gc-cons-threshold (* 100 1024 1024))
+(let ((gc-cons-threshold-original gc-cons-threshold)
+      (file-name-handler-alist-original file-name-handler-alist))
+  (run-with-idle-timer 1 nil (lambda () (setq inhibit-message nil
+                                              file-name-handler-alist file-name-handler-alist-original
+                                              gc-cons-threshold gc-cons-threshold-original))))
 
-(setq load-prefer-newer t
+(setq gc-cons-threshold (* 100 1024 1024)
+      file-name-handler-alist nil
+      inhibit-message t
+      load-prefer-newer t
       custom-file "~/.emacs.d/custom.el"
       package-check-signature nil
       package-enable-at-startup nil
       package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -732,7 +740,5 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (unbind-key "TAB" yas-minor-mode-map)
   (unbind-key "<tab>" yas-minor-mode-map)
   (yas-global-mode 1))
-
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (car (get 'gc-cons-threshold 'standard-value)))) t)
 
 ;;; init.el ends here
