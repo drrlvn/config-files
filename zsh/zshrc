@@ -224,6 +224,11 @@ ssh() {
     fi
 }
 
+function t()
+{
+    tmux new-session -A -s ${1:=main}
+}
+
 fasd_cache="$HOME/.fasd-init-zsh"
 source "$HOME/.zplug/init.zsh"
 zplug clvv/fasd, \
