@@ -88,8 +88,8 @@
 
 (use-package mwim
   :ensure t
-  :bind (("<home>" . mwim-beginning-of-code-or-line)
-         ("<end>" . mwim-end-of-code-or-line)))
+  :bind (("<home>" . mwim-beginning)
+         ("<end>" . mwim-end)))
 
 (use-package misc
   :bind (("M-z" . zap-up-to-char)
@@ -655,6 +655,7 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-:" . my/hydra-multiple-cursors/body))
+  :init (advice-add #'zap-up-to-char :around #'my/mc-prompt-once)
   :config (defhydra my/hydra-multiple-cursors (:hint nil)
             "
 ^Up^           ^Down^         ^Miscellaneous^
