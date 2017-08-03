@@ -22,13 +22,8 @@
   :ensure doom-themes
   :config
   (load-theme 'doom-one t)
-  (set-face-attribute 'vertical-border nil :background "#3f444a" :foreground "#3f444a")
-  (set-face-background 'mode-line-inactive (face-attribute 'mode-line :background))
-  (doom-themes-org-config))
-
-(use-package diff-hl
-  :defer t
-  :config (set-face-foreground 'diff-hl-change "#da8548"))
+  (doom-themes-org-config)
+  (doom-themes-set-faces 'doom-one (vertical-border :background base4 :foreground base4)))
 
 (use-package window-numbering
   :ensure t
