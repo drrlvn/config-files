@@ -42,14 +42,11 @@
         lispy-parens
         lispy-quotes
         lispy-space
-        mwim-beginning-of-code-or-line
+        mwim-beginning
+        mwim-end
         my/decrement-number-at-point
         my/increment-number-at-point
-        my/kill-line-or-region
-        my/save-line-or-region
-        my/smart-beginning-of-line
         my/toggle-comment-line-or-region
-        my/zap-to-char-exclusive
         org-self-insert-command
         overwrite-mode
         paredit-backward-barf-sexp

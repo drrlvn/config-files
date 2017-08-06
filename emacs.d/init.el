@@ -457,7 +457,7 @@
 
 (use-package avy
   :ensure t
-  :bind ("s-s" . avy-goto-char))
+  :bind ("s-s" . avy-goto-word-or-subword-1))
 
 (use-package company
   :ensure t
