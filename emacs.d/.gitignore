@@ -1,21 +1,65 @@
-.python-environments/
-anaconda-mode/
-auto-save-list/
-elpa/
-semanticdb/
-undodir/
-url/
-var/
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
 *.elc
-.emacs.desktop
-.emacs.desktop.lock
-ac-comphist.dat
-company-statistics-cache.el
-custom.el
-ede-projects.el
-places
-projectile-bookmarks.eld
-projectile.cache
-recentf
-smex-items
+auto-save-list
 tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+projectile-bookmarks.eld
+
+# directory configuration
+.dir-locals.el
+
+# saveplace
+places
+
+# url cache
+url/cache/
+
+# cedet
+ede-projects.el
+
+# smex
+smex-items
+
+# company-statistics
+company-statistics-cache.el
+
+# anaconda-mode
+anaconda-mode/
+
+custom.el
