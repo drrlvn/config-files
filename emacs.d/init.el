@@ -301,7 +301,8 @@
 (use-package counsel
   :ensure t
   :demand
-  :bind (("C-x y" . counsel-yank-pop)
+  :bind (("C-s" . counsel-grep-or-swiper)
+         ("C-x y" . counsel-yank-pop)
          ("C-x C-r" . counsel-recentf)
          ("M-i" . counsel-imenu)
          ("C-c a" . my/counsel-rg)
@@ -313,12 +314,13 @@
                                          ;; file names ending with # or ~
                                          "\\|\\(?:[#~]\\'\\)")
         counsel-rg-base-command "rg -S --no-heading --line-number --color never %s .")
+  (when (executable-find "rg")
+    (setq counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"))
   (counsel-mode 1))
 
 (use-package swiper
   :ensure t
-  :bind (("C-s" . swiper)
-         ("C-S-s" . my/swiper-region-or-current-word)))
+  :bind (("C-S-s" . my/swiper-region-or-current-word)))
 
 (use-package cua-base
   :config
