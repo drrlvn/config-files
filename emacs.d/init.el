@@ -338,7 +338,6 @@
   :bind ("M-<f8>" . flycheck-list-errors)
   :config
   (setq flycheck-indication-mode 'right-fringe
-        flycheck-global-modes '(not c++-mode)
         flycheck-emacs-lisp-load-path 'inherit)
   (when window-system
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
@@ -392,6 +391,28 @@
   (add-hook 'c-mode-common-hook #'my/c-mode-common-hook)
   (setq c-basic-offset 4
         c-default-style "bsd"))
+
+(use-package irony
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'c-mode-common-hook (apply-partially #'irony-mode 1))
+  (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options))
+
+(use-package company-irony
+  :ensure t
+  :after company
+  :config (add-to-list 'company-backends 'company-irony))
+
+(use-package flycheck-irony
+  :ensure t
+  :defer t
+  :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(use-package irony-eldoc
+  :ensure t
+  :defer t
+  :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
 
 (use-package python
   :mode (("SCons\\(truct\\|cript\\)\\'" . python-mode)

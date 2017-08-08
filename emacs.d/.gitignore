@@ -62,4 +62,7 @@ company-statistics-cache.el
 # anaconda-mode
 anaconda-mode/
 
+# irony
+irony/
+
 custom.el
