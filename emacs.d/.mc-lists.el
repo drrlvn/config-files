@@ -138,6 +138,7 @@
         subword-right
         syntax-subword-backward-kill
         syntax-subword-capitalize
+        syntax-subword-downcase
         syntax-subword-kill
         syntax-subword-left
         syntax-subword-right

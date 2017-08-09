@@ -163,13 +163,14 @@
 (defun my/increment-number-at-point (n)
   "Increment number at point by N."
   (interactive "p")
-  (let* ((bounds (bounds-of-thing-at-point 'word))
+  (let* ((bounds (bounds-of-thing-at-point 'sexp))
          (start (car bounds))
          (end (cdr bounds))
          (str (buffer-substring start end))
-         (new-num (number-to-string (+ n (string-to-number str)))))
-    (delete-region start end)
-    (insert (if (s-starts-with? "0" str) (s-pad-left (length str) "0" new-num) new-num))))
+         (num (car (read-from-string str))))
+    (when (numberp num)
+      (delete-region start end)
+      (insert (format (format "%%0%dd" (length str)) (+ n num))))))
 
 ;;;###autoload
 (defun my/decrement-number-at-point (n)
