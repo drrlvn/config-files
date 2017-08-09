@@ -249,6 +249,10 @@
         global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1))
 
+(use-package beginend
+  :ensure t
+  :config (beginend-global-mode 1))
+
 (use-package bln-mode
   :ensure t
   :bind (("M-[" . bln-backward-half)
@@ -597,6 +601,12 @@
          ("C-," . highlight-symbol-prev)
          ("C-." . highlight-symbol-next))
   :config (setq highlight-symbol-idle-delay 0))
+
+(use-package highlight-parentheses
+  :ensure t
+  :config
+  (setq hl-paren-delay 0)
+  (global-highlight-parentheses-mode 1))
 
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)

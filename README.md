@@ -34,7 +34,7 @@ Create the symlink `~/.emacs.d` using:
 
     ln -s <REPO_PATH>/emacs.d ~/.emacs.d
 
-Note: Emacs 24.1 is required, older version will not work.
+Note: Emacs 25.1 is required, older version will not work.
 
 ## VIM ##
 
