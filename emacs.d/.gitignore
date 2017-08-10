@@ -7,6 +7,9 @@ auto-save-list
 tramp
 .\#*
 
+# recentf
+recentf
+
 # Org-mode
 .org-id-locations
 *_archive
