@@ -18,12 +18,11 @@
    ((find-font (font-spec :name "Fira Mono"))
     (set-frame-font (format "Fira Mono %d" font-size) nil t))))
 
-(use-package doom-one-theme
-  :ensure doom-themes
+(use-package doom-themes
+  :ensure t
   :config
   (load-theme 'doom-one t)
-  (doom-themes-org-config)
-  (doom-themes-set-faces 'doom-one (vertical-border :background base4 :foreground base4)))
+  (doom-themes-org-config))
 
 (use-package window-numbering
   :ensure t
