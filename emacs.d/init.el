@@ -4,7 +4,7 @@
 
 (let ((gc-cons-threshold-original gc-cons-threshold)
       (file-name-handler-alist-original file-name-handler-alist))
-  (run-with-idle-timer 1 nil (lambda () (setq inhibit-message nil
+  (run-with-idle-timer 0 nil (lambda () (setq inhibit-message nil
                                               file-name-handler-alist file-name-handler-alist-original
                                               gc-cons-threshold gc-cons-threshold-original))))
 
@@ -13,8 +13,6 @@
       inhibit-message t
       load-prefer-newer t
       custom-file "~/.emacs.d/custom.el"
-      package-check-signature nil
-      package-enable-at-startup nil
       package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
@@ -26,7 +24,8 @@
 (eval-when-compile
   (defvar use-package-enable-imenu-support)
   (setq use-package-enable-imenu-support t)
-  (require 'use-package))
+  (require 'use-package)
+  (require 'bind-key))
 
 (push "~/.emacs.d/lisp" load-path)
 
@@ -40,8 +39,6 @@
 
 (require 'config-defuns-autoloads)
 (require 'config-looks)
-
-(require 'bind-key)
 
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
@@ -249,10 +246,6 @@
 (use-package server
   :if window-system
   :config (server-start t))
-
-(use-package auto-compile
-  :ensure t
-  :config (auto-compile-on-save-mode 1))
 
 (use-package autorevert
   :config
@@ -693,8 +686,11 @@
 
 (use-package markdown-mode
   :ensure t
-  :defer t
-  :init (add-hook 'markdown-mode-hook #'my/markdown-mode-hook))
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init
+  (add-hook 'markdown-mode-hook (apply-partially #'auto-fill-mode 1))
+  (add-hook 'markdown-mode-hook (apply-partially #'refill-mode 1))
+  :config (setq markdown-command "cmark"))
 
 (use-package multiple-cursors
   :ensure t

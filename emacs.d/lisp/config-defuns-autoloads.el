@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22913 52412
-;;;;;;  929471 892000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22928 25628
+;;;;;;  481003 861000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -236,11 +236,6 @@ Turn on Anaconda mode and Anaconda eldoc mode.
 \(fn)" nil nil)
 
 (autoload 'my/ibuffer-mode-hook "config-defuns" "\
-.
-
-\(fn)" nil nil)
-
-(autoload 'my/markdown-mode-hook "config-defuns" "\
 .
 
 \(fn)" nil nil)

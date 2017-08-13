@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 's)
-
 (defmacro my/save-kill-ring (&rest body)
   "Save `kill-ring' and restore it after executing BODY."
   `(let ((orig-kill-ring kill-ring)
@@ -406,12 +404,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (ibuffer-switch-to-saved-filter-groups "default"))
 
 ;;;###autoload
-(defun my/markdown-mode-hook ()
-  "."
-  (auto-fill-mode 1)
-  (refill-mode 1))
-
-;;;###autoload
 (defun my/pyvenv-activate ()
   "."
   (if (bound-and-true-p pyvenv-activate)
@@ -439,7 +431,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
       (save-excursion
         (comment-indent)
         (insert "pylint: disable="
-                (s-join ", " ids))))))
+                (mapconcat 'identity ids ", "))))))
 
 ;;;###autoload
 (defun my/mc-prompt-once (fn &rest args)
