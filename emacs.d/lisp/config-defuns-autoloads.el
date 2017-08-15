@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22928 25628
-;;;;;;  481003 861000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22930 52035
+;;;;;;  221222 578000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -145,10 +145,10 @@ Indent region if it is active, otherwise indent line.
 
 \(fn)" t nil)
 
-(autoload 'my/get-current-class "config-defuns" "\
-Return name of enclosing class.
+(autoload 'my/package-upgrade-all "config-defuns" "\
+.
 
-\(fn)" nil nil)
+\(fn)" t nil)
 
 (autoload 'my/insert-default-ctor "config-defuns" "\
 Insert default constructor.
@@ -190,35 +190,10 @@ Run `find-file' on `user-init-file'.
 
 \(fn)" t nil)
 
-(autoload 'my/scroll-up "config-defuns" "\
-Scroll up N lines.
-
-\(fn N)" t nil)
-
-(autoload 'my/scroll-down "config-defuns" "\
-Scroll down N lines.
-
-\(fn N)" t nil)
-
-(autoload 'my/scroll-other-window-up "config-defuns" "\
-Scroll other window up N lines.
-
-\(fn N)" t nil)
-
-(autoload 'my/scroll-other-window-down "config-defuns" "\
-Scroll other window down N lines.
-
-\(fn N)" t nil)
-
 (autoload 'my/python-insert-import "config-defuns" "\
 Move current line, which should be an import statement, to the beginning of the file and run isort.
 
 \(fn)" t nil)
-
-(autoload 'my/turn-on-anaconda-mode "config-defuns" "\
-Turn on Anaconda mode and Anaconda eldoc mode.
-
-\(fn)" nil nil)
 
 (autoload 'my/org-mode-hook "config-defuns" "\
 .
@@ -231,11 +206,6 @@ Turn on Anaconda mode and Anaconda eldoc mode.
 \(fn)" nil nil)
 
 (autoload 'my/c-mode-common-hook "config-defuns" "\
-.
-
-\(fn)" nil nil)
-
-(autoload 'my/ibuffer-mode-hook "config-defuns" "\
 .
 
 \(fn)" nil nil)

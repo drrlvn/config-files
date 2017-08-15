@@ -57,11 +57,6 @@
 (bind-key "C-<tab>" #'previous-buffer)
 (bind-key "C-S-<iso-lefttab>" #'next-buffer)
 
-(bind-key "C-n" #'my/scroll-up)
-(bind-key "C-p" #'my/scroll-down)
-(bind-key "M-n" #'my/scroll-other-window-up)
-(bind-key "M-p" #'my/scroll-other-window-down)
-
 (bind-key "C-z" #'repeat)
 (unbind-key "C-x C-z")
 (bind-key "C-!" #'kill-this-buffer)
@@ -84,6 +79,8 @@
 
 (bind-key "C-x n r" #'narrow-to-region)
 (bind-key "C-x n n" #'my/narrow-or-widen-dwim)
+
+(bind-key "C-x p" #'my/package-upgrade-all)
 
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
 
@@ -449,7 +446,9 @@
 (use-package anaconda-mode
   :ensure t
   :defer t
-  :init (add-hook 'python-mode-hook #'my/turn-on-anaconda-mode))
+  :init
+  (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1))
+  (add-hook 'python-mode-hook (apply-partially #'anaconda-eldoc-mode 1)))
 
 (use-package company-anaconda
   :ensure t
@@ -627,7 +626,7 @@
                                 (filename-and-process -1 60 :left :elide))
                           (mark " " (name 30 -1)
                                 " " filename)))
-  (add-hook 'ibuffer-mode-hook #'my/ibuffer-mode-hook))
+  (add-hook 'ibuffer-mode-hook (apply-partially #'ibuffer-switch-to-saved-filter-groups "default")))
 
 (use-package ibuf-ext
   :after ibuffer

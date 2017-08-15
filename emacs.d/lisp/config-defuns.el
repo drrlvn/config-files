@@ -255,13 +255,22 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
         (setq deactivate-mark nil))
     (indent-according-to-mode)))
 
+;;;###autoload
+(defun my/package-upgrade-all ()
+  "."
+  (interactive)
+  (save-window-excursion
+    (let ((package-menu-async nil))
+      (package-list-packages))
+    (package-menu-mark-upgrades)
+    (package-menu-execute 'noquery)))
+
 ;; C++ auto insert
 
-;;;###autoload
 (defun my/get-current-class ()
   "Return name of enclosing class."
   (save-excursion
-    (search-backward "class" nil t)
+    (search-backward-regexp "\\b\\(class\\|struct\\)\\b")
     (forward-word 2)
     (backward-word)
     (current-word)))
@@ -326,27 +335,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (interactive)
   (find-file user-init-file))
 
-;;;###autoload
-(defun my/scroll-up (n)
-  "Scroll up N lines."
-  (interactive "p")
-  (scroll-up n))
-;;;###autoload
-(defun my/scroll-down (n)
-  "Scroll down N lines."
-  (interactive "p")
-  (scroll-down n))
-;;;###autoload
-(defun my/scroll-other-window-up (n)
-  "Scroll other window up N lines."
-  (interactive "p")
-  (scroll-other-window n))
-;;;###autoload
-(defun my/scroll-other-window-down (n)
-  "Scroll other window down N lines."
-  (interactive "p")
-  (scroll-other-window (- n)))
-
 (defun my/py-isort-buffer ()
   "Wrap `py-isort-buffer' with `my/save-kill-ring'."
   (interactive)
@@ -366,12 +354,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
       (insert import-string)
       (indent-region (line-beginning-position) (line-end-position))
       (my/py-isort-buffer))))
-
-;;;###autoload
-(defun my/turn-on-anaconda-mode ()
-  "Turn on Anaconda mode and Anaconda eldoc mode."
-  (anaconda-mode 1)
-  (anaconda-eldoc-mode 1))
 
 ;; hooks
 
@@ -397,11 +379,6 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (setq comment-start "/*"
         comment-end "*/")
   (c-set-offset 'innamespace 0))
-
-;;;###autoload
-(defun my/ibuffer-mode-hook ()
-  "."
-  (ibuffer-switch-to-saved-filter-groups "default"))
 
 ;;;###autoload
 (defun my/pyvenv-activate ()
