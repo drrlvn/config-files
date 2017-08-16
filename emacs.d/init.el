@@ -368,7 +368,9 @@
 (use-package lispy
   :ensure t
   :defer t
-  :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
+  :init
+  (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
+  (add-hook 'hy-mode-hook (apply-partially #'lispy-mode 1))
   :config
   (unbind-key "M-i" lispy-mode-map-lispy)
   (unbind-key "C-," lispy-mode-map-lispy)
@@ -429,6 +431,10 @@
   :bind (:map python-mode-map
               ("C-<f8>" . my/pylint-ignore-errors-at-point))
   :config (unbind-key "C-c C-f" python-mode-map))
+
+(use-package hy-mode
+  :ensure t
+  :defer t)
 
 (use-package py-isort
   :ensure t
