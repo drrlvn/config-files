@@ -279,6 +279,8 @@
   :demand
   :bind (("C-c s". ivy-resume)
          :map ivy-minibuffer-map
+         ("C-m" . ivy-alt-done)
+         ("C-j" . ivy-done)
          ("<next>" . ivy-scroll-up-command)
          ("<prior>" . ivy-scroll-down-command))
   :config
