@@ -768,6 +768,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure t
   :mode "\\.hbs\\'"
   :mode "\\.html\\'"
+  :mode "\\.js\\'"
   :config (setq web-mode-code-indent-offset 2
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
