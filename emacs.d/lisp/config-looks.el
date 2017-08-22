@@ -43,8 +43,8 @@
         spaceline-all-the-icons-secondary-separator ""
         spaceline-all-the-icons-separator-type 'none
         spaceline-all-the-icons-icon-set-modified 'circle
-        spaceline-all-the-icons-icon-set-window-numbering 'square
-        spaceline-all-the-icons-flycheck-alternate t)
+        spaceline-all-the-icons-icon-set-window-numbering 'square)
+  (spaceline-toggle-all-the-icons-git-status-off)
   (spaceline-all-the-icons-theme))
 
 (when window-system
