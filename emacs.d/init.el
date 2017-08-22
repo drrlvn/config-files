@@ -29,10 +29,6 @@
 
 (push "~/.emacs.d/lisp" load-path)
 
-(defgroup my/configuration nil
-  "Configuration customizations"
-  :group 'convenience)
-
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
@@ -95,17 +91,10 @@
          ("C-$" . copy-from-above-command)))
 
 (use-package windmove
-  :defer t
-  :preface (defcustom my/windmove-modifier "s"
-             "Modifier for windmove keybindings."
-             :type '(choice (const :tag "Super" "s")
-                            (const :tag "Meta" "M"))
-             :group 'my/configuration)
-  :init
-  (bind-key (concat my/windmove-modifier "-<left>") 'windmove-left)
-  (bind-key (concat my/windmove-modifier "-<right>") 'windmove-right)
-  (bind-key (concat my/windmove-modifier "-<up>") 'windmove-up)
-  (bind-key (concat my/windmove-modifier "-<down>") 'windmove-down))
+  :bind (("M-<left>" . windmove-left)
+         ("M-<right>" . windmove-right)
+         ("M-<up>" . windmove-up)
+         ("M-<down>" . windmove-down)))
 
 (use-package hydra
   :ensure t
@@ -374,9 +363,8 @@
   :config
   (unbind-key "M-i" lispy-mode-map-lispy)
   (unbind-key "C-," lispy-mode-map-lispy)
-  (when (equal my/windmove-modifier "M")
-    (unbind-key "<M-left>" lispy-mode-map-lispy)
-    (unbind-key "<M-right>" lispy-mode-map-lispy)))
+  (unbind-key "<M-left>" lispy-mode-map-lispy)
+  (unbind-key "<M-right>" lispy-mode-map-lispy))
 
 (use-package macrostep
   :ensure t
