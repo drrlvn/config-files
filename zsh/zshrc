@@ -233,6 +233,7 @@ function t()
 
 fasd_cache="$HOME/.fasd-init-zsh"
 source "$HOME/.zplug/init.zsh"
+zplug zplug/zplug, hook-build:"zplug --self-manage"
 zplug clvv/fasd, \
       as:command, \
       hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
