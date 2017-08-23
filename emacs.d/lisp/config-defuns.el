@@ -228,6 +228,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 (defun my/git-link-homepage-in-browser ()
   "Open the repository homepage in the browser."
   (interactive)
+  (require 'git-link)
   (let ((git-link-open-in-browser t))
     (ignore git-link-open-in-browser)
     (call-interactively 'git-link-homepage)))
