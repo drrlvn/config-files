@@ -11,12 +11,13 @@
 (setq frame-title-format
       '("" invocation-name ": " (:eval (if buffer-file-name (abbreviate-file-name buffer-file-name) "%b"))))
 
-(let ((font-size (if (eq system-type 'darwin) 15 12)))
-  (cond
-   ((find-font (font-spec :name "Fantasque Sans Mono"))
-    (set-frame-font (format "Fantasque Sans Mono %d" font-size) nil t))
-   ((find-font (font-spec :name "Fira Mono"))
-    (set-frame-font (format "Fira Mono %d" font-size) nil t))))
+(unless (get 'default 'saved-face)
+  (let ((font-size (if (eq system-type 'darwin) 15 12)))
+    (cond
+     ((find-font (font-spec :name "Fantasque Sans Mono"))
+      (set-frame-font (format "Fantasque Sans Mono %d" font-size) nil t))
+     ((find-font (font-spec :name "Fira Mono"))
+      (set-frame-font (format "Fira Mono %d" font-size) nil t)))))
 
 (use-package doom-themes
   :ensure t
