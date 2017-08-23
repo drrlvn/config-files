@@ -59,10 +59,9 @@ Notes:
 
 ## VIM ##
 
-Two symlinks are required, `~/.vimrc` and `~/.vim`:
+One symlink is required:
 
-    ln -s <REPO_PATH>/vim/vimrc.local ~/.vimrc
-    ln -s <REPO_PATH>/vim/dotvim ~/.vim
+    ln -s <REPO_PATH>/vim ~/.vim
 
 ## Zsh ##
 
