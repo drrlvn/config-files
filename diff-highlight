@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ -e /usr/share/git/diff-highlight/diff-highlight ]]; then
+    exec /usr/share/git/diff-highlight/diff-highlight
+fi
+
+if [[ -e /usr/share/doc/git/contrib/diff-highlight/diff-highlight ]]; then
+    exec perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+fi
+
+exec cat
