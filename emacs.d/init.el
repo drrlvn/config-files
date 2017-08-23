@@ -286,6 +286,9 @@
    `(("d" dired "dired")
      ("g" magit-status "magit status")
      ("s" ,(apply-partially #'counsel-rg nil) "search (rg)")))
+  (ivy-set-actions
+   'projectile-find-file
+   `(("j" find-file-other-window "other window")))
   (ivy-mode 1))
 
 (use-package ivy-hydra
