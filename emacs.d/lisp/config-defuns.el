@@ -244,14 +244,18 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
           (kill-new file-name))
       (error "Buffer not visiting a file"))))
 
+(defun my/region-line-beginning ()
+  "Return the position of the line in which the region beginning is placed."
+  (save-excursion
+    (goto-char (region-beginning))
+    (line-beginning-position)))
+
 ;;;###autoload
 (defun my/indent-line-or-region ()
   "Indent region if it is active, otherwise indent line."
   (interactive)
   (if (region-active-p)
-      (let ((start (save-excursion
-                     (goto-char (region-beginning))
-                     (line-beginning-position))))
+      (let ((start (my/region-line-beginning)))
         (indent-region start (region-end))
         (setq deactivate-mark nil))
     (indent-according-to-mode)))
@@ -421,6 +425,18 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 (defun my/update-file-autoloads ()
   "Update current file's autoloads and save."
   (update-file-autoloads buffer-file-name t (format "%s-autoloads.el" (file-name-sans-extension buffer-file-name))))
+
+;;;###autoload
+(defun my/python-shift-region (fn start end &optional count)
+  "Advice around Python shift functions.
+FN is the original function.  START is set interactivly to
+the line in which the beginning of the mark is found.  END and
+COUNT are set in the same way as the original function."
+  (interactive
+   (if mark-active
+       (list (my/region-line-beginning) (region-end) current-prefix-arg)
+     (list (line-beginning-position) (line-end-position) current-prefix-arg)))
+  (apply fn start end count))
 
 (provide 'config-defuns)
 
