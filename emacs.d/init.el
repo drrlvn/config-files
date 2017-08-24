@@ -414,7 +414,10 @@
          ("slashrc\\'" . python-mode))
   :bind (:map python-mode-map
               ("C-<f8>" . my/pylint-ignore-errors-at-point))
-  :config (unbind-key "C-c C-f" python-mode-map))
+  :config
+  (unbind-key "C-c C-f" python-mode-map)
+  (advice-add #'python-indent-shift-left :around #'my/python-shift-region)
+  (advice-add #'python-indent-shift-right :around #'my/python-shift-region))
 
 (use-package hy-mode
   :ensure t

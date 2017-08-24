@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22930 52035
-;;;;;;  221222 578000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22942 55812
+;;;;;;  835539 948000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -239,6 +239,14 @@ Advice for commands with bad support for multiple cursors.  Call FN with ARGS in
 Update current file's autoloads and save.
 
 \(fn)" nil nil)
+
+(autoload 'my/python-shift-advise "config-defuns" "\
+Advice around Python shift functions.
+FN is the original function.  START is set interactivly to
+the line in which the beginning of the mark is found.  END and
+COUNT are set in the same way as the original function.
+
+\(fn FN START END &optional COUNT)" t nil)
 
 ;;;***
 
