@@ -281,14 +281,6 @@
   (push '(emacs-lisp-mode . swiper-match-face-1) ivy-switch-buffer-faces-alist)
   (push '(python-mode . swiper-match-face-2) ivy-switch-buffer-faces-alist)
   (push '(c++-mode . swiper-match-face-3) ivy-switch-buffer-faces-alist)
-  (ivy-set-actions
-   'projectile-switch-project
-   `(("d" dired "dired")
-     ("g" magit-status "magit status")
-     ("s" ,(apply-partially #'counsel-rg nil) "search (rg)")))
-  (ivy-set-actions
-   'projectile-find-file
-   `(("j" find-file-other-window "other window")))
   (ivy-mode 1))
 
 (use-package ivy-hydra
@@ -313,7 +305,8 @@
                                          "\\|\\(?:[#~]\\'\\)")
         counsel-rg-base-command "rg -S --no-heading --line-number --color never %s .")
   (when (executable-find "rg")
-    (setq counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"))
+    (setq counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"
+          counsel-ag-base-command counsel-rg-base-command))
   (counsel-mode 1))
 
 (use-package swiper
@@ -735,6 +728,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
   (advice-add #'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
   (projectile-mode 1))
+
+(use-package counsel-projectile
+  :ensure t
+  :init (counsel-projectile-on))
 
 (use-package rainbow-delimiters
   :ensure t
