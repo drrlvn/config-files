@@ -81,7 +81,7 @@
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
 
 (use-package mwim
-  :ensure t
+  :ensure
   :bind (("<home>" . mwim-beginning)
          ("<end>" . mwim-end)))
 
@@ -97,7 +97,7 @@
          ("M-<down>" . windmove-down)))
 
 (use-package hydra
-  :ensure t
+  :ensure
   :bind ("<f8>" . my/hydra-error/body)
   :config (defhydra my/hydra-error ()
             "goto-error"
@@ -240,11 +240,11 @@
   (global-auto-revert-mode 1))
 
 (use-package beginend
-  :ensure t
+  :ensure
   :config (beginend-global-mode 1))
 
 (use-package bln-mode
-  :ensure t
+  :ensure
   :bind (("M-[" . bln-backward-half)
          ("M-]" . bln-forward-half)))
 
@@ -254,17 +254,17 @@
   (recentf-mode 1))
 
 (use-package smex
-  :ensure t
+  :ensure
   :defer t
   :config (setq smex-history-length 3))
 
 (use-package wgrep
-  :ensure t
+  :ensure
   :defer t
   :config (setq wgrep-auto-save-buffer t))
 
 (use-package ivy
-  :ensure t
+  :ensure
   :demand
   :bind (("C-c s". ivy-resume)
          :map ivy-minibuffer-map
@@ -284,12 +284,12 @@
   (ivy-mode 1))
 
 (use-package ivy-hydra
-  :ensure t
+  :ensure
   :bind (:map ivy-minibuffer-map
               ("M-o" . ivy-dispatching-done-hydra)))
 
 (use-package counsel
-  :ensure t
+  :ensure
   :demand
   :bind (("C-s" . counsel-grep-or-swiper)
          ("C-x y" . counsel-yank-pop)
@@ -310,7 +310,7 @@
   (counsel-mode 1))
 
 (use-package swiper
-  :ensure t
+  :ensure
   :bind (("C-S-s" . my/swiper-region-or-current-word)))
 
 (use-package cua-base
@@ -324,7 +324,7 @@
   (show-paren-mode 1))
 
 (use-package flycheck
-  :ensure t
+  :ensure
   :demand
   :bind ("M-<f8>" . flycheck-list-errors)
   :config
@@ -351,7 +351,7 @@
   :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'eldoc-mode 1)))
 
 (use-package lispy
-  :ensure t
+  :ensure
   :defer t
   :init
   (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
@@ -363,12 +363,12 @@
   (unbind-key "<M-right>" lispy-mode-map-lispy))
 
 (use-package macrostep
-  :ensure t
+  :ensure
   :bind (:map emacs-lisp-mode-map
               ("C-c e" . macrostep-expand)))
 
 (use-package suggest
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package cc-mode
@@ -388,24 +388,24 @@
         c-default-style "bsd"))
 
 (use-package irony
-  :ensure t
+  :ensure
   :defer t
   :init
   (add-hook 'c-mode-common-hook (apply-partially #'irony-mode 1))
   (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony
-  :ensure t
+  :ensure
   :after company
   :config (add-to-list 'company-backends 'company-irony))
 
 (use-package flycheck-irony
-  :ensure t
+  :ensure
   :defer t
   :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (use-package irony-eldoc
-  :ensure t
+  :ensure
   :defer t
   :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
 
@@ -420,11 +420,11 @@
   (advice-add #'python-indent-shift-right :around #'my/python-shift-region))
 
 (use-package hy-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package py-isort
-  :ensure t
+  :ensure
   :after python
   :commands py-isort-buffer
   :bind (:map python-mode-map
@@ -433,43 +433,43 @@
   :config (setq py-isort-options '("-ds")))
 
 (use-package pyvenv
-  :ensure t
+  :ensure
   :init (add-hook 'hack-local-variables-hook #'my/pyvenv-activate))
 
 (use-package anaconda-mode
-  :ensure t
+  :ensure
   :defer t
   :init
   (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1))
   (add-hook 'python-mode-hook (apply-partially #'anaconda-eldoc-mode 1)))
 
 (use-package company-anaconda
-  :ensure t
+  :ensure
   :commands my/company-anaconda-setup
   :config (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
 
 (use-package go-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package toml-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package rust-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package yaml-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package cmake-font-lock
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package cmake-mode
-  :ensure t
+  :ensure
   :defer t
   :config (add-hook 'cmake-mode-hook #'cmake-font-lock-activate))
 
@@ -487,11 +487,11 @@
                                                    )))
 
 (use-package avy
-  :ensure t
+  :ensure
   :bind ("s-s" . avy-goto-word-or-subword-1))
 
 (use-package company
-  :ensure t
+  :ensure
   :config
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
@@ -499,14 +499,14 @@
   (global-company-mode 1))
 
 (use-package company-statistics
-  :ensure t
+  :ensure
   :init (add-hook 'global-company-mode-hook (apply-partially #'company-statistics-mode 1)))
 
 (use-package conf-mode
   :mode "\\.pylintrc\\'")
 
 (use-package diff-hl
-  :ensure t
+  :ensure
   :demand
   :bind ("C-]" . my/hydra-diff-hl/body)
   :config
@@ -534,15 +534,15 @@
   (global-diff-hl-mode 1))
 
 (use-package discover-my-major
-  :ensure t
+  :ensure
   :bind ("C-h <return>" . discover-my-major))
 
 (use-package dockerfile-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package drag-stuff
-  :ensure t
+  :ensure
   :bind (("M-S-<up>" . drag-stuff-up)
          ("M-S-<down>" . drag-stuff-down)
          ("M-S-<left>" . drag-stuff-left)
@@ -550,18 +550,18 @@
   :config (add-hook 'drag-stuff-after-drag-hook #'my/indent-line-or-region))
 
 (use-package dumb-jump
-  :ensure t
+  :ensure
   :bind (("M-g o" . dumb-jump-go)
          ("M-g O" . dumb-jump-go-other-window)
          ("M-g M-o" . dumb-jump-quick-look))
   :config (setq dumb-jump-selector 'ivy))
 
 (use-package easy-kill
-  :ensure t
+  :ensure
   :bind ([remap kill-ring-save] . easy-kill))
 
 (use-package emmet-mode
-  :ensure t
+  :ensure
   :defer t
   :init
   (add-hook 'sgml-mode-hook #'emmet-mode)
@@ -570,19 +570,19 @@
                 emmet-preview-default nil))
 
 (use-package expand-region
-  :ensure t
+  :ensure
   :bind (("C-=" . er/expand-region)
          ("C--" . er/contract-region)))
 
 (use-package eyebrowse
-  :ensure t
+  :ensure
   :config
   (setq eyebrowse-wrap-around t
         eyebrowse-new-workspace t)
   (eyebrowse-mode 1))
 
 (use-package git-messenger
-  :ensure t
+  :ensure
   :bind (("C-x v p" . git-messenger:popup-message)
          :map git-messenger-map
          ("d" . my/git-messenger-show-with-magit)
@@ -590,24 +590,24 @@
   :config (setq git-messenger:show-detail t))
 
 (use-package gitignore-mode
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package which-key
-  :ensure t
+  :ensure
   :config
   (setq which-key-idle-delay 0.5)
   (which-key-mode 1))
 
 (use-package highlight-symbol
-  :ensure t
+  :ensure
   :bind (("C-\"" . highlight-symbol-at-point)
          ("C-," . highlight-symbol-prev)
          ("C-." . highlight-symbol-next))
   :config (setq highlight-symbol-idle-delay 0))
 
 (use-package highlight-parentheses
-  :ensure t
+  :ensure
   :config
   (setq hl-paren-delay 0)
   (global-highlight-parentheses-mode 1))
@@ -649,7 +649,7 @@
                                                ))))
 
 (use-package magit
-  :ensure t
+  :ensure
   :bind (("<f9>" . magit-status)
          ("S-<f9>" . magit-log-buffer-file)
          ("C-<f9>" . magit-blame)
@@ -663,7 +663,7 @@
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration))
 
 (use-package magit-gitflow
-  :ensure t
+  :ensure
   :defer t
   :init (add-hook 'magit-mode-hook #'turn-on-magit-gitflow))
 
@@ -674,14 +674,14 @@
   (global-git-commit-mode 1))
 
 (use-package git-link
-  :ensure t
+  :ensure
   :bind (("C-c C-g h" . git-link-homepage)
          ("C-c C-g c" . git-link-commit)
          ("C-c C-g l" . git-link)
          ("C-c C-g H" . my/git-link-homepage-in-browser)))
 
 (use-package markdown-mode
-  :ensure t
+  :ensure
   :mode ("README\\.md\\'" . gfm-mode)
   :init
   (add-hook 'markdown-mode-hook (apply-partially #'auto-fill-mode 1))
@@ -689,7 +689,7 @@
   :config (setq markdown-command "cmark"))
 
 (use-package multiple-cursors
-  :ensure t
+  :ensure
   :bind (("C-|" . mc/edit-lines)
          ("C-;" . mc/mark-all-like-this-dwim)
          ("C->" . mc/mark-next-like-this)
@@ -714,13 +714,13 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
             ("q" nil)))
 
 (use-package popwin
-  :ensure t
+  :ensure
   :commands (popwin:display-buffer-condition popwin:display-buffer-action)
   :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist)
   :config (push '("*Flycheck errors*" :stick t) popwin:special-display-config))
 
 (use-package projectile
-  :ensure t
+  :ensure
   :demand
   :bind (("C-c f" . projectile-find-file-in-known-projects)
          ("C-c C-f" . projectile-find-file)
@@ -733,34 +733,34 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (projectile-mode 1))
 
 (use-package counsel-projectile
-  :ensure t
+  :ensure
   :init (counsel-projectile-on))
 
 (use-package rainbow-delimiters
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package restclient
-  :ensure t
+  :ensure
   :mode ("\\.http\\'" . restclient-mode))
 
 (use-package syntax-subword
-  :ensure t
+  :ensure
   :config (global-syntax-subword-mode 1))
 
 (use-package systemd
-  :ensure t
+  :ensure
   :defer t)
 
 (use-package undo-tree
-  :ensure t
+  :ensure
   :config
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
   (global-undo-tree-mode 1))
 
 (use-package web-mode
-  :ensure t
+  :ensure
   :mode "\\.hbs\\'"
   :mode "\\.html\\'"
   :mode "\\.js\\'"
@@ -771,15 +771,15 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-script-padding 2))
 
 (use-package whitespace-cleanup-mode
-  :ensure t
+  :ensure
   :config (global-whitespace-cleanup-mode 1))
 
 (use-package wrap-region
-  :ensure t
+  :ensure
   :config (wrap-region-global-mode 1))
 
 (use-package yasnippet
-  :ensure t
+  :ensure
   :config
   (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
         yas-verbosity 1)

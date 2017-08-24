@@ -20,13 +20,13 @@
       (set-frame-font (format "Fira Mono %d" font-size) nil t)))))
 
 (use-package doom-themes
-  :ensure t
+  :ensure
   :config
   (load-theme 'doom-one t)
   (doom-themes-org-config))
 
 (use-package window-numbering
-  :ensure t
+  :ensure
   :config (window-numbering-mode 1))
 
 (use-package powerline
@@ -38,7 +38,7 @@
   :config (setq spaceline-responsive nil))
 
 (use-package spaceline-all-the-icons
-  :ensure t
+  :ensure
   :config
   (setq spaceline-all-the-icons-primary-separator ""
         spaceline-all-the-icons-secondary-separator ""
