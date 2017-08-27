@@ -30,11 +30,11 @@
   :config (window-numbering-mode 1))
 
 (use-package powerline
-  :defer t
+  :defer
   :config (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
 
 (use-package spaceline
-  :defer t
+  :defer
   :config (setq spaceline-responsive nil))
 
 (use-package spaceline-all-the-icons

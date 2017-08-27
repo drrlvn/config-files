@@ -163,36 +163,36 @@
   :config (save-place-mode 1))
 
 (use-package compile
-  :defer t
+  :defer
   :config
   (setq compilation-scroll-output 'first-error
         compilation-read-command nil)
   (add-hook 'compilation-filter-hook #'my/colorize-compilation-buffer))
 
 (use-package ediff
-  :defer t
+  :defer
   :config (setq ediff-split-window-function 'split-window-horizontally))
 
 (use-package doc-view
-  :defer t
+  :defer
   :config (setq doc-view-continuous t
                 doc-view-resolution 300))
 
 (use-package dired
-  :defer t
+  :defer
   :config
   (setq dired-recursive-deletes 'always)
   (add-hook 'dired-mode-hook (apply-partially #'dired-omit-mode 1)))
 
 (use-package dired-aux
-  :defer t
+  :defer
   :config (setq dired-isearch-filenames t))
 
 (use-package dired-x
   :commands dired-omit-mode)
 
 (use-package org
-  :defer t
+  :defer
   :config
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
@@ -200,35 +200,35 @@
   (add-hook 'org-mode-hook #'my/org-mode-hook))
 
 (use-package ox-html
-  :defer t
+  :defer
   :config (setq org-html-postamble nil))
 
 (use-package glasses
-  :defer t
+  :defer
   :config (setq glasses-separate-parentheses-p nil
                 glasses-uncapitalize-p t))
 
 (use-package eldoc
-  :defer t
+  :defer
   :config (setq eldoc-idle-delay 0.1))
 
 (use-package imenu
-  :defer t
+  :defer
   :config (setq imenu-auto-rescan t))
 
 (use-package tramp
-  :defer t
+  :defer
   :config (setq tramp-use-ssh-controlmaster-options nil
                 tramp-default-method "scpx"
                 tramp-histfile-override "/dev/null"))
 
 (use-package uniquify
-  :defer t
+  :defer
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
 
 (use-package rst
-  :defer t
+  :defer
   :config (add-hook 'rst-mode-hook (apply-partially #'flyspell-mode 1)))
 
 (use-package server
@@ -257,12 +257,12 @@
 
 (use-package smex
   :ensure
-  :defer t
+  :defer
   :config (setq smex-history-length 3))
 
 (use-package wgrep
   :ensure
-  :defer t
+  :defer
   :config (setq wgrep-auto-save-buffer t))
 
 (use-package ivy
@@ -344,7 +344,7 @@
   (global-flycheck-mode 1))
 
 (use-package prog-mode
-  :defer t
+  :defer
   :init (add-hook 'prog-mode-hook #'my/prog-mode-hook))
 
 (use-package elisp-mode
@@ -354,7 +354,7 @@
 
 (use-package lispy
   :ensure
-  :defer t
+  :defer
   :init
   (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
   (add-hook 'hy-mode-hook (apply-partially #'lispy-mode 1))
@@ -371,7 +371,7 @@
 
 (use-package suggest
   :ensure
-  :defer t)
+  :defer)
 
 (use-package cc-mode
   :mode ("\\.x\\'" . c++-mode)
@@ -391,7 +391,7 @@
 
 (use-package irony
   :ensure
-  :defer t
+  :defer
   :init
   (add-hook 'c-mode-common-hook (apply-partially #'irony-mode 1))
   (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options))
@@ -403,12 +403,12 @@
 
 (use-package flycheck-irony
   :ensure
-  :defer t
+  :defer
   :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (use-package irony-eldoc
   :ensure
-  :defer t
+  :defer
   :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
 
 (use-package python
@@ -423,7 +423,7 @@
 
 (use-package hy-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package py-isort
   :ensure
@@ -440,7 +440,7 @@
 
 (use-package anaconda-mode
   :ensure
-  :defer t
+  :defer
   :init
   (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1))
   (add-hook 'python-mode-hook (apply-partially #'anaconda-eldoc-mode 1)))
@@ -452,27 +452,27 @@
 
 (use-package go-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package toml-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package rust-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package yaml-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package cmake-font-lock
   :ensure
-  :defer t)
+  :defer)
 
 (use-package cmake-mode
   :ensure
-  :defer t
+  :defer
   :config (add-hook 'cmake-mode-hook #'cmake-font-lock-activate))
 
 (use-package hippie-exp
@@ -541,7 +541,7 @@
 
 (use-package dockerfile-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package drag-stuff
   :ensure
@@ -567,7 +567,7 @@
 
 (use-package emmet-mode
   :ensure
-  :defer t
+  :defer
   :init
   (add-hook 'sgml-mode-hook #'emmet-mode)
   (add-hook 'web-mode-hook #'emmet-mode)
@@ -596,7 +596,7 @@
 
 (use-package gitignore-mode
   :ensure
-  :defer t)
+  :defer)
 
 (use-package which-key
   :ensure
@@ -669,7 +669,7 @@
 
 (use-package magit-gitflow
   :ensure
-  :defer t
+  :defer
   :init (add-hook 'magit-mode-hook #'turn-on-magit-gitflow))
 
 (use-package git-commit
@@ -749,7 +749,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package rainbow-delimiters
   :ensure
-  :defer t)
+  :defer)
 
 (use-package restclient
   :ensure
@@ -761,7 +761,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package systemd
   :ensure
-  :defer t)
+  :defer)
 
 (use-package undo-tree
   :ensure
