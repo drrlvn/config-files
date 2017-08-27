@@ -31,14 +31,12 @@ vcs_prompt_chars=(
     case ${vcs} in
         git)
             # Show +N/-N when your local branch is ahead-of or behind remote HEAD.
-            local ahead behind
+            local -a behind_ahead
             local -a gitstatus
 
-            ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
-            (( $ahead )) && gitstatus+=( "%F{green}↑${ahead}" )
-
-            behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
-            (( $behind )) && gitstatus+=( "%F{red}↓${behind}" )
+            behind_ahead=($(git rev-list --count --left-right ${hook_com[branch]}@{upstream}...@ 2>/dev/null))
+            (( $behind_ahead[1] )) && gitstatus+=( "%F{red}↓${behind_ahead[1]}" )
+            (( $behind_ahead[2] )) && gitstatus+=( "%F{green}↑${behind_ahead[2]}" )
 
             (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
             ;;
