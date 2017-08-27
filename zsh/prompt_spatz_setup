@@ -1,4 +1,4 @@
-# spatz prompt theme
+# -*- mode: sh; -*-
 # vim: set ft=zsh:
 
 autoload -Uz vcs_info
