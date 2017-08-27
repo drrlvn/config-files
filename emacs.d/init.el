@@ -685,6 +685,12 @@
          ("C-c C-g l" . git-link)
          ("C-c C-g H" . my/git-link-homepage-in-browser)))
 
+(use-package man
+  :bind ("<f1>" . man)
+  :config
+  (set-face-attribute 'Man-overstrike nil :inherit 'font-lock-keyword-face)
+  (setq Man-notify-method 'pushy))
+
 (use-package markdown-mode
   :ensure
   :mode ("README\\.md\\'" . gfm-mode)
