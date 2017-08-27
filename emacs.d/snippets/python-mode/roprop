@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Read Only Property
+# key: ro
+# --
+@property
+def $1(self):
+    return self._$1
