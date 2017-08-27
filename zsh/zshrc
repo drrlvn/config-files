@@ -200,6 +200,7 @@ export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
 export LESS="-R -n -X -m -i"
 
+alias cmk="ssh -O exit"
 alias ip='ip -c'
 alias grep='grep --color=auto'
 alias cp='cp -iv'
@@ -229,6 +230,10 @@ ssh() {
 function t()
 {
     tmux new-session -A -s ${1:=main}
+}
+
+function activate() {
+    source $1/bin/activate
 }
 
 fasd_cache="$HOME/.fasd-init-zsh"
