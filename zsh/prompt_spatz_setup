@@ -3,7 +3,7 @@
 
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git hg svn cvs
+zstyle ':vcs_info:*' enable git hg bzr svn
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr		'%F{green}✱'
 zstyle ':vcs_info:*' unstagedstr	'%F{red}✱'
@@ -15,10 +15,10 @@ zstyle ':vcs_info:*+no-vcs:*' hooks no-vcs
 
 typeset -gA vcs_prompt_chars
 vcs_prompt_chars=(
-    'git' '%F{red}±'
+    'git' '%F{red}∓'
     'hg'  '%F{black}☿'
+    'bzr' '%F{white}b'
     'svn' '%F{blue}⚡'
-    'cvs' '%F{white}c'
 )
 
 +vi-no-vcs() {
