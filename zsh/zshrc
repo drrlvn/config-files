@@ -33,6 +33,7 @@ setopt hist_ignore_space
 setopt hist_no_store
 setopt hist_reduce_blanks
 setopt inc_append_history
+setopt hist_verify
 
 bindkey -e
 
@@ -189,16 +190,18 @@ READNULLCMD=less
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PATH="${HOME}/bin:${HOME}/.cargo/bin:${PATH}"
-ruby_bin_dirs=($HOME/.gem/ruby/*/bin(N))
-if [[ -n $ruby_bin_dirs ]]; then
-    PATH="$PATH:${(@j/:/)ruby_bin_dirs}"
-fi
-unset ruby_bin_dirs
+() {
+    local ruby_bin_dirs=($HOME/.gem/ruby/*/bin(N))
+    if [[ -n $ruby_bin_dirs ]]; then
+        PATH="$PATH:${(@j/:/)ruby_bin_dirs}"
+    fi
+}
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
 export LESS="-R -n -X -m -i"
 
+alias history="fc -li"
 alias cmk="ssh -O exit"
 alias ip='ip -c'
 alias grep='grep --color=auto'
@@ -254,7 +257,7 @@ zplug clvv/fasd, \
       as:command, \
       hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
 zplug zsh-users/zsh-completions
-zplug jimmijj/zsh-syntax-highlighting
+zplug zsh-users/zsh-syntax-highlighting
 zplug zsh-users/zsh-history-substring-search
 
 if ! zplug check; then
