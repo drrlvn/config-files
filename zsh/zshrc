@@ -235,6 +235,18 @@ function activate() {
     source $1/bin/activate
 }
 
+print_failed_units() {
+    if whence -p systemctl >/dev/null 2>&1; then
+        local failed=$(systemctl list-units --state=failed --no-legend)
+
+        if [[ -n $failed ]]; then
+            local count=$(wc -l <<<"${failed}")
+            echo -e "Failed Units: \033[31m${count}\033[39m"
+            awk '{ print "  " $1 }' <<<"${failed}"
+        fi
+    fi
+}
+
 fasd_cache="$HOME/.fasd-init-zsh"
 source "$HOME/.zplug/init.zsh"
 zplug zplug/zplug, hook-build:"zplug --self-manage"
@@ -294,3 +306,5 @@ fi
 
 # enable command-not-found hook on arch
 source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null || true
+
+print_failed_units
