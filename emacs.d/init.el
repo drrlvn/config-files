@@ -28,7 +28,9 @@
   (require 'bind-key))
 
 (push "~/.emacs.d/lisp" load-path)
-(push (expand-file-name "~/.zplug/bin") exec-path)
+(let ((zplug-bin (expand-file-name "~/.zplug/bin")))
+  (push zplug-bin exec-path)
+  (setenv "PATH" (concat zplug-bin ":" (getenv "PATH"))))
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
@@ -307,8 +309,8 @@
                                          ;; file names ending with # or ~
                                          "\\|\\(?:[#~]\\'\\)"))
   (when rg-executable
-    (setq counsel-rg-base-command (concat rg-executable " -S --no-heading --line-number --color never %s .")
-          counsel-grep-base-command (concat rg-executable " -S --no-heading --line-number --color never '%s' %s")
+    (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
+          counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"
           counsel-ag-base-command counsel-rg-base-command))
   (counsel-mode 1))
 
