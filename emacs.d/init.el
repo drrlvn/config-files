@@ -783,6 +783,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-style-padding 2
                 web-mode-script-padding 2))
 
+(use-package winner
+  :config (winner-mode))
+
 (use-package whitespace-cleanup-mode
   :ensure
   :config (global-whitespace-cleanup-mode 1))
