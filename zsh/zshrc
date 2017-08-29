@@ -38,9 +38,8 @@ setopt hist_verify
 
 bindkey -e
 
-autoload -Uz add-zsh-hook compinit edit-command-line promptinit url-quote-magic zargs zcalc zmv
+autoload -Uz add-zsh-hook edit-command-line promptinit url-quote-magic zargs zcalc zmv
 zmodload zsh/deltochar
-compinit -i
 promptinit; prompt spatz
 
 set_abbrev_pwd() {
@@ -257,6 +256,7 @@ print_failed_units() {
 
 if [[ ! -d ~/.zplug ]]; then
     git clone https://github.com/zplug/zplug ~/.zplug
+    touch ~/.zplug/packages.zsh
 fi
 
 fasd_cache="$HOME/.fasd-init-zsh"
