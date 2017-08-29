@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22942 55812
-;;;;;;  835539 948000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22949 35146
+;;;;;;  57592 35000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -240,7 +240,7 @@ Update current file's autoloads and save.
 
 \(fn)" nil nil)
 
-(autoload 'my/python-shift-advise "config-defuns" "\
+(autoload 'my/python-shift-region "config-defuns" "\
 Advice around Python shift functions.
 FN is the original function.  START is set interactivly to
 the line in which the beginning of the mark is found.  END and

@@ -30,7 +30,7 @@
 (push "~/.emacs.d/lisp" load-path)
 (let ((zplug-bin (expand-file-name "~/.zplug/bin")))
   (push zplug-bin exec-path)
-  (setenv "PATH" (concat zplug-bin ":" (getenv "PATH"))))
+  (setenv "PATH" (concat zplug-bin path-separator (getenv "PATH"))))
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))

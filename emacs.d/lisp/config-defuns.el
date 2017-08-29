@@ -62,7 +62,7 @@
 (defun my/revert-buffer-no-confirmation ()
   "Invoke `revert-buffer' without the confirmation."
   (interactive)
-  (revert-buffer nil t t)
+  (revert-buffer nil 'noconfirm)
   (message "Reverted buffer %s" buffer-file-name))
 
 ;;;###autoload
