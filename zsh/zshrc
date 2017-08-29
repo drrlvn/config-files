@@ -11,6 +11,7 @@ setopt complete_in_word
 setopt always_to_end
 unsetopt nomatch
 setopt prompt_subst
+setopt transient_rprompt
 
 # pushd options
 setopt auto_cd
@@ -235,10 +236,10 @@ save_dirs() {
 }
 
 t() {
-    tmux new-session -A -s "${1:=main}"
+    tmux new-session -A -s "${1:-main}"
 }
 
-function activate() {
+activate() {
     source "$1/bin/activate"
 }
 
