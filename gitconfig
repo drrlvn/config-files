@@ -38,9 +38,9 @@
     verbose = true
 
 [pager]
-    log = $(dirname $(readlink ~/.config/git/config))/diff-highlight | less -F
-    show = $(dirname $(readlink ~/.config/git/config))/diff-highlight | less -F
-    diff = $(dirname $(readlink ~/.config/git/config))/diff-highlight | less -F
+    log = diff-highlight | less -F
+    show = diff-highlight | less -F
+    diff = diff-highlight | less -F
 
 [diff]
     renamelimit = 0
@@ -70,7 +70,7 @@
     followTags = true
 
 [interactive]
-    diffFilter = $(dirname $(readlink ~/.config/git/config))/diff-highlight
+    diffFilter = diff-highlight
 
 [user]
     useConfigOnly = true

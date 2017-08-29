@@ -9,3 +9,6 @@ mkdir -p ~/.config/git
 [include]
     path = ${REPO_PATH}/gitconfig
 END
+
+mkdir -p ~/bin
+ln -sf ${REPO_PATH}/diff-highlight ~/bin/

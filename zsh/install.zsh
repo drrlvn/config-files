@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/zsh
 
 if [[ -e ~/.zshrc ]]; then
 	if [[ $1 = -f ]]; then
@@ -18,8 +18,4 @@ source ${REPO_PATH}/zsh/zshrc
 END
 
 mkdir -p ~/.zsh
-pushd ~/.zsh
-ln -sf ${REPO_PATH}/zsh/prompt_spatz_setup .
-popd
-
-git clone https://github.com/zplug/zplug ~/.zplug
+ln -sf ${REPO_PATH}/zsh/prompt_spatz_setup ~/.zsh/
