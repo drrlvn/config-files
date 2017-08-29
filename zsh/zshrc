@@ -180,6 +180,13 @@ WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
+() {
+    local COREUTILS_DIR=/usr/local/opt/coreutils/libexec/gnubin
+    if [[ -d $COREUTILS_DIR ]]; then
+        path=($COREUTILS_DIR "$path[@]")
+    fi
+}
+
 path=($HOME/bin $HOME/.cargo/bin "$path[@]" $HOME/.gem/ruby/*/bin(N))
 
 export EDITOR="/usr/bin/emacsclient -c"
