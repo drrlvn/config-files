@@ -189,13 +189,7 @@ WORDCHARS=${WORDCHARS//\/}
 READNULLCMD=less
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PATH="${HOME}/bin:${HOME}/.cargo/bin:${PATH}"
-() {
-    local ruby_bin_dirs=($HOME/.gem/ruby/*/bin(N))
-    if [[ -n $ruby_bin_dirs ]]; then
-        PATH="$PATH:${(@j/:/)ruby_bin_dirs}"
-    fi
-}
+path=($HOME/bin $HOME/.cargo/bin "$path[@]" $HOME/.gem/ruby/*/bin(N))
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
@@ -229,58 +223,6 @@ ssh() {
     fi
 }
 
-function t()
-{
-    tmux new-session -A -s ${1:=main}
-}
-
-function activate() {
-    source $1/bin/activate
-}
-
-print_failed_units() {
-    if whence -p systemctl >/dev/null 2>&1; then
-        local failed=$(systemctl list-units --state=failed --no-legend)
-
-        if [[ -n $failed ]]; then
-            local count=$(wc -l <<<"${failed}")
-            echo -e "Failed Units: \033[31m${count}\033[39m"
-            awk '{ print "  " $1 }' <<<"${failed}"
-        fi
-    fi
-}
-
-fasd_cache="$HOME/.fasd-init-zsh"
-source "$HOME/.zplug/init.zsh"
-zplug zplug/zplug, hook-build:"zplug --self-manage"
-zplug clvv/fasd, \
-      as:command, \
-      hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
-zplug zsh-users/zsh-completions
-zplug zsh-users/zsh-syntax-highlighting
-zplug zsh-users/zsh-history-substring-search
-
-if ! zplug check; then
-    zplug install
-fi
-zplug load
-
-if zplug check clvv/fasd; then
-    source "$fasd_cache"
-fi
-unset fasd_cache
-
-if zplug check jimmijj/zsh-syntax-highlighting; then
-    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-    ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
-    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
-fi
-
-if zplug check zsh-users/zsh-history-substring-search; then
-    bindkey "[A" history-substring-search-up
-    bindkey "[B" history-substring-search-down
-fi
-
 save_dirs() {
     local should_clear=yes
     dirs -p | tac | while read d; do
@@ -292,20 +234,69 @@ save_dirs() {
     done
 }
 
-if [[ -f /usr/share/fzf/completion.zsh ]]; then
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
-    export FZF_TMUX=1
-    export FZF_COMPLETION_TRIGGER="~~"
-    export FZF_DEFAULT_COMMAND='rg --files'
-    export FZF_DEFAULT_OPTS="-e"
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND="fasd -Rdl"
-    export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
-    _fzf_compgen_path() {
-        rg --files "$1"
-    }
+t() {
+    tmux new-session -A -s "${1:=main}"
+}
+
+function activate() {
+    source "$1/bin/activate"
+}
+
+print_failed_units() {
+    if whence -p systemctl >/dev/null; then
+        local failed=$(systemctl list-units --state=failed --no-legend)
+
+        if [[ -n $failed ]]; then
+            local count=$(wc -l <<<"${failed}")
+            echo -e "Failed Units: \033[31m${count}\033[39m"
+            awk '{ print "  " $1 }' <<<"${failed}"
+        fi
+    fi
+}
+
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
 fi
+
+fasd_cache="$HOME/.fasd-init-zsh"
+ZPLUG_BIN="$HOME/.zplug/bin" # workaround for https://github.com/zplug/zplug/issues/387
+source "$HOME/.zplug/init.zsh"
+zplug zplug/zplug, hook-build:"zplug --self-manage"
+zplug BurntSushi/ripgrep, from:gh-r, as:command, rename-to:rg
+zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
+zplug junegunn/fzf, as:command, use:'bin/*'
+zplug clvv/fasd, \
+      as:command, \
+      hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
+zplug zsh-users/zsh-completions
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
+
+zplug check || zplug install
+zplug load
+
+source "$fasd_cache"
+unset fasd_cache
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
+
+bindkey "[A" history-substring-search-up
+bindkey "[B" history-substring-search-down
+
+source $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh
+source $ZPLUG_HOME/repos/junegunn/fzf/shell/key-bindings.zsh
+export FZF_TMUX=1
+export FZF_COMPLETION_TRIGGER="~~"
+export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS="-e"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fasd -Rdl"
+export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
+_fzf_compgen_path() {
+    rg --files "$1"
+}
 
 # enable command-not-found hook on arch
 source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null || true

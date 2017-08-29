@@ -28,6 +28,7 @@
   (require 'bind-key))
 
 (push "~/.emacs.d/lisp" load-path)
+(push (expand-file-name "~/.zplug/bin") exec-path)
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
