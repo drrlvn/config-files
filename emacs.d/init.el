@@ -37,7 +37,7 @@
 (require 'config-defuns-autoloads)
 (require 'config-looks)
 
-(defconst rg-available (executable-find "rg"))
+(defconst rg-executable (executable-find "rg"))
 
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
@@ -305,10 +305,10 @@
                                          ;; file names beginning with # or .
                                          "\\(?:\\`[#.]\\)"
                                          ;; file names ending with # or ~
-                                         "\\|\\(?:[#~]\\'\\)")
-        counsel-rg-base-command "rg -S --no-heading --line-number --color never %s .")
-  (when rg-available
-    (setq counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"
+                                         "\\|\\(?:[#~]\\'\\)"))
+  (when rg-executable
+    (setq counsel-rg-base-command (concat rg-executable " -S --no-heading --line-number --color never %s .")
+          counsel-grep-base-command (concat rg-executable " -S --no-heading --line-number --color never '%s' %s")
           counsel-ag-base-command counsel-rg-base-command))
   (counsel-mode 1))
 
@@ -559,7 +559,7 @@
          ("M-g M-o" . dumb-jump-quick-look))
   :config
   (setq dumb-jump-selector 'ivy)
-  (when rg-available
+  (when rg-executable
     (setq dumb-jump-force-searcher 'rg)))
 
 (use-package easy-kill
