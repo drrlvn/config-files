@@ -73,15 +73,7 @@ zle -N self-insert url-quote-magic
 
 zmodload zsh/terminfo
 
-bindkey ';3D' emacs-backward-word
-bindkey ';5D' emacs-backward-word
-bindkey '[D' emacs-backward-word
-bindkey '[1;3D' emacs-backward-word
 bindkey '[1;5D' emacs-backward-word
-bindkey ';3C' emacs-forward-word
-bindkey ';5C' emacs-forward-word
-bindkey '[C' emacs-forward-word
-bindkey '[1;3C' emacs-forward-word
 bindkey '[1;5C' emacs-forward-word
 
 bindkey '[5~' history-beginning-search-backward
@@ -89,10 +81,9 @@ bindkey '[6~' history-beginning-search-forward
 
 bindkey "$terminfo[khome]" beginning-of-line
 bindkey "$terminfo[kend]" end-of-line
-bindkey '\e[1~' beginning-of-line # HOME in putty
-bindkey '\e[4~' end-of-line # END in putty
 bindkey "$terminfo[kdch1]" delete-char
 bindkey '[3;3~' delete-word
+bindkey '[3;5~' delete-word
 
 bindkey '\ez' delete-to-char
 bindkey '\e;' copy-prev-shell-word
