@@ -222,13 +222,11 @@ ssh() {
 }
 
 save_dirs() {
-    local should_clear=yes
-    dirs -p | tac | while read d; do
-        echo cd ${d/ /\\ }
-        if [[ -n $should_clear ]]; then
-            unset should_clear
-            echo dirs -c
-        fi
+    local clear_cmd="dirs -c\n"
+    dirs -lp | tac | while read d; do
+        echo cd \"$d\"
+        echo -n $clear_cmd
+        clear_cmd=""
     done
 }
 
@@ -257,32 +255,19 @@ if [[ ! -d ~/.zplug ]]; then
     touch ~/.zplug/packages.zsh
 fi
 
-fasd_cache="$HOME/.fasd-init-zsh"
 ZPLUG_BIN="$HOME/.zplug/bin" # workaround for https://github.com/zplug/zplug/issues/387
 source "$HOME/.zplug/init.zsh"
 zplug zplug/zplug, hook-build:"zplug --self-manage"
 zplug BurntSushi/ripgrep, from:gh-r, as:command, rename-to:rg
 zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
 zplug junegunn/fzf, as:command, use:'bin/*'
-zplug clvv/fasd, \
-      as:command, \
-      hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
+zplug clvv/fasd, as:command
 zplug zsh-users/zsh-completions
 zplug zsh-users/zsh-syntax-highlighting
 zplug zsh-users/zsh-history-substring-search
 
 zplug check || zplug install
 zplug load
-
-source "$fasd_cache"
-unset fasd_cache
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
-
-bindkey "[A" history-substring-search-up
-bindkey "[B" history-substring-search-down
 
 source $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh
 source $ZPLUG_HOME/repos/junegunn/fzf/shell/key-bindings.zsh
@@ -296,6 +281,15 @@ export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
 _fzf_compgen_path() {
     rg --files "$1"
 }
+
+eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
+
+bindkey "[A" history-substring-search-up
+bindkey "[B" history-substring-search-down
 
 # enable command-not-found hook on arch
 source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null || true
