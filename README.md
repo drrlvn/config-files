@@ -13,7 +13,7 @@
 A collection of configuration file for emacs, vim, zsh, git, and others, as well as various
 plugins/packages as git submodules.
 
-Hopefully others might find these helpful. I don't believe in "starter-packas" such as
+Hopefully others might find these helpful. I don't believe in "starter-packs" such as
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/), [prelude](http://batsov.com/prelude/) or
 [Spacemacs](http://spacemacs.org/). I feel like the "one size fits all" approach leads to bloat and
 means that users are not familiar with either the tool or the options the package configured for
