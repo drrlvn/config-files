@@ -749,7 +749,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package counsel-projectile
   :ensure
-  :init (counsel-projectile-on))
+  :config
+  (setq projectile-switch-project-action #'counsel-projectile-find-file)
+  (counsel-projectile-on))
 
 (use-package rainbow-delimiters
   :ensure
