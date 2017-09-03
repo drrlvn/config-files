@@ -275,6 +275,8 @@
          :map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
          ("C-j" . ivy-done)
+         ("<down>" . ivy-next-line-and-call)
+         ("<up>" . ivy-previous-line-and-call)
          ("<next>" . ivy-scroll-up-command)
          ("<prior>" . ivy-scroll-down-command))
   :config
