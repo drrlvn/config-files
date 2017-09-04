@@ -783,12 +783,15 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure
   :mode "\\.hbs\\'"
   :mode "\\.html\\'"
-  :mode "\\.js\\'"
   :config (setq web-mode-code-indent-offset 2
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-style-padding 2
                 web-mode-script-padding 2))
+
+(use-package js2-mode
+  :ensure
+  :mode "\\.js\\'")
 
 (use-package winner
   :config (winner-mode))
