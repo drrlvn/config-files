@@ -161,7 +161,7 @@
 (defun my/increment-number-at-point (n)
   "Increment number at point by N."
   (interactive "p")
-  (let* ((bounds (bounds-of-thing-at-point 'sexp))
+  (let* ((bounds (bounds-of-thing-at-point 'word))
          (start (car bounds))
          (end (cdr bounds))
          (str (buffer-substring start end))

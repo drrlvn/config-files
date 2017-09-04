@@ -275,8 +275,6 @@
          :map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
          ("C-j" . ivy-done)
-         ("<down>" . ivy-next-line-and-call)
-         ("<up>" . ivy-previous-line-and-call)
          ("<next>" . ivy-scroll-up-command)
          ("<prior>" . ivy-scroll-down-command))
   :config
@@ -303,7 +301,10 @@
          ("C-x C-r" . counsel-recentf)
          ("M-i" . counsel-imenu)
          ("C-c a" . my/counsel-rg)
-         ("C-c u" . counsel-unicode-char))
+         ("C-c u" . counsel-unicode-char)
+         :map counsel-ag-map
+         ("<down>" . ivy-next-line-and-call)
+         ("<up>" . ivy-previous-line-and-call))
   :config
   (setq counsel-find-file-ignore-regexp (concat
                                          ;; file names beginning with # or .
