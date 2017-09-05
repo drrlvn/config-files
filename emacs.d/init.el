@@ -304,6 +304,9 @@
          ("C-c u" . counsel-unicode-char)
          :map counsel-ag-map
          ("<down>" . ivy-next-line-and-call)
+         ("<up>" . ivy-previous-line-and-call)
+         :map counsel-imenu-map
+         ("<down>" . ivy-next-line-and-call)
          ("<up>" . ivy-previous-line-and-call))
   :config
   (setq counsel-find-file-ignore-regexp (concat
