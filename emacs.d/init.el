@@ -790,6 +790,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-style-padding 2
                 web-mode-script-padding 2))
 
+(use-package visual-regexp
+  :ensure
+  :defer)
+
 (use-package js2-mode
   :ensure
   :mode "\\.js\\'")
