@@ -607,11 +607,11 @@
   :ensure
   :defer)
 
-(use-package which-key
+(use-package helpful
   :ensure
-  :config
-  (setq which-key-idle-delay 0.5)
-  (which-key-mode 1))
+  :bind (("C-h k" . helpful-key)
+         ("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)))
 
 (use-package highlight-symbol
   :ensure
@@ -738,7 +738,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure
   :commands (popwin:display-buffer-condition popwin:display-buffer-action)
   :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist)
-  :config (push '("*Flycheck errors*" :stick t) popwin:special-display-config))
+  :config
+  (push '("*Flycheck errors*" :stick t) popwin:special-display-config)
+  (push 'helpful-mode popwin:special-display-config))
 
 (use-package projectile
   :ensure
@@ -800,6 +802,12 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package winner
   :config (winner-mode))
+
+(use-package which-key
+  :ensure
+  :config
+  (setq which-key-idle-delay 0.5)
+  (which-key-mode 1))
 
 (use-package whitespace-cleanup-mode
   :ensure
