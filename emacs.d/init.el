@@ -165,6 +165,10 @@
 (use-package saveplace
   :config (save-place-mode 1))
 
+(use-package calendar
+  :defer
+  :config (setq calendar-weekend-days '(5 6)))
+
 (use-package compile
   :defer
   :config
