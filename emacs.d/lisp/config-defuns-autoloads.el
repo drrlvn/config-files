@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22949 35146
-;;;;;;  57592 35000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (22969 36393
+;;;;;;  0 0))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -187,6 +187,11 @@ Insert all special methods.
 
 (autoload 'my/find-user-init-file "config-defuns" "\
 Run `find-file' on `user-init-file'.
+
+\(fn)" t nil)
+
+(autoload 'my/magit-status-config-project "config-defuns" "\
+Open `magit-status` for the configuration project.
 
 \(fn)" t nil)
 

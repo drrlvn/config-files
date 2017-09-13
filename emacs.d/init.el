@@ -49,6 +49,7 @@
 (bind-key "S-<f11>" #'whitespace-cleanup)
 (bind-key "<f12>" #'my/cleanup-buffer)
 (bind-key "S-<f12>" #'my/find-user-init-file)
+(bind-key "C-<f12>" #'my/magit-status-config-project)
 
 (bind-key "M-<return>" #'my/open-line-below)
 (bind-key "M-S-<return>" #'my/open-line-above)

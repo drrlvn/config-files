@@ -340,6 +340,12 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (interactive)
   (find-file user-init-file))
 
+;;;###autoload
+(defun my/magit-status-config-project ()
+  "Open `magit-status` for the configuration project."
+  (interactive)
+  (magit-status (magit-toplevel (file-name-directory user-init-file))))
+
 (defun my/py-isort-buffer ()
   "Wrap `py-isort-buffer' with `my/save-kill-ring'."
   (interactive)
