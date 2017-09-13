@@ -157,6 +157,7 @@
               fringes-outside-margins t
               indent-tabs-mode nil
               tab-width 4
+              cursor-type 'bar
               )
 
 (use-package hl-line
