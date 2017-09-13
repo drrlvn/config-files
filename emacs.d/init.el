@@ -821,6 +821,11 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure
   :config (wrap-region-global-mode 1))
 
+(use-package langtool
+  :ensure
+  :bind (:map text-mode-map
+              ("C-c l" . langtool-check)))
+
 (use-package yasnippet
   :ensure
   :config
