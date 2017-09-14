@@ -32,6 +32,10 @@
   (push zplug-bin exec-path)
   (setenv "PATH" (concat zplug-bin path-separator (getenv "PATH"))))
 
+(defgroup my/configuration nil
+  "Configuration customizations"
+  :group 'convenience)
+
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
@@ -435,6 +439,25 @@
   (unbind-key "C-c C-f" python-mode-map)
   (advice-add #'python-indent-shift-left :around #'my/python-shift-region)
   (advice-add #'python-indent-shift-right :around #'my/python-shift-region))
+
+(use-package ein
+  :ensure
+  :preface
+  (defcustom my/jupyter-daemon-url "http://localhost:8888"
+    "URL for the Jupyter notebook daemon"
+    :type 'string
+    :group 'my/configuration)
+  (defcustom my/jupyter-daemon-password nil
+    "Password for the Jupyter notebook daemon"
+    :type 'string
+    :group 'my/configuration)
+  :bind ("<f6>" . my/open-jupyter-notebook)
+  :config
+  (with-eval-after-load "ein-cell"
+    (set-face-attribute 'ein:cell-input-area nil :background nil)
+    (set-face-attribute 'ein:cell-input-prompt nil :inherit 'highlight)
+    (set-face-attribute 'ein:cell-output-prompt nil :inherit 'doom-modeline-error))
+  (add-hook 'ein:notebook-mode-hook #'my/disable-auto-completion))
 
 (use-package hy-mode
   :ensure

@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22969 36393
-;;;;;;  0 0))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23013 49205
+;;;;;;  412908 564000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -252,6 +252,16 @@ the line in which the beginning of the mark is found.  END and
 COUNT are set in the same way as the original function.
 
 \(fn FN START END &optional COUNT)" t nil)
+
+(autoload 'my/open-jupyter-notebook "config-defuns" "\
+Open the Jupyter notebook configured in my/jupyter-daemon-url.  Log in if necessary.
+
+\(fn)" t nil)
+
+(autoload 'my/disable-auto-completion "config-defuns" "\
+Disable auto completion.
+
+\(fn)" nil nil)
 
 ;;;***
 
