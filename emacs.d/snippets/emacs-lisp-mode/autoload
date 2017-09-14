@@ -3,4 +3,4 @@
 # key: autoload
 # key: al
 # --
-(autoload '$1 "$2" nil t)
+;;;###autoload
