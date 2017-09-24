@@ -714,7 +714,7 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init
   (add-hook 'markdown-mode-hook (apply-partially #'auto-fill-mode 1))
-  (add-hook 'markdown-mode-hook (apply-partially #'refill-mode 1))
+  (add-hook 'markdown-mode-hook (apply-partially #'flyspell-mode 1))
   :config (setq markdown-command "cmark"))
 
 (use-package multiple-cursors
