@@ -463,7 +463,7 @@
 (use-package company-anaconda
   :ensure
   :commands my/company-anaconda-setup
-  :config (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
+  :init (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
 
 (use-package go-mode
   :ensure
