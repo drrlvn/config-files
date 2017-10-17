@@ -444,6 +444,24 @@ COUNT are set in the same way as the original function."
      (list (line-beginning-position) (line-end-position) current-prefix-arg)))
   (apply fn start end count))
 
+(defvar my/logged-in-to-jupyter nil)
+
+;;;###autoload
+(defun my/open-jupyter-notebook ()
+  "Open the Jupyter notebook configured in my/jupyter-daemon-url.  Log in if necessary."
+  (interactive)
+  (unless my/logged-in-to-jupyter
+    (let ((password (or my/jupyter-daemon-password (read-passwd "Password: "))))
+      (ein:notebooklist-login my/jupyter-daemon-url password)
+      (setq my/logged-in-to-jupyter t)))
+  (ein:notebooklist-open my/jupyter-daemon-url))
+
+;;;###autoload
+(defun my/disable-auto-completion ()
+  "Disable auto completion."
+  (company-mode 0)
+  (auto-complete-mode 0))
+
 (provide 'config-defuns)
 
 ;;; Local Variables:
