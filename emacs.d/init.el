@@ -392,6 +392,7 @@
   :mode ("\\.x\\'" . c++-mode)
   :bind (:map c-mode-base-map
               ("C-c o" . ff-get-other-file)
+              ("C-c f" . my/maybe-clang-format-buffer)
               ("C-c i a" . my/insert-all-special)
               ("C-c i c" . my/insert-default-ctor)
               ("C-c i d" . my/insert-virtual-dtor)
@@ -425,6 +426,10 @@
   :ensure
   :defer
   :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
+
+(use-package clang-format
+  :ensure
+  :defer)
 
 (use-package python
   :mode (("SCons\\(truct\\|cript\\)\\'" . python-mode)
@@ -753,8 +758,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package projectile
   :ensure
   :demand
-  :bind (("C-c f" . projectile-find-file-in-known-projects)
-         ("C-c C-f" . projectile-find-file)
+  :bind (("C-c C-f" . projectile-find-file)
          :map projectile-command-map
          ("s" . my/counsel-projectile-rg))
   :config

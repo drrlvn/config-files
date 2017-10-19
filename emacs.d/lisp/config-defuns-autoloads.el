@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (22969 36393
-;;;;;;  0 0))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23016 47443
+;;;;;;  878906 882000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -147,6 +147,11 @@ Indent region if it is active, otherwise indent line.
 
 (autoload 'my/package-upgrade-all "config-defuns" "\
 .
+
+\(fn)" t nil)
+
+(autoload 'my/maybe-clang-format-buffer "config-defuns" "\
+Format buffer if project has .clang-format file.
 
 \(fn)" t nil)
 

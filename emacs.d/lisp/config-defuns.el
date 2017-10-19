@@ -270,6 +270,13 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
     (package-menu-mark-upgrades)
     (package-menu-execute 'noquery)))
 
+;;;###autoload
+(defun my/maybe-clang-format-buffer ()
+  "Format buffer if project has .clang-format file."
+  (interactive)
+  (when (file-exists-p (expand-file-name ".clang-format" (projectile-project-root)))
+    (clang-format-buffer)))
+
 ;; C++ auto insert
 
 (defun my/get-current-class ()
@@ -389,7 +396,8 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   "."
   (setq comment-start "/*"
         comment-end "*/")
-  (c-set-offset 'innamespace 0))
+  (c-set-offset 'innamespace 0)
+  (add-hook 'before-save-hook #'my/maybe-clang-format-buffer))
 
 ;;;###autoload
 (defun my/pyvenv-activate ()
