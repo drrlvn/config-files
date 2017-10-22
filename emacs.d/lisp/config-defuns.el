@@ -452,6 +452,18 @@ COUNT are set in the same way as the original function."
      (list (line-beginning-position) (line-end-position) current-prefix-arg)))
   (apply fn start end count))
 
+;;;###autoload
+(defun my/scroll-up (n)
+  "Scroll up N lines."
+  (interactive "p")
+  (scroll-up n))
+
+;;;###autoload
+(defun my/scroll-down (n)
+  "Scroll down N lines."
+  (interactive "p")
+  (scroll-down n))
+
 (provide 'config-defuns)
 
 ;;; Local Variables:

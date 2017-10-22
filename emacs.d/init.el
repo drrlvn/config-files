@@ -41,6 +41,20 @@
 
 (defconst rg-executable (executable-find "rg"))
 
+(defgroup my/customizations nil
+  "Customizations"
+  :group 'convenience)
+
+(defcustom my/scroll-bindings nil
+  "Line scroll bindings"
+  :type 'boolean
+  :group 'my/customizations)
+
+(defcustom my/restricted-resources nil
+  "Avoid using resource-demanding packages, which might lead to parformance degradation"
+  :type 'boolean
+  :group 'my/customizations)
+
 (bind-key "<escape>" #'keyboard-escape-quit)
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
@@ -86,6 +100,13 @@
 (bind-key "C-x p" #'my/package-upgrade-all)
 
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
+
+(when my/scroll-bindings
+  (bind-key "C-e" #'my/scroll-up)
+  (bind-key "C-y" #'my/scroll-down))
+
+(dotimes (i 10)
+      (bind-key (format "C-%d" i)  (intern (format "select-window-%d" i))))
 
 (use-package mwim
   :ensure
@@ -407,6 +428,7 @@
         c-default-style "bsd"))
 
 (use-package irony
+  :if (not my/restricted-resources)
   :ensure
   :defer
   :init
@@ -414,16 +436,19 @@
   (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony
+  :if (not my/restricted-resources)
   :ensure
   :after company
   :config (add-to-list 'company-backends 'company-irony))
 
 (use-package flycheck-irony
+  :if (not my/restricted-resources)
   :ensure
   :defer
   :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (use-package irony-eldoc
+  :if (not my/restricted-resources)
   :ensure
   :defer
   :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
@@ -529,6 +554,7 @@
   :mode "\\.pylintrc\\'")
 
 (use-package diff-hl
+  :if (not my/restricted-resources)
   :ensure
   :demand
   :bind ("C-]" . my/hydra-diff-hl/body)
