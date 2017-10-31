@@ -275,7 +275,8 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   "Format buffer if project has .clang-format file."
   (interactive)
   (when (file-exists-p (expand-file-name ".clang-format" (projectile-project-root)))
-    (clang-format-buffer)))
+    (clang-format-buffer))
+  nil)
 
 ;; C++ auto insert
 
@@ -397,7 +398,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (setq comment-start "/*"
         comment-end "*/")
   (c-set-offset 'innamespace 0)
-  (add-hook 'before-save-hook #'my/maybe-clang-format-buffer))
+  (add-hook 'write-contents-functions #'my/maybe-clang-format-buffer))
 
 ;;;###autoload
 (defun my/pyvenv-activate ()
