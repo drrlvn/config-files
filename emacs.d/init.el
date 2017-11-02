@@ -543,7 +543,8 @@
   :config
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
-        company-backends (delete 'company-clang company-backends))
+        company-backends (delete 'company-clang company-backends)
+        company-global-modes '(not eshell-mode))
   (global-company-mode 1))
 
 (use-package company-statistics
