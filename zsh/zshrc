@@ -207,7 +207,7 @@ alias reload='rehash; source ~/.zshrc'
 alias cprogress='rsync -ah --progress'
 
 alias e="emacsclient -n"
-alias rg="rg --smart-case"
+alias rg="rg --smart-case --no-line-number"
 
 rgf() {
     command rg --files -g '*'"$@[-1]"'*' "$@[0,-2]"
