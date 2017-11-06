@@ -716,6 +716,11 @@
   (unless (eq system-type 'darwin)
     (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          #'magit-insert-unpushed-to-upstream
+                          #'magit-insert-unpushed-to-upstream-or-recent
+                          'replace)
+  (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-recent-commits nil 'append)
   (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-modules-overview nil 'append))
 
 (use-package magit-gitflow
