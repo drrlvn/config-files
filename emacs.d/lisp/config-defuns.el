@@ -274,8 +274,9 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 (defun my/maybe-clang-format-buffer ()
   "Format buffer if project has .clang-format file."
   (interactive)
-  (when (file-exists-p (expand-file-name ".clang-format" (projectile-project-root)))
-    (clang-format-buffer))
+  (let ((projectile-require-project-root nil))
+    (when (file-exists-p (expand-file-name ".clang-format" (projectile-project-root)))
+      (clang-format-buffer)))
   nil)
 
 ;; C++ auto insert
