@@ -230,6 +230,11 @@
         org-startup-indented t)
   (add-hook 'org-mode-hook #'my/org-mode-hook))
 
+(use-package org-bullets
+  :ensure
+  :defer
+  :init (add-hook 'org-mode-hook (apply-partially #'org-bullets-mode 1)))
+
 (use-package ox-html
   :defer
   :config (setq org-html-postamble nil))
