@@ -230,6 +230,9 @@
         org-startup-indented t)
   (add-hook 'org-mode-hook #'my/org-mode-hook))
 
+(use-package org-agenda
+  :bind (("<f10>" . org-agenda)))
+
 (use-package org-bullets
   :ensure
   :defer
