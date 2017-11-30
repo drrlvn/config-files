@@ -224,6 +224,7 @@
 
 (use-package org
   :defer
+  :bind (("C-M-<return>" . #'org-insert-heading-after-current))
   :config
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
