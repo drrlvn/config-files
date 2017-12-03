@@ -224,15 +224,14 @@
 
 (use-package org
   :defer
-  :bind (("C-M-<return>" . #'org-insert-heading-after-current))
+  :bind (("C-M-<return>" . #'org-insert-heading-after-current)
+         ("<f10>" . org-agenda)
+         ("C-<f10>" . org-capture))
   :config
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
         org-startup-indented t)
   (add-hook 'org-mode-hook #'my/org-mode-hook))
-
-(use-package org-agenda
-  :bind (("<f10>" . org-agenda)))
 
 (use-package org-bullets
   :ensure
