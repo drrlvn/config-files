@@ -315,6 +315,7 @@
          ("<prior>" . ivy-scroll-down-command))
   :config
   (setq ivy-use-virtual-buffers t
+        ivy-use-selectable-prompt t
         ivy-count-format "(%d/%d) "
         ivy-extra-directories '("./")
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
