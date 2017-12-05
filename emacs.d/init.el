@@ -195,10 +195,9 @@
 
 (use-package compile
   :defer
-  :config
-  (setq compilation-scroll-output 'first-error
-        compilation-read-command nil)
-  (add-hook 'compilation-filter-hook #'my/colorize-compilation-buffer))
+  :hook (compilation-filter . my/colorize-compilation-buffer)
+  :config (setq compilation-scroll-output 'first-error
+                compilation-read-command nil))
 
 (use-package ediff
   :defer
@@ -210,10 +209,8 @@
                 doc-view-resolution 300))
 
 (use-package dired
-  :defer
-  :config
-  (setq dired-recursive-deletes 'always)
-  (add-hook 'dired-mode-hook (apply-partially #'dired-omit-mode 1)))
+  :hook (dired-mode . dired-omit-mode)
+  :config (setq dired-recursive-deletes 'always))
 
 (use-package dired-aux
   :defer
@@ -223,20 +220,18 @@
   :commands dired-omit-mode)
 
 (use-package org
-  :defer
   :bind (("C-M-<return>" . #'org-insert-heading-after-current)
          ("<f10>" . org-agenda)
          ("C-<f10>" . org-capture))
+  :hook (org-mode . my/org-mode-hook)
   :config
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
-        org-startup-indented t)
-  (add-hook 'org-mode-hook #'my/org-mode-hook))
+        org-startup-indented t))
 
 (use-package org-bullets
   :ensure
-  :defer
-  :init (add-hook 'org-mode-hook (apply-partially #'org-bullets-mode 1)))
+  :hook (org . org-bullets-mode))
 
 (use-package ox-html
   :defer
@@ -265,10 +260,6 @@
   :defer
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-separator ":"))
-
-(use-package rst
-  :defer
-  :config (add-hook 'rst-mode-hook (apply-partially #'flyspell-mode 1)))
 
 (use-package server
   :if window-system
@@ -389,21 +380,22 @@
               #b00010000)))
   (global-flycheck-mode 1))
 
+(use-package flyspell
+  :hook (rst-mode . flyspell-mode))
+
 (use-package prog-mode
-  :defer
-  :init (add-hook 'prog-mode-hook #'my/prog-mode-hook))
+  :hook (prog-mode . my/prog-mode-hook))
 
 (use-package elisp-mode
   :bind (:map emacs-lisp-mode-map
-              ("C-c C-e" . my/eval-and-replace))
-  :init (add-hook 'emacs-lisp-mode-hook (apply-partially #'eldoc-mode 1)))
+              ("C-c C-e" . my/eval-and-replace)))
+
+(use-package eldoc
+  :hook (emacs-lisp-mode . eldoc-mode))
 
 (use-package lispy
   :ensure
-  :defer
-  :init
-  (add-hook 'emacs-lisp-mode-hook (apply-partially #'lispy-mode 1))
-  (add-hook 'hy-mode-hook (apply-partially #'lispy-mode 1))
+  :hook ((emacs-lisp-mode . lispy-mode) (hy-mode . lispy-mode))
   :config
   (unbind-key "M-i" lispy-mode-map-lispy)
   (unbind-key "C-," lispy-mode-map-lispy)
@@ -431,18 +423,14 @@
               ("C-c i P" . my/insert-copy-assignment-operator)
               ("C-c i m" . my/insert-move-ctor)
               ("C-c i M" . my/insert-move-assignment-operator))
-  :config
-  (add-hook 'c-mode-common-hook #'my/c-mode-common-hook)
-  (setq c-basic-offset 4
-        c-default-style "bsd"))
+  :hook (c-mode-common . my/c-mode-common-hook)
+  :config (setq c-basic-offset 4
+                c-default-style "bsd"))
 
 (use-package irony
   :if (not my/restricted-resources)
   :ensure
-  :defer
-  :init
-  (add-hook 'c-mode-common-hook (apply-partially #'irony-mode 1))
-  (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options))
+  :hook ((c-mode-common . irony-mode) (irony-mode . irony-cdb-autosetup-compile-options)))
 
 (use-package company-irony
   :if (not my/restricted-resources)
@@ -453,14 +441,12 @@
 (use-package flycheck-irony
   :if (not my/restricted-resources)
   :ensure
-  :defer
-  :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  :hook (flycheck-mode . flycheck-irony-setup))
 
 (use-package irony-eldoc
   :if (not my/restricted-resources)
   :ensure
-  :defer
-  :init (add-hook 'irony-mode-hook (apply-partially #'irony-eldoc 1)))
+  :hook (irony-mode . irony-eldoc))
 
 (use-package clang-format
   :ensure
@@ -491,19 +477,15 @@
 
 (use-package pyvenv
   :ensure
-  :init (add-hook 'hack-local-variables-hook #'my/pyvenv-activate))
+  :hook (hack-local-variables . my/pyvenv-activate))
 
 (use-package anaconda-mode
   :ensure
-  :defer
-  :init
-  (add-hook 'python-mode-hook (apply-partially #'anaconda-mode 1))
-  (add-hook 'python-mode-hook (apply-partially #'anaconda-eldoc-mode 1)))
+  :hook (python-mode (python-mode . anaconda-eldoc-mode)))
 
 (use-package company-anaconda
   :ensure
-  :commands my/company-anaconda-setup
-  :init (add-hook 'anaconda-mode-hook #'my/company-anaconda-setup))
+  :hook (anaconda-mode . my/company-anaconda-setup))
 
 (use-package go-mode
   :ensure
@@ -527,8 +509,7 @@
 
 (use-package cmake-mode
   :ensure
-  :defer
-  :config (add-hook 'cmake-mode-hook #'cmake-font-lock-activate))
+  :hook (cmake-mode . cmake-font-lock-activate))
 
 (use-package hippie-exp
   :bind ("M-/" . hippie-expand)
@@ -558,7 +539,7 @@
 
 (use-package company-statistics
   :ensure
-  :init (add-hook 'global-company-mode-hook (apply-partially #'company-statistics-mode 1)))
+  :hook (global-company-mode . company-statistics-mode))
 
 (use-package conf-mode
   :mode "\\.pylintrc\\'")
@@ -568,9 +549,8 @@
   :ensure
   :demand
   :bind ("C-]" . my/hydra-diff-hl/body)
+  :hook ((dired-mode . diff-hl-dired-mode) (magit-post-refresh . diff-hl-magit-post-refresh))
   :config
-  (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
-  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
   (defhydra my/hydra-diff-hl (:hint nil)
     "git-gutter"
     ("]" diff-hl-next-hunk "next")
@@ -606,7 +586,7 @@
          ("M-S-<down>" . drag-stuff-down)
          ("M-S-<left>" . drag-stuff-left)
          ("M-S-<right>" . drag-stuff-right))
-  :config (add-hook 'drag-stuff-after-drag-hook #'my/indent-line-or-region))
+  :hook (drag-stuff-after-drag . my/indent-line-or-region))
 
 (use-package dumb-jump
   :ensure
@@ -624,10 +604,7 @@
 
 (use-package emmet-mode
   :ensure
-  :defer
-  :init
-  (add-hook 'sgml-mode-hook #'emmet-mode)
-  (add-hook 'web-mode-hook #'emmet-mode)
+  :hook (sgml-mode web-mode)
   :config (setq emmet-indentation 2
                 emmet-preview-default nil))
 
@@ -734,11 +711,10 @@
 
 (use-package magit-gitflow
   :ensure
-  :defer
-  :init (add-hook 'magit-mode-hook #'turn-on-magit-gitflow))
+  :hook (magit-mode . turn-on-magit-gitflow))
 
 (use-package git-commit
-  :init (add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
+  :hook (git-commit-setup . git-commit-turn-on-flyspell)
   :config
   (setq git-commit-summary-max-length fill-column)
   (global-git-commit-mode 1))
@@ -759,9 +735,8 @@
 (use-package markdown-mode
   :ensure
   :mode ("README\\.md\\'" . gfm-mode)
-  :init
-  (add-hook 'markdown-mode-hook (apply-partially #'auto-fill-mode 1))
-  (add-hook 'markdown-mode-hook (apply-partially #'flyspell-mode 1))
+  :hook ((markdown-mode . auto-fill-mode)
+         (markdown-mode . flyspell-mode))
   :config (setq markdown-command "cmark"))
 
 (use-package multiple-cursors

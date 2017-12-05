@@ -36,6 +36,7 @@
         kill-visual-line
         lispy-braces
         lispy-brackets
+        lispy-colon
         lispy-delete
         lispy-delete-backward
         lispy-kill
