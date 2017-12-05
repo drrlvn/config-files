@@ -353,7 +353,7 @@
                                          "\\|\\(?:[#~]\\'\\)"))
   (when rg-executable
     (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
-          counsel-grep-base-command "rg -S --no-heading --line-number --color never '%s' %s"
+          counsel-grep-base-command "rg -S --no-heading --line-number --color never %s %s"
           counsel-ag-base-command counsel-rg-base-command))
   (counsel-mode 1))
 
