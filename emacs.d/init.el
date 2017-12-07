@@ -209,7 +209,6 @@
                 doc-view-resolution 300))
 
 (use-package dired
-  :hook (dired-mode . dired-omit-mode)
   :config (setq dired-recursive-deletes 'always))
 
 (use-package dired-aux
@@ -217,7 +216,7 @@
   :config (setq dired-isearch-filenames t))
 
 (use-package dired-x
-  :commands dired-omit-mode)
+  :hook (dired-mode . dired-omit-mode))
 
 (use-package org
   :bind (("C-M-<return>" . #'org-insert-heading-after-current)
