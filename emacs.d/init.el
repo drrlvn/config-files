@@ -224,10 +224,6 @@
          ("C-<f10>" . org-capture))
   :hook (org-mode . my/org-mode-hook)
   :config
-  (unbind-key "M-<right>" org-mode-map)
-  (unbind-key "M-<left>" org-mode-map)
-  (unbind-key "M-<up>" org-mode-map)
-  (unbind-key "M-<down>" org-mode-map)
   (setq org-replace-disputed-keys t
         org-src-fontify-natively t
         org-startup-indented t))
