@@ -342,9 +342,8 @@
                                          ;; file names ending with # or ~
                                          "\\|\\(?:[#~]\\'\\)"))
   (when rg-executable
-    (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
-          counsel-grep-base-command "rg -S --no-heading --line-number --color never %s %s"
-          counsel-ag-base-command counsel-rg-base-command))
+    (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s"
+          counsel-grep-base-command "rg -S --no-heading --line-number --color never %s %s"))
   (counsel-mode 1))
 
 (use-package swiper
