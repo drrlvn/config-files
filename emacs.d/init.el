@@ -45,11 +45,6 @@
   "Customizations"
   :group 'convenience)
 
-(defcustom my/scroll-bindings nil
-  "Line scroll bindings"
-  :type 'boolean
-  :group 'my/customizations)
-
 (defcustom my/restricted-resources nil
   "Avoid using resource-demanding packages, which might lead to parformance degradation"
   :type 'boolean
@@ -101,9 +96,8 @@
 
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
 
-(when my/scroll-bindings
-  (bind-key "C-e" #'my/scroll-up)
-  (bind-key "C-y" #'my/scroll-down))
+(bind-key "M-p" #'my/scroll-up)
+(bind-key "M-n" #'my/scroll-down)
 
 (dotimes (i 10)
       (bind-key (format "C-%d" i)  (intern (format "select-window-%d" i))))
