@@ -352,6 +352,7 @@
 (use-package cua-base
   :config
   (setq cua-enable-cua-keys nil)
+  (unbind-key "C-<return>" cua-global-keymap)
   (cua-mode 1))
 
 (use-package paren
