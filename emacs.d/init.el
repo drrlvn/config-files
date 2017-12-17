@@ -172,7 +172,6 @@
       scroll-conservatively 10000
       scroll-margin 5
       scroll-preserve-screen-position t
-      visual-order-cursor-movement t
       )
 
 (setq-default comment-column 0
