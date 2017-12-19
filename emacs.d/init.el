@@ -778,7 +778,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package counsel-projectile
   :ensure
-  :config (counsel-projectile-on))
+  :config (counsel-projectile-mode 1))
 
 (use-package rainbow-delimiters
   :ensure
