@@ -767,7 +767,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package projectile
   :ensure
   :demand
-  :bind ("C-c C-f" . projectile-find-file)
+  :bind (("C-c C-f" . projectile-find-file)
+         :map projectile-command-map
+         ("s" . my/counsel-projectile-rg))
   :config
   (setq projectile-completion-system 'ivy)
   (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
@@ -777,7 +779,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package counsel-projectile
   :ensure
   :bind (:map counsel-projectile-command-map
-         ("s" . my/counsel-projectile-rg))
+              ("s" . my/counsel-projectile-rg))
   :config (counsel-projectile-mode 1))
 
 (use-package rainbow-delimiters
