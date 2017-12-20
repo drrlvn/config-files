@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23020 45979
-;;;;;;  475007 474000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23098 23261
+;;;;;;  934720 790000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -39,21 +39,6 @@ Invoke `revert-buffer' without the confirmation.
 
 (autoload 'my/kill-buffer-other-window "config-defuns" "\
 Kill buffer in other window.
-
-\(fn)" t nil)
-
-(autoload 'my/swiper-region-or-current-word "config-defuns" "\
-Run swiper on region or current word.
-
-\(fn)" t nil)
-
-(autoload 'my/counsel-rg "config-defuns" "\
-Run `counsel-rg' in working directory or in INITIAL-DIRECTORY if non-nil.
-
-\(fn &optional INITIAL-DIRECTORY)" t nil)
-
-(autoload 'my/counsel-projectile-rg "config-defuns" "\
-Run `counsel-rg' in the PROJECT-ROOT.
 
 \(fn)" t nil)
 

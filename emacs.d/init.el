@@ -310,8 +310,7 @@
 
 (use-package ivy-hydra
   :ensure
-  :bind (:map ivy-minibuffer-map
-              ("M-o" . ivy-dispatching-done-hydra)))
+  :defer)
 
 (use-package counsel
   :ensure
@@ -320,7 +319,7 @@
          ("C-x y" . counsel-yank-pop)
          ("C-x C-r" . counsel-recentf)
          ("M-i" . counsel-imenu)
-         ("C-c a" . my/counsel-rg)
+         ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
          :map counsel-ag-map
          ("<down>" . ivy-next-line-and-call)
@@ -341,7 +340,7 @@
 
 (use-package swiper
   :ensure
-  :bind (("C-S-s" . my/swiper-region-or-current-word)))
+  :defer)
 
 (use-package cua-base
   :config
@@ -769,7 +768,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :demand
   :bind (("C-c C-f" . projectile-find-file)
          :map projectile-command-map
-         ("s" . my/counsel-projectile-rg))
+         ("s" . counsel-projectile-rg))
   :config
   (setq projectile-completion-system 'ivy)
   (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
@@ -778,9 +777,10 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package counsel-projectile
   :ensure
-  :bind (:map counsel-projectile-command-map
-              ("s" . my/counsel-projectile-rg))
-  :config (counsel-projectile-mode 1))
+  :config
+  (unbind-key "s" counsel-projectile-command-map)
+  (ivy-set-actions 'counsel-projectile-switch-project '(("s" counsel-projectile-switch-project-action-rg "search project with rg")))
+  (counsel-projectile-mode 1))
 
 (use-package rainbow-delimiters
   :ensure

@@ -72,24 +72,6 @@
   (kill-buffer (window-buffer (next-window))))
 
 ;;;###autoload
-(defun my/swiper-region-or-current-word ()
-  "Run swiper on region or current word."
-  (interactive)
-  (swiper (my/region-or-current-word)))
-
-;;;###autoload
-(defun my/counsel-rg (&optional initial-directory)
-  "Run `counsel-rg' in working directory or in INITIAL-DIRECTORY if non-nil."
-  (interactive)
-  (counsel-rg (my/region-or-current-word) (or initial-directory default-directory)))
-
-;;;###autoload
-(defun my/counsel-projectile-rg ()
-  "Run `counsel-rg' in the PROJECT-ROOT."
-  (interactive)
-  (my/counsel-rg (projectile-project-root)))
-
-;;;###autoload
 (defun my/eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
