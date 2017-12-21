@@ -310,7 +310,8 @@
 
 (use-package ivy-hydra
   :ensure
-  :defer)
+  :bind (:map ivy-minibuffer-map
+              ("M-o" . ivy-dispatching-done-hydra)))
 
 (use-package counsel
   :ensure
@@ -689,7 +690,7 @@
         magit-repository-directories '(("~/dev" . 1))
         magit-tag-arguments '("--annotate")
         magit-fetch-arguments '("--prune")
-        magit-diff-refine-hunk 'all)
+        magit-diff-refine-hunk t)
   (unless (eq system-type 'darwin)
     (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration)
