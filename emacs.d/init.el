@@ -96,8 +96,8 @@
 
 (bind-key [remap goto-line] #'my/goto-line-with-feedback)
 
-(bind-key "M-p" #'my/scroll-up)
-(bind-key "M-n" #'my/scroll-down)
+(bind-key "M-p" #'my/scroll-down)
+(bind-key "M-n" #'my/scroll-up)
 
 (dotimes (i 10)
       (bind-key (format "C-%d" i)  (intern (format "select-window-%d" i))))
