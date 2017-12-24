@@ -293,9 +293,7 @@
   :bind (("C-c s". ivy-resume)
          :map ivy-minibuffer-map
          ("C-m" . ivy-alt-done)
-         ("C-j" . ivy-done)
-         ("<next>" . ivy-scroll-up-command)
-         ("<prior>" . ivy-scroll-down-command))
+         ("C-j" . ivy-done))
   :config
   (setq ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t
@@ -321,13 +319,7 @@
          ("C-x C-r" . counsel-recentf)
          ("M-i" . counsel-imenu)
          ("C-c a" . counsel-rg)
-         ("C-c u" . counsel-unicode-char)
-         :map counsel-ag-map
-         ("<down>" . ivy-next-line-and-call)
-         ("<up>" . ivy-previous-line-and-call)
-         :map counsel-imenu-map
-         ("<down>" . ivy-next-line-and-call)
-         ("<up>" . ivy-previous-line-and-call))
+         ("C-c u" . counsel-unicode-char))
   :config
   (setq counsel-find-file-ignore-regexp (concat
                                          ;; file names beginning with # or .
