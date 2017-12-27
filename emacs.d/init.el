@@ -99,9 +99,6 @@
 (bind-key "M-p" #'my/scroll-down)
 (bind-key "M-n" #'my/scroll-up)
 
-(dotimes (i 10)
-      (bind-key (format "C-%d" i)  (intern (format "select-window-%d" i))))
-
 (use-package mwim
   :ensure
   :bind (("<home>" . mwim-beginning)
