@@ -69,4 +69,7 @@ anaconda-mode/
 # irony
 irony/
 
+# bookmarks
+bookmarks
+
 custom.el
