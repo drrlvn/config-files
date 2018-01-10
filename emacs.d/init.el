@@ -252,7 +252,7 @@
 
 (use-package server
   :if window-system
-  :config (server-start t))
+  :config (server-start))
 
 (use-package autorevert
   :config
