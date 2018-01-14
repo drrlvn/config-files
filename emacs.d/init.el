@@ -347,6 +347,7 @@
   :ensure
   :demand
   :bind ("M-<f8>" . flycheck-list-errors)
+  :hook (flycheck-mode . my/use-eslint-from-node-modules)
   :config
   (setq flycheck-indication-mode 'right-fringe
         flycheck-emacs-lisp-load-path 'inherit)
@@ -817,6 +818,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package js2-mode
   :ensure
+  :config
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil)
   :mode "\\.js\\'")
 
 (use-package winner
