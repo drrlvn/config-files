@@ -32,10 +32,6 @@
   (push zplug-bin exec-path)
   (setenv "PATH" (concat zplug-bin path-separator (getenv "PATH"))))
 
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-(load custom-file)
-
 (require 'config-defuns-autoloads)
 (require 'config-looks)
 
@@ -172,6 +168,10 @@
               tab-width 4
               cursor-type 'bar
               )
+
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(load custom-file)
 
 (use-package hl-line
   :config (global-hl-line-mode 1))
