@@ -31,6 +31,7 @@
         forward-sexp
         highlight-symbol-next
         indent-for-tab-command
+        ivy-occur-delete-candidate
         ivy-wgrep-change-to-wgrep-mode
         jedi:dot-complete
         kill-visual-line
@@ -160,6 +161,7 @@
         ff-get-other-file
         highlight-symbol-at-point
         iedit-mode
+        iedit-switch-to-mc-mode
         ivy-alt-done
         keyboard-escape-quit
         lispy-cursor-down
