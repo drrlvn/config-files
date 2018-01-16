@@ -448,6 +448,7 @@ COUNT are set in the same way as the original function."
   (interactive "p")
   (scroll-down n))
 
+;;;###autoload
 (defun my/use-eslint-from-node-modules ()
   "Use local eslint from node_modules before global."
   (let* ((root (locate-dominating-file

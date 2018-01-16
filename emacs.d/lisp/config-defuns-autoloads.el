@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23098 23261
-;;;;;;  934720 790000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23132 39794
+;;;;;;  525744 480000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -252,6 +252,11 @@ Scroll up N lines.
 Scroll down N lines.
 
 \(fn N)" t nil)
+
+(autoload 'my/use-eslint-from-node-modules "config-defuns" "\
+Use local eslint from node_modules before global.
+
+\(fn)" nil nil)
 
 ;;;***
 
