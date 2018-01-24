@@ -243,9 +243,9 @@ print_failed_units() {
         local failed=$(systemctl list-units --state=failed --no-legend)
 
         if [[ -n $failed ]]; then
-            local count=$(wc -l <<<"${failed}")
-            echo -e "Failed Units: \033[31m${count}\033[39m"
-            awk '{ print "  " $1 }' <<<"${failed}"
+            failed=($(awk '{print $1}' <<<"${failed}"))
+            echo -e "Failed Units: \033[31m${#failed[@]}\033[39m"
+            echo "  ${(@j:\n  :)failed}"
         fi
     fi
 }
