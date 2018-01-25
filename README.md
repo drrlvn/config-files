@@ -39,7 +39,7 @@ Install script always get an optional path to where this repository is cloned an
 
 You can either clone using:
 
-    git clone --recursive git://github.com/spatz/config-files.git
+    git clone --recursive git://github.com/drrlvn/config-files.git
 
 Or clone as usual and then run:
 
