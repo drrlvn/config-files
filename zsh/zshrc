@@ -207,7 +207,8 @@ alias reload='rehash; source ~/.zshrc'
 alias cprogress='rsync -ah --progress'
 
 alias e="emacsclient -n"
-alias rg="rg --smart-case --no-line-number"
+
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 rgf() {
     command rg --files -g '*'"$@[-1]"'*' "$@[0,-2]"
