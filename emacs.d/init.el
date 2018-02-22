@@ -97,6 +97,11 @@
 (bind-key "M-p" #'my/scroll-down)
 (bind-key "M-n" #'my/scroll-up)
 
+(use-package exec-path-from-shell
+  :ensure
+  :if (eq system-type 'darwin)
+  :config (exec-path-from-shell-initialize))
+
 (use-package mwim
   :ensure
   :bind (("<home>" . mwim-beginning)
