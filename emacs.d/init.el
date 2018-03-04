@@ -148,6 +148,7 @@
 (defun display-startup-echo-area-message () ".")
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+      auto-window-vscroll nil
       backup-directory-alist `((".*" . ,temporary-file-directory))
       comment-padding nil
       diff-switches "-u"
