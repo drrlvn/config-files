@@ -640,7 +640,8 @@
   :bind (("C-\"" . highlight-symbol-at-point)
          ("C-," . highlight-symbol-prev)
          ("C-." . highlight-symbol-next))
-  :config (setq highlight-symbol-idle-delay 0))
+  :config (setq highlight-symbol-colors '("highlight")
+                highlight-symbol-idle-delay 0))
 
 (use-package highlight-parentheses
   :ensure
