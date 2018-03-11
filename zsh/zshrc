@@ -191,7 +191,7 @@ path=($HOME/bin $HOME/.cargo/bin "$path[@]" $HOME/.gem/ruby/*/bin(N))
 
 export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
-export LESS="-R -n -X -m -i"
+export LESS="-R -n -X -m -i -S"
 
 alias history="fc -li"
 alias cmk="ssh -O exit"
