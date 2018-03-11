@@ -40,7 +40,7 @@
 (use-package spaceline-all-the-icons
   :ensure
   :config
-  :when (not (eq system-type 'windows-nt))
+  :unless (eq system-type 'windows-nt)
   (setq spaceline-all-the-icons-primary-separator ""
         spaceline-all-the-icons-secondary-separator ""
         spaceline-all-the-icons-separator-type 'none
