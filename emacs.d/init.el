@@ -858,6 +858,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package yasnippet
   :ensure
+  :ensure yasnippet-snippets
   :config
   (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
         yas-verbosity 1)
