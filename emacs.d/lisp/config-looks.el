@@ -33,22 +33,18 @@
   :defer
   :config (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
 
-(use-package spaceline
-  :defer
-  :config (setq spaceline-responsive nil))
-
-(use-package spaceline-all-the-icons
-  :ensure
+(use-package spaceline-config
+  :ensure spaceline
   :config
-  :unless (eq system-type 'windows-nt)
-  (setq spaceline-all-the-icons-primary-separator ""
-        spaceline-all-the-icons-secondary-separator ""
-        spaceline-all-the-icons-separator-type 'none
-        spaceline-all-the-icons-icon-set-modified 'circle
-        spaceline-all-the-icons-icon-set-window-numbering 'square)
-  (spaceline-toggle-all-the-icons-time-off)
-  (spaceline-toggle-all-the-icons-git-status-off)
-  (spaceline-all-the-icons-theme))
+  (setq spaceline-responsive nil
+        spaceline-workspace-numbers-unicode t
+        spaceline-window-numbers-unicode t)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-spacemacs-theme))
+
+(use-package mode-icons
+  :ensure
+  :config (mode-icons-mode 1))
 
 (when window-system
   (scroll-bar-mode -1)
