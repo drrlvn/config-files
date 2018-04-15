@@ -494,7 +494,17 @@
 
 (use-package rust-mode
   :ensure
-  :defer)
+  :defer
+  :config (setq rust-format-on-save t))
+
+(use-package flycheck-rust
+  :ensure
+  :hook (flycheck-mode . flycheck-rust-setup))
+
+(use-package racer
+  :ensure
+  :hook ((rust-mode . racer-mode)
+         (racer-mode . eldoc-mode)))
 
 (use-package yaml-mode
   :ensure
@@ -531,7 +541,8 @@
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
         company-backends (delete 'company-clang company-backends)
-        company-global-modes '(not eshell-mode))
+        company-global-modes '(not eshell-mode)
+        company-tooltip-align-annotations t)
   (global-company-mode 1))
 
 (use-package company-statistics
