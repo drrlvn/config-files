@@ -216,6 +216,14 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
     (call-interactively 'git-link-homepage)))
 
 ;;;###autoload
+(defun my/git-link-travis ()
+  "Open the repository's Travis page in the browser."
+  (interactive)
+  (require 'git-link)
+  (cl-letf (((symbol-function 'git-link--remote-host) (lambda (_remote) "travis-ci.org")))
+    (call-interactively 'my/git-link-homepage-in-browser)))
+
+;;;###autoload
 (defun my/show-buffer-file-name ()
   "Show the full path to the current file in the minibuffer."
   (interactive)

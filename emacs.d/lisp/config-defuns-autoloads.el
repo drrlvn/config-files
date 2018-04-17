@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23132 39794
-;;;;;;  525744 480000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23253 64989
+;;;;;;  855764 980000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -117,6 +117,11 @@ Get a link to the commit of git-messenger.
 
 (autoload 'my/git-link-homepage-in-browser "config-defuns" "\
 Open the repository homepage in the browser.
+
+\(fn)" t nil)
+
+(autoload 'my/git-link-travis "config-defuns" "\
+Open the repository's Travis page in the browser.
 
 \(fn)" t nil)
 
