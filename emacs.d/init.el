@@ -732,7 +732,8 @@
   :bind (("C-c C-g h" . git-link-homepage)
          ("C-c C-g c" . git-link-commit)
          ("C-c C-g l" . git-link)
-         ("C-c C-g H" . my/git-link-homepage-in-browser)))
+         ("C-c C-g H" . my/git-link-homepage-in-browser)
+         ("C-c C-g t" . my/git-link-travis)))
 
 (use-package man
   :bind ("<f1>" . man)
