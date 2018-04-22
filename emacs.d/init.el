@@ -701,10 +701,9 @@
     (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration)
   (magit-add-section-hook 'magit-status-sections-hook
-                          #'magit-insert-unpushed-to-upstream
+                          #'magit-insert-recent-commits
                           #'magit-insert-unpushed-to-upstream-or-recent
                           'replace)
-  (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-recent-commits nil 'append)
   (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-modules-overview nil 'append))
 
 (use-package magit-gitflow
@@ -821,7 +820,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-style-padding 2
-                web-mode-script-padding 2))
+                web-mode-script-padding 2
+                web-mode-enable-auto-expanding t))
 
 (use-package visual-regexp
   :ensure
