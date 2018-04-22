@@ -43,6 +43,7 @@
     diff = diff-highlight | less -F
 
 [diff]
+    colorMoved = true
     renamelimit = 0
     renames = copy
     ignoreSubmodules = dirty
