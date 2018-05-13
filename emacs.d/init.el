@@ -147,7 +147,7 @@
 
 (defun display-startup-echo-area-message () ".")
 
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+(setq auto-save-default nil
       auto-window-vscroll nil
       backup-directory-alist `((".*" . ,temporary-file-directory))
       comment-padding nil
@@ -808,6 +808,14 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package restclient
   :ensure
   :mode ("\\.http\\'" . restclient-mode))
+
+(use-package super-save
+  :ensure
+  :config
+  (setq super-save-auto-save-when-idle t)
+  (push "magit-status" super-save-triggers)
+  (push "projectile-compile-project" super-save-triggers)
+  (super-save-mode 1))
 
 (use-package syntax-subword
   :ensure
