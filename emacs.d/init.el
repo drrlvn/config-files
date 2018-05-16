@@ -869,7 +869,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package wrap-region
   :ensure
-  :config (wrap-region-global-mode 1))
+  :config
+  (wrap-region-add-wrapper "|" "|" nil 'rust-mode)
+  (wrap-region-global-mode 1))
 
 (use-package langtool
   :ensure
