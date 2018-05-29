@@ -317,6 +317,18 @@
   :bind (:map ivy-minibuffer-map
               ("M-o" . ivy-dispatching-done-hydra)))
 
+(use-package ivy-posframe
+  :ensure
+  :config
+  (setq ivy-posframe-parameters '((left-fringe . 8)
+                                  (right-fringe . 8))
+        ivy-display-functions-alist (append ivy-display-functions-alist
+                                            '((swiper . nil)
+                                              (counsel-rg . nil)
+                                              (counsel-ag . nil)
+                                              (t . ivy-posframe-display-at-frame-center))))
+  (ivy-posframe-enable))
+
 (use-package counsel
   :ensure
   :demand
