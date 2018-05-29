@@ -48,6 +48,9 @@
     renames = copy
     ignoreSubmodules = dirty
 
+[merge]
+    conflictstyle = diff3
+
 [log]
     date = format:%a %F %T
 
