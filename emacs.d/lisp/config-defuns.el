@@ -162,12 +162,15 @@
 (defun my/goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (let ((current-prefix-arg (read-number "Goto line: ")))
-          (call-interactively 'goto-line)))
-    (linum-mode -1)))
+  (let ((prev-display-line-numbers-mode
+         (if (and (boundp 'display-line-numbers-mode) display-line-numbers-mode) 1 -1)))
+    (unwind-protect
+        (progn
+          (let ((display-line-numbers-type t))
+            (display-line-numbers-mode 1))
+          (let ((current-prefix-arg (read-number "Goto line: ")))
+            (call-interactively 'goto-line)))
+      (display-line-numbers-mode prev-display-line-numbers-mode))))
 
 ;;;###autoload
 (defun my/projectile-disable-remove-current-project (orig-fun &rest args)

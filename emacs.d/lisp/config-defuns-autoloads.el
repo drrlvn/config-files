@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23253 64989
-;;;;;;  855764 980000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23309 25097
+;;;;;;  834482 643000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -262,6 +262,8 @@ Scroll down N lines.
 Use local eslint from node_modules before global.
 
 \(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "config-defuns" '("my/")))
 
 ;;;***
 
