@@ -316,6 +316,7 @@
 (use-package ivy-posframe
   :ensure
   :config
+  (set-face-attribute 'ivy-posframe-cursor nil :inherit 'cursor :background nil)
   (setq ivy-posframe-parameters '((left-fringe . 8)
                                   (right-fringe . 8))
         ivy-display-functions-alist (append ivy-display-functions-alist
