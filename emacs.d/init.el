@@ -299,10 +299,7 @@
 (use-package ivy
   :ensure
   :demand
-  :bind (("C-c s". ivy-resume)
-         :map ivy-minibuffer-map
-         ("C-m" . ivy-alt-done)
-         ("C-j" . ivy-done))
+  :bind ("C-c s". ivy-resume)
   :config
   (setq ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t
