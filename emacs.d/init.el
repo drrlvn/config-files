@@ -776,8 +776,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :commands (popwin:display-buffer-condition popwin:display-buffer-action)
   :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist)
   :config
-  (push '("*Flycheck errors*" :stick t) popwin:special-display-config)
-  (push 'helpful-mode popwin:special-display-config))
+  (push '("*Flycheck errors*" :stick t) popwin:special-display-config))
 
 (use-package projectile
   :ensure
