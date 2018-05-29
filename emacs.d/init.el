@@ -219,11 +219,7 @@
 
 (use-package org
   :bind (("<f10>" . org-agenda)
-         ("C-<f10>" . org-capture)
-         :map org-mode-map
-         ("C-M-<return>" . org-insert-heading-after-current)
-         ("M-<return>" . org-meta-return)
-         ("M-S-<return>" . org-insert-todo-heading))
+         ("C-<f10>" . org-capture))
   :hook (org-mode . my/org-mode-hook)
   :config
   (setq org-replace-disputed-keys t
