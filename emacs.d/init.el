@@ -817,7 +817,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package super-save
   :ensure
   :config
-  (setq super-save-auto-save-when-idle t)
   (push "magit-status" super-save-triggers)
   (push "projectile-compile-project" super-save-triggers)
   (super-save-mode 1))

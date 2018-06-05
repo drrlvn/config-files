@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: #[macro_use] extern crate
+# key: ecm
+# --
+#[macro_use]
+extern crate $0;

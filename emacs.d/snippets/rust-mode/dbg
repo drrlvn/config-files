@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dbg
+# key: dbg
+# --
+println!("{:#?}", $0);
