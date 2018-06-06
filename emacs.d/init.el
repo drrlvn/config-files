@@ -313,18 +313,6 @@
   :bind (:map ivy-minibuffer-map
               ("M-o" . ivy-dispatching-done-hydra)))
 
-(use-package ivy-posframe
-  :ensure
-  :config
-  (setq ivy-posframe-parameters '((left-fringe . 8)
-                                  (right-fringe . 8))
-        ivy-display-functions-alist (append ivy-display-functions-alist
-                                            '((swiper . nil)
-                                              (counsel-rg . nil)
-                                              (counsel-ag . nil)
-                                              (t . ivy-posframe-display-at-frame-center))))
-  (ivy-posframe-enable))
-
 (use-package counsel
   :ensure
   :demand
@@ -494,14 +482,12 @@
   :ensure
   :defer)
 
-(use-package toml-mode
-  :ensure
-  :defer)
-
 (use-package rust-mode
   :ensure
   :defer
-  :config (setq rust-format-on-save t))
+  :config
+  (unbind-key "C-c C-f" rust-mode-map)
+  (setq rust-format-on-save t))
 
 (use-package flycheck-rust
   :ensure
