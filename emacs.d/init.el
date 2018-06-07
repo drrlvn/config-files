@@ -714,7 +714,6 @@
   :hook (magit-mode . turn-on-magit-gitflow))
 
 (use-package git-commit
-  :hook (git-commit-setup . git-commit-turn-on-flyspell)
   :config
   (setq git-commit-summary-max-length fill-column)
   (global-git-commit-mode 1))
