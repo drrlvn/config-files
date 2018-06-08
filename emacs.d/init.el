@@ -542,7 +542,8 @@
   :hook (global-company-mode . company-statistics-mode))
 
 (use-package conf-mode
-  :mode "\\.pylintrc\\'")
+  :mode "\\.pylintrc\\'"
+  :hook (conf-mode . my/conf-mode-hook))
 
 (use-package diff-hl
   :if (not my/restricted-resources)

@@ -395,6 +395,11 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   (add-hook 'write-contents-functions #'my/maybe-clang-format-buffer))
 
 ;;;###autoload
+(defun my/conf-mode-hook ()
+  "."
+  (setq require-final-newline t))
+
+;;;###autoload
 (defun my/pyvenv-activate ()
   "."
   (if (bound-and-true-p pyvenv-activate)

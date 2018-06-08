@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23309 25097
-;;;;;;  834482 643000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23322 16842
+;;;;;;  965743 386000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -206,6 +206,11 @@ Move current line, which should be an import statement, to the beginning of the 
 \(fn)" nil nil)
 
 (autoload 'my/c-mode-common-hook "config-defuns" "\
+.
+
+\(fn)" nil nil)
+
+(autoload 'my/conf-mode-hook "config-defuns" "\
 .
 
 \(fn)" nil nil)
