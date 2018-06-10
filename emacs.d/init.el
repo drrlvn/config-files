@@ -97,6 +97,9 @@
 (bind-key "M-p" #'my/scroll-down)
 (bind-key "M-n" #'my/scroll-up)
 
+(bind-key "M-z" #'my/zap-up-to-char)
+(bind-key "M-Z" #'zap-to-char)
+
 (when (eq system-type 'darwin)
   (use-package exec-path-from-shell
     :ensure
@@ -108,9 +111,7 @@
          ("<end>" . mwim-end)))
 
 (use-package misc
-  :bind (("M-z" . zap-up-to-char)
-         ("M-Z" . zap-to-char)
-         ("C-$" . copy-from-above-command)))
+  :bind ("C-$" . copy-from-above-command))
 
 (use-package windmove
   :bind (("M-<left>" . windmove-left)
@@ -747,7 +748,6 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-:" . my/hydra-multiple-cursors/body))
-  :init (advice-add #'zap-up-to-char :around #'my/mc-prompt-once)
   :config (defhydra my/hydra-multiple-cursors (:hint nil)
             "
 ^Up^           ^Down^         ^Miscellaneous^

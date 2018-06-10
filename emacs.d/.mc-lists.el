@@ -49,6 +49,7 @@
         my/decrement-number-at-point
         my/increment-number-at-point
         my/toggle-comment-line-or-region
+        my/zap-up-to-char
         org-self-insert-command
         overwrite-mode
         paredit-backward-barf-sexp

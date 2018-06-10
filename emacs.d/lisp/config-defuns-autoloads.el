@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23322 16842
-;;;;;;  965743 386000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23325 13325
+;;;;;;  38855 562000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -234,11 +234,6 @@ Kill all buffers from current project.
 Add a pylint ignore comment for the error on the current line.
 
 \(fn)" t nil)
-
-(autoload 'my/mc-prompt-once "config-defuns" "\
-Advice for commands with bad support for multiple cursors.  Call FN with ARGS interactively only once.
-
-\(fn FN &rest ARGS)" nil nil)
 
 (autoload 'my/update-file-autoloads "config-defuns" "\
 Update current file's autoloads and save.

@@ -429,11 +429,18 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
         (insert "pylint: disable="
                 (mapconcat 'identity ids ", "))))))
 
-;;;###autoload
-(defun my/mc-prompt-once (fn &rest args)
-  "Advice for commands with bad support for multiple cursors.  Call FN with ARGS interactively only once."
-  (setq mc--this-command (lambda () (interactive) (apply fn args)))
-  (apply fn args))
+(defun my/zap-up-to-char (arg char)
+  "Kill up to and including ARGth occurrence of CHAR.
+Case is ignored if `case-fold-search' is non-nil in the current buffer.
+Goes backward if ARG is negative; error if CHAR not found."
+  (interactive (list (prefix-numeric-value current-prefix-arg)
+                     (read-char "Zap up to char: " t)))
+  ;; Avoid "obsolete" warnings for translation-table-for-input.
+  (with-no-warnings
+    (if (char-table-p translation-table-for-input)
+        (setq char (or (aref translation-table-for-input char) char))))
+  (kill-region (point) (save-excursion (search-forward (char-to-string char) nil nil arg)
+                                       (1- (point)))))
 
 ;;;###autoload
 (defun my/update-file-autoloads ()
