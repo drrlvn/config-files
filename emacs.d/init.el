@@ -347,10 +347,12 @@
   :defer)
 
 (use-package cua-base
+  :bind (:map cua-global-keymap
+              ("C-<return>" . nil))
+  :demand
   :config
   (setq cua-enable-cua-keys nil)
-  (cua-mode 1)
-  (unbind-key "C-<return>" cua-global-keymap))
+  (cua-mode 1))
 
 (use-package paren
   :config
@@ -392,11 +394,11 @@
 (use-package lispy
   :ensure
   :hook ((emacs-lisp-mode . lispy-mode) (hy-mode . lispy-mode))
-  :config
-  (unbind-key "M-i" lispy-mode-map-lispy)
-  (unbind-key "C-," lispy-mode-map-lispy)
-  (unbind-key "<M-left>" lispy-mode-map-lispy)
-  (unbind-key "<M-right>" lispy-mode-map-lispy))
+  :bind (:map lispy-mode-map-lispy
+              ("M-i" . nil)
+              ("C-," . nil)
+              ("<M-left>" . nil)
+              ("<M-right>" . nil)))
 
 (use-package macrostep
   :ensure
@@ -456,9 +458,9 @@
   :mode (("SCons\\(truct\\|cript\\)\\'" . python-mode)
          ("slashrc\\'" . python-mode))
   :bind (:map python-mode-map
-              ("C-<f8>" . my/pylint-ignore-errors-at-point))
+              ("C-<f8>" . my/pylint-ignore-errors-at-point)
+              ("C-c C-f" . nil))
   :config
-  (unbind-key "C-c C-f" python-mode-map)
   (advice-add #'python-indent-shift-left :around #'my/python-shift-region)
   (advice-add #'python-indent-shift-right :around #'my/python-shift-region))
 
@@ -494,9 +496,9 @@
 (use-package rust-mode
   :ensure
   :defer
-  :config
-  (unbind-key "C-c C-f" rust-mode-map)
-  (setq rust-format-on-save t))
+  :bind (:map rust-mode-map
+              ("C-c C-f" . nil))
+  :config (setq rust-format-on-save t))
 
 (use-package flycheck-rust
   :ensure
@@ -879,11 +881,13 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package yasnippet
   :ensure
   :ensure yasnippet-snippets
+  :demand
+  :bind (:map yas-minor-mode-map
+              ("TAB" . nil)
+              ("<tab>" . nil))
   :config
   (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
         yas-verbosity 1)
-  (unbind-key "TAB" yas-minor-mode-map)
-  (unbind-key "<tab>" yas-minor-mode-map)
   (yas-global-mode 1))
 
 ;;; init.el ends here
