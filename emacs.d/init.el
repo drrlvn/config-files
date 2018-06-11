@@ -67,6 +67,9 @@
 (bind-key "C-S-<iso-lefttab>" #'next-buffer)
 (bind-key "<mouse-9>" #'next-buffer)
 
+(bind-key "C-'" #'pop-to-mark-command)
+(bind-key "C-M-'" #'pop-global-mark)
+
 (bind-key "C-z" #'repeat)
 (unbind-key "C-x C-z")
 (bind-key "C-!" #'kill-this-buffer)
@@ -296,7 +299,10 @@
 (use-package ivy
   :ensure
   :demand
-  :bind ("C-c s". ivy-resume)
+  :bind (("C-c s". ivy-resume)
+         :map ivy-minibuffer-map
+         ("<tab>" . ivy-alt-done)
+         ("C-i" . ivy-partial-or-done))
   :config
   (setq ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t
@@ -322,7 +328,9 @@
          ("C-x C-r" . counsel-recentf)
          ("M-i" . counsel-imenu)
          ("C-c a" . counsel-rg)
-         ("C-c u" . counsel-unicode-char))
+         ("C-c u" . counsel-unicode-char)
+         :map counsel-mode-map
+         ([remap pop-to-mark-command] . nil))
   :config
   (setq counsel-find-file-ignore-regexp (concat
                                          ;; file names beginning with # or .
