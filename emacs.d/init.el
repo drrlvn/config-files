@@ -67,8 +67,8 @@
 (bind-key "C-S-<iso-lefttab>" #'next-buffer)
 (bind-key "<mouse-9>" #'next-buffer)
 
-(bind-key "C-'" #'pop-to-mark-command)
-(bind-key "C-M-'" #'pop-global-mark)
+(bind-key "C-`" #'pop-to-mark-command)
+(bind-key "C-M-`" #'pop-global-mark)
 
 (bind-key "C-z" #'repeat)
 (unbind-key "C-x C-z")
