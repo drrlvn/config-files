@@ -827,10 +827,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package undo-tree
   :ensure
-  :config
-  (setq undo-tree-auto-save-history t
-        undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undodir"))))
-  (global-undo-tree-mode 1))
+  :config (global-undo-tree-mode 1))
 
 (use-package web-mode
   :ensure
