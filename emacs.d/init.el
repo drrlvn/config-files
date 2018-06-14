@@ -668,6 +668,13 @@
   (setq hl-paren-delay 0)
   (global-highlight-parentheses-mode 1))
 
+(use-package highlight-indent-guides
+  :ensure
+  :defer
+  :config (setq highlight-indent-guides-method 'character
+                highlight-indent-guides-responsive 'stack
+                highlight-indent-guides-delay 0))
+
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
   :config

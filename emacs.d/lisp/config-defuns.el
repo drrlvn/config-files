@@ -390,6 +390,7 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
 ;;;###autoload
 (defun my/prog-mode-hook ()
   "."
+  (highlight-indent-guides-mode 1)
   (rainbow-delimiters-mode 1)
   (setq show-trailing-whitespace t)
   (font-lock-add-keywords
