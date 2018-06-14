@@ -675,6 +675,10 @@
                 highlight-indent-guides-responsive 'stack
                 highlight-indent-guides-delay 0))
 
+(use-package volatile-highlights
+  :ensure
+  :config (volatile-highlights-mode 1))
+
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
   :config
