@@ -497,7 +497,9 @@
   :ensure
   :defer
   :bind (:map rust-mode-map
-              ("C-c C-f" . nil))
+              ("C-c C-f" . nil)
+              ("C-c P" . rust-promote-module-into-dir)
+              ("C-c m" . my/rust-toggle-mut))
   :config (setq rust-format-on-save t))
 
 (use-package flycheck-rust
@@ -507,7 +509,9 @@
 (use-package racer
   :ensure
   :hook ((rust-mode . racer-mode)
-         (racer-mode . eldoc-mode)))
+         (racer-mode . eldoc-mode))
+  :bind (:map rust-mode-map
+              ("C-c h" . racer-describe)))
 
 (use-package yaml-mode
   :ensure

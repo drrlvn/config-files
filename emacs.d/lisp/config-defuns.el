@@ -337,6 +337,16 @@ Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html"
   )
 
 ;;;###autoload
+(defun my/rust-toggle-mut ()
+  "Toggle mut for variable under point."
+  (interactive)
+  (save-excursion
+    (racer-find-definition)
+    (if (looking-back "mut\\s-+" (point-at-bol))
+        (delete-region (match-beginning 0) (match-end 0))
+      (insert "mut "))))
+
+;;;###autoload
 (defun my/find-user-init-file ()
   "Run `find-file' on `user-init-file'."
   (interactive)

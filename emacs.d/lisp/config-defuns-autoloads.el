@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23325 13325
-;;;;;;  38855 562000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (23330 48782
+;;;;;;  123663 414000))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -177,6 +177,11 @@ Insert move assignment operator.
 
 (autoload 'my/insert-all-special "config-defuns" "\
 Insert all special methods.
+
+\(fn)" t nil)
+
+(autoload 'my/rust-toggle-mut "config-defuns" "\
+Toggle mut for variable under point.
 
 \(fn)" t nil)
 
