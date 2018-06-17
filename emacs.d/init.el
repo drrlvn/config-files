@@ -286,10 +286,9 @@
   (setq recentf-max-saved-items 1000)
   (recentf-mode 1))
 
-(use-package smex
+(use-package prescient
   :ensure
-  :defer
-  :config (setq smex-history-length 3))
+  :config (prescient-persist-mode 1))
 
 (use-package wgrep
   :ensure
@@ -319,6 +318,10 @@
   :ensure
   :bind (:map ivy-minibuffer-map
               ("M-o" . ivy-dispatching-done-hydra)))
+
+(use-package ivy-prescient
+  :ensure
+  :config (ivy-prescient-mode 1))
 
 (use-package counsel
   :ensure
@@ -552,9 +555,9 @@
         company-tooltip-align-annotations t)
   (global-company-mode 1))
 
-(use-package company-statistics
+(use-package company-prescient
   :ensure
-  :hook (global-company-mode . company-statistics-mode))
+  :config (company-prescient-mode 1))
 
 (use-package conf-mode
   :mode "\\.pylintrc\\'"
