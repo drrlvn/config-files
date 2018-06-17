@@ -301,8 +301,8 @@
   :demand
   :bind (("C-c s". ivy-resume)
          :map ivy-minibuffer-map
-         ("<tab>" . ivy-alt-done)
-         ("C-i" . ivy-partial-or-done))
+         ("<return>" . ivy-alt-done)
+         ("C-j" . ivy-done))
   :config
   (setq ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t
