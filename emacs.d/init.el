@@ -769,6 +769,9 @@
          (markdown-mode . flyspell-mode))
   :config (setq markdown-command "cmark"))
 
+(use-package sh-mode
+  :mode ("PKGBUILD\\'" . shell-script-mode))
+
 (use-package multiple-cursors
   :ensure
   :bind (("C-|" . mc/edit-lines)
