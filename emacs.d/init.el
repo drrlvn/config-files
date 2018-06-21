@@ -831,13 +831,6 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :ensure
   :mode ("\\.http\\'" . restclient-mode))
 
-(use-package super-save
-  :ensure
-  :config
-  (push "magit-status" super-save-triggers)
-  (push "projectile-compile-project" super-save-triggers)
-  (super-save-mode 1))
-
 (use-package syntax-subword
   :ensure
   :config (global-syntax-subword-mode 1))
