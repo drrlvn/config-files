@@ -81,17 +81,5 @@
 [user]
     useConfigOnly = true
 
-[gui]
-    fontui = -family \"Open Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-    fontdiff = -family \"Ubuntu Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
-
-[svn]
-    rmdir = true
-
 [tig]
     line-graphics = utf-8
-
-[url "https://github.com/"]
-    insteadOf = "gh:"
-[url "git@github.com:"]
-    pushInsteadOf = "gh:"
