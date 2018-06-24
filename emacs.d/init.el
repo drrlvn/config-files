@@ -653,9 +653,10 @@
 
 (use-package helpful
   :ensure
-  :bind (("C-h k" . helpful-key)
-         ("C-h f" . helpful-callable)
-         ("C-h v" . helpful-variable)))
+  :bind (([remap describe-key] . helpful-key)
+         ([remap describe-function] . helpful-callable)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-symbol] . helpful-symbol)))
 
 (use-package highlight-symbol
   :ensure

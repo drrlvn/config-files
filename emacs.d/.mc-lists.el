@@ -40,10 +40,12 @@
         lispy-colon
         lispy-delete
         lispy-delete-backward
+        lispy-forward
         lispy-kill
         lispy-parens
         lispy-quotes
         lispy-space
+        lispy-tick
         mwim-beginning
         mwim-end
         my/decrement-number-at-point
