@@ -333,7 +333,11 @@
          ("C-c a" . counsel-rg)
          ("C-c u" . counsel-unicode-char)
          :map counsel-mode-map
-         ([remap pop-to-mark-command] . nil))
+         ([remap pop-to-mark-command] . nil)
+         ([remap describe-key] . nil)
+         ([remap describe-function] . nil)
+         ([remap describe-variable] . nil)
+         ([remap describe-symbol] . nil))
   :config
   (setq counsel-find-file-ignore-regexp (concat
                                          ;; file names beginning with # or .
