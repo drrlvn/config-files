@@ -818,15 +818,16 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (setq projectile-completion-system 'ivy)
   (fset #'projectile-kill-buffers #'my/projectile-kill-buffers)
   (advice-add #'projectile-switch-project :around #'my/projectile-disable-remove-current-project)
-  (ivy-set-actions 'projectile-switch-project
-                   '(("v" counsel-projectile-switch-project-action-vc "open project in vc-dir / magit / monky")
-                     ("s" counsel-projectile-switch-project-action-rg "search project with rg")))
   (projectile-mode 1))
 
 (use-package counsel-projectile
   :ensure
-  :commands (counsel-projectile-switch-project-action-vc
-             counsel-projectile-switch-project-action-rg))
+  :bind (:map counsel-projectile-command-map
+              ("s" . nil))
+  :config
+  (ivy-set-actions 'counsel-projectile-switch-project
+                   '(("s" counsel-projectile-switch-project-action-rg "search project with rg")))
+  (counsel-projectile-mode 1))
 
 (use-package rainbow-delimiters
   :ensure
