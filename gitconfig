@@ -34,6 +34,9 @@
     sparseCheckout = true
     untrackedCache = true
 
+[protocol]
+    version = 2
+
 [credential]
     helper = store
 
