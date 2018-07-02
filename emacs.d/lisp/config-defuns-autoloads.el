@@ -3,8 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "config-defuns" "config-defuns.el" (23330 48782
-;;;;;;  123663 414000))
+;;;### (autoloads nil "config-defuns" "config-defuns.el" (0 0 0 0))
 ;;; Generated autoloads from config-defuns.el
 
 (autoload 'my/cleanup-buffer "config-defuns" "\
@@ -240,11 +239,6 @@ Add a pylint ignore comment for the error on the current line.
 
 \(fn)" t nil)
 
-(autoload 'my/update-file-autoloads "config-defuns" "\
-Update current file's autoloads and save.
-
-\(fn)" nil nil)
-
 (autoload 'my/python-shift-region "config-defuns" "\
 Advice around Python shift functions.
 FN is the original function.  START is set interactivly to
@@ -268,7 +262,11 @@ Use local eslint from node_modules before global.
 
 \(fn)" nil nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "config-defuns" '("my/")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "config-defuns" '(#("my/" 0 3 (fontified t face font-lock-function-name-face)))))
+
+;;;***
+
+;;;### (autoloads nil nil ("config-looks.el") (0 0 0 0))
 
 ;;;***
 

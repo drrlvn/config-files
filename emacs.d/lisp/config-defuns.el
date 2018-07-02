@@ -451,10 +451,10 @@ Goes backward if ARG is negative; error if CHAR not found."
   (kill-region (point) (save-excursion (search-forward (char-to-string char) nil nil arg)
                                        (1- (point)))))
 
-;;;###autoload
 (defun my/update-file-autoloads ()
   "Update current file's autoloads and save."
-  (update-file-autoloads buffer-file-name t (format "%s-autoloads.el" (file-name-sans-extension buffer-file-name))))
+  (let ((generated-autoload-file (format "%s-autoloads.el" (file-name-sans-extension buffer-file-name))))
+    (update-directory-autoloads ".")))
 
 ;;;###autoload
 (defun my/python-shift-region (fn start end &optional count)
