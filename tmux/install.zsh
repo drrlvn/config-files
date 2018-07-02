@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-REPO_PATH="${1:-${HOME}/config-files}"
+REPO_PATH="${1:-$0:a:h:h}"
 
 echo -n "Using ${REPO_PATH} -- Press enter to continue..."; read
 
