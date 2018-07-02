@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 if [[ -e ~/.zshrc ]]; then
 	if [[ $1 = -f ]]; then

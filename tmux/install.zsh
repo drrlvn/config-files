@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 REPO_PATH="${1:-$0:a:h:h}"
 
