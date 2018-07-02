@@ -750,7 +750,9 @@
 (use-package magithub
   :ensure
   :after magit
-  :config (magithub-feature-autoinject t))
+  :config
+  (setq magithub-preferred-remote-method 'clone_url)
+  (magithub-feature-autoinject t))
 
 (use-package git-commit
   :config
@@ -910,5 +912,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   (setq yas-prompt-functions '(yas-completing-prompt) ; use normal completion
         yas-verbosity 1)
   (yas-global-mode 1))
+
+(use-package ivy-yasnippet
+  :ensure
+  :bind ("C-M-/" . ivy-yasnippet))
 
 ;;; init.el ends here
