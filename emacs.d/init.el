@@ -368,9 +368,8 @@
 
 (use-package flycheck
   :ensure
-  :demand
   :bind ("M-<f8>" . flycheck-list-errors)
-  :hook (flycheck-mode . my/use-eslint-from-node-modules)
+  :hook ((prog-mode . flycheck-mode) (flycheck-mode . my/use-eslint-from-node-modules))
   :config
   (setq flycheck-indication-mode 'right-fringe
         flycheck-emacs-lisp-load-path 'inherit)
@@ -382,8 +381,7 @@
               #b11110000
               #b01110000
               #b00110000
-              #b00010000)))
-  (global-flycheck-mode 1))
+              #b00010000))))
 
 (use-package flyspell
   :hook (rst-mode . flyspell-mode))
@@ -511,6 +509,7 @@
 
 (use-package flycheck-rust
   :ensure
+  :after rust-mode
   :hook (flycheck-mode . flycheck-rust-setup))
 
 (use-package racer
@@ -678,7 +677,7 @@
 
 (use-package highlight-indent-guides
   :ensure
-  :defer
+  :hook (prog-mode . highlight-indent-guides-mode)
   :config (setq highlight-indent-guides-method 'character
                 highlight-indent-guides-responsive 'stack
                 highlight-indent-guides-delay 0))
@@ -747,6 +746,11 @@
 (use-package magit-gitflow
   :ensure
   :hook (magit-mode . turn-on-magit-gitflow))
+
+(use-package magithub
+  :ensure
+  :after magit
+  :config (magithub-feature-autoinject t))
 
 (use-package git-commit
   :config
@@ -831,7 +835,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package rainbow-delimiters
   :ensure
-  :defer)
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package restclient
   :ensure

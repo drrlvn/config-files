@@ -75,4 +75,7 @@ bookmarks
 # prescient
 var/
 
+# magithub
+magithub/
+
 custom.el
