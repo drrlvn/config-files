@@ -119,11 +119,6 @@ Open the repository homepage in the browser.
 
 \(fn)" t nil)
 
-(autoload 'my/git-link-travis "config-defuns" "\
-Open the repository's Travis page in the browser.
-
-\(fn)" t nil)
-
 (autoload 'my/show-buffer-file-name "config-defuns" "\
 Show the full path to the current file in the minibuffer.
 
