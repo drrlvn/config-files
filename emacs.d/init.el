@@ -321,7 +321,9 @@
 
 (use-package ivy-prescient
   :ensure
-  :config (ivy-prescient-mode 1))
+  :config
+  (setq ivy-prescient-retain-classic-highlighting t)
+  (ivy-prescient-mode 1))
 
 (use-package counsel
   :ensure
