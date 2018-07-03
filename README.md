@@ -63,6 +63,12 @@ One symlink is required:
 
     ln -s <REPO_PATH>/vim ~/.vim
 
+## Fish ##
+
+Create the symlink `~/.config/fish` using:
+
+    ln -s <REPO_PATH>/fish ~/.config
+
 ## Zsh ##
 
 Run the script `zsh/install.zsh <REPO_PATH>`.
