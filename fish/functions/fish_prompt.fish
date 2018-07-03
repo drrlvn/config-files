@@ -1,16 +1,16 @@
 function fish_prompt
     if test $status -eq 0
-        set prompt_status (set_color green)' ✔'
+        set prompt_status (set_color brgreen)' ✔'
     else
-        set prompt_status (set_color red)' ✘'
+        set prompt_status (set_color brred)' ✘'
     end
 
-	test $SSH_TTY
-    and printf (set_color red)$USER(set_color brwhite)'@'(set_color yellow)(prompt_hostname)' '
-    test "$USER" = 'root'
-    and echo (set_color red)"#"
+    if not set -q $SSH_TTY
+        echo -n (set_color brmagenta)$USER@(prompt_hostname)
+    end
+    if test "$USER" = 'root'
+        echo -n (set_color brred)"#"
+    end
 
-    # Main
-
-    echo -n $prompt_status (set_color red)'❯'(set_color yellow)'❯'(set_color green)'❯ '
+    echo -n $prompt_status (set_color brred)'❯'(set_color bryellow)'❯'(set_color brgreen)'❯ '
 end
