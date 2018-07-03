@@ -784,6 +784,10 @@
 (use-package sh-mode
   :mode ("PKGBUILD\\'" . shell-script-mode))
 
+(use-package fish-mode
+  :ensure
+  :defer)
+
 (use-package multiple-cursors
   :ensure
   :bind (("C-|" . mc/edit-lines)
