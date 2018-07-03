@@ -122,7 +122,9 @@ cycle-dir-right() { pushd +1 &> /dev/null && zle redraw-prompt }
 zle -N cycle-dir-right
 bindkey '\e[1;7D' cycle-dir-right
 
-eval $(dircolors -b)
+if (( $+commands[dircolors] )); then
+    eval $(dircolors -b)
+fi
 
 # update window title
 set-window-title() {
@@ -193,15 +195,18 @@ export EDITOR="/usr/bin/emacsclient -c"
 export ALTERNATE_EDITOR="/usr/bin/vim"
 export LESS="-R -n -X -m -i -S"
 
+if [[ ! -v ZSH_NO_COREUTILS ]]; then
+   alias cp='cp -iv'
+   alias mv='mv -iv'
+   alias rm='rm -Iv --one-file-system'
+   alias ls='ls --color=auto --group-directories-first -lFhX'
+   alias la='ls -A'
+   alias grep='grep --color=auto'
+fi
+
 alias history="fc -li"
 alias cmk="ssh -O exit"
 alias ip='ip -c'
-alias grep='grep --color=auto'
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -Iv --one-file-system'
-alias ls='ls --color=auto --group-directories-first -lFhX'
-alias la='ls -A'
 alias lx='exa --group-directories-first -s extension -lF'
 alias tree='tree --dirsfirst -Fh'
 alias reload='rehash; source ~/.zshrc'
@@ -268,20 +273,27 @@ zplug zsh-users/zsh-history-substring-search
 zplug check || zplug install
 zplug load
 
-source $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh
-source $ZPLUG_HOME/repos/junegunn/fzf/shell/key-bindings.zsh
-export FZF_TMUX=1
-export FZF_COMPLETION_TRIGGER="~~"
-export FZF_DEFAULT_COMMAND='fd -t f'
-export FZF_DEFAULT_OPTS="-e"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fasd -Rdl"
-export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
-_fzf_compgen_path() {
-    fd -t f "$1"
-}
+if [[ -f $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh ]]; then
+    source $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh
+    source $ZPLUG_HOME/repos/junegunn/fzf/shell/key-bindings.zsh
+    export FZF_TMUX=1
+    export FZF_COMPLETION_TRIGGER="~~"
+    export FZF_DEFAULT_COMMAND='fd -t f'
+    export FZF_DEFAULT_OPTS="-e"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND="fasd -Rdl"
+    export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -CFh -L 2 {} | head -n 100'"
+    _fzf_compgen_path() {
+        if (( $+commands[fd] )); then
+            fd -t f "$1"
+        fi
+    }
 
-eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+fi
+
+if (( $+commands[fasd] )); then
+    eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+fi
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
