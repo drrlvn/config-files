@@ -10,8 +10,8 @@ end
 
 setup_theme
 setup_git_prompt
+setup_path
 
-set -x PATH $HOME/bin $HOME/.cargo/bin $PATH $HOME/.gem/ruby/*/bin
 set -x EDITOR '/usr/bin/emacsclient -c'
 set -x ALTERNATE_EDITOR '/usr/bin/vim'
 set -x LESS '-R -n -X -m -i -S'
