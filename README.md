@@ -71,12 +71,12 @@ Create the symlink `~/.config/fish` using:
 
 ## Zsh ##
 
-Run the script `zsh/install.zsh <REPO_PATH>`.
+Run the script `zsh/install.sh <REPO_PATH>`.
 
 ## Git ##
 
-Run the script `install-git.zsh <REPO_PATH>`.
+Run the script `install-git.sh <REPO_PATH>`.
 
 ## Tmux ##
 
-Run the script `tmux/install.zsh <REPO_PATH>`.
+Run the script `tmux/install.sh <REPO_PATH>`.
