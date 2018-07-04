@@ -1,3 +1,3 @@
 function tree
-    command tree --dirsfirst -Fh
+    command tree --dirsfirst -Fh $argv
 end

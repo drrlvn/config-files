@@ -1,3 +1,3 @@
 function cmk -w ssh -d 'Close SSH master connection'
-    ssh -O exit
+    ssh -O exit $argv
 end

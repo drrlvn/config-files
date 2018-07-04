@@ -1,3 +1,3 @@
 function mv -w mv
-    command mv -iv
+    command mv -iv $argv
 end

@@ -1,3 +1,3 @@
 function ip -w ip
-    command ip -c
+    command ip -c $argv
 end
