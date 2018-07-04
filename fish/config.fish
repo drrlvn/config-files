@@ -1,9 +1,11 @@
 function fish_greeting
-    set failed (systemctl list-units --state=failed --no-legend)
-    if not set -q $failed
-        echo Failed Units: (set_color brred)(count $failed)(set_color normal)
-        for unit in $failed
-            echo '  '(string split -m 1 ' ' -- $unit)[1]
+    if type -q systemctl
+        set failed (systemctl list-units --state=failed --no-legend)
+        if not set -q $failed
+            echo Failed Units: (set_color brred)(count $failed)(set_color normal)
+            for unit in $failed
+                echo '  '(string split -m 1 ' ' -- $unit)[1]
+            end
         end
     end
 end
