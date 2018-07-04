@@ -12,5 +12,5 @@ function fish_prompt
         echo -n (set_color brred)"#"
     end
 
-    echo -n $prompt_status (set_color brred)'❯'(set_color bryellow)'❯'(set_color brgreen)'❯ '
+    echo -n $prompt_status (set_color brred)'❯'(set_color bryellow)'❯'(set_color brgreen)'❯ '(set_color normal)
 end
