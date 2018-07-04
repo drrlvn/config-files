@@ -24,5 +24,5 @@ if type -q fzf
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND . \$dir"
     set -x FZF_CTRL_T_OPTS '--preview \'bat --color always {}\''
     set -x FZF_ALT_C_COMMAND "fd -t d . \$dir"
-    set -x FZF_ALT_C_OPTS '--preview \'tree --dirsfirst -CFh -L 2 {} | head -n 100\''
+    set -x FZF_ALT_C_OPTS '--preview \'exa --tree --group-directories-first -s extension --color always -F -L 2 {} | head -n 100\''
 end
