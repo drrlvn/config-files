@@ -63,7 +63,9 @@ set wildmode=list:longest
 
 " VIM 7.3 specific options
 if version >= 703
-	set cryptmethod=blowfish
+    if !has('nvim')
+	   set cryptmethod=blowfish
+    endif
 
 	" persistent undo
 	set undodir=~/.vim/undodir

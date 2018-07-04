@@ -3,7 +3,7 @@
 * [About](#about)
 * [Usage](#usage)
   * [Emacs](#emacs)
-  * [VIM](#vim)
+  * [Vim / NeoVim](#vim)
   * [Zsh](#zsh)
   * [Git](#git)
   * [Tmux](#tmux)
@@ -57,11 +57,16 @@ Notes:
   e.g. `aspell-en`.
 * By default `cmark` is used to markdown export/preview so it needs to be installed.
 
-## VIM ##
+## Vim / Neovim ##
 
-One symlink is required:
+For Vim:
 
     ln -s <REPO_PATH>/vim ~/.vim
+
+For Neovim:
+
+    ln -s <REPO_PATH>/vim ~/.config/nvim
+
 
 ## Fish ##
 
