@@ -33,6 +33,7 @@
     pager = less -F
     sparseCheckout = true
     untrackedCache = true
+    excludesfile = ~/.gitignore_global
 
 [protocol]
     version = 2
