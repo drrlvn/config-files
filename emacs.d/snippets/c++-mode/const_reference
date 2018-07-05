@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: const reference
-# key: cr
-# --
-const ${T} & 

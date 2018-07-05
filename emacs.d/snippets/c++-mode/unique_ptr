@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: unique_ptr
-# key: up
-# --
-std::unique_ptr<${T}>

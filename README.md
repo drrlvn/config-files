@@ -2,30 +2,21 @@
 
 * [About](#about)
 * [Usage](#usage)
-  * [Emacs](#emacs)
-  * [Vim / NeoVim](#vim)
   * [Zsh](#zsh)
   * [Git](#git)
   * [Tmux](#tmux)
 
 # About #
 
-A collection of configuration file for emacs, vim, zsh, git, and others, as well as various
-plugins/packages as git submodules.
+A collection of configuration file for zsh, git, and others, as well as various plugins/packages as
+git submodules.
 
-Hopefully others might find these helpful. I don't believe in "starter-packs" such as
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/), [prelude](http://batsov.com/prelude/) or
-[Spacemacs](http://spacemacs.org/). I feel like the "one size fits all" approach leads to bloat and
-means that users are not familiar with either the tool or the options the package configured for
-them.
+See also my [emacs](https://github.com/drrlvn/.emacs.d), [vim](https://github.com/drrlvn/.vim) and
+[fish](https://github.com/drrlvn/fish) configs.
 
 I mostly assembled bits and pieces over time as the need grew, but some sources served as
 inspiration and deserve explicit credit:
 
-* Emacs:
-  * [emacs-fu](http://www.djcbsoftware.nl/dot-emacs.html)
-  * [magnars/.emacs.d](https://github.com/magnars/.emacs.d)
-  * [vmalloc/emacs](https://github.com/vmalloc/emacs)
 * Zsh:
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/)
 
@@ -44,35 +35,6 @@ You can either clone using:
 Or clone as usual and then run:
 
     git submodule update --init --recursive
-
-## Emacs ##
-
-Create the symlink `~/.emacs.d` using:
-
-    ln -s <REPO_PATH>/emacs.d ~/.emacs.d
-
-Notes:
-* Emacs 25.1 is required, older version will not work.
-* For spell checking to work an ispell compatible program and dictionary need to be installed,
-  e.g. `aspell-en`.
-* By default `cmark` is used to markdown export/preview so it needs to be installed.
-
-## Vim / Neovim ##
-
-For Vim:
-
-    ln -s <REPO_PATH>/vim ~/.vim
-
-For Neovim:
-
-    ln -s <REPO_PATH>/vim ~/.config/nvim
-
-
-## Fish ##
-
-Create the symlink `~/.config/fish` using:
-
-    ln -s <REPO_PATH>/fish ~/.config
 
 ## Zsh ##
 
