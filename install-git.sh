@@ -13,3 +13,4 @@ echo -e "[include]\n    path = $repo_path/gitconfig" > ~/.config/git/config
 
 mkdir -p ~/bin
 ln -sf $repo_path/diff-highlight ~/bin/
+ln -sf $repo_path/gitignore_global ~/.gitignore_global
