@@ -8,6 +8,8 @@
 
 # About #
 
+![Screenshot](screenshot.png)
+
 A collection of configuration file for zsh, git, and others, as well as various plugins/packages as
 git submodules.
 
