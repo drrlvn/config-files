@@ -1,5 +1,6 @@
 *~
-.DS_Store
-.idea
+.DS_Store/
+.idea/
+.env/
+.vscode/
 .dir-locals.el
-.env
