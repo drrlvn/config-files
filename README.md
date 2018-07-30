@@ -2,7 +2,6 @@
 
 * [About](#about)
 * [Usage](#usage)
-  * [Zsh](#zsh)
   * [Git](#git)
   * [Tmux](#tmux)
 
@@ -10,7 +9,7 @@
 
 ![Screenshot](screenshot.png)
 
-A collection of configuration file for zsh, git, and others, as well as various plugins/packages as
+A collection of configuration file for git, tmux and others, as well as various plugins/packages as
 git submodules.
 
 See also my [emacs](https://github.com/drrlvn/.emacs.d), [vim](https://github.com/drrlvn/.vim) and
@@ -18,9 +17,6 @@ See also my [emacs](https://github.com/drrlvn/.emacs.d), [vim](https://github.co
 
 I mostly assembled bits and pieces over time as the need grew, but some sources served as
 inspiration and deserve explicit credit:
-
-* Zsh:
-  * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/)
 
 # Usage #
 
@@ -37,10 +33,6 @@ You can either clone using:
 Or clone as usual and then run:
 
     git submodule update --init --recursive
-
-## Zsh ##
-
-Run the script `zsh/install.sh <REPO_PATH>`.
 
 ## Git ##
 
