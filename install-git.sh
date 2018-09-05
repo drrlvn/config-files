@@ -11,6 +11,6 @@ read -p "Using $repo_path -- Press enter to continue..."
 mkdir -p ~/.config/git
 echo -e "[include]\n    path = $repo_path/gitconfig" > ~/.config/git/config
 
-mkdir -p ~/bin
-ln -sf $repo_path/diff-highlight ~/bin/
+mkdir -p ~/.local/bin/
+ln -sf $repo_path/diff-highlight ~/.local/bin/
 ln -sf $repo_path/gitignore_global ~/.gitignore_global
