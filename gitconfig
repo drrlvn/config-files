@@ -41,6 +41,9 @@
 [credential]
     helper = store
 
+[branch]
+    sort = -authordate
+
 [commit]
     verbose = true
 
