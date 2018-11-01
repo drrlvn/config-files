@@ -6,7 +6,7 @@ else
     repo_path="$1"
 fi
 
-read -p "Using $repo_path -- Press enter to continue..."
+read -p "Using $repo_path -- Press enter to continue..." REPLY
 
 echo "source $repo_path/tmux/tmux.conf" > ~/.tmux.conf
 
