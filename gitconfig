@@ -62,7 +62,7 @@
     conflictstyle = diff3
 
 [log]
-    date = format:%a %F %T
+    date = auto:human
 
 [status]
     branch = true
