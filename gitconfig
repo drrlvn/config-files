@@ -17,6 +17,7 @@
     lpw = log --patch --color-words
     ls = log --stat
     pr = !git co master && git pull && git co @{-1} && git rb master
+    rb = rebase
     ri = rebase -i
     st = status
     unstage = reset --
