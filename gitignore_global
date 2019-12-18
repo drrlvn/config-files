@@ -4,3 +4,4 @@
 .env/
 .vscode/
 .dir-locals.el
+.projectile
