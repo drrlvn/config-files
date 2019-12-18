@@ -69,6 +69,7 @@
 [status]
     branch = true
     short = true
+    showUntrackedFiles = all
 
 [rebase]
     autosquash = true
