@@ -1,11 +1,19 @@
 #!/usr/bin/env sh
 
+if command -v delta; then
+    exec delta --24-bit-color=always --theme=OneHalfDark
+fi
+
 if [ -e /usr/share/git/diff-highlight/diff-highlight ]; then
     exec /usr/share/git/diff-highlight/diff-highlight
 fi
 
 if [ -e /usr/share/doc/git/contrib/diff-highlight/diff-highlight ]; then
     exec perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+fi
+
+if [ -e /usr/local/Cellar/git/*/share/git-core/contrib/diff-highlight/diff-highlight ]; then
+    exec /usr/local/Cellar/git/*/share/git-core/contrib/diff-highlight/diff-highlight
 fi
 
 exec cat
