@@ -11,3 +11,5 @@ read -p "Using $repo_path -- Press enter to continue..." REPLY
 echo "source $repo_path/tmux/tmux.conf" > ~/.tmux.conf
 
 ln -sf "$repo_path/tmux" ~/.tmux
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
