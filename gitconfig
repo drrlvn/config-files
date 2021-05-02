@@ -32,7 +32,7 @@
 
 [core]
     autocrlf = false
-    pager = less -F
+    pager = delta
     sparseCheckout = true
     untrackedCache = true
     excludesfile = ~/.gitignore_global
@@ -46,10 +46,8 @@
 [commit]
     verbose = true
 
-[pager]
-    log = diff-highlight | less -F
-    show = diff-highlight | less -F
-    diff = diff-highlight | less -F
+[delta]
+    navigate = true
 
 [diff]
     colorMoved = true
@@ -83,7 +81,7 @@
     followTags = true
 
 [interactive]
-    diffFilter = diff-highlight
+    diffFilter = delta --color-only
 
 [user]
     useConfigOnly = true
