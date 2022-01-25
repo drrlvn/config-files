@@ -50,13 +50,14 @@
     navigate = true
 
 [diff]
+    algorithm = histogram
     colorMoved = true
     renamelimit = 0
     renames = copy
     ignoreSubmodules = dirty
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [log]
     date = auto:human
