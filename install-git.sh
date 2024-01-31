@@ -12,5 +12,4 @@ mkdir -p ~/.config/git
 printf "[include]\n    path = $repo_path/gitconfig" > ~/.config/git/config
 
 mkdir -p ~/.local/bin/
-ln -sf "$repo_path/diff-highlight" ~/.local/bin/
 ln -sf "$repo_path/gitignore_global" ~/.gitignore_global
