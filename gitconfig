@@ -72,6 +72,9 @@
     autostash = true
     stat = true
 
+[rerere]
+    enabled = true
+
 [fetch]
     prune = true
 
